@@ -216,6 +216,11 @@
         let modulesData = {};
         let currentColumns = [];
 
+        // Prefijo de API segun direccion
+        function apiPrefix() {
+            return currentDirection === 'newcore_to_legacy' ? '/api/newcore' : '/api/legacy';
+        }
+
         window.onload = () => {
             loadModules();
             refreshStatus();
@@ -254,7 +259,7 @@
             sel.innerHTML = '<option value="">-- Cargando... --</option>';
 
             try {
-                const res = await fetch(`/api/modules/${currentDirection}`);
+                const res = await fetch(`${apiPrefix()}/modules`);
                 modulesData = await res.json();
 
                 if (modulesData.error) {
@@ -313,10 +318,10 @@
 
             // Cargar columnas
             try {
-                const res = await fetch('/api/columns', {
+                const res = await fetch(`${apiPrefix()}/columns`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ direction: currentDirection, schema, table })
+                    body: JSON.stringify({ schema, table })
                 });
                 currentColumns = await res.json();
 
@@ -414,7 +419,6 @@
             fill.style.width = '15%';
 
             const payload = {
-                direction: currentDirection,
                 schema,
                 table,
                 quantity: parseInt(document.getElementById('quantity').value),
@@ -423,7 +427,7 @@
 
             try {
                 fill.style.width = '40%';
-                const res = await fetch('/api/test', {
+                const res = await fetch(`${apiPrefix()}/test`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -444,7 +448,7 @@
 
                 // Iniciar monitor de pipeline si no se desactivaron triggers
                 if (!payload.disable_triggers && data.total_inserted > 0) {
-                    startPipelineMonitor(payload.direction, payload.schema, payload.table, data.total_inserted);
+                    startPipelineMonitor(payload.schema, payload.table, data.total_inserted);
                 }
 
             } catch (e) {
@@ -459,13 +463,12 @@
 
         let pipelineInterval = null;
 
-        async function startPipelineMonitor(direction, schema, table, quantity) {
-            // Iniciar monitor en backend
+        async function startPipelineMonitor(schema, table, quantity) {
             try {
-                const res = await fetch('/api/pipeline-start', {
+                const res = await fetch(`${apiPrefix()}/pipeline-start`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ direction, schema, table, quantity })
+                    body: JSON.stringify({ schema, table, quantity })
                 });
                 const data = await res.json();
                 if (data.error) return;
@@ -490,7 +493,7 @@
 
                 const updatePipeline = async () => {
                     try {
-                        const r = await fetch(`/api/pipeline-poll/${monitorId}`);
+                        const r = await fetch(`${apiPrefix()}/pipeline-poll/${monitorId}`);
                         const p = await r.json();
                         if (p.error) return;
 
@@ -671,10 +674,10 @@
             if (!confirm(`Eliminar TODOS los registros de ${schema}.${table}?`)) return;
 
             try {
-                const res = await fetch('/api/cleanup', {
+                const res = await fetch(`${apiPrefix()}/cleanup`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ direction: currentDirection, schema, table })
+                    body: JSON.stringify({ schema, table })
                 });
                 const data = await res.json();
                 if (data.error) alert('Error: ' + data.error);
@@ -874,10 +877,10 @@
             if (!confirm(`TRUNCATE ${schema}.${table}?\nEsto eliminará TODOS los registros de forma irreversible.`)) return;
 
             try {
-                const res = await fetch('/api/truncate', {
+                const res = await fetch(`${apiPrefix()}/truncate`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ direction: currentDirection, schema, table })
+                    body: JSON.stringify({ schema, table })
                 });
                 const data = await res.json();
                 if (data.error) alert('Error: ' + data.error);
