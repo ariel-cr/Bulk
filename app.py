@@ -514,9 +514,9 @@ def truncate_table():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route("/api/errors/<db_key>")
-def get_errors(db_key):
-    """Retorna los últimos errores de cdc_inbox_errors"""
+@app.route("/api/cdc-pending-summary/<db_key>")
+def get_pending_summary(db_key):
+    """Diagnóstico de registros pendientes en cdc_inbox"""
     if db_key not in DATABASES:
         return jsonify({"error": "DB inválida"}), 400
 
@@ -524,33 +524,350 @@ def get_errors(db_key):
         conn = get_connection(db_key)
         cursor = conn.cursor()
 
-        # Leer columnas dinámicamente
+        # Total pendientes
+        cursor.execute("SELECT COUNT(*) FROM dbo.cdc_inbox WHERE processed = 0")
+        total = cursor.fetchone()[0]
+
+        if total == 0:
+            conn.close()
+            return jsonify({"total": 0, "groups": [], "oldest": None, "newest": None})
+
+        # Agrupado por aggregate_type + event_type
         cursor.execute("""
+            SELECT aggregate_type, event_type, source_table,
+                   COUNT(*) as cnt,
+                   MIN(created_at) as oldest,
+                   MAX(created_at) as newest
+            FROM dbo.cdc_inbox WHERE processed = 0
+            GROUP BY aggregate_type, event_type, source_table
+            ORDER BY cnt DESC
+        """)
+        groups = []
+        for r in cursor.fetchall():
+            groups.append({
+                "aggregate_type": r.aggregate_type,
+                "event_type": r.event_type,
+                "source_table": r.source_table or "N/A",
+                "count": r.cnt,
+                "oldest": str(r.oldest),
+                "newest": str(r.newest)
+            })
+
+        # Rango de fechas global
+        cursor.execute("""
+            SELECT MIN(created_at), MAX(created_at),
+                   DATEDIFF(MINUTE, MAX(created_at), GETDATE()) as minutes_ago
+            FROM dbo.cdc_inbox WHERE processed = 0
+        """)
+        row = cursor.fetchone()
+        oldest = str(row[0]) if row[0] else None
+        newest = str(row[1]) if row[1] else None
+        minutes_stuck = row[2] if row[2] else 0
+
+        conn.close()
+        return jsonify({
+            "total": total,
+            "groups": groups,
+            "oldest": oldest,
+            "newest": newest,
+            "minutes_stuck": minutes_stuck
+        })
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/cdc-data/<db_key>/<table_name>")
+def get_cdc_data(db_key, table_name):
+    """Retorna datos de cualquier tabla CDC (inbox, outbox, inbox_errors)"""
+    allowed = ['cdc_inbox', 'cdc_outbox', 'cdc_inbox_errors']
+    if db_key not in DATABASES:
+        return jsonify({"error": "DB inválida"}), 400
+    if table_name not in allowed:
+        return jsonify({"error": "Tabla no permitida"}), 400
+
+    filter_type = request.args.get("filter")  # 'pending', 'processed'
+    page = int(request.args.get("page", 1))
+    per_page = int(request.args.get("per_page", 100))
+    offset = (page - 1) * per_page
+
+    try:
+        conn = get_connection(db_key)
+        cursor = conn.cursor()
+
+        cursor.execute(f"""
             SELECT COLUMN_NAME
             FROM INFORMATION_SCHEMA.COLUMNS
-            WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'cdc_inbox_errors'
+            WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = '{table_name}'
             ORDER BY ORDINAL_POSITION
         """)
         col_names = [row.COLUMN_NAME for row in cursor.fetchall()]
 
         if not col_names:
             conn.close()
-            return jsonify({"columns": [], "rows": [], "total": 0})
+            return jsonify({"columns": [], "rows": [], "total": 0, "page": page, "pages": 0})
 
         cols_sql = ", ".join([f"[{c}]" for c in col_names])
-        cursor.execute(f"SELECT COUNT(*) FROM dbo.cdc_inbox_errors")
-        total = cursor.fetchone()[0]
 
-        cursor.execute(f"SELECT TOP 50 {cols_sql} FROM dbo.cdc_inbox_errors ORDER BY 1 DESC")
+        where = ""
+        if table_name == 'cdc_inbox' and filter_type == 'pending':
+            where = "WHERE processed = 0"
+        elif table_name == 'cdc_inbox' and filter_type == 'processed':
+            where = "WHERE processed = 1"
+
+        cursor.execute(f"SELECT COUNT(*) FROM dbo.[{table_name}] {where}")
+        total = cursor.fetchone()[0]
+        total_pages = (total + per_page - 1) // per_page if total > 0 else 1
+
+        cursor.execute(f"""
+            SELECT {cols_sql} FROM dbo.[{table_name}] {where}
+            ORDER BY 1 DESC
+            OFFSET {offset} ROWS FETCH NEXT {per_page} ROWS ONLY
+        """)
         rows = []
         for row in cursor.fetchall():
             rows.append([str(v) if v is not None else "" for v in row])
 
         conn.close()
-        return jsonify({"columns": col_names, "rows": rows, "total": total})
+        return jsonify({
+            "columns": col_names, "rows": rows, "total": total,
+            "page": page, "pages": total_pages, "per_page": per_page
+        })
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/truncate-cdc", methods=["POST"])
+def truncate_cdc():
+    """Truncate a CDC table (inbox, outbox, inbox_errors)"""
+    data = request.json
+    db_key = data.get("db_key")
+    table = data.get("table")  # 'cdc_inbox', 'cdc_outbox', 'cdc_inbox_errors'
+
+    allowed_tables = ['cdc_inbox', 'cdc_outbox', 'cdc_inbox_errors']
+    if db_key not in DATABASES:
+        return jsonify({"error": "DB inválida"}), 400
+    if table not in allowed_tables:
+        return jsonify({"error": "Tabla no permitida"}), 400
+
+    try:
+        conn = get_connection(db_key)
+        cursor = conn.cursor()
+
+        cursor.execute(f"SELECT COUNT(*) FROM dbo.[{table}]")
+        before = cursor.fetchone()[0]
+
+        try:
+            cursor.execute(f"TRUNCATE TABLE dbo.[{table}]")
+            conn.commit()
+            method = "TRUNCATE"
+        except Exception:
+            conn.rollback()
+            cursor.execute(f"DELETE FROM dbo.[{table}]")
+            conn.commit()
+            method = "DELETE"
+
+        conn.close()
+        return jsonify({"table": f"{db_key}.dbo.{table}", "deleted": before, "method": method})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+def find_staging_table(dest_db_key, source_schema, source_table):
+    """Busca la tabla staging destino correspondiente a la tabla fuente.
+    Ej: INMUEBLES.CIUDADELATYPE en newcore → INMUEBLES.Ciudadela_Staging en legacy"""
+    try:
+        conn = get_connection(dest_db_key)
+        cursor = conn.cursor()
+
+        # Quitar sufijo TYPE del nombre
+        base_name = source_table
+        if base_name.upper().endswith("TYPE"):
+            base_name = base_name[:-4]
+
+        # Buscar tabla _Staging en el mismo schema (case-insensitive)
+        cursor.execute("""
+            SELECT s.name AS sn, t.name AS tn
+            FROM sys.tables t
+            JOIN sys.schemas s ON t.schema_id = s.schema_id
+            WHERE t.name LIKE '%_Staging'
+              AND LOWER(s.name) = LOWER(?)
+              AND LOWER(REPLACE(t.name, '_Staging', '')) = LOWER(?)
+        """, source_schema, base_name)
+        row = cursor.fetchone()
+        conn.close()
+
+        if row:
+            return row.sn, row.tn
+        return None, None
+    except:
+        return None, None
+
+
+# Estado global del monitor (por simplicidad, un dict en memoria)
+pipeline_monitors = {}
+
+
+@app.route("/api/pipeline-start", methods=["POST"])
+def pipeline_start():
+    """Inicia el monitoreo de pipeline después de un insert"""
+    data = request.json
+    direction = data.get("direction", "newcore_to_legacy")
+    schema = data.get("schema")
+    table = data.get("table")
+    quantity = int(data.get("quantity", 0))
+
+    source_db = "newcore" if direction == "newcore_to_legacy" else "legacy"
+    dest_db = "legacy" if direction == "newcore_to_legacy" else "newcore"
+
+    # Buscar tabla staging destino
+    dest_schema, dest_table = find_staging_table(dest_db, schema, table)
+
+    # Contar estado actual en destino
+    dest_count_before = 0
+    if dest_schema and dest_table:
+        try:
+            conn = get_connection(dest_db)
+            cursor = conn.cursor()
+            cursor.execute(f"SELECT COUNT(*) FROM [{dest_schema}].[{dest_table}]")
+            dest_count_before = cursor.fetchone()[0]
+            conn.close()
+        except:
+            pass
+
+    # Contar outbox actual en source
+    source_outbox_before = 0
+    try:
+        conn = get_connection(source_db)
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM dbo.cdc_outbox")
+        source_outbox_before = cursor.fetchone()[0]
+        conn.close()
+    except:
+        pass
+
+    # Contar inbox actual en dest
+    dest_inbox_before = 0
+    dest_inbox_processed_before = 0
+    dest_errors_before = 0
+    try:
+        conn = get_connection(dest_db)
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM dbo.cdc_inbox")
+        dest_inbox_before = cursor.fetchone()[0]
+        cursor.execute("SELECT COUNT(*) FROM dbo.cdc_inbox WHERE processed = 1")
+        dest_inbox_processed_before = cursor.fetchone()[0]
+        cursor.execute("SELECT COUNT(*) FROM dbo.cdc_inbox_errors")
+        dest_errors_before = cursor.fetchone()[0]
+        conn.close()
+    except:
+        pass
+
+    monitor_id = f"{direction}_{schema}_{table}_{int(time.time())}"
+    pipeline_monitors[monitor_id] = {
+        "direction": direction,
+        "source_db": source_db,
+        "dest_db": dest_db,
+        "source_table": f"{schema}.{table}",
+        "dest_table": f"{dest_schema}.{dest_table}" if dest_schema else "No encontrada",
+        "quantity": quantity,
+        "start_time": time.time(),
+        "source_outbox_before": source_outbox_before,
+        "dest_inbox_before": dest_inbox_before,
+        "dest_inbox_processed_before": dest_inbox_processed_before,
+        "dest_errors_before": dest_errors_before,
+        "dest_count_before": dest_count_before,
+        "dest_schema": dest_schema,
+        "dest_table_name": dest_table,
+        "completed": False,
+        "completed_at": None
+    }
+
+    return jsonify({"monitor_id": monitor_id, "dest_table": f"{dest_schema}.{dest_table}" if dest_schema else None})
+
+
+@app.route("/api/pipeline-poll/<monitor_id>")
+def pipeline_poll(monitor_id):
+    """Consulta el estado actual del pipeline"""
+    mon = pipeline_monitors.get(monitor_id)
+    if not mon:
+        return jsonify({"error": "Monitor no encontrado"}), 404
+
+    elapsed = round(time.time() - mon["start_time"], 1)
+    result = {
+        "elapsed_sec": elapsed,
+        "source_table": mon["source_table"],
+        "dest_table": mon["dest_table"],
+        "quantity": mon["quantity"],
+    }
+
+    try:
+        # Source outbox
+        conn_src = get_connection(mon["source_db"])
+        cur_src = conn_src.cursor()
+        cur_src.execute("SELECT COUNT(*) FROM dbo.cdc_outbox")
+        outbox_total = cur_src.fetchone()[0]
+        result["outbox_new"] = outbox_total - mon["source_outbox_before"]
+        conn_src.close()
+    except:
+        result["outbox_new"] = "N/A"
+
+    try:
+        # Dest inbox
+        conn_dst = get_connection(mon["dest_db"])
+        cur_dst = conn_dst.cursor()
+
+        cur_dst.execute("SELECT COUNT(*) FROM dbo.cdc_inbox")
+        inbox_total = cur_dst.fetchone()[0]
+        result["inbox_received"] = inbox_total - mon["dest_inbox_before"]
+
+        cur_dst.execute("SELECT COUNT(*) FROM dbo.cdc_inbox WHERE processed = 1")
+        inbox_proc = cur_dst.fetchone()[0]
+        result["inbox_processed"] = inbox_proc - mon["dest_inbox_processed_before"]
+
+        cur_dst.execute("SELECT COUNT(*) FROM dbo.cdc_inbox WHERE processed = 0")
+        result["inbox_pending"] = cur_dst.fetchone()[0]
+
+        cur_dst.execute("SELECT COUNT(*) FROM dbo.cdc_inbox_errors")
+        errors_total = cur_dst.fetchone()[0]
+        result["inbox_errors"] = errors_total - mon["dest_errors_before"]
+
+        # Dest staging table count
+        if mon["dest_schema"] and mon["dest_table_name"]:
+            cur_dst.execute(f"SELECT COUNT(*) FROM [{mon['dest_schema']}].[{mon['dest_table_name']}]")
+            dest_count = cur_dst.fetchone()[0]
+            result["dest_count"] = dest_count
+            result["dest_new"] = dest_count - mon["dest_count_before"]
+
+            # Check if completed
+            if result["dest_new"] >= mon["quantity"] and not mon["completed"]:
+                mon["completed"] = True
+                mon["completed_at"] = elapsed
+                result["completed_at"] = elapsed
+            elif mon["completed"]:
+                result["completed_at"] = mon["completed_at"]
+        else:
+            result["dest_count"] = "N/A"
+            result["dest_new"] = "N/A"
+
+        conn_dst.close()
+    except Exception as e:
+        result["dest_error"] = str(e)[:200]
+
+    # Progress percentage
+    try:
+        if isinstance(result.get("dest_new"), int) and mon["quantity"] > 0:
+            result["progress_pct"] = min(100, round(result["dest_new"] / mon["quantity"] * 100, 1))
+        else:
+            result["progress_pct"] = 0
+    except:
+        result["progress_pct"] = 0
+
+    result["completed"] = mon["completed"]
+
+    return jsonify(result)
 
 
 if __name__ == "__main__":

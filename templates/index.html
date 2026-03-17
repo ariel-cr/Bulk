@@ -93,6 +93,9 @@
         .status-chip.clickable { cursor: pointer; transition: border-color 0.2s; }
         .status-chip.clickable:hover { border-color: #cc5555; }
 
+        .chip-truncate { background: none; border: 1px solid #cc5555; color: #cc5555; border-radius: 4px; padding: 2px 6px; font-size: 10px; cursor: pointer; margin-left: 6px; font-weight: 600; transition: all 0.2s; }
+        .chip-truncate:hover { background: #cc5555; color: #fff; }
+
         /* Modal */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 100; justify-content: center; align-items: center; }
         .modal-overlay.show { display: flex; }
@@ -106,6 +109,12 @@
         .error-table th { text-align: left; padding: 8px 6px; color: #888; border-bottom: 1px solid #333; position: sticky; top: 0; background: #1a1a1a; }
         .error-table td { padding: 6px; border-bottom: 1px solid #1e1e1e; color: #b0b0b0; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .error-table tr:hover td { color: #e0e0e0; background: #222; }
+
+        .pagination { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 0 4px; }
+        .pagination button { background: #2a2a2a; border: 1px solid #444; color: #ccc; border-radius: 6px; padding: 6px 14px; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+        .pagination button:hover:not(:disabled) { background: #444; }
+        .pagination button:disabled { opacity: 0.3; cursor: not-allowed; }
+        .pagination .page-info { font-size: 12px; color: #888; }
     </style>
 </head>
 <body>
@@ -210,6 +219,7 @@
         window.onload = () => {
             loadModules();
             refreshStatus();
+            setInterval(refreshStatus, 5000);
         };
 
         function setDirection(dir) {
@@ -341,13 +351,37 @@
                     if (key.includes('pending') && val > 0) cls = 'warn';
                     if (key.includes('error') && val > 0) cls = 'err';
 
-                    const isError = key.includes('error') && typeof val === 'number' && val > 0;
                     const dbKey = key.startsWith('newcore') ? 'newcore' : 'legacy';
-                    const clickAttr = isError ? `class="status-chip clickable" onclick="showErrors('${dbKey}')" title="Click para ver errores"` : `class="status-chip"`;
+                    const hasData = typeof val === 'number' && val > 0;
+
+                    // Map key to CDC table + filter
+                    let cdcTable = null;
+                    let cdcFilter = '';
+                    if (key.includes('outbox')) { cdcTable = 'cdc_outbox'; }
+                    else if (key.includes('inbox_pending')) { cdcTable = 'cdc_inbox'; cdcFilter = 'pending'; }
+                    else if (key.includes('inbox_processed')) { cdcTable = 'cdc_inbox'; cdcFilter = 'processed'; }
+                    else if (key.includes('error')) { cdcTable = 'cdc_inbox_errors'; }
+
+                    // Click to view data
+                    let clickAttr = `class="status-chip"`;
+                    if (hasData && cdcTable) {
+                        if (cdcFilter === 'pending') {
+                            clickAttr = `class="status-chip clickable" onclick="showPendingSummary('${dbKey}', '${label}')" title="Click para ver diagnostico"`;
+                        } else {
+                            clickAttr = `class="status-chip clickable" onclick="showCdcData('${dbKey}', '${cdcTable}', '${cdcFilter}', '${label}')" title="Click para ver registros"`;
+                        }
+                    }
+
+                    // Truncate button
+                    let truncBtn = '';
+                    if (hasData && cdcTable) {
+                        truncBtn = `<button class="chip-truncate" onclick="event.stopPropagation(); truncateCdc('${dbKey}', '${cdcTable}')" title="Truncate ${dbKey}.dbo.${cdcTable}">X</button>`;
+                    }
 
                     html += `<div ${clickAttr}>
                         <span class="s-label">${label}</span>
                         <span class="s-value ${cls}">${typeof val === 'number' ? val.toLocaleString() : val}</span>
+                        ${truncBtn}
                     </div>`;
                 }
                 document.getElementById('statusBar').innerHTML = html;
@@ -399,6 +433,11 @@
                 renderResults(data);
                 refreshStatus();
 
+                // Iniciar monitor de pipeline si no se desactivaron triggers
+                if (!payload.disable_triggers && data.total_inserted > 0) {
+                    startPipelineMonitor(payload.direction, payload.schema, payload.table, data.total_inserted);
+                }
+
             } catch (e) {
                 document.getElementById('results').innerHTML = `
                     <div class="result-section"><h3>Error</h3><p style="color:#ef4444">${e.message}</p></div>`;
@@ -407,6 +446,104 @@
                 btn.innerHTML = 'Ejecutar Prueba';
                 setTimeout(() => { bar.style.display = 'none'; }, 800);
             }
+        }
+
+        let pipelineInterval = null;
+
+        async function startPipelineMonitor(direction, schema, table, quantity) {
+            // Iniciar monitor en backend
+            try {
+                const res = await fetch('/api/pipeline-start', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ direction, schema, table, quantity })
+                });
+                const data = await res.json();
+                if (data.error) return;
+
+                const monitorId = data.monitor_id;
+                const destTable = data.dest_table || 'No encontrada';
+
+                // Insertar sección de pipeline en resultados
+                const resultsDiv = document.getElementById('results');
+                const pipeDiv = document.createElement('div');
+                pipeDiv.id = 'pipelineMonitor';
+                pipeDiv.className = 'result-section';
+                pipeDiv.style.border = '1px solid #444';
+                resultsDiv.insertBefore(pipeDiv, resultsDiv.firstChild);
+
+                // Limpiar intervalo anterior
+                if (pipelineInterval) clearInterval(pipelineInterval);
+
+                // Polling cada 3 segundos
+                const updatePipeline = async () => {
+                    try {
+                        const r = await fetch(`/api/pipeline-poll/${monitorId}`);
+                        const p = await r.json();
+                        if (p.error) return;
+                        renderPipeline(pipeDiv, p, destTable);
+                        refreshStatus();
+                        if (p.completed) {
+                            clearInterval(pipelineInterval);
+                            pipelineInterval = null;
+                        }
+                    } catch(e) {}
+                };
+
+                updatePipeline();
+                pipelineInterval = setInterval(updatePipeline, 3000);
+
+            } catch (e) {}
+        }
+
+        function renderPipeline(div, p, destTable) {
+            const pct = p.progress_pct || 0;
+            const barColor = p.completed ? '#4ade80' : '#ccaa44';
+            const statusText = p.completed ? `Completado en ${p.completed_at}s` : 'En progreso...';
+            const statusColor = p.completed ? '#4ade80' : '#ccaa44';
+
+            div.innerHTML = `
+                <h3 style="margin-bottom:12px;">Pipeline CDC en Tiempo Real ${p.completed ? '' : '<span class="spinner"></span>'}</h3>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <span style="font-size:12px; color:#888;">
+                        ${p.source_table} → <strong style="color:#b0b0b0">${destTable}</strong>
+                    </span>
+                    <span style="font-size:13px; font-weight:700; color:${statusColor}">${statusText}</span>
+                </div>
+                <div style="width:100%; height:8px; background:#2a2a2a; border-radius:4px; margin-bottom:16px; overflow:hidden;">
+                    <div style="height:100%; width:${pct}%; background:${barColor}; border-radius:4px; transition:width 0.5s;"></div>
+                </div>
+                <div class="metrics-grid" style="grid-template-columns:repeat(6,1fr);">
+                    <div class="metric-card">
+                        <div class="m-value">${p.elapsed_sec}s</div>
+                        <div class="m-label">Tiempo</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="m-value ${typeof p.outbox_new === 'number' && p.outbox_new > 0 ? '' : 'warn'}">${typeof p.outbox_new === 'number' ? p.outbox_new.toLocaleString() : p.outbox_new}</div>
+                        <div class="m-label">Outbox</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="m-value">${typeof p.inbox_received === 'number' ? p.inbox_received.toLocaleString() : p.inbox_received}</div>
+                        <div class="m-label">Inbox recibidos</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="m-value">${typeof p.inbox_processed === 'number' ? p.inbox_processed.toLocaleString() : p.inbox_processed}</div>
+                        <div class="m-label">Inbox procesados</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="m-value ${typeof p.inbox_errors === 'number' && p.inbox_errors > 0 ? 'err' : ''}">${typeof p.inbox_errors === 'number' ? p.inbox_errors : 0}</div>
+                        <div class="m-label">Errores</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="m-value ${p.completed ? '' : 'warn'}">${typeof p.dest_new === 'number' ? p.dest_new.toLocaleString() : p.dest_new} / ${p.quantity.toLocaleString()}</div>
+                        <div class="m-label">Llegaron a destino</div>
+                    </div>
+                </div>
+                <div style="margin-top:8px; font-size:11px; color:#555; text-align:center;">
+                    ${p.inbox_pending > 0 ? '<span style="color:#ccaa44">Inbox pendientes: ' + p.inbox_pending + '</span> | ' : ''}
+                    Progreso: ${pct}%
+                </div>
+            `;
         }
 
         function renderResults(d) {
@@ -494,17 +631,26 @@
                 alert('Error: ' + e.message);
             }
         }
-        async function showErrors(dbKey) {
+        // Store current modal params for pagination
+        let cdcModalState = { dbKey: '', cdcTable: '', filter: '', label: '', page: 1 };
+
+        async function showCdcData(dbKey, cdcTable, filter, label, page) {
+            page = page || 1;
+            cdcModalState = { dbKey, cdcTable, filter, label, page };
+
             const modal = document.getElementById('errorsModal');
             const title = document.getElementById('errorsModalTitle');
             const body = document.getElementById('errorsModalBody');
 
-            title.textContent = `Errores CDC - ${dbKey}`;
-            body.innerHTML = '<p style="color:#666"><span class="spinner"></span> Cargando errores...</p>';
+            title.textContent = `${label} - ${dbKey}`;
+            body.innerHTML = '<p style="color:#666"><span class="spinner"></span> Cargando datos...</p>';
             modal.classList.add('show');
 
             try {
-                const res = await fetch(`/api/errors/${dbKey}`);
+                let url = `/api/cdc-data/${dbKey}/${cdcTable}?page=${page}&per_page=100`;
+                if (filter) url += `&filter=${filter}`;
+
+                const res = await fetch(url);
                 const data = await res.json();
 
                 if (data.error) {
@@ -513,11 +659,14 @@
                 }
 
                 if (!data.rows || data.rows.length === 0) {
-                    body.innerHTML = '<p style="color:#666">No hay errores.</p>';
+                    body.innerHTML = '<p style="color:#666">No hay registros.</p>';
                     return;
                 }
 
-                let html = `<p style="color:#888; margin-bottom:12px; font-size:12px;">Mostrando ${data.rows.length} de ${data.total} errores</p>`;
+                const from = (data.page - 1) * data.per_page + 1;
+                const to = from + data.rows.length - 1;
+
+                let html = `<p style="color:#888; margin-bottom:12px; font-size:12px;">${from}-${to} de ${data.total.toLocaleString()} registros</p>`;
                 html += '<table class="error-table"><tr>';
                 for (const col of data.columns) {
                     html += `<th>${col}</th>`;
@@ -531,6 +680,109 @@
                     html += '</tr>';
                 }
                 html += '</table>';
+
+                // Pagination controls
+                if (data.pages > 1) {
+                    html += `<div class="pagination">
+                        <button onclick="cdcPage(1)" ${data.page <= 1 ? 'disabled' : ''}>&laquo;</button>
+                        <button onclick="cdcPage(${data.page - 1})" ${data.page <= 1 ? 'disabled' : ''}>&lsaquo; Anterior</button>
+                        <span class="page-info">Pag ${data.page} / ${data.pages}</span>
+                        <button onclick="cdcPage(${data.page + 1})" ${data.page >= data.pages ? 'disabled' : ''}>Siguiente &rsaquo;</button>
+                        <button onclick="cdcPage(${data.pages})" ${data.page >= data.pages ? 'disabled' : ''}>&raquo;</button>
+                    </div>`;
+                }
+
+                body.innerHTML = html;
+
+            } catch (e) {
+                body.innerHTML = `<p style="color:#cc6666">Error: ${e.message}</p>`;
+            }
+        }
+
+        function cdcPage(page) {
+            const s = cdcModalState;
+            showCdcData(s.dbKey, s.cdcTable, s.filter, s.label, page);
+        }
+
+        async function showPendingSummary(dbKey, label) {
+            const modal = document.getElementById('errorsModal');
+            const title = document.getElementById('errorsModalTitle');
+            const body = document.getElementById('errorsModalBody');
+
+            title.textContent = `${label} - Diagnostico`;
+            body.innerHTML = '<p style="color:#666"><span class="spinner"></span> Analizando pendientes...</p>';
+            modal.classList.add('show');
+
+            try {
+                const res = await fetch(`/api/cdc-pending-summary/${dbKey}`);
+                const data = await res.json();
+
+                if (data.error) {
+                    body.innerHTML = `<p style="color:#cc6666">Error: ${data.error}</p>`;
+                    return;
+                }
+
+                if (data.total === 0) {
+                    body.innerHTML = '<p style="color:#666">No hay registros pendientes.</p>';
+                    return;
+                }
+
+                let stuckClass = data.minutes_stuck > 30 ? 'err' : (data.minutes_stuck > 5 ? 'warn' : '');
+                let stuckLabel = data.minutes_stuck > 60
+                    ? `${Math.floor(data.minutes_stuck / 60)}h ${data.minutes_stuck % 60}m`
+                    : `${data.minutes_stuck}m`;
+
+                let html = `
+                    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px;">
+                        <div class="metric-card">
+                            <div class="m-value warn">${data.total.toLocaleString()}</div>
+                            <div class="m-label">Total pendientes</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="m-value ${stuckClass}">${stuckLabel}</div>
+                            <div class="m-label">Tiempo sin procesar</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="m-value">${data.groups.length}</div>
+                            <div class="m-label">Tipos distintos</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:14px;">
+                        <p style="color:#888; font-size:12px; margin-bottom:4px;"><strong>Rango:</strong> ${data.oldest} → ${data.newest}</p>
+                    </div>
+
+                    <h3 style="color:#aaa; font-size:14px; margin-bottom:10px;">Agrupado por tipo</h3>
+                    <table class="error-table">
+                        <tr><th>aggregate_type</th><th>event_type</th><th>source_table</th><th>Cantidad</th><th>Mas antiguo</th><th>Mas reciente</th></tr>`;
+
+                for (const g of data.groups) {
+                    html += `<tr>
+                        <td>${g.aggregate_type}</td>
+                        <td><span style="color:${g.event_type === 'CREATED' ? '#6b9' : g.event_type === 'UPDATED' ? '#cc6' : '#c66'}">${g.event_type}</span></td>
+                        <td>${g.source_table}</td>
+                        <td style="color:#ccaa44; font-weight:700">${g.count.toLocaleString()}</td>
+                        <td>${g.oldest}</td>
+                        <td>${g.newest}</td>
+                    </tr>`;
+                }
+                html += '</table>';
+
+                html += `
+                    <div style="margin-top:16px; padding:12px; background:#1e1e1e; border-radius:8px; font-size:12px; color:#888; line-height:1.6;">
+                        <strong style="color:#ccaa44;">¿Por que estan pendientes?</strong><br>
+                        Los registros en <code>cdc_inbox</code> con <code>processed=0</code> no han sido consumidos aun por el servicio CDC processor.
+                        Posibles causas:<br>
+                        - El servicio/job que procesa el inbox esta detenido o con errores<br>
+                        - Hay un backlog grande y el processor aun no llega a estos registros<br>
+                        - La tabla destino tiene constraints que impiden el procesamiento<br>
+                        - Error de conectividad entre el processor y la base de datos destino
+                    </div>
+
+                    <div style="margin-top:12px; text-align:center;">
+                        <button class="btn btn-primary btn-sm" style="width:auto; display:inline-block; padding:8px 20px;" onclick="showCdcData('${dbKey}', 'cdc_inbox', 'pending', '${label}')">Ver registros detallados</button>
+                    </div>`;
+
                 body.innerHTML = html;
 
             } catch (e) {
@@ -540,6 +792,24 @@
 
         function closeErrorsModal() {
             document.getElementById('errorsModal').classList.remove('show');
+        }
+
+        async function truncateCdc(dbKey, cdcTable) {
+            if (!confirm(`TRUNCATE ${dbKey}.dbo.${cdcTable}?\nEsto eliminará TODOS los registros.`)) return;
+
+            try {
+                const res = await fetch('/api/truncate-cdc', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ db_key: dbKey, table: cdcTable })
+                });
+                const data = await res.json();
+                if (data.error) alert('Error: ' + data.error);
+                else alert(`${data.method}: ${data.deleted.toLocaleString()} registros eliminados de ${data.table}`);
+                refreshStatus();
+            } catch (e) {
+                alert('Error: ' + e.message);
+            }
         }
 
         async function truncateTable() {
