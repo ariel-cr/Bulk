@@ -240,6 +240,15 @@
             loadModules();
         }
 
+        function formatTime(sec) {
+            if (sec == null) return '0s';
+            const s = parseFloat(sec);
+            if (s < 60) return `${s.toFixed(1)}s`;
+            const m = Math.floor(s / 60);
+            const rs = (s % 60).toFixed(0);
+            return `${m}m ${rs}s`;
+        }
+
         async function loadModules() {
             const sel = document.getElementById('module');
             sel.innerHTML = '<option value="">-- Cargando... --</option>';
@@ -476,14 +485,37 @@
                 if (pipelineInterval) clearInterval(pipelineInterval);
 
                 // Polling cada 3 segundos
+                let outboxEmptiedAt = null;
+                const STALL_TIMEOUT = 30;
+
                 const updatePipeline = async () => {
                     try {
                         const r = await fetch(`/api/pipeline-poll/${monitorId}`);
                         const p = await r.json();
                         if (p.error) return;
+
+                        const inboxTotal = (typeof p.inbox_received === 'number' ? p.inbox_received : 0);
+
+                        // Detect: outbox emptied but inbox not receiving
+                        if (typeof p.outbox_new === 'number' && p.outbox_new === 0 && p.elapsed_sec > 10 && inboxTotal === 0) {
+                            if (!outboxEmptiedAt) outboxEmptiedAt = p.elapsed_sec;
+                            if ((p.elapsed_sec - outboxEmptiedAt) >= STALL_TIMEOUT) {
+                                p._stalled = true;
+                                p._stallReason = 'Kafka leyo el outbox pero los datos no llegan al inbox. Posible problema con el sink connector o los datos van al DLQ.';
+                            }
+                        }
+                        if (inboxTotal > 0) outboxEmptiedAt = null;
+
+                        // Detect: no outbox activity at all
+                        if (typeof p.outbox_new === 'number' && p.outbox_new === 0 && inboxTotal === 0 && p.elapsed_sec > 60) {
+                            p._stalled = true;
+                            p._stallReason = 'No se generaron registros en el outbox. Los triggers pueden estar desactivados.';
+                        }
+
                         renderPipeline(pipeDiv, p, destTable);
                         refreshStatus();
-                        if (p.completed) {
+
+                        if (p.completed || p._stalled) {
                             clearInterval(pipelineInterval);
                             pipelineInterval = null;
                         }
@@ -498,12 +530,34 @@
 
         function renderPipeline(div, p, destTable) {
             const pct = p.progress_pct || 0;
-            const barColor = p.completed ? '#4ade80' : '#ccaa44';
-            const statusText = p.completed ? `Completado en ${p.completed_at}s` : 'En progreso...';
-            const statusColor = p.completed ? '#4ade80' : '#ccaa44';
+            let barColor, statusText, statusColor, icon;
+
+            if (p._stalled) {
+                barColor = '#cc5555';
+                statusText = 'Pipeline detenido';
+                statusColor = '#cc5555';
+                icon = '';
+            } else if (p.completed) {
+                barColor = '#4ade80';
+                statusText = `Completado en ${formatTime(p.completed_at)}`;
+                statusColor = '#4ade80';
+                icon = '';
+            } else {
+                barColor = '#ccaa44';
+                statusText = 'En progreso...';
+                statusColor = '#ccaa44';
+                icon = '<span class="spinner"></span>';
+            }
+
+            let stallAlert = '';
+            if (p._stalled) {
+                stallAlert = `<div style="margin-top:12px; padding:12px; background:#3a1a1a; border:1px solid #cc5555; border-radius:8px; font-size:12px; color:#cc6666; line-height:1.6;">
+                    <strong>Problema detectado:</strong> ${p._stallReason}
+                </div>`;
+            }
 
             div.innerHTML = `
-                <h3 style="margin-bottom:12px;">Pipeline CDC en Tiempo Real ${p.completed ? '' : '<span class="spinner"></span>'}</h3>
+                <h3 style="margin-bottom:12px;">Pipeline CDC en Tiempo Real ${icon}</h3>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                     <span style="font-size:12px; color:#888;">
                         ${p.source_table} → <strong style="color:#b0b0b0">${destTable}</strong>
@@ -511,11 +565,11 @@
                     <span style="font-size:13px; font-weight:700; color:${statusColor}">${statusText}</span>
                 </div>
                 <div style="width:100%; height:8px; background:#2a2a2a; border-radius:4px; margin-bottom:16px; overflow:hidden;">
-                    <div style="height:100%; width:${pct}%; background:${barColor}; border-radius:4px; transition:width 0.5s;"></div>
+                    <div style="height:100%; width:${p._stalled ? 100 : pct}%; background:${barColor}; border-radius:4px; transition:width 0.5s;"></div>
                 </div>
                 <div class="metrics-grid" style="grid-template-columns:repeat(6,1fr);">
                     <div class="metric-card">
-                        <div class="m-value">${p.elapsed_sec}s</div>
+                        <div class="m-value">${formatTime(p.elapsed_sec)}</div>
                         <div class="m-label">Tiempo</div>
                     </div>
                     <div class="metric-card">
@@ -543,6 +597,7 @@
                     ${p.inbox_pending > 0 ? '<span style="color:#ccaa44">Inbox pendientes: ' + p.inbox_pending + '</span> | ' : ''}
                     Progreso: ${pct}%
                 </div>
+                ${stallAlert}
             `;
         }
 
@@ -556,7 +611,7 @@
                     <div class="m-label">Insertados</div>
                 </div>
                 <div class="metric-card">
-                    <div class="m-value">${d.total_time_sec}s</div>
+                    <div class="m-value">${formatTime(d.total_time_sec)}</div>
                     <div class="m-label">Tiempo total</div>
                 </div>
                 <div class="metric-card">
