@@ -1,6 +1,7 @@
 """Rutas compartidas: index, status CDC, visor de datos CDC, truncate CDC."""
 from flask import Blueprint, render_template, request, jsonify
 from config import DATABASES, get_connection
+from db import get_kafka_outbox_offset
 
 common_bp = Blueprint('common', __name__)
 
@@ -184,6 +185,11 @@ def truncate_cdc():
         cursor.execute(f"SELECT COUNT(*) FROM dbo.[{table}]")
         before = cursor.fetchone()[0]
 
+        # Si es outbox, obtener offset de Kafka ANTES de truncar
+        kafka_offset = None
+        if table == "cdc_outbox":
+            kafka_offset = get_kafka_outbox_offset(db_key)
+
         try:
             cursor.execute(f"TRUNCATE TABLE dbo.[{table}]")
             conn.commit()
@@ -193,6 +199,12 @@ def truncate_cdc():
             cursor.execute(f"DELETE FROM dbo.[{table}]")
             conn.commit()
             method = "DELETE"
+
+        # Reseedear identity del outbox para que Kafka siga leyendo
+        if table == "cdc_outbox" and kafka_offset:
+            cursor.execute(f"DBCC CHECKIDENT ('dbo.cdc_outbox', RESEED, {int(kafka_offset)})")
+            conn.commit()
+            method += f" + RESEED identity a {kafka_offset}"
 
         conn.close()
         return jsonify({"table": f"{db_key}.dbo.{table}", "deleted": before, "method": method})

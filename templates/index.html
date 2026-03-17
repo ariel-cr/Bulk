@@ -426,6 +426,24 @@
             };
 
             try {
+                // Iniciar monitor ANTES del insert para capturar estado inicial
+                let monitorId = null;
+                let destTable = null;
+                if (!payload.disable_triggers) {
+                    try {
+                        const monRes = await fetch(`${apiPrefix()}/pipeline-start`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ schema, table, quantity: payload.quantity })
+                        });
+                        const monData = await monRes.json();
+                        if (monData.monitor_id) {
+                            monitorId = monData.monitor_id;
+                            destTable = monData.dest_table;
+                        }
+                    } catch(e) {}
+                }
+
                 fill.style.width = '40%';
                 const res = await fetch(`${apiPrefix()}/test`, {
                     method: 'POST',
@@ -446,9 +464,9 @@
                 renderResults(data);
                 refreshStatus();
 
-                // Iniciar monitor de pipeline si no se desactivaron triggers
-                if (!payload.disable_triggers && data.total_inserted > 0) {
-                    startPipelineMonitor(payload.schema, payload.table, data.total_inserted);
+                // Iniciar polling del pipeline con el monitor que ya capturó el estado pre-insert
+                if (monitorId && data.total_inserted > 0) {
+                    startPipelinePolling(monitorId, destTable, data.total_inserted);
                 }
 
             } catch (e) {
@@ -463,18 +481,9 @@
 
         let pipelineInterval = null;
 
-        async function startPipelineMonitor(schema, table, quantity) {
+        function startPipelinePolling(monitorId, destTable, quantity) {
             try {
-                const res = await fetch(`${apiPrefix()}/pipeline-start`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ schema, table, quantity })
-                });
-                const data = await res.json();
-                if (data.error) return;
-
-                const monitorId = data.monitor_id;
-                const destTable = data.dest_table || 'No encontrada';
+                destTable = destTable || 'No encontrada';
 
                 // Insertar sección de pipeline en resultados
                 const resultsDiv = document.getElementById('results');
@@ -529,6 +538,21 @@
                 pipelineInterval = setInterval(updatePipeline, 3000);
 
             } catch (e) {}
+        }
+
+        // Wrapper legacy para compatibilidad (no se usa en el flujo nuevo)
+        async function startPipelineMonitor(schema, table, quantity) {
+            try {
+                const res = await fetch(`${apiPrefix()}/pipeline-start`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ schema, table, quantity })
+                });
+                const data = await res.json();
+                if (data.monitor_id) {
+                    startPipelinePolling(data.monitor_id, data.dest_table, quantity);
+                }
+            } catch(e) {}
         }
 
         function renderPipeline(div, p, destTable) {

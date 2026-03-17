@@ -4,21 +4,21 @@ import time
 from datetime import datetime, timedelta
 
 
-def generate_fake_value(col, index, offset):
+def generate_fake_value(col, index, offset, is_pk=False):
     """Genera un valor fake segun el tipo de dato"""
     name = col["name"].lower()
     dtype = col["type"].lower()
     max_len = col["max_length"] or 50
     unique_id = offset + index
 
-    # Campos de ID con nombre que sugiere PK
-    if name.endswith("id") and dtype in ("varchar", "nvarchar", "char", "nchar"):
+    # Columnas PK o que terminan en "id" - usar offset para unicidad
+    if (is_pk or name.endswith("id")) and dtype in ("varchar", "nvarchar", "char", "nchar"):
         return f"BLK{unique_id}"[:min(max_len, 20)]
 
-    if name.endswith("id") and dtype in ("int", "bigint"):
+    if (is_pk or name.endswith("id")) and dtype in ("int", "bigint"):
         return unique_id
 
-    if name.endswith("id") and dtype in ("smallint", "tinyint"):
+    if (is_pk or name.endswith("id")) and dtype in ("smallint", "tinyint"):
         return unique_id % 30000
 
     # Tipos numericos

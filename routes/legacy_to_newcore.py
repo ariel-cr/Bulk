@@ -8,7 +8,7 @@ Los triggers generan outbox en fcme_legacy -> Kafka -> inbox newcore -> SP -> ta
 import time
 from flask import Blueprint, request, jsonify
 from config import get_connection
-from db import get_table_columns
+from db import get_table_columns, get_pk_columns, sync_outbox_identity, get_max_id_across_destinations
 from data_generator import generate_fake_value, get_max_numeric_id
 
 legacy_bp = Blueprint('legacy_to_newcore', __name__)
@@ -144,10 +144,28 @@ def run_test():
         conn = get_connection(db_key)
         cursor = conn.cursor()
 
-        first_id_col = next((c for c in insertable_cols if c["name"].lower().endswith("id")), None)
+        # Detectar PK real, fallback a primera col numerica
+        pk_cols = get_pk_columns(conn, "dbo", table)
+        first_id_col = None
+        if pk_cols:
+            first_id_col = next((c for c in insertable_cols if c["name"] == pk_cols[0]), None)
+        if not first_id_col:
+            first_id_col = next((c for c in insertable_cols if c["name"].lower().endswith("id")), None)
+        if not first_id_col:
+            first_id_col = next((c for c in insertable_cols if c["type"].lower() in ("int", "bigint", "smallint")), None)
+            if first_id_col:
+                pk_cols = [first_id_col["name"]]
+
         offset = 0
         if first_id_col:
-            offset = get_max_numeric_id(conn, "dbo", table, first_id_col["name"]) + 1
+            offset = get_max_numeric_id(conn, "dbo", table, first_id_col["name"])
+            # Verificar max en tablas destino de newcore para evitar colisiones
+            dest_max = get_max_id_across_destinations(db_key, table)
+            offset = max(offset, dest_max) + 1
+
+        # Sincronizar identity del outbox con Kafka e insertar warmup
+        sync_outbox_identity("legacy")
+        _insert_outbox_warmup()
 
         cursor.execute(f"SELECT COUNT(*) FROM [dbo].[{table}]")
         count_before = cursor.fetchone()[0]
@@ -189,9 +207,10 @@ def run_test():
             current_batch = min(batch_size, quantity - inserted)
             batch_start = time.time()
 
+            pk_names = set(pk_cols) if pk_cols else set()
             rows = []
             for i in range(current_batch):
-                row = [generate_fake_value(col, inserted + i + 1, offset) for col in insertable_cols]
+                row = [generate_fake_value(col, inserted + i + 1, offset, is_pk=col["name"] in pk_names) for col in insertable_cols]
                 rows.append(tuple(row))
 
             try:
@@ -489,17 +508,63 @@ def pipeline_poll(monitor_id):
 
 
 def _find_newcore_dest(source_table):
-    """Busca tabla TYPE en newcore via aggregate_type en outbox de legacy"""
+    """Busca tabla TYPE en newcore via aggregate_type en outbox o trigger"""
     try:
-        conn_outbox = get_connection("legacy")
-        cur = conn_outbox.cursor()
-        cur.execute("SELECT TOP 1 aggregate_type FROM dbo.cdc_outbox WHERE source_table = ?", source_table)
-        row = cur.fetchone()
-        conn_outbox.close()
-        if not row:
+        import re
+        agg_type = None
+
+        # Primero buscar en outbox
+        try:
+            conn_outbox = get_connection("legacy")
+            cur = conn_outbox.cursor()
+            cur.execute("""
+                SELECT TOP 1 aggregate_type FROM dbo.cdc_outbox
+                WHERE source_table = ? AND aggregate_type != '_warmup'
+            """, source_table)
+            row = cur.fetchone()
+            conn_outbox.close()
+            if row:
+                agg_type = row.aggregate_type
+        except:
+            pass
+
+        # Si outbox vacío, parsear el trigger para encontrar aggregate_types
+        if not agg_type:
+            try:
+                # Detectar la BD original del source_table por prefijo
+                prefix = source_table[:2]
+                db_map = {db: db for db in ORIGINAL_DBS}
+                source_db = None
+                for db_name in ORIGINAL_DBS:
+                    for tbl in ORIGINAL_DBS[db_name]:
+                        if tbl == source_table:
+                            source_db = db_name
+                            break
+                    if source_db:
+                        break
+
+                if source_db:
+                    conn_src = get_connection(source_db)
+                    cur_src = conn_src.cursor()
+                    cur_src.execute("""
+                        SELECT OBJECT_DEFINITION(t.object_id)
+                        FROM sys.triggers t
+                        WHERE t.parent_id = OBJECT_ID('dbo.' + ?)
+                          AND t.name LIKE '%outbox%'
+                    """, source_table)
+                    row = cur_src.fetchone()
+                    conn_src.close()
+                    if row and row[0]:
+                        matches = re.findall(r"'(\w+Type)'", row[0], re.IGNORECASE)
+                        # Tomar el primer aggregate_type que no sea genérico
+                        if matches:
+                            agg_type = matches[0]
+            except:
+                pass
+
+        if not agg_type:
             return None, None
 
-        agg_type = row.aggregate_type
         conn_nc = get_connection("newcore")
         cur_nc = conn_nc.cursor()
         cur_nc.execute("""
@@ -515,3 +580,20 @@ def _find_newcore_dest(source_table):
         return None, None
     except:
         return None, None
+
+
+def _insert_outbox_warmup():
+    """Inserta un registro dummy en el outbox para que el sink de Kafka lo consuma primero.
+    El JDBC sink siempre pierde el primer mensaje de cada batch al DLQ.
+    Este dummy absorbe esa perdida, protegiendo los datos reales."""
+    try:
+        conn = get_connection("legacy")
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO dbo.cdc_outbox (aggregate_id, aggregate_type, event_type, payload, source_table)
+            VALUES ('_warmup', '_warmup', 'WARMUP', '{}', '_warmup')
+        """)
+        conn.commit()
+        conn.close()
+    except:
+        pass
