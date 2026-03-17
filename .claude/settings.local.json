@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://10.35.3.64:8083/connectors/legacy-convivencia-cdc-outbox-jdbc-source/config 2>&1)",
+      "Bash(curl -s http://10.35.3.64:8083/connectors/legacy-convivencia-cdc-outbox-jdbc-source/status 2>&1)",
+      "Bash(curl -s http://10.35.3.64:8083/connectors/legacy-convivencia-cdc-outbox-jdbc-source/offsets 2>&1)"
+    ]
+  }
+}

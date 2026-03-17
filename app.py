@@ -17,25 +17,87 @@ DB_CONFIG = {
 DATABASES = {
     "newcore": "fcme_newcore",
     "legacy": "fcme_legacy",
-    "dbIM": "dbIM",
 }
 
-# Módulos que en legacy_to_newcore usan bases de datos originales
-# Mapeo: módulo → { db: nombre_bd, tables: [tablas que usa el pipeline CDC] }
+# Bases originales usadas por los módulos CDC y sus tablas con triggers outbox
 LEGACY_ORIGINAL_DBS = {
-    "INMUEBLES": {
-        "db": "dbIM",
-        "tables": [
-            "imtbbene_entr",
-            "imtbbene_firm",
-            "imtbcben",
-            "imtbcpro",
-            "imtbdivi",
-            "imtbmanz",
-            "imtbmejo_tram",
-        ]
-    },
+    "dbIM": [
+        "imtbbene_entr",
+        "imtbbene_firm",
+        "imtbcben",
+        "imtbcpro",
+        "imtbdivi",
+        "imtbmanz",
+        "imtbmejo_tram",
+        "imtbtviv",
+    ],
+    "dbFC": [
+        "fctbafil_actu",
+        "fctbafil_info_adic",
+        "fctbagen_telf",
+        "fctbmvto_pend_cbro",
+        "fctbotro_ingr_afil",
+        "fctbsald_diar_afil_rubr",
+        "sfct_afiliado",
+        "sfct_afiliado_auditor",
+        "sfct_beneficiario",
+        "sfct_cabecera_rol",
+        "sfct_estados_afiliado",
+        "sfct_movimiento",
+    ],
+    "dbCG": [
+        "cgtbcasi",
+        "cgtbcaut_cpla",
+        "cgtbcaut_dpla",
+        "cgtbcfac",
+        "cgtbcier_proc",
+        "cgtbcncl",
+        "cgtbcncl_deta",
+        "cgtbconc",
+        "cgtbdasi",
+        "cgtbdcto",
+        "cgtbdfac_nota_cred",
+        "cgtbdfac_prod",
+        "cgtbdfac_rete",
+        "cgtbfact_dbso",
+        "cgtbgara_hipo_cdio",
+        "cgtbgara_vehi_cdio",
+        "cgtbplcn",
+        "cgtbprod",
+        "cgtbprvd",
+        "cgtbrete",
+    ],
+    "dbCR": [
+        "crtbcobr_judi_dist",
+        "crtbgara_real",
+        "crtbgest_cart_asig",
+        "crtbgest_deta_cbnz",
+        "crtbmedi_cobr",
+        "crtboper_segu",
+        "crtoblig",
+        "crtplpag",
+        "crtrecup",
+        "crtsolid",
+    ],
+    "dbIN": [
+        "intbcabe_dbso_inve",
+        "intbcinv",
+        "intbdcto_cble",
+        "intbdinv",
+        "intbdpag",
+        "intbdpre_inve",
+        "intbemis",
+        "intbgara",
+        "intbprec_diar",
+        "intbvinv",
+        "intbvinv_audi",
+    ],
 }
+
+
+def get_tables_from_db(db_name):
+    """Retorna las tablas CDC filtradas de una base de datos original"""
+    return sorted(LEGACY_ORIGINAL_DBS.get(db_name, []))
 
 # Schemas por dirección
 DIRECTION_CONFIG = {
@@ -55,7 +117,7 @@ DIRECTION_CONFIG = {
 
 
 def get_connection(db_key="newcore"):
-    db_name = DATABASES[db_key]
+    db_name = DATABASES.get(db_key, db_key)
     conn_str = (
         f"DRIVER={DB_CONFIG['driver']};"
         f"SERVER={DB_CONFIG['server']};"
@@ -231,16 +293,10 @@ def get_modules(direction):
         except Exception as e:
             return jsonify({"error": str(e)}), 500
     else:
-        # legacy_to_newcore: combinar tablas de fcme_legacy + bases originales
-        try:
-            schemas = get_schemas_and_tables("legacy")
-        except:
-            schemas = {}
-
-        # Agregar módulos de bases originales (dbIM, etc.)
-        for module_name, config in LEGACY_ORIGINAL_DBS.items():
-            schemas[module_name] = sorted(config["tables"])
-
+        # legacy_to_newcore: listar bases originales con tablas CDC
+        schemas = {}
+        for db_name, tables in LEGACY_ORIGINAL_DBS.items():
+            schemas[db_name] = sorted(tables)
         return jsonify(schemas)
 
 
@@ -248,14 +304,15 @@ def resolve_db_key(direction, schema):
     """Determina qué base de datos usar según dirección y módulo"""
     if direction == "newcore_to_legacy":
         return "newcore"
-    if schema in LEGACY_ORIGINAL_DBS:
-        return LEGACY_ORIGINAL_DBS[schema]["db"]
+    # Si el schema empieza con 'db', es una base de datos original
+    if schema.startswith("db"):
+        return schema
     return "legacy"
 
 
 def resolve_table_schema(direction, schema):
-    """En bases originales (dbIM, etc.) las tablas están en dbo"""
-    if direction == "legacy_to_newcore" and schema in LEGACY_ORIGINAL_DBS:
+    """En bases originales (db*) las tablas están en dbo"""
+    if direction == "legacy_to_newcore" and schema.startswith("db"):
         return "dbo"
     return schema
 
@@ -726,27 +783,54 @@ def truncate_cdc():
         return jsonify({"error": str(e)}), 500
 
 
-def find_staging_table(dest_db_key, source_schema, source_table):
-    """Busca la tabla staging destino correspondiente a la tabla fuente.
-    Ej: INMUEBLES.CIUDADELATYPE en newcore → INMUEBLES.Ciudadela_Staging en legacy"""
+def find_staging_table(dest_db_key, outbox_db_key, source_schema, source_table):
+    """Busca la tabla destino correspondiente a la tabla fuente.
+    - newcore→legacy: INMUEBLES.CIUDADELATYPE → INMUEBLES.Ciudadela_Staging
+    - legacy→newcore (db*): dbIM.imtbcpro → busca TYPE table en newcore vía aggregate_type en outbox"""
     try:
         conn = get_connection(dest_db_key)
         cursor = conn.cursor()
 
-        # Quitar sufijo TYPE del nombre
-        base_name = source_table
-        if base_name.upper().endswith("TYPE"):
-            base_name = base_name[:-4]
+        if dest_db_key == "legacy":
+            # newcore_to_legacy: buscar _Staging en legacy
+            base_name = source_table
+            if base_name.upper().endswith("TYPE"):
+                base_name = base_name[:-4]
+            cursor.execute("""
+                SELECT s.name AS sn, t.name AS tn
+                FROM sys.tables t
+                JOIN sys.schemas s ON t.schema_id = s.schema_id
+                WHERE t.name LIKE '%_Staging'
+                  AND LOWER(s.name) = LOWER(?)
+                  AND LOWER(REPLACE(t.name, '_Staging', '')) = LOWER(?)
+            """, source_schema, base_name)
+        else:
+            # legacy_to_newcore: buscar en cdc_outbox de fcme_legacy el aggregate_type
+            try:
+                conn_outbox = get_connection(outbox_db_key)
+                cur_outbox = conn_outbox.cursor()
+                cur_outbox.execute("""
+                    SELECT TOP 1 aggregate_type
+                    FROM dbo.cdc_outbox
+                    WHERE source_table = ?
+                """, source_table)
+                row_outbox = cur_outbox.fetchone()
+                conn_outbox.close()
+                if row_outbox:
+                    agg_type = row_outbox.aggregate_type
+                    cursor.execute("""
+                        SELECT s.name AS sn, t.name AS tn
+                        FROM sys.tables t
+                        JOIN sys.schemas s ON t.schema_id = s.schema_id
+                        WHERE LOWER(t.name) = LOWER(?)
+                    """, agg_type)
+                else:
+                    conn.close()
+                    return None, None
+            except:
+                conn.close()
+                return None, None
 
-        # Buscar tabla _Staging en el mismo schema (case-insensitive)
-        cursor.execute("""
-            SELECT s.name AS sn, t.name AS tn
-            FROM sys.tables t
-            JOIN sys.schemas s ON t.schema_id = s.schema_id
-            WHERE t.name LIKE '%_Staging'
-              AND LOWER(s.name) = LOWER(?)
-              AND LOWER(REPLACE(t.name, '_Staging', '')) = LOWER(?)
-        """, source_schema, base_name)
         row = cursor.fetchone()
         conn.close()
 
@@ -770,11 +854,18 @@ def pipeline_start():
     table = data.get("table")
     quantity = int(data.get("quantity", 0))
 
-    source_db = "newcore" if direction == "newcore_to_legacy" else "legacy"
-    dest_db = "legacy" if direction == "newcore_to_legacy" else "newcore"
+    if direction == "newcore_to_legacy":
+        source_db = "newcore"
+        dest_db = "legacy"
+        outbox_db = "newcore"
+    else:
+        # Los triggers de BDs originales (db*) insertan en fcme_legacy.dbo.cdc_outbox
+        source_db = resolve_db_key(direction, schema)
+        dest_db = "newcore"
+        outbox_db = "legacy"
 
     # Buscar tabla staging destino
-    dest_schema, dest_table = find_staging_table(dest_db, schema, table)
+    dest_schema, dest_table = find_staging_table(dest_db, outbox_db, schema, table)
 
     # Contar estado actual en destino
     dest_count_before = 0
@@ -788,10 +879,10 @@ def pipeline_start():
         except:
             pass
 
-    # Contar outbox actual en source
+    # Contar outbox actual (en la BD donde el trigger escribe)
     source_outbox_before = 0
     try:
-        conn = get_connection(source_db)
+        conn = get_connection(outbox_db)
         cursor = conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM dbo.cdc_outbox")
         source_outbox_before = cursor.fetchone()[0]
@@ -820,6 +911,7 @@ def pipeline_start():
     pipeline_monitors[monitor_id] = {
         "direction": direction,
         "source_db": source_db,
+        "outbox_db": outbox_db,
         "dest_db": dest_db,
         "source_table": f"{schema}.{table}",
         "dest_table": f"{dest_schema}.{dest_table}" if dest_schema else "No encontrada",
@@ -855,8 +947,8 @@ def pipeline_poll(monitor_id):
     }
 
     try:
-        # Source outbox
-        conn_src = get_connection(mon["source_db"])
+        # Outbox (en la BD donde el trigger escribe)
+        conn_src = get_connection(mon["outbox_db"])
         cur_src = conn_src.cursor()
         cur_src.execute("SELECT COUNT(*) FROM dbo.cdc_outbox")
         outbox_total = cur_src.fetchone()[0]
