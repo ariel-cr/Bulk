@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CDC Bulk Tester</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #111111; color: #d4d4d4; min-height: 100vh; }
+
+        .header { background: #1a1a1a; padding: 20px 30px; border-bottom: 1px solid #2a2a2a; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 22px; color: #ffffff; }
+        .header .subtitle { font-size: 13px; color: #666666; }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 24px; }
+
+        /* Tabs de dirección */
+        .direction-tabs { display: flex; gap: 0; margin-bottom: 24px; }
+        .dir-tab { flex: 1; padding: 16px 20px; background: #1a1a1a; border: 1px solid #2a2a2a; cursor: pointer; text-align: center; transition: all 0.2s; }
+        .dir-tab:first-child { border-radius: 12px 0 0 12px; }
+        .dir-tab:last-child { border-radius: 0 12px 12px 0; }
+        .dir-tab h3 { font-size: 15px; color: #888888; }
+        .dir-tab p { font-size: 11px; color: #555555; margin-top: 4px; }
+        .dir-tab.active { background: #222222; border-color: #444444; }
+        .dir-tab.active h3 { color: #e0e0e0; }
+        .dir-tab.active.newcore h3 { color: #e0e0e0; }
+        .dir-tab.active.newcore { border-color: #555555; background: #222222; }
+        .dir-tab.active.legacy h3 { color: #e0e0e0; }
+        .dir-tab.active.legacy { border-color: #555555; background: #222222; }
+
+        .grid { display: grid; grid-template-columns: 380px 1fr; gap: 20px; }
+
+        .card { background: #1a1a1a; border-radius: 12px; padding: 24px; border: 1px solid #2a2a2a; }
+        .card h2 { font-size: 16px; color: #cccccc; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #2a2a2a; }
+
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 12px; color: #888888; margin-bottom: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group select, .form-group input { width: 100%; padding: 10px 12px; background: #111111; border: 1px solid #333333; border-radius: 8px; color: #d4d4d4; font-size: 14px; }
+        .form-group select:focus, .form-group input:focus { outline: none; border-color: #666666; }
+        .form-group select:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .table-info { background: #111111; border-radius: 8px; padding: 12px; margin-bottom: 14px; font-size: 12px; color: #666666; max-height: 120px; overflow-y: auto; }
+        .table-info .col-item { display: flex; justify-content: space-between; padding: 2px 0; }
+        .table-info .col-name { color: #999999; }
+        .table-info .col-type { color: #555555; font-family: monospace; font-size: 11px; }
+
+        .checkbox-group { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+        .checkbox-group input[type="checkbox"] { width: 18px; height: 18px; accent-color: #888888; }
+        .checkbox-group label { font-size: 13px; color: #888888; }
+
+        .btn { padding: 12px 24px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; width: 100%; transition: all 0.2s; margin-bottom: 8px; }
+        .btn-primary { background: #333333; color: #e0e0e0; }
+        .btn-primary:hover { background: #444444; }
+        .btn-primary:disabled { background: #222222; color: #555555; cursor: not-allowed; }
+        .btn-danger { background: #3a1a1a; color: #cc6666; }
+        .btn-danger:hover { background: #4a2020; }
+        .btn-sm { padding: 8px 16px; font-size: 12px; }
+
+        .progress-bar { width: 100%; height: 6px; background: #2a2a2a; border-radius: 3px; margin: 12px 0; overflow: hidden; display: none; }
+        .progress-bar .fill { height: 100%; background: #666666; border-radius: 3px; transition: width 0.3s; }
+
+        /* Status bar */
+        .status-bar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+        .status-chip { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 10px 16px; font-size: 12px; display: flex; gap: 8px; align-items: center; }
+        .status-chip .s-label { color: #666666; }
+        .status-chip .s-value { color: #b0b0b0; font-weight: 700; font-size: 14px; }
+        .status-chip .s-value.warn { color: #ccaa44; }
+        .status-chip .s-value.err { color: #cc5555; }
+
+        /* Resultados */
+        .result-section { background: #111111; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+        .result-section h3 { font-size: 14px; color: #aaaaaa; margin-bottom: 10px; }
+
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 16px; }
+        .metric-card { background: #1a1a1a; border-radius: 8px; padding: 14px; text-align: center; border: 1px solid #2a2a2a; }
+        .metric-card .m-value { font-size: 24px; font-weight: 700; color: #d4d4d4; }
+        .metric-card .m-value.warn { color: #ccaa44; }
+        .metric-card .m-value.err { color: #cc5555; }
+        .metric-card .m-label { font-size: 11px; color: #666666; margin-top: 4px; text-transform: uppercase; }
+
+        .batch-table { width: 100%; font-size: 12px; }
+        .batch-table th { text-align: left; padding: 6px 8px; color: #666666; border-bottom: 1px solid #2a2a2a; }
+        .batch-table td { padding: 6px 8px; border-bottom: 1px solid #1e1e1e; color: #999999; }
+
+        .errors-list { max-height: 120px; overflow-y: auto; font-size: 12px; color: #cc6666; }
+        .errors-list p { padding: 3px 0; border-bottom: 1px solid #1e1e1e; word-break: break-all; }
+
+        .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid #333333; border-top-color: #999999; border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 8px; vertical-align: middle; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .empty-state { text-align: center; padding: 40px; color: #555555; }
+        .empty-state p { font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>CDC Bulk Tester</h1>
+            <span class="subtitle">Prueba de carga masiva - Pipeline bidireccional</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Dirección -->
+        <div class="direction-tabs">
+            <div class="dir-tab newcore active" onclick="setDirection('newcore_to_legacy')">
+                <h3>Newcore → Legacy</h3>
+                <p>Insertar en tablas Newcore, viajan por Kafka a Legacy</p>
+            </div>
+            <div class="dir-tab legacy" onclick="setDirection('legacy_to_newcore')">
+                <h3>Legacy → Newcore</h3>
+                <p>Insertar en tablas originales Legacy, viajan por Kafka a Newcore</p>
+            </div>
+        </div>
+
+        <!-- Status bar -->
+        <div class="status-bar" id="statusBar">
+            <div class="status-chip"><span class="s-label">Cargando estado...</span></div>
+        </div>
+
+        <div class="grid">
+            <!-- Panel config -->
+            <div class="card">
+                <h2>Configuracion</h2>
+
+                <div class="form-group">
+                    <label>Modulo</label>
+                    <select id="module" onchange="onModuleChange()">
+                        <option value="">-- Cargando... --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Tabla</label>
+                    <select id="table" disabled onchange="onTableChange()">
+                        <option value="">-- Selecciona un modulo --</option>
+                    </select>
+                </div>
+
+                <div id="tableInfo" class="table-info" style="display:none;"></div>
+
+                <div class="form-group">
+                    <label>Cantidad de registros</label>
+                    <input type="number" id="quantity" value="1000" min="1" max="500000">
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="disable_triggers">
+                    <label for="disable_triggers">Desactivar triggers (no pasa por CDC)</label>
+                </div>
+
+                <button class="btn btn-primary" id="btnRun" onclick="runTest()" disabled>Ejecutar Prueba</button>
+
+                <div class="progress-bar" id="progressBar">
+                    <div class="fill" id="progressFill" style="width: 0%"></div>
+                </div>
+
+                <div style="display:flex; gap:8px;">
+                    <button class="btn btn-danger btn-sm" onclick="cleanup()" id="btnClean" disabled style="flex:1">DELETE</button>
+                    <button class="btn btn-danger btn-sm" onclick="truncateTable()" id="btnTruncate" disabled style="flex:1">TRUNCATE</button>
+                </div>
+            </div>
+
+            <!-- Panel resultados -->
+            <div class="card">
+                <h2>Resultados</h2>
+                <div id="results">
+                    <div class="empty-state">
+                        <p>Selecciona un modulo y tabla, define la cantidad de registros y ejecuta la prueba.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentDirection = 'newcore_to_legacy';
+        let modulesData = {};
+        let currentColumns = [];
+
+        window.onload = () => {
+            loadModules();
+            refreshStatus();
+        };
+
+        function setDirection(dir) {
+            currentDirection = dir;
+            document.querySelectorAll('.dir-tab').forEach(t => t.classList.remove('active'));
+            const tabs = document.querySelectorAll('.dir-tab');
+            if (dir === 'newcore_to_legacy') tabs[0].classList.add('active');
+            else tabs[1].classList.add('active');
+
+            // Reset
+            document.getElementById('table').innerHTML = '<option value="">-- Selecciona un modulo --</option>';
+            document.getElementById('table').disabled = true;
+            document.getElementById('tableInfo').style.display = 'none';
+            document.getElementById('btnRun').disabled = true;
+            document.getElementById('btnClean').disabled = true;
+            document.getElementById('btnTruncate').disabled = true;
+
+            loadModules();
+        }
+
+        async function loadModules() {
+            const sel = document.getElementById('module');
+            sel.innerHTML = '<option value="">-- Cargando... --</option>';
+
+            try {
+                const res = await fetch(`/api/modules/${currentDirection}`);
+                modulesData = await res.json();
+
+                if (modulesData.error) {
+                    sel.innerHTML = `<option value="">Error: ${modulesData.error}</option>`;
+                    return;
+                }
+
+                sel.innerHTML = '<option value="">-- Seleccionar modulo --</option>';
+                for (const schema of Object.keys(modulesData).sort()) {
+                    const count = modulesData[schema].length;
+                    sel.innerHTML += `<option value="${schema}">${schema} (${count} tablas)</option>`;
+                }
+            } catch (e) {
+                sel.innerHTML = `<option value="">Error: ${e.message}</option>`;
+            }
+        }
+
+        function onModuleChange() {
+            const module = document.getElementById('module').value;
+            const tableSel = document.getElementById('table');
+
+            if (!module || !modulesData[module]) {
+                tableSel.innerHTML = '<option value="">-- Selecciona un modulo --</option>';
+                tableSel.disabled = true;
+                document.getElementById('tableInfo').style.display = 'none';
+                document.getElementById('btnRun').disabled = true;
+                document.getElementById('btnClean').disabled = true;
+                document.getElementById('btnTruncate').disabled = true;
+                return;
+            }
+
+            tableSel.disabled = false;
+            tableSel.innerHTML = '<option value="">-- Seleccionar tabla --</option>';
+
+            for (const table of modulesData[module].sort()) {
+                tableSel.innerHTML += `<option value="${table}">${table}</option>`;
+            }
+        }
+
+        async function onTableChange() {
+            const schema = document.getElementById('module').value;
+            const table = document.getElementById('table').value;
+            const infoDiv = document.getElementById('tableInfo');
+
+            if (!table) {
+                infoDiv.style.display = 'none';
+                document.getElementById('btnRun').disabled = true;
+                document.getElementById('btnClean').disabled = true;
+                document.getElementById('btnTruncate').disabled = true;
+                return;
+            }
+
+            document.getElementById('btnRun').disabled = false;
+            document.getElementById('btnClean').disabled = false;
+
+            // Cargar columnas
+            try {
+                const res = await fetch('/api/columns', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ direction: currentDirection, schema, table })
+                });
+                currentColumns = await res.json();
+
+                let html = '';
+                for (const col of currentColumns) {
+                    const badge = col.is_identity ? ' <span style="color:#facc15">[ID]</span>' : '';
+                    const nullable = col.nullable ? '' : ' <span style="color:#ef4444">*</span>';
+                    html += `<div class="col-item">
+                        <span class="col-name">${col.name}${badge}${nullable}</span>
+                        <span class="col-type">${col.type}${col.max_length ? '(' + col.max_length + ')' : ''}</span>
+                    </div>`;
+                }
+                infoDiv.innerHTML = html;
+                infoDiv.style.display = 'block';
+            } catch (e) {
+                infoDiv.innerHTML = `<span style="color:#ef4444">Error: ${e.message}</span>`;
+                infoDiv.style.display = 'block';
+            }
+        }
+
+        async function refreshStatus() {
+            try {
+                const res = await fetch('/api/status');
+                const data = await res.json();
+
+                let html = '';
+                const labels = {
+                    newcore_outbox: 'Newcore Outbox',
+                    newcore_inbox_pending: 'Newcore Inbox Pend.',
+                    newcore_inbox_processed: 'Newcore Inbox Proc.',
+                    newcore_errors: 'Newcore Errors',
+                    legacy_outbox: 'Legacy Outbox',
+                    legacy_inbox_pending: 'Legacy Inbox Pend.',
+                    legacy_inbox_processed: 'Legacy Inbox Proc.',
+                    legacy_errors: 'Legacy Errors'
+                };
+
+                for (const [key, val] of Object.entries(data)) {
+                    const label = labels[key] || key;
+                    let cls = '';
+                    if (key.includes('pending') && val > 0) cls = 'warn';
+                    if (key.includes('error') && val > 0) cls = 'err';
+
+                    html += `<div class="status-chip">
+                        <span class="s-label">${label}</span>
+                        <span class="s-value ${cls}">${typeof val === 'number' ? val.toLocaleString() : val}</span>
+                    </div>`;
+                }
+                document.getElementById('statusBar').innerHTML = html;
+            } catch (e) {
+                document.getElementById('statusBar').innerHTML = `<div class="status-chip"><span class="s-label">Error</span><span class="s-value err">${e.message}</span></div>`;
+            }
+        }
+
+        async function runTest() {
+            const schema = document.getElementById('module').value;
+            const table = document.getElementById('table').value;
+            if (!schema || !table) return;
+
+            const btn = document.getElementById('btnRun');
+            const bar = document.getElementById('progressBar');
+            const fill = document.getElementById('progressFill');
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span>Ejecutando...';
+            bar.style.display = 'block';
+            fill.style.width = '15%';
+
+            const payload = {
+                direction: currentDirection,
+                schema,
+                table,
+                quantity: parseInt(document.getElementById('quantity').value),
+                disable_triggers: document.getElementById('disable_triggers').checked
+            };
+
+            try {
+                fill.style.width = '40%';
+                const res = await fetch('/api/test', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                fill.style.width = '95%';
+                const data = await res.json();
+
+                if (data.error) {
+                    document.getElementById('results').innerHTML = `
+                        <div class="result-section"><h3>Error</h3><p style="color:#ef4444">${data.error}</p></div>`;
+                    return;
+                }
+
+                fill.style.width = '100%';
+                renderResults(data);
+                refreshStatus();
+
+            } catch (e) {
+                document.getElementById('results').innerHTML = `
+                    <div class="result-section"><h3>Error</h3><p style="color:#ef4444">${e.message}</p></div>`;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Ejecutar Prueba';
+                setTimeout(() => { bar.style.display = 'none'; }, 800);
+            }
+        }
+
+        function renderResults(d) {
+            let html = '';
+
+            // Métricas principales como cards
+            html += `<div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="m-value ${d.total_inserted === d.quantity ? '' : 'err'}">${d.total_inserted.toLocaleString()}</div>
+                    <div class="m-label">Insertados</div>
+                </div>
+                <div class="metric-card">
+                    <div class="m-value">${d.total_time_sec}s</div>
+                    <div class="m-label">Tiempo total</div>
+                </div>
+                <div class="metric-card">
+                    <div class="m-value">${d.avg_rows_per_sec.toLocaleString()}</div>
+                    <div class="m-label">Rows/seg</div>
+                </div>
+                <div class="metric-card">
+                    <div class="m-value">${d.net_inserted.toLocaleString()}</div>
+                    <div class="m-label">Neto en tabla</div>
+                </div>
+                <div class="metric-card">
+                    <div class="m-value ${d.outbox_generated > 0 ? '' : 'warn'}">${d.outbox_generated.toLocaleString()}</div>
+                    <div class="m-label">Outbox generados</div>
+                </div>
+                <div class="metric-card">
+                    <div class="m-value ${d.total_errors > 0 ? 'err' : ''}">${d.total_errors}</div>
+                    <div class="m-label">Errores</div>
+                </div>
+            </div>`;
+
+            // Info
+            html += `<div class="result-section"><h3>Detalle</h3>
+                <div style="font-size:13px; color:#94a3b8; line-height:1.8;">
+                    <strong>Tabla:</strong> ${d.full_table} &nbsp;|&nbsp;
+                    <strong>Columnas:</strong> ${d.columns_count} &nbsp;|&nbsp;
+                    <strong>Triggers:</strong> ${d.triggers_disabled ? 'Desactivados' : 'Activos'} &nbsp;|&nbsp;
+                    <strong>Antes:</strong> ${d.count_before.toLocaleString()} &nbsp;|&nbsp;
+                    <strong>Despues:</strong> ${d.count_after.toLocaleString()}
+                </div></div>`;
+
+            // Batches
+            if (d.batches && d.batches.length > 0) {
+                html += `<div class="result-section"><h3>Batches (${d.batches.length})</h3>
+                    <table class="batch-table"><tr><th>#</th><th>Filas</th><th>Tiempo</th><th>Rows/seg</th></tr>`;
+                for (const b of d.batches) {
+                    html += `<tr><td>${b.batch}</td><td>${b.rows.toLocaleString()}</td><td>${b.time_sec}s</td><td>${b.rows_per_sec.toLocaleString()}</td></tr>`;
+                }
+                html += `</table></div>`;
+            }
+
+            // Errores
+            if (d.errors && d.errors.length > 0) {
+                html += `<div class="result-section"><h3>Errores (${d.errors.length})</h3><div class="errors-list">`;
+                for (const err of d.errors.slice(0, 30)) {
+                    html += `<p>${err}</p>`;
+                }
+                html += `</div></div>`;
+            }
+
+            document.getElementById('results').innerHTML = html;
+        }
+
+        async function cleanup() {
+            const schema = document.getElementById('module').value;
+            const table = document.getElementById('table').value;
+            if (!schema || !table) return;
+            if (!confirm(`Eliminar TODOS los registros de ${schema}.${table}?`)) return;
+
+            try {
+                const res = await fetch('/api/cleanup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ direction: currentDirection, schema, table })
+                });
+                const data = await res.json();
+                if (data.error) alert('Error: ' + data.error);
+                else {
+                    alert(`Eliminados ${data.deleted.toLocaleString()} registros`);
+                    refreshStatus();
+                }
+            } catch (e) {
+                alert('Error: ' + e.message);
+            }
+        }
+    </script>
+</body>
+</html>
