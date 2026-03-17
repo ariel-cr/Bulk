@@ -514,5 +514,44 @@ def truncate_table():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/api/errors/<db_key>")
+def get_errors(db_key):
+    """Retorna los últimos errores de cdc_inbox_errors"""
+    if db_key not in DATABASES:
+        return jsonify({"error": "DB inválida"}), 400
+
+    try:
+        conn = get_connection(db_key)
+        cursor = conn.cursor()
+
+        # Leer columnas dinámicamente
+        cursor.execute("""
+            SELECT COLUMN_NAME
+            FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'cdc_inbox_errors'
+            ORDER BY ORDINAL_POSITION
+        """)
+        col_names = [row.COLUMN_NAME for row in cursor.fetchall()]
+
+        if not col_names:
+            conn.close()
+            return jsonify({"columns": [], "rows": [], "total": 0})
+
+        cols_sql = ", ".join([f"[{c}]" for c in col_names])
+        cursor.execute(f"SELECT COUNT(*) FROM dbo.cdc_inbox_errors")
+        total = cursor.fetchone()[0]
+
+        cursor.execute(f"SELECT TOP 50 {cols_sql} FROM dbo.cdc_inbox_errors ORDER BY 1 DESC")
+        rows = []
+        for row in cursor.fetchall():
+            rows.append([str(v) if v is not None else "" for v in row])
+
+        conn.close()
+        return jsonify({"columns": col_names, "rows": rows, "total": total})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5050)
