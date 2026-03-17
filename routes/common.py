@@ -1,5 +1,7 @@
 """Rutas compartidas: index, status CDC, visor de datos CDC, truncate CDC."""
 from flask import Blueprint, render_template, request, jsonify
+import time as _time
+import urllib.request as _urlreq
 from config import DATABASES, get_connection
 from db import get_kafka_outbox_offset
 
@@ -13,31 +15,29 @@ def index():
 
 @common_bp.route("/api/status")
 def get_status():
-    """Estado de las colas CDC"""
+    """Estado de las colas CDC - optimizado con NOLOCK y query unica"""
     status = {}
     try:
         for db_key, db_name in DATABASES.items():
             conn = get_connection(db_key)
             cursor = conn.cursor()
             try:
-                cursor.execute("SELECT COUNT(*) FROM dbo.cdc_outbox")
-                status[f"{db_key}_outbox"] = cursor.fetchone()[0]
+                cursor.execute("""
+                    SELECT
+                        (SELECT COUNT_BIG(*) FROM dbo.cdc_outbox WITH (NOLOCK) WHERE aggregate_type != '_warmup') AS outbox,
+                        (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox WITH (NOLOCK) WHERE processed = 0) AS inbox_pending,
+                        (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox WITH (NOLOCK) WHERE processed = 1) AS inbox_processed,
+                        (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox_errors WITH (NOLOCK)) AS errors
+                """)
+                row = cursor.fetchone()
+                status[f"{db_key}_outbox"] = row[0]
+                status[f"{db_key}_inbox_pending"] = row[1]
+                status[f"{db_key}_inbox_processed"] = row[2]
+                status[f"{db_key}_errors"] = row[3]
             except:
                 status[f"{db_key}_outbox"] = "N/A"
-            try:
-                cursor.execute("SELECT COUNT(*) FROM dbo.cdc_inbox WHERE processed = 0")
-                status[f"{db_key}_inbox_pending"] = cursor.fetchone()[0]
-            except:
                 status[f"{db_key}_inbox_pending"] = "N/A"
-            try:
-                cursor.execute("SELECT COUNT(*) FROM dbo.cdc_inbox WHERE processed = 1")
-                status[f"{db_key}_inbox_processed"] = cursor.fetchone()[0]
-            except:
                 status[f"{db_key}_inbox_processed"] = "N/A"
-            try:
-                cursor.execute("SELECT COUNT(*) FROM dbo.cdc_inbox_errors")
-                status[f"{db_key}_errors"] = cursor.fetchone()[0]
-            except:
                 status[f"{db_key}_errors"] = "N/A"
             conn.close()
     except Exception as e:

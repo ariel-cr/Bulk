@@ -8,7 +8,7 @@ Los triggers generan outbox -> Kafka -> inbox legacy -> SP -> tabla final dbXX.
 import time
 from flask import Blueprint, request, jsonify
 from config import DATABASES, get_connection
-from db import get_schemas_and_tables, get_table_columns
+from db import get_schemas_and_tables, get_table_columns, get_pk_columns, sync_outbox_identity
 from data_generator import generate_fake_value, get_max_numeric_id
 
 newcore_bp = Blueprint('newcore_to_legacy', __name__)
@@ -66,17 +66,31 @@ def run_test():
         conn = get_connection("newcore")
         cursor = conn.cursor()
 
-        first_id_col = next((c for c in insertable_cols if c["name"].lower().endswith("id")), None)
+        # Detectar PK real, fallback a primera col con "id"
+        pk_cols = get_pk_columns(conn, schema, table)
+        first_id_col = None
+        if pk_cols:
+            first_id_col = next((c for c in insertable_cols if c["name"] == pk_cols[0]), None)
+        if not first_id_col:
+            first_id_col = next((c for c in insertable_cols if c["name"].lower().endswith("id")), None)
+
         offset = 0
         if first_id_col:
             offset = get_max_numeric_id(conn, schema, table, first_id_col["name"]) + 1
+
+        # Limpiar registros rezagados del batch anterior en el destino
+        _drain_destination_inbox()
+
+        # Sincronizar identity del outbox con Kafka e insertar warmup
+        sync_outbox_identity("newcore")
+        _insert_outbox_warmup()
 
         cursor.execute(f"SELECT COUNT(*) FROM [{schema}].[{table}]")
         count_before = cursor.fetchone()[0]
 
         outbox_before = 0
         try:
-            cursor.execute("SELECT COUNT(*) FROM dbo.cdc_outbox")
+            cursor.execute("SELECT COUNT(*) FROM dbo.cdc_outbox WHERE aggregate_type != '_warmup'")
             outbox_before = cursor.fetchone()[0]
         except:
             pass
@@ -107,9 +121,10 @@ def run_test():
             current_batch = min(batch_size, quantity - inserted)
             batch_start = time.time()
 
+            pk_names = set(pk_cols) if pk_cols else set()
             rows = []
             for i in range(current_batch):
-                row = [generate_fake_value(col, inserted + i + 1, offset) for col in insertable_cols]
+                row = [generate_fake_value(col, inserted + i + 1, offset, is_pk=col["name"] in pk_names) for col in insertable_cols]
                 rows.append(tuple(row))
 
             try:
@@ -155,7 +170,7 @@ def run_test():
 
         outbox_after = 0
         try:
-            cursor.execute("SELECT COUNT(*) FROM dbo.cdc_outbox")
+            cursor.execute("SELECT COUNT(*) FROM dbo.cdc_outbox WHERE aggregate_type != '_warmup'")
             outbox_after = cursor.fetchone()[0]
         except:
             pass
@@ -279,7 +294,7 @@ def pipeline_start():
         try:
             conn = get_connection("legacy")
             cursor = conn.cursor()
-            cursor.execute(f"SELECT COUNT(*) FROM [{dest_schema}].[{dest_table}]")
+            cursor.execute(f"SELECT COUNT_BIG(*) FROM [{dest_schema}].[{dest_table}] WITH (NOLOCK)")
             dest_count_before = cursor.fetchone()[0]
             conn.close()
         except:
@@ -289,7 +304,7 @@ def pipeline_start():
     try:
         conn = get_connection("newcore")
         cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM dbo.cdc_outbox")
+        cursor.execute("SELECT COUNT_BIG(*) FROM dbo.cdc_outbox WITH (NOLOCK) WHERE aggregate_type != '_warmup'")
         source_outbox_before = cursor.fetchone()[0]
         conn.close()
     except:
@@ -299,12 +314,16 @@ def pipeline_start():
     try:
         conn = get_connection("legacy")
         cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM dbo.cdc_inbox")
-        dest_inbox_before = cursor.fetchone()[0]
-        cursor.execute("SELECT COUNT(*) FROM dbo.cdc_inbox WHERE processed = 1")
-        dest_inbox_processed_before = cursor.fetchone()[0]
-        cursor.execute("SELECT COUNT(*) FROM dbo.cdc_inbox_errors")
-        dest_errors_before = cursor.fetchone()[0]
+        cursor.execute("""
+            SELECT
+                (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox WITH (NOLOCK)) AS total,
+                (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox WITH (NOLOCK) WHERE processed = 1) AS processed,
+                (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox_errors WITH (NOLOCK)) AS errors
+        """)
+        row = cursor.fetchone()
+        dest_inbox_before = row[0]
+        dest_inbox_processed_before = row[1]
+        dest_errors_before = row[2]
         conn.close()
     except:
         pass
@@ -348,7 +367,7 @@ def pipeline_poll(monitor_id):
     try:
         conn_src = get_connection("newcore")
         cur_src = conn_src.cursor()
-        cur_src.execute("SELECT COUNT(*) FROM dbo.cdc_outbox")
+        cur_src.execute("SELECT COUNT_BIG(*) FROM dbo.cdc_outbox WITH (NOLOCK) WHERE aggregate_type != '_warmup'")
         result["outbox_new"] = cur_src.fetchone()[0] - mon["source_outbox_before"]
         conn_src.close()
     except:
@@ -358,20 +377,21 @@ def pipeline_poll(monitor_id):
         conn_dst = get_connection("legacy")
         cur_dst = conn_dst.cursor()
 
-        cur_dst.execute("SELECT COUNT(*) FROM dbo.cdc_inbox")
-        result["inbox_received"] = cur_dst.fetchone()[0] - mon["dest_inbox_before"]
-
-        cur_dst.execute("SELECT COUNT(*) FROM dbo.cdc_inbox WHERE processed = 1")
-        result["inbox_processed"] = cur_dst.fetchone()[0] - mon["dest_inbox_processed_before"]
-
-        cur_dst.execute("SELECT COUNT(*) FROM dbo.cdc_inbox WHERE processed = 0")
-        result["inbox_pending"] = cur_dst.fetchone()[0]
-
-        cur_dst.execute("SELECT COUNT(*) FROM dbo.cdc_inbox_errors")
-        result["inbox_errors"] = cur_dst.fetchone()[0] - mon["dest_errors_before"]
+        cur_dst.execute("""
+            SELECT
+                (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox WITH (NOLOCK)) AS total,
+                (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox WITH (NOLOCK) WHERE processed = 1) AS processed,
+                (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox WITH (NOLOCK) WHERE processed = 0) AS pending,
+                (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox_errors WITH (NOLOCK)) AS errors
+        """)
+        row = cur_dst.fetchone()
+        result["inbox_received"] = row[0] - mon["dest_inbox_before"]
+        result["inbox_processed"] = row[1] - mon["dest_inbox_processed_before"]
+        result["inbox_pending"] = row[2]
+        result["inbox_errors"] = row[3] - mon["dest_errors_before"]
 
         if mon["dest_schema"] and mon["dest_table_name"]:
-            cur_dst.execute(f"SELECT COUNT(*) FROM [{mon['dest_schema']}].[{mon['dest_table_name']}]")
+            cur_dst.execute(f"SELECT COUNT_BIG(*) FROM [{mon['dest_schema']}].[{mon['dest_table_name']}] WITH (NOLOCK)")
             dest_count = cur_dst.fetchone()[0]
             result["dest_count"] = dest_count
             result["dest_new"] = dest_count - mon["dest_count_before"]
@@ -425,3 +445,48 @@ def _find_staging_table(source_schema, source_table):
         return None, None
     except:
         return None, None
+
+
+def _drain_destination_inbox():
+    """Espera a que el inbox de legacy procese registros pendientes del batch anterior
+    y limpia inbox_errors para que no contaminen el nuevo test."""
+    try:
+        conn = get_connection("legacy")
+        cursor = conn.cursor()
+
+        # Esperar hasta 30s a que el inbox no tenga pendientes del batch anterior
+        for _ in range(30):
+            cursor.execute("SELECT COUNT(*) FROM dbo.cdc_inbox WITH (NOLOCK) WHERE processed = 0")
+            pending = cursor.fetchone()[0]
+            if pending == 0:
+                break
+            time.sleep(1)
+
+        # Limpiar errores del batch anterior
+        cursor.execute("DELETE FROM dbo.cdc_inbox_errors")
+        conn.commit()
+
+        # Limpiar inbox procesados para evitar acumulacion
+        cursor.execute("DELETE FROM dbo.cdc_inbox WHERE processed = 1")
+        conn.commit()
+
+        conn.close()
+    except:
+        pass
+
+
+def _insert_outbox_warmup():
+    """Inserta un registro dummy en el outbox de newcore para que el sink de Kafka lo consuma primero.
+    El JDBC sink siempre pierde el primer mensaje de cada batch al DLQ.
+    Este dummy absorbe esa perdida, protegiendo los datos reales."""
+    try:
+        conn = get_connection("newcore")
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO dbo.cdc_outbox (aggregate_id, aggregate_type, event_type, payload, source_table)
+            VALUES ('_warmup', '_warmup', 'WARMUP', '{}', '_warmup')
+        """)
+        conn.commit()
+        conn.close()
+    except:
+        pass

@@ -426,9 +426,7 @@
             };
 
             try {
-                // Iniciar monitor ANTES del insert para capturar estado inicial
-                let monitorId = null;
-                let destTable = null;
+                // Iniciar monitor ANTES del insert y empezar polling inmediatamente
                 if (!payload.disable_triggers) {
                     try {
                         const monRes = await fetch(`${apiPrefix()}/pipeline-start`, {
@@ -438,8 +436,8 @@
                         });
                         const monData = await monRes.json();
                         if (monData.monitor_id) {
-                            monitorId = monData.monitor_id;
-                            destTable = monData.dest_table;
+                            // Iniciar polling AHORA, no esperar al test
+                            startPipelinePolling(monData.monitor_id, monData.dest_table, payload.quantity);
                         }
                     } catch(e) {}
                 }
@@ -455,23 +453,25 @@
                 const data = await res.json();
 
                 if (data.error) {
-                    document.getElementById('results').innerHTML = `
-                        <div class="result-section"><h3>Error</h3><p style="color:#ef4444">${data.error}</p></div>`;
+                    document.getElementById('results').innerHTML =
+                        `<div class="result-section"><h3>Error</h3><p style="color:#ef4444">${data.error}</p></div>`
+                        + document.getElementById('results').innerHTML;
                     return;
                 }
 
                 fill.style.width = '100%';
-                renderResults(data);
+                // Insertar resultados DEBAJO del pipeline monitor
+                const resultsDiv = document.getElementById('results');
+                const pipeDiv = document.getElementById('pipelineMonitor');
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = '';
+                resultsDiv.appendChild(tempDiv);
+                renderResultsInto(tempDiv, data);
                 refreshStatus();
 
-                // Iniciar polling del pipeline con el monitor que ya capturó el estado pre-insert
-                if (monitorId && data.total_inserted > 0) {
-                    startPipelinePolling(monitorId, destTable, data.total_inserted);
-                }
-
             } catch (e) {
-                document.getElementById('results').innerHTML = `
-                    <div class="result-section"><h3>Error</h3><p style="color:#ef4444">${e.message}</p></div>`;
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML += `<div class="result-section"><h3>Error</h3><p style="color:#ef4444">${e.message}</p></div>`;
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = 'Ejecutar Prueba';
@@ -594,10 +594,9 @@
             `;
         }
 
-        function renderResults(d) {
+        function renderResultsInto(container, d) {
             let html = '';
 
-            // Métricas principales como cards
             html += `<div class="metrics-grid">
                 <div class="metric-card">
                     <div class="m-value ${d.total_inserted === d.quantity ? '' : 'err'}">${d.total_inserted.toLocaleString()}</div>
@@ -625,7 +624,6 @@
                 </div>
             </div>`;
 
-            // Info
             html += `<div class="result-section"><h3>Detalle</h3>
                 <div style="font-size:13px; color:#94a3b8; line-height:1.8;">
                     <strong>Tabla:</strong> ${d.full_table} &nbsp;|&nbsp;
@@ -635,7 +633,6 @@
                     <strong>Despues:</strong> ${d.count_after.toLocaleString()}
                 </div></div>`;
 
-            // Batches
             if (d.batches && d.batches.length > 0) {
                 html += `<div class="result-section"><h3>Batches (${d.batches.length})</h3>
                     <table class="batch-table"><tr><th>#</th><th>Filas</th><th>Tiempo</th><th>Rows/seg</th></tr>`;
@@ -645,7 +642,6 @@
                 html += `</table></div>`;
             }
 
-            // Errores
             if (d.errors && d.errors.length > 0) {
                 html += `<div class="result-section"><h3>Errores (${d.errors.length})</h3><div class="errors-list">`;
                 for (const err of d.errors.slice(0, 30)) {
@@ -654,7 +650,11 @@
                 html += `</div></div>`;
             }
 
-            document.getElementById('results').innerHTML = html;
+            container.innerHTML = html;
+        }
+
+        function renderResults(d) {
+            renderResultsInto(document.getElementById('results'), d);
         }
 
         async function cleanup() {

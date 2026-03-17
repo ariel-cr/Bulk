@@ -163,6 +163,9 @@ def run_test():
             dest_max = get_max_id_across_destinations(db_key, table)
             offset = max(offset, dest_max) + 1
 
+        # Limpiar registros rezagados del batch anterior en el destino
+        _drain_destination_inbox()
+
         # Sincronizar identity del outbox con Kafka e insertar warmup
         sync_outbox_identity("legacy")
         _insert_outbox_warmup()
@@ -394,7 +397,7 @@ def pipeline_start():
     try:
         conn = get_connection("legacy")
         cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM dbo.cdc_outbox")
+        cursor.execute("SELECT COUNT(*) FROM dbo.cdc_outbox WHERE aggregate_type != '_warmup'")
         source_outbox_before = cursor.fetchone()[0]
         conn.close()
     except:
@@ -453,7 +456,7 @@ def pipeline_poll(monitor_id):
     try:
         conn_src = get_connection("legacy")
         cur_src = conn_src.cursor()
-        cur_src.execute("SELECT COUNT(*) FROM dbo.cdc_outbox")
+        cur_src.execute("SELECT COUNT_BIG(*) FROM dbo.cdc_outbox WITH (NOLOCK) WHERE aggregate_type != '_warmup'")
         result["outbox_new"] = cur_src.fetchone()[0] - mon["source_outbox_before"]
         conn_src.close()
     except:
@@ -463,20 +466,21 @@ def pipeline_poll(monitor_id):
         conn_dst = get_connection("newcore")
         cur_dst = conn_dst.cursor()
 
-        cur_dst.execute("SELECT COUNT(*) FROM dbo.cdc_inbox")
-        result["inbox_received"] = cur_dst.fetchone()[0] - mon["dest_inbox_before"]
-
-        cur_dst.execute("SELECT COUNT(*) FROM dbo.cdc_inbox WHERE processed = 1")
-        result["inbox_processed"] = cur_dst.fetchone()[0] - mon["dest_inbox_processed_before"]
-
-        cur_dst.execute("SELECT COUNT(*) FROM dbo.cdc_inbox WHERE processed = 0")
-        result["inbox_pending"] = cur_dst.fetchone()[0]
-
-        cur_dst.execute("SELECT COUNT(*) FROM dbo.cdc_inbox_errors")
-        result["inbox_errors"] = cur_dst.fetchone()[0] - mon["dest_errors_before"]
+        cur_dst.execute("""
+            SELECT
+                (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox WITH (NOLOCK)) AS total,
+                (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox WITH (NOLOCK) WHERE processed = 1) AS processed,
+                (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox WITH (NOLOCK) WHERE processed = 0) AS pending,
+                (SELECT COUNT_BIG(*) FROM dbo.cdc_inbox_errors WITH (NOLOCK)) AS errors
+        """)
+        row = cur_dst.fetchone()
+        result["inbox_received"] = row[0] - mon["dest_inbox_before"]
+        result["inbox_processed"] = row[1] - mon["dest_inbox_processed_before"]
+        result["inbox_pending"] = row[2]
+        result["inbox_errors"] = row[3] - mon["dest_errors_before"]
 
         if mon["dest_schema"] and mon["dest_table_name"]:
-            cur_dst.execute(f"SELECT COUNT(*) FROM [{mon['dest_schema']}].[{mon['dest_table_name']}]")
+            cur_dst.execute(f"SELECT COUNT_BIG(*) FROM [{mon['dest_schema']}].[{mon['dest_table_name']}] WITH (NOLOCK)")
             dest_count = cur_dst.fetchone()[0]
             result["dest_count"] = dest_count
             result["dest_new"] = dest_count - mon["dest_count_before"]
@@ -580,6 +584,34 @@ def _find_newcore_dest(source_table):
         return None, None
     except:
         return None, None
+
+
+def _drain_destination_inbox():
+    """Espera a que el inbox de newcore procese registros pendientes del batch anterior
+    y limpia inbox_errors para que no contaminen el nuevo test."""
+    try:
+        conn = get_connection("newcore")
+        cursor = conn.cursor()
+
+        # Esperar hasta 30s a que el inbox no tenga pendientes del batch anterior
+        for _ in range(30):
+            cursor.execute("SELECT COUNT(*) FROM dbo.cdc_inbox WITH (NOLOCK) WHERE processed = 0")
+            pending = cursor.fetchone()[0]
+            if pending == 0:
+                break
+            time.sleep(1)
+
+        # Limpiar errores del batch anterior para que no aparezcan en el nuevo test
+        cursor.execute("DELETE FROM dbo.cdc_inbox_errors")
+        conn.commit()
+
+        # Limpiar inbox procesados para evitar acumulacion
+        cursor.execute("DELETE FROM dbo.cdc_inbox WHERE processed = 1")
+        conn.commit()
+
+        conn.close()
+    except:
+        pass
 
 
 def _insert_outbox_warmup():

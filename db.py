@@ -91,22 +91,24 @@ def get_kafka_outbox_offset(db_key):
 
 
 def sync_outbox_identity(outbox_db):
-    """Limpia outbox huerfanos y reseedea identity para sincronizar con Kafka"""
+    """Limpia outbox y reseedea identity para sincronizar con Kafka"""
     try:
         kafka_offset = get_kafka_outbox_offset(outbox_db)
-        if not kafka_offset:
+        if kafka_offset is None:
             return
         conn = get_connection(outbox_db)
         cursor = conn.cursor()
-        # Limpiar registros que Kafka ya proceso
-        cursor.execute(f"DELETE FROM dbo.cdc_outbox WHERE id <= {int(kafka_offset)}")
-        conn.commit()
-        # Reseedear para que el proximo registro sea offset + 1
-        cursor.execute("SELECT IDENT_CURRENT('dbo.cdc_outbox')")
-        current_ident = int(cursor.fetchone()[0])
-        if current_ident <= kafka_offset:
-            cursor.execute(f"DBCC CHECKIDENT ('dbo.cdc_outbox', RESEED, {int(kafka_offset)})")
+        # TRUNCATE es mucho mas rapido que DELETE para tablas grandes
+        try:
+            cursor.execute("TRUNCATE TABLE dbo.cdc_outbox")
             conn.commit()
+        except:
+            conn.rollback()
+            cursor.execute(f"DELETE FROM dbo.cdc_outbox WHERE id <= {int(kafka_offset)}")
+            conn.commit()
+        # Reseedear para que el proximo registro sea offset + 1
+        cursor.execute(f"DBCC CHECKIDENT ('dbo.cdc_outbox', RESEED, {int(kafka_offset)})")
+        conn.commit()
         conn.close()
     except:
         pass
