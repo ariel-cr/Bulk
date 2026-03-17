@@ -90,6 +90,10 @@
         .empty-state { text-align: center; padding: 40px; color: #555555; }
         .empty-state p { font-size: 14px; }
 
+        .tab-status { margin-bottom: 0; flex-wrap: wrap; gap: 6px; }
+        .tab-status .status-chip { padding: 6px 10px; font-size: 11px; }
+        .tab-status .status-chip .s-value { font-size: 12px; }
+
         .status-chip.clickable { cursor: pointer; transition: border-color 0.2s; }
         .status-chip.clickable:hover { border-color: #cc5555; }
 
@@ -131,16 +135,13 @@
             <div class="dir-tab newcore active" onclick="setDirection('newcore_to_legacy')">
                 <h3>Newcore → Legacy</h3>
                 <p>Insertar en tablas Newcore, viajan por Kafka a Legacy</p>
+                <div class="status-bar tab-status" id="statusBarNewcore" style="margin-top:10px; justify-content:center;"></div>
             </div>
             <div class="dir-tab legacy" onclick="setDirection('legacy_to_newcore')">
                 <h3>Legacy → Newcore</h3>
                 <p>Insertar en tablas originales Legacy, viajan por Kafka a Newcore</p>
+                <div class="status-bar tab-status" id="statusBarLegacy" style="margin-top:10px; justify-content:center;"></div>
             </div>
-        </div>
-
-        <!-- Status bar -->
-        <div class="status-bar" id="statusBar">
-            <div class="status-chip"><span class="s-label">Cargando estado...</span></div>
         </div>
 
         <div class="grid">
@@ -347,17 +348,19 @@
                 const res = await fetch('/api/status');
                 const data = await res.json();
 
-                let html = '';
                 const labels = {
-                    newcore_outbox: 'Newcore Outbox',
-                    newcore_inbox_pending: 'Newcore Inbox Pend.',
-                    newcore_inbox_processed: 'Newcore Inbox Proc.',
-                    newcore_errors: 'Newcore Errors',
-                    legacy_outbox: 'Legacy Outbox',
-                    legacy_inbox_pending: 'Legacy Inbox Pend.',
-                    legacy_inbox_processed: 'Legacy Inbox Proc.',
-                    legacy_errors: 'Legacy Errors'
+                    newcore_outbox: 'Outbox',
+                    newcore_inbox_pending: 'Inbox Pend.',
+                    newcore_inbox_processed: 'Inbox Proc.',
+                    newcore_errors: 'Errors',
+                    legacy_outbox: 'Outbox',
+                    legacy_inbox_pending: 'Inbox Pend.',
+                    legacy_inbox_processed: 'Inbox Proc.',
+                    legacy_errors: 'Errors'
                 };
+
+                let newcoreHtml = '';
+                let legacyHtml = '';
 
                 for (const [key, val] of Object.entries(data)) {
                     const label = labels[key] || key;
@@ -368,7 +371,6 @@
                     const dbKey = key.startsWith('newcore') ? 'newcore' : 'legacy';
                     const hasData = typeof val === 'number' && val > 0;
 
-                    // Map key to CDC table + filter
                     let cdcTable = null;
                     let cdcFilter = '';
                     if (key.includes('outbox')) { cdcTable = 'cdc_outbox'; }
@@ -376,31 +378,38 @@
                     else if (key.includes('inbox_processed')) { cdcTable = 'cdc_inbox'; cdcFilter = 'processed'; }
                     else if (key.includes('error')) { cdcTable = 'cdc_inbox_errors'; }
 
-                    // Click to view data
                     let clickAttr = `class="status-chip"`;
                     if (hasData && cdcTable) {
                         if (cdcFilter === 'pending') {
-                            clickAttr = `class="status-chip clickable" onclick="showPendingSummary('${dbKey}', '${label}')" title="Click para ver diagnostico"`;
+                            clickAttr = `class="status-chip clickable" onclick="event.stopPropagation(); showPendingSummary('${dbKey}', '${dbKey} ${label}')" title="Click para ver diagnostico"`;
                         } else {
-                            clickAttr = `class="status-chip clickable" onclick="showCdcData('${dbKey}', '${cdcTable}', '${cdcFilter}', '${label}')" title="Click para ver registros"`;
+                            clickAttr = `class="status-chip clickable" onclick="event.stopPropagation(); showCdcData('${dbKey}', '${cdcTable}', '${cdcFilter}', '${dbKey} ${label}')" title="Click para ver registros"`;
                         }
                     }
 
-                    // Truncate button
                     let truncBtn = '';
                     if (hasData && cdcTable) {
                         truncBtn = `<button class="chip-truncate" onclick="event.stopPropagation(); truncateCdc('${dbKey}', '${cdcTable}')" title="Truncate ${dbKey}.dbo.${cdcTable}">X</button>`;
                     }
 
-                    html += `<div ${clickAttr}>
+                    const chip = `<div ${clickAttr}>
                         <span class="s-label">${label}</span>
                         <span class="s-value ${cls}">${typeof val === 'number' ? val.toLocaleString() : val}</span>
                         ${truncBtn}
                     </div>`;
+
+                    if (dbKey === 'newcore') {
+                        newcoreHtml += chip;
+                    } else {
+                        legacyHtml += chip;
+                    }
                 }
-                document.getElementById('statusBar').innerHTML = html;
+
+                document.getElementById('statusBarNewcore').innerHTML = newcoreHtml;
+                document.getElementById('statusBarLegacy').innerHTML = legacyHtml;
             } catch (e) {
-                document.getElementById('statusBar').innerHTML = `<div class="status-chip"><span class="s-label">Error</span><span class="s-value err">${e.message}</span></div>`;
+                document.getElementById('statusBarNewcore').innerHTML = `<div class="status-chip"><span class="s-label">Error</span><span class="s-value err">${e.message}</span></div>`;
+                document.getElementById('statusBarLegacy').innerHTML = '';
             }
         }
 
