@@ -16,7 +16,25 @@ DB_CONFIG = {
 
 DATABASES = {
     "newcore": "fcme_newcore",
-    "legacy": "fcme_legacy"
+    "legacy": "fcme_legacy",
+    "dbIM": "dbIM",
+}
+
+# Módulos que en legacy_to_newcore usan bases de datos originales
+# Mapeo: módulo → { db: nombre_bd, tables: [tablas que usa el pipeline CDC] }
+LEGACY_ORIGINAL_DBS = {
+    "INMUEBLES": {
+        "db": "dbIM",
+        "tables": [
+            "imtbbene_entr",
+            "imtbbene_firm",
+            "imtbcben",
+            "imtbcpro",
+            "imtbdivi",
+            "imtbmanz",
+            "imtbmejo_tram",
+        ]
+    },
 }
 
 # Schemas por dirección
@@ -205,12 +223,41 @@ def index():
 @app.route("/api/modules/<direction>")
 def get_modules(direction):
     """Retorna módulos (schemas) y tablas para una dirección"""
-    db_key = "newcore" if direction == "newcore_to_legacy" else "legacy"
-    try:
-        schemas = get_schemas_and_tables(db_key)
+    if direction == "newcore_to_legacy":
+        db_key = "newcore"
+        try:
+            schemas = get_schemas_and_tables(db_key)
+            return jsonify(schemas)
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+    else:
+        # legacy_to_newcore: combinar tablas de fcme_legacy + bases originales
+        try:
+            schemas = get_schemas_and_tables("legacy")
+        except:
+            schemas = {}
+
+        # Agregar módulos de bases originales (dbIM, etc.)
+        for module_name, config in LEGACY_ORIGINAL_DBS.items():
+            schemas[module_name] = sorted(config["tables"])
+
         return jsonify(schemas)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+
+
+def resolve_db_key(direction, schema):
+    """Determina qué base de datos usar según dirección y módulo"""
+    if direction == "newcore_to_legacy":
+        return "newcore"
+    if schema in LEGACY_ORIGINAL_DBS:
+        return LEGACY_ORIGINAL_DBS[schema]["db"]
+    return "legacy"
+
+
+def resolve_table_schema(direction, schema):
+    """En bases originales (dbIM, etc.) las tablas están en dbo"""
+    if direction == "legacy_to_newcore" and schema in LEGACY_ORIGINAL_DBS:
+        return "dbo"
+    return schema
 
 
 @app.route("/api/columns", methods=["POST"])
@@ -220,10 +267,11 @@ def get_columns():
     direction = data.get("direction", "newcore_to_legacy")
     schema = data.get("schema")
     table = data.get("table")
-    db_key = "newcore" if direction == "newcore_to_legacy" else "legacy"
+    db_key = resolve_db_key(direction, schema)
+    actual_schema = resolve_table_schema(direction, schema)
 
     try:
-        columns = get_table_columns(db_key, schema, table)
+        columns = get_table_columns(db_key, actual_schema, table)
         return jsonify(columns)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -238,18 +286,19 @@ def run_test():
     quantity = int(data.get("quantity", 100))
     disable_triggers = data.get("disable_triggers", False)
 
-    db_key = "newcore" if direction == "newcore_to_legacy" else "legacy"
+    db_key = resolve_db_key(direction, schema)
+    actual_schema = resolve_table_schema(direction, schema)
     batch_size = min(1000, quantity)
 
     try:
         # Leer columnas
-        columns = get_table_columns(db_key, schema, table)
+        columns = get_table_columns(db_key, actual_schema, table)
         # Filtrar identity y columnas con default que no necesitan valor
         insertable_cols = [c for c in columns if not c["is_identity"]]
 
         col_names = ", ".join([f"[{c['name']}]" for c in insertable_cols])
         placeholders = ", ".join(["?" for _ in insertable_cols])
-        sql = f"INSERT INTO [{schema}].[{table}] ({col_names}) VALUES ({placeholders})"
+        sql = f"INSERT INTO [{actual_schema}].[{table}] ({col_names}) VALUES ({placeholders})"
 
         conn = get_connection(db_key)
         cursor = conn.cursor()
@@ -258,16 +307,16 @@ def run_test():
         first_id_col = next((c for c in insertable_cols if c["name"].lower().endswith("id")), None)
         offset = 0
         if first_id_col:
-            offset = get_max_numeric_id(conn, schema, table, first_id_col["name"]) + 1
+            offset = get_max_numeric_id(conn, actual_schema, table, first_id_col["name"]) + 1
 
         # Conteos antes
-        cursor.execute(f"SELECT COUNT(*) FROM [{schema}].[{table}]")
+        cursor.execute(f"SELECT COUNT(*) FROM [{actual_schema}].[{table}]")
         count_before = cursor.fetchone()[0]
 
         outbox_before = 0
         inbox_other_before = 0
-        other_db = "legacy" if db_key == "newcore" else "newcore"
-        other_db_name = DATABASES[other_db]
+        other_db = "legacy" if direction == "newcore_to_legacy" else "newcore"
+        other_db_name = DATABASES.get(other_db, other_db)
         try:
             cursor.execute(f"SELECT COUNT(*) FROM dbo.cdc_outbox")
             outbox_before = cursor.fetchone()[0]
@@ -282,7 +331,7 @@ def run_test():
         # Desactivar triggers
         if disable_triggers:
             try:
-                cursor.execute(f"DISABLE TRIGGER ALL ON [{schema}].[{table}]")
+                cursor.execute(f"DISABLE TRIGGER ALL ON [{actual_schema}].[{table}]")
                 conn.commit()
             except:
                 pass
@@ -292,7 +341,7 @@ def run_test():
             "direction": direction,
             "schema": schema,
             "table": table,
-            "full_table": f"{schema}.{table}",
+            "full_table": f"{actual_schema}.{table}" if actual_schema != schema else f"{schema}.{table}",
             "quantity": quantity,
             "triggers_disabled": disable_triggers,
             "columns_count": len(insertable_cols),
@@ -354,13 +403,13 @@ def run_test():
         # Reactivar triggers
         if disable_triggers:
             try:
-                cursor.execute(f"ENABLE TRIGGER ALL ON [{schema}].[{table}]")
+                cursor.execute(f"ENABLE TRIGGER ALL ON [{actual_schema}].[{table}]")
                 conn.commit()
             except:
                 pass
 
         # Conteos después
-        cursor.execute(f"SELECT COUNT(*) FROM [{schema}].[{table}]")
+        cursor.execute(f"SELECT COUNT(*) FROM [{actual_schema}].[{table}]")
         count_after = cursor.fetchone()[0]
 
         outbox_after = 0
@@ -437,33 +486,34 @@ def cleanup():
     direction = data.get("direction", "newcore_to_legacy")
     schema = data.get("schema")
     table = data.get("table")
-    db_key = "newcore" if direction == "newcore_to_legacy" else "legacy"
+    db_key = resolve_db_key(direction, schema)
+    actual_schema = resolve_table_schema(direction, schema)
 
     try:
         conn = get_connection(db_key)
         cursor = conn.cursor()
 
-        cursor.execute(f"SELECT COUNT(*) FROM [{schema}].[{table}]")
+        cursor.execute(f"SELECT COUNT(*) FROM [{actual_schema}].[{table}]")
         before = cursor.fetchone()[0]
 
         try:
-            cursor.execute(f"DISABLE TRIGGER ALL ON [{schema}].[{table}]")
+            cursor.execute(f"DISABLE TRIGGER ALL ON [{actual_schema}].[{table}]")
             conn.commit()
         except:
             pass
 
-        cursor.execute(f"DELETE FROM [{schema}].[{table}]")
+        cursor.execute(f"DELETE FROM [{actual_schema}].[{table}]")
         deleted = cursor.rowcount
         conn.commit()
 
         try:
-            cursor.execute(f"ENABLE TRIGGER ALL ON [{schema}].[{table}]")
+            cursor.execute(f"ENABLE TRIGGER ALL ON [{actual_schema}].[{table}]")
             conn.commit()
         except:
             pass
 
         conn.close()
-        return jsonify({"table": f"{schema}.{table}", "deleted": deleted, "before": before})
+        return jsonify({"table": f"{actual_schema}.{table}", "deleted": deleted, "before": before})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -475,40 +525,41 @@ def truncate_table():
     direction = data.get("direction", "newcore_to_legacy")
     schema = data.get("schema")
     table = data.get("table")
-    db_key = "newcore" if direction == "newcore_to_legacy" else "legacy"
+    db_key = resolve_db_key(direction, schema)
+    actual_schema = resolve_table_schema(direction, schema)
 
     try:
         conn = get_connection(db_key)
         cursor = conn.cursor()
 
-        cursor.execute(f"SELECT COUNT(*) FROM [{schema}].[{table}]")
+        cursor.execute(f"SELECT COUNT(*) FROM [{actual_schema}].[{table}]")
         before = cursor.fetchone()[0]
 
         try:
-            cursor.execute(f"DISABLE TRIGGER ALL ON [{schema}].[{table}]")
+            cursor.execute(f"DISABLE TRIGGER ALL ON [{actual_schema}].[{table}]")
             conn.commit()
         except:
             pass
 
         try:
-            cursor.execute(f"TRUNCATE TABLE [{schema}].[{table}]")
+            cursor.execute(f"TRUNCATE TABLE [{actual_schema}].[{table}]")
             conn.commit()
             method = "TRUNCATE"
         except Exception:
             # TRUNCATE falla si hay FK, intentar DELETE
             conn.rollback()
-            cursor.execute(f"DELETE FROM [{schema}].[{table}]")
+            cursor.execute(f"DELETE FROM [{actual_schema}].[{table}]")
             conn.commit()
             method = "DELETE (TRUNCATE no permitido por FK)"
 
         try:
-            cursor.execute(f"ENABLE TRIGGER ALL ON [{schema}].[{table}]")
+            cursor.execute(f"ENABLE TRIGGER ALL ON [{actual_schema}].[{table}]")
             conn.commit()
         except:
             pass
 
         conn.close()
-        return jsonify({"table": f"{schema}.{table}", "deleted": before, "method": method})
+        return jsonify({"table": f"{actual_schema}.{table}", "deleted": before, "method": method})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
