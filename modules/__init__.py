@@ -39,15 +39,28 @@ ALL_MODULES = {
 
 
 def get_all_original_dbs():
-    """Retorna dict de BD original -> tablas para legacy_to_newcore"""
+    """Retorna dict de BD original -> tablas para legacy_to_newcore.
+    Extrae las tablas de ORIGINAL_TABLES y tambien de NEWCORE_TO_FINAL
+    para soportar modulos con tablas en multiples BDs."""
     result = {}
     for mod in ALL_MODULES.values():
+        # Tablas explicitas
         db = mod.get("ORIGINAL_DB")
         tables = mod.get("ORIGINAL_TABLES", [])
         if db and tables:
             if db not in result:
                 result[db] = []
-            result[db].extend(tables)
+            for t in tables:
+                if t not in result[db]:
+                    result[db].append(t)
+
+        # Tablas del mapeo NEWCORE_TO_FINAL (cubre multiples BDs)
+        for type_table, (final_db, final_table) in mod.get("NEWCORE_TO_FINAL", {}).items():
+            if final_db not in result:
+                result[final_db] = []
+            if final_table not in result[final_db]:
+                result[final_db].append(final_table)
+
     return result
 
 

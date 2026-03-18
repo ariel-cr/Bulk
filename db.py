@@ -91,17 +91,18 @@ def get_kafka_outbox_offset(db_key):
 
 
 def sync_outbox_identity(outbox_db):
-    """Reseedea identity del outbox para sincronizar con Kafka (no borra datos)"""
+    """Sincroniza identity del outbox con el offset de Kafka.
+    Reseedea para que el proximo INSERT genere un ID mayor al offset de Kafka.
+    No borra datos del outbox."""
     try:
         kafka_offset = get_kafka_outbox_offset(outbox_db)
         if kafka_offset is None:
             return
         conn = get_connection(outbox_db)
         cursor = conn.cursor()
-        # Solo reseedear si el identity actual es menor al offset de Kafka
         cursor.execute("SELECT IDENT_CURRENT('dbo.cdc_outbox')")
         current_ident = cursor.fetchone()[0]
-        if current_ident is not None and int(current_ident) < int(kafka_offset):
+        if current_ident is not None and int(current_ident) <= int(kafka_offset):
             cursor.execute(f"DBCC CHECKIDENT ('dbo.cdc_outbox', RESEED, {int(kafka_offset)})")
             conn.commit()
         conn.close()
