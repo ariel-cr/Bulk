@@ -210,6 +210,7 @@ def run_test():
 
 @newcore_bp.route("/api/newcore/cleanup", methods=["POST"])
 def cleanup():
+    """DELETE con triggers activos — genera eventos DELETE en el outbox"""
     data = request.json
     schema = data.get("schema")
     table = data.get("table")
@@ -221,21 +222,9 @@ def cleanup():
         cursor.execute(f"SELECT COUNT(*) FROM [{schema}].[{table}]")
         before = cursor.fetchone()[0]
 
-        try:
-            cursor.execute(f"DISABLE TRIGGER ALL ON [{schema}].[{table}]")
-            conn.commit()
-        except:
-            pass
-
         cursor.execute(f"DELETE FROM [{schema}].[{table}]")
         deleted = cursor.rowcount
         conn.commit()
-
-        try:
-            cursor.execute(f"ENABLE TRIGGER ALL ON [{schema}].[{table}]")
-            conn.commit()
-        except:
-            pass
 
         conn.close()
         return jsonify({"table": f"{schema}.{table}", "deleted": deleted, "before": before})
@@ -246,6 +235,7 @@ def cleanup():
 
 @newcore_bp.route("/api/newcore/truncate", methods=["POST"])
 def truncate_table():
+    """TRUNCATE con triggers desactivados — no genera eventos, limpieza rapida"""
     data = request.json
     schema = data.get("schema")
     table = data.get("table")

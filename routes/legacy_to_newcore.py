@@ -223,6 +223,7 @@ def run_test():
 
 @legacy_bp.route("/api/legacy/cleanup", methods=["POST"])
 def cleanup():
+    """DELETE con triggers activos — genera eventos DELETE en el outbox"""
     data = request.json
     db_key = data.get("schema")
     table = data.get("table")
@@ -234,21 +235,9 @@ def cleanup():
         cursor.execute(f"SELECT COUNT(*) FROM [dbo].[{table}]")
         before = cursor.fetchone()[0]
 
-        try:
-            cursor.execute(f"DISABLE TRIGGER ALL ON [dbo].[{table}]")
-            conn.commit()
-        except:
-            pass
-
         cursor.execute(f"DELETE FROM [dbo].[{table}]")
         deleted = cursor.rowcount
         conn.commit()
-
-        try:
-            cursor.execute(f"ENABLE TRIGGER ALL ON [dbo].[{table}]")
-            conn.commit()
-        except:
-            pass
 
         conn.close()
         return jsonify({"table": f"dbo.{table}", "deleted": deleted, "before": before})

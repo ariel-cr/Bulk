@@ -91,24 +91,19 @@ def get_kafka_outbox_offset(db_key):
 
 
 def sync_outbox_identity(outbox_db):
-    """Limpia outbox y reseedea identity para sincronizar con Kafka"""
+    """Reseedea identity del outbox para sincronizar con Kafka (no borra datos)"""
     try:
         kafka_offset = get_kafka_outbox_offset(outbox_db)
         if kafka_offset is None:
             return
         conn = get_connection(outbox_db)
         cursor = conn.cursor()
-        # TRUNCATE es mucho mas rapido que DELETE para tablas grandes
-        try:
-            cursor.execute("TRUNCATE TABLE dbo.cdc_outbox")
+        # Solo reseedear si el identity actual es menor al offset de Kafka
+        cursor.execute("SELECT IDENT_CURRENT('dbo.cdc_outbox')")
+        current_ident = cursor.fetchone()[0]
+        if current_ident is not None and int(current_ident) < int(kafka_offset):
+            cursor.execute(f"DBCC CHECKIDENT ('dbo.cdc_outbox', RESEED, {int(kafka_offset)})")
             conn.commit()
-        except:
-            conn.rollback()
-            cursor.execute(f"DELETE FROM dbo.cdc_outbox WHERE id <= {int(kafka_offset)}")
-            conn.commit()
-        # Reseedear para que el proximo registro sea offset + 1
-        cursor.execute(f"DBCC CHECKIDENT ('dbo.cdc_outbox', RESEED, {int(kafka_offset)})")
-        conn.commit()
         conn.close()
     except:
         pass

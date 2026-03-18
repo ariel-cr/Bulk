@@ -218,14 +218,14 @@
         let modulesData = {};
         let currentColumns = [];
 
-        // Resultados persistentes por pestaña (con localStorage)
-        let tabResults = JSON.parse(localStorage.getItem('tabResults') || '{}');
-        if (!tabResults.newcore_to_legacy) tabResults.newcore_to_legacy = '';
-        if (!tabResults.legacy_to_newcore) tabResults.legacy_to_newcore = '';
+        // Resultados persistentes por pestaña (solo en memoria, se pierden al recargar)
+        let tabResults = {
+            newcore_to_legacy: '',
+            legacy_to_newcore: ''
+        };
 
         function saveResults() {
             tabResults[currentDirection] = document.getElementById('results').innerHTML;
-            localStorage.setItem('tabResults', JSON.stringify(tabResults));
         }
 
         // Prefijo de API segun direccion
@@ -238,14 +238,11 @@
             refreshStatus();
             setInterval(refreshStatus, 5000);
             fetch('/api/generate-excel').catch(() => {});
-            // Restaurar resultados guardados
-            const saved = tabResults[currentDirection];
-            if (saved) document.getElementById('results').innerHTML = saved;
         };
 
         function setDirection(dir) {
             // Guardar resultados de la pestaña actual
-            tabResults[currentDirection] = document.getElementById('results').innerHTML;
+            saveResults();
 
             currentDirection = dir;
             document.querySelectorAll('.dir-tab').forEach(t => t.classList.remove('active'));
@@ -504,17 +501,28 @@
 
                 const newResult = document.createElement('div');
                 newResult.className = 'test-result-block';
-                newResult.style.borderBottom = '1px solid #333';
                 newResult.style.paddingBottom = '16px';
-                newResult.style.marginBottom = '16px';
+                newResult.style.marginBottom = '8px';
+
+                const timestamp = new Date().toLocaleString();
+                const header = document.createElement('div');
+                header.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:8px 0; margin-bottom:8px;';
+                header.innerHTML = `<span style="font-size:13px; font-weight:600; color:#b0b0b0;">${data.full_table} — ${data.total_inserted.toLocaleString()} registros</span><span style="font-size:11px; color:#666;">${timestamp}</span>`;
+                newResult.appendChild(header);
+
                 renderResultsInto(newResult, data);
+
+                // Separador horizontal
+                const separator = document.createElement('hr');
+                separator.style.cssText = 'border:none; border-top:2px solid #333; margin-top:16px;';
+                newResult.appendChild(separator);
 
                 // Pipeline monitor va dentro del bloque de resultado
                 const pipeDiv = document.getElementById('pipelineMonitor');
                 if (pipeDiv) newResult.insertBefore(pipeDiv, newResult.firstChild);
 
                 resultsDiv.insertBefore(newResult, resultsDiv.firstChild);
-                tabResults[currentDirection] = resultsDiv.innerHTML;
+                saveResults();
                 refreshStatus();
 
                 // Exportar a CSV
@@ -537,6 +545,21 @@
         }
 
         let pipelineInterval = null;
+        let pipelineDiv = null;
+        let lastPipelineData = null;
+        let pipelineDestTable = null;
+
+        function stopPipeline() {
+            if (pipelineInterval) {
+                clearInterval(pipelineInterval);
+                pipelineInterval = null;
+            }
+            if (lastPipelineData && pipelineDiv) {
+                lastPipelineData._stopped = true;
+                renderPipeline(pipelineDiv, lastPipelineData, pipelineDestTable);
+                saveResults();
+            }
+        }
 
         function startPipelinePolling(monitorId, destTable, quantity) {
             try {
@@ -550,22 +573,27 @@
                 pipeDiv.style.border = '1px solid #444';
                 resultsDiv.insertBefore(pipeDiv, resultsDiv.firstChild);
 
+                pipelineDiv = pipeDiv;
+                pipelineDestTable = destTable;
+
                 // Limpiar intervalo anterior
                 if (pipelineInterval) clearInterval(pipelineInterval);
 
-                // Polling cada 3 segundos - sin timeout, se detiene solo cuando completa
+                // Polling cada 3 segundos
                 const updatePipeline = async () => {
                     try {
                         const r = await fetch(`${apiPrefix()}/pipeline-poll/${monitorId}`);
                         const p = await r.json();
                         if (p.error) return;
 
+                        lastPipelineData = p;
                         renderPipeline(pipeDiv, p, destTable);
                         refreshStatus();
 
                         if (p.completed) {
                             clearInterval(pipelineInterval);
                             pipelineInterval = null;
+                            saveResults();
                         }
                     } catch(e) {}
                 };
@@ -595,7 +623,12 @@
             const pct = p.progress_pct || 0;
             let barColor, statusText, statusColor, icon;
 
-            if (p.completed) {
+            if (p._stopped) {
+                barColor = '#cc5555';
+                statusText = `Detenido a los ${formatTime(p.elapsed_sec)}`;
+                statusColor = '#cc5555';
+                icon = '';
+            } else if (p.completed) {
                 barColor = '#4ade80';
                 statusText = `Completado en ${formatTime(p.completed_at)}`;
                 statusColor = '#4ade80';
@@ -607,8 +640,11 @@
                 icon = '<span class="spinner"></span>';
             }
 
+            const stopBtn = (!p.completed && !p._stopped) ?
+                `<button onclick="stopPipeline()" style="background:#3a1a1a; color:#cc6666; border:1px solid #cc5555; border-radius:6px; padding:4px 12px; font-size:11px; cursor:pointer; margin-left:8px;">Detener</button>` : '';
+
             div.innerHTML = `
-                <h3 style="margin-bottom:12px;">Pipeline CDC en Tiempo Real ${icon}</h3>
+                <h3 style="margin-bottom:12px;">Pipeline CDC en Tiempo Real ${icon} ${stopBtn}</h3>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                     <span style="font-size:12px; color:#888;">
                         ${p.source_table} → <strong style="color:#b0b0b0">${destTable}</strong>
