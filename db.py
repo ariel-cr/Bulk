@@ -114,6 +114,38 @@ def sync_outbox_identity(outbox_db):
         pass
 
 
+def get_fk_values(conn, schema, table):
+    """Obtiene valores validos de tablas referenciadas por FK para cada columna.
+    Retorna dict: {col_name: [lista de valores validos]} solo para cols con FK."""
+    fk_values = {}
+    try:
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT
+                cp.name AS fk_column,
+                OBJECT_NAME(fkc.referenced_object_id) AS ref_table,
+                cr.name AS ref_column
+            FROM sys.foreign_keys fk
+            JOIN sys.foreign_key_columns fkc ON fk.object_id = fkc.constraint_object_id
+            JOIN sys.columns cp ON fkc.parent_object_id = cp.object_id AND fkc.parent_column_id = cp.column_id
+            JOIN sys.columns cr ON fkc.referenced_object_id = cr.object_id AND fkc.referenced_column_id = cr.column_id
+            WHERE fkc.parent_object_id = OBJECT_ID(? + '.' + ?)
+        """, schema, table)
+        fk_refs = cursor.fetchall()
+
+        for ref in fk_refs:
+            try:
+                cursor.execute(f"SELECT DISTINCT [{ref.ref_column}] FROM dbo.[{ref.ref_table}] ORDER BY [{ref.ref_column}]")
+                vals = [row[0] for row in cursor.fetchall()]
+                if vals:
+                    fk_values[ref.fk_column] = vals
+            except:
+                pass
+    except:
+        pass
+    return fk_values
+
+
 def get_max_id_across_destinations(source_db_key, source_table):
     """Busca el max ID numerico en las tablas destino de newcore
     para evitar colisiones de PK cuando el trigger replica datos"""
