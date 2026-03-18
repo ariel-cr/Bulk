@@ -217,6 +217,12 @@
         let modulesData = {};
         let currentColumns = [];
 
+        // Resultados persistentes por pestaña
+        let tabResults = {
+            newcore_to_legacy: '',
+            legacy_to_newcore: ''
+        };
+
         // Prefijo de API segun direccion
         function apiPrefix() {
             return currentDirection === 'newcore_to_legacy' ? '/api/newcore' : '/api/legacy';
@@ -229,19 +235,26 @@
         };
 
         function setDirection(dir) {
+            // Guardar resultados de la pestaña actual
+            tabResults[currentDirection] = document.getElementById('results').innerHTML;
+
             currentDirection = dir;
             document.querySelectorAll('.dir-tab').forEach(t => t.classList.remove('active'));
             const tabs = document.querySelectorAll('.dir-tab');
             if (dir === 'newcore_to_legacy') tabs[0].classList.add('active');
             else tabs[1].classList.add('active');
 
-            // Reset
+            // Reset controles
             document.getElementById('table').innerHTML = '<option value="">-- Selecciona un modulo --</option>';
             document.getElementById('table').disabled = true;
             document.getElementById('tableInfo').style.display = 'none';
             document.getElementById('btnRun').disabled = true;
             document.getElementById('btnClean').disabled = true;
             document.getElementById('btnTruncate').disabled = true;
+
+            // Restaurar resultados de la nueva pestaña
+            const saved = tabResults[dir];
+            document.getElementById('results').innerHTML = saved || '<div class="empty-state"><p>Selecciona un modulo y tabla, define la cantidad de registros y ejecuta la prueba.</p></div>';
 
             loadModules();
         }
@@ -462,21 +475,44 @@
                 const data = await res.json();
 
                 if (data.error) {
-                    document.getElementById('results').innerHTML =
+                    const resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML =
                         `<div class="result-section"><h3>Error</h3><p style="color:#ef4444">${data.error}</p></div>`
-                        + document.getElementById('results').innerHTML;
+                        + resultsDiv.innerHTML;
+                    tabResults[currentDirection] = resultsDiv.innerHTML;
                     return;
                 }
 
                 fill.style.width = '100%';
-                // Insertar resultados DEBAJO del pipeline monitor
+                // Insertar nuevo resultado arriba, viejos abajo
                 const resultsDiv = document.getElementById('results');
+                // Quitar empty state si existe
+                const emptyState = resultsDiv.querySelector('.empty-state');
+                if (emptyState) emptyState.remove();
+
+                const newResult = document.createElement('div');
+                newResult.className = 'test-result-block';
+                newResult.style.borderBottom = '1px solid #333';
+                newResult.style.paddingBottom = '16px';
+                newResult.style.marginBottom = '16px';
+                renderResultsInto(newResult, data);
+
+                // Pipeline monitor va dentro del bloque de resultado
                 const pipeDiv = document.getElementById('pipelineMonitor');
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = '';
-                resultsDiv.appendChild(tempDiv);
-                renderResultsInto(tempDiv, data);
+                if (pipeDiv) newResult.insertBefore(pipeDiv, newResult.firstChild);
+
+                resultsDiv.insertBefore(newResult, resultsDiv.firstChild);
+                tabResults[currentDirection] = resultsDiv.innerHTML;
                 refreshStatus();
+
+                // Exportar a CSV
+                try {
+                    await fetch('/api/export-result', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                } catch(e) {}
 
             } catch (e) {
                 const resultsDiv = document.getElementById('results');

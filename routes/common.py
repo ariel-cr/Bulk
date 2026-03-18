@@ -1,4 +1,6 @@
-"""Rutas compartidas: index, status CDC, visor de datos CDC, truncate CDC."""
+"""Rutas compartidas: index, status CDC, visor de datos CDC, truncate CDC, Excel export."""
+import os
+from datetime import datetime
 from flask import Blueprint, render_template, request, jsonify
 import time as _time
 import urllib.request as _urlreq
@@ -208,6 +210,57 @@ def truncate_cdc():
 
         conn.close()
         return jsonify({"table": f"{db_key}.dbo.{table}", "deleted": before, "method": method})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@common_bp.route("/api/export-result", methods=["POST"])
+def export_result():
+    """Agrega resultado de test al CSV compartido de reportes"""
+    try:
+        import csv
+
+        data = request.json
+        if not data or "direction" not in data:
+            return jsonify({"error": "Sin datos"}), 400
+
+        reportes_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "reportes")
+        os.makedirs(reportes_dir, exist_ok=True)
+        filepath = os.path.join(reportes_dir, "resultados_cdc.csv")
+
+        headers = [
+            "Fecha/Hora", "Direccion", "Modulo", "Tabla",
+            "Cantidad", "Insertados", "Tiempo (seg)", "Rows/seg",
+            "Count Antes", "Count Despues", "Neto",
+            "Outbox", "Triggers", "Errores"
+        ]
+
+        file_exists = os.path.exists(filepath)
+
+        with open(filepath, "a", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            if not file_exists:
+                writer.writerow(headers)
+
+            writer.writerow([
+                datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                data.get("direction", "").replace("_", " ").title(),
+                data.get("schema", ""),
+                data.get("table", ""),
+                data.get("quantity", 0),
+                data.get("total_inserted", 0),
+                data.get("total_time_sec", 0),
+                data.get("avg_rows_per_sec", 0),
+                data.get("count_before", 0),
+                data.get("count_after", 0),
+                data.get("net_inserted", 0),
+                data.get("outbox_generated", 0),
+                "OFF" if data.get("triggers_disabled") else "ON",
+                data.get("total_errors", 0),
+            ])
+
+        return jsonify({"file": "resultados_cdc.csv"})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
