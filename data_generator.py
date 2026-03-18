@@ -18,8 +18,13 @@ def generate_fake_value(col, index, offset, is_pk=False, fk_values=None):
         return vals[index % len(vals)]
 
     # Columnas PK o que terminan en "id" - usar offset para unicidad
+    # Asegurar que el ID unico quepa dentro de max_len para evitar truncaciones
+    # que generen valores duplicados (ej: BLK1773858282 y BLK1773858283 truncados a 10 = mismo)
     if (is_pk or name.endswith("id")) and dtype in ("varchar", "nvarchar", "char", "nchar"):
-        return f"BLK{unique_id}"[:min(max_len, 20)]
+        prefix = "BLK"
+        max_id_digits = max(1, min(max_len, 20) - len(prefix))
+        short_id = unique_id % (10 ** max_id_digits)
+        return f"{prefix}{short_id}"[:min(max_len, 20)]
 
     if (is_pk or name.endswith("id")) and dtype in ("int", "bigint"):
         return unique_id

@@ -56,11 +56,15 @@ def run_test():
     quantity = int(data.get("quantity", 100))
     disable_triggers = data.get("disable_triggers", False)
 
-    batch_size = min(1000, quantity)
-
+    # SQL Server tiene limite de 2100 parametros por query.
+    # Usar INSERT multi-row para que el trigger reciba todas las filas
+    # en 'inserted' y ROW_NUMBER() genere IDs correctos.
     try:
         columns = get_table_columns(db_key, "dbo", table)
         insertable_cols = [c for c in columns if not c["is_identity"]]
+        num_cols = len(insertable_cols)
+        # Max filas por batch: 2100 params / num_cols, tope 1000
+        batch_size = min(1000, quantity, max(1, 2100 // num_cols))
 
         col_names = ", ".join([f"[{c['name']}]" for c in insertable_cols])
         placeholders = ", ".join(["?" for _ in insertable_cols])
@@ -150,8 +154,13 @@ def run_test():
                 rows.append(tuple(row))
 
             try:
-                cursor.fast_executemany = True
-                cursor.executemany(sql, rows)
+                # INSERT multi-row: INSERT INTO t (cols) VALUES (...), (...), ...
+                # Esto hace que el trigger reciba TODAS las filas en 'inserted',
+                # permitiendo que ROW_NUMBER() genere IDs secuenciales correctos.
+                multi_placeholders = ", ".join([f"({placeholders})" for _ in rows])
+                multi_sql = f"INSERT INTO [dbo].[{table}] ({col_names}) VALUES {multi_placeholders}"
+                flat_params = [val for row in rows for val in row]
+                cursor.execute(multi_sql, flat_params)
                 conn.commit()
                 batch_time = time.time() - batch_start
                 metrics["batches"].append({
