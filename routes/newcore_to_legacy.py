@@ -17,6 +17,9 @@ newcore_bp = Blueprint('newcore_to_legacy', __name__)
 # Mapeo cargado desde los modulos (modules/*.py)
 NEWCORE_TO_FINAL_TABLE = get_all_newcore_to_final()
 
+# Mapeo cargado desde los modulos (modules/*.py)
+NEWCORE_TO_FINAL_TABLE = get_all_newcore_to_final()
+
 
 # ── Modulos y tablas ──
 
@@ -106,10 +109,15 @@ def run_test():
             except:
                 pass
 
+        # Tabla destino final
+        mapping = NEWCORE_TO_FINAL_TABLE.get(table.upper())
+        dest_table = f"{mapping[0]}.dbo.{mapping[1]}" if mapping else ""
+
         metrics = {
             "direction": "newcore_to_legacy",
             "schema": schema, "table": table,
             "full_table": f"{schema}.{table}",
+            "dest_table": dest_table,
             "quantity": quantity,
             "triggers_disabled": disable_triggers,
             "columns_count": len(insertable_cols),

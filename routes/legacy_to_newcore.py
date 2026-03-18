@@ -119,10 +119,15 @@ def run_test():
             except:
                 pass
 
+        # Tabla destino en newcore (via pipeline monitor)
+        dest_schema_nc, dest_table_nc = _find_newcore_dest(table)
+        dest_table_display = f"{dest_schema_nc}.{dest_table_nc}" if dest_schema_nc else ""
+
         metrics = {
             "direction": "legacy_to_newcore",
             "schema": db_key, "table": table,
             "full_table": f"{db_key}.dbo.{table}",
+            "dest_table": dest_table_display,
             "quantity": quantity,
             "triggers_disabled": disable_triggers,
             "columns_count": len(insertable_cols),

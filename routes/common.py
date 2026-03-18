@@ -5,7 +5,8 @@ from flask import Blueprint, render_template, request, jsonify
 import time as _time
 import urllib.request as _urlreq
 from config import DATABASES, get_connection
-from db import get_kafka_outbox_offset
+from db import get_kafka_outbox_offset, get_schemas_and_tables
+from modules import ALL_MODULES
 
 common_bp = Blueprint('common', __name__)
 
@@ -215,9 +216,136 @@ def truncate_cdc():
         return jsonify({"error": str(e)}), 500
 
 
+@common_bp.route("/api/truncate-module", methods=["POST"])
+def truncate_module():
+    """Trunca todas las tablas TYPE de un modulo en newcore + sus tablas originales en dbXX"""
+    data = request.json
+    module_name = data.get("module")
+
+    if module_name not in ALL_MODULES:
+        return jsonify({"error": f"Modulo '{module_name}' no encontrado"}), 400
+
+    mod = ALL_MODULES[module_name]
+    results = []
+
+    # 1. Truncar tablas TYPE en fcme_newcore
+    try:
+        conn = get_connection("newcore")
+        cursor = conn.cursor()
+
+        # Obtener tablas del schema/modulo en newcore
+        type_tables = list(mod.get("NEWCORE_TO_FINAL", {}).keys())
+
+        for table in type_tables:
+            try:
+                cursor.execute(f"SELECT COUNT(*) FROM [{module_name}].[{table}]")
+                count = cursor.fetchone()[0]
+                if count == 0:
+                    results.append({"table": f"newcore.{module_name}.{table}", "deleted": 0, "status": "vacia"})
+                    continue
+
+                try:
+                    cursor.execute(f"DISABLE TRIGGER ALL ON [{module_name}].[{table}]")
+                    conn.commit()
+                except:
+                    pass
+
+                try:
+                    cursor.execute(f"TRUNCATE TABLE [{module_name}].[{table}]")
+                    conn.commit()
+                    method = "TRUNCATE"
+                except:
+                    conn.rollback()
+                    cursor.execute(f"DELETE FROM [{module_name}].[{table}]")
+                    conn.commit()
+                    method = "DELETE"
+
+                try:
+                    cursor.execute(f"ENABLE TRIGGER ALL ON [{module_name}].[{table}]")
+                    conn.commit()
+                except:
+                    pass
+
+                results.append({"table": f"newcore.{module_name}.{table}", "deleted": count, "status": method})
+            except Exception as e:
+                results.append({"table": f"newcore.{module_name}.{table}", "deleted": 0, "status": f"error: {str(e)[:80]}"})
+
+        conn.close()
+    except Exception as e:
+        results.append({"table": "newcore (conexion)", "deleted": 0, "status": f"error: {str(e)[:80]}"})
+
+    # 2. Truncar tablas originales en dbXX
+    original_db = mod.get("ORIGINAL_DB")
+    final_tables = mod.get("NEWCORE_TO_FINAL", {})
+
+    # Recopilar tablas unicas de dbXX
+    db_tables = {}  # {db_name: set(table_names)}
+    for type_table, (db_name, orig_table) in final_tables.items():
+        if db_name not in db_tables:
+            db_tables[db_name] = set()
+        db_tables[db_name].add(orig_table)
+
+    for db_name, tables in db_tables.items():
+        try:
+            conn = get_connection(db_name)
+            cursor = conn.cursor()
+
+            for table in sorted(tables):
+                try:
+                    cursor.execute(f"SELECT COUNT(*) FROM dbo.[{table}]")
+                    count = cursor.fetchone()[0]
+                    if count == 0:
+                        results.append({"table": f"{db_name}.dbo.{table}", "deleted": 0, "status": "vacia"})
+                        continue
+
+                    try:
+                        cursor.execute(f"DISABLE TRIGGER ALL ON dbo.[{table}]")
+                        conn.commit()
+                    except:
+                        pass
+
+                    try:
+                        cursor.execute(f"TRUNCATE TABLE dbo.[{table}]")
+                        conn.commit()
+                        method = "TRUNCATE"
+                    except:
+                        conn.rollback()
+                        cursor.execute(f"DELETE FROM dbo.[{table}]")
+                        conn.commit()
+                        method = "DELETE"
+
+                    try:
+                        cursor.execute(f"ENABLE TRIGGER ALL ON dbo.[{table}]")
+                        conn.commit()
+                    except:
+                        pass
+
+                    results.append({"table": f"{db_name}.dbo.{table}", "deleted": count, "status": method})
+                except Exception as e:
+                    results.append({"table": f"{db_name}.dbo.{table}", "deleted": 0, "status": f"error: {str(e)[:80]}"})
+
+            conn.close()
+        except Exception as e:
+            results.append({"table": f"{db_name} (conexion)", "deleted": 0, "status": f"error: {str(e)[:80]}"})
+
+    total_deleted = sum(r["deleted"] for r in results)
+    return jsonify({"module": module_name, "total_deleted": total_deleted, "details": results})
+
+
+@common_bp.route("/api/generate-excel")
+def generate_excel():
+    """Regenera el Excel completo desde el CSV"""
+    try:
+        reportes_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "reportes")
+        _update_excel(reportes_dir, [], [], {})
+        return jsonify({"ok": True})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 @common_bp.route("/api/export-result", methods=["POST"])
 def export_result():
-    """Agrega resultado de test al CSV compartido de reportes"""
+    """Agrega resultado al CSV (git) y genera Excel local con formato"""
     try:
         import csv
 
@@ -227,40 +355,204 @@ def export_result():
 
         reportes_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "reportes")
         os.makedirs(reportes_dir, exist_ok=True)
-        filepath = os.path.join(reportes_dir, "resultados_cdc.csv")
 
         headers = [
-            "Fecha/Hora", "Direccion", "Modulo", "Tabla",
+            "Fecha/Hora", "Direccion", "Modulo", "Tabla", "Tabla Destino",
             "Cantidad", "Insertados", "Tiempo (seg)", "Rows/seg",
             "Count Antes", "Count Despues", "Neto",
             "Outbox", "Triggers", "Errores"
         ]
 
-        file_exists = os.path.exists(filepath)
+        row_data = [
+            datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            data.get("direction", "").replace("_", " ").title(),
+            data.get("schema", ""),
+            data.get("table", ""),
+            data.get("dest_table", ""),
+            data.get("quantity", 0),
+            data.get("total_inserted", 0),
+            data.get("total_time_sec", 0),
+            data.get("avg_rows_per_sec", 0),
+            data.get("count_before", 0),
+            data.get("count_after", 0),
+            data.get("net_inserted", 0),
+            data.get("outbox_generated", 0),
+            "OFF" if data.get("triggers_disabled") else "ON",
+            data.get("total_errors", 0),
+        ]
 
-        with open(filepath, "a", newline="", encoding="utf-8") as f:
+        # 1. CSV (se sube al git)
+        csv_path = os.path.join(reportes_dir, "resultados_cdc.csv")
+        csv_exists = os.path.exists(csv_path)
+        with open(csv_path, "a", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
-            if not file_exists:
+            if not csv_exists:
                 writer.writerow(headers)
+            writer.writerow(row_data)
 
-            writer.writerow([
-                datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                data.get("direction", "").replace("_", " ").title(),
-                data.get("schema", ""),
-                data.get("table", ""),
-                data.get("quantity", 0),
-                data.get("total_inserted", 0),
-                data.get("total_time_sec", 0),
-                data.get("avg_rows_per_sec", 0),
-                data.get("count_before", 0),
-                data.get("count_after", 0),
-                data.get("net_inserted", 0),
-                data.get("outbox_generated", 0),
-                "OFF" if data.get("triggers_disabled") else "ON",
-                data.get("total_errors", 0),
-            ])
+        # 2. Excel local con formato (no se sube al git)
+        _update_excel(reportes_dir, headers, row_data, data)
 
         return jsonify({"file": "resultados_cdc.csv"})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+def _update_excel(reportes_dir, headers, row_data, data):
+    """Reconstruye el Excel completo desde el CSV con colores y formato"""
+    try:
+        import csv
+        from openpyxl import Workbook
+        from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
+        from openpyxl.utils import get_column_letter
+
+        csv_path = os.path.join(reportes_dir, "resultados_cdc.csv")
+        xlsx_path = os.path.join(reportes_dir, "resultados_cdc.xlsx")
+
+        if not os.path.exists(csv_path):
+            return
+
+        # Leer todo el CSV
+        with open(csv_path, 'r', encoding='utf-8') as f:
+            reader = csv.reader(f)
+            all_rows = list(reader)
+
+        if len(all_rows) < 2:
+            return
+
+        csv_headers = all_rows[0]
+        csv_data = sorted(all_rows[1:], key=lambda r: r[0] if r else '', reverse=True)
+
+        # Estilos
+        header_font = Font(bold=True, color="FFFFFF", size=10)
+        header_fill = PatternFill(start_color="2F5496", end_color="2F5496", fill_type="solid")
+        ok_fill = PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid")
+        err_fill = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid")
+        warn_fill = PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid")
+        alt_fill = PatternFill(start_color="F2F2F2", end_color="F2F2F2", fill_type="solid")
+        thin_border = Border(
+            left=Side(style='thin', color='CCCCCC'),
+            right=Side(style='thin', color='CCCCCC'),
+            top=Side(style='thin', color='CCCCCC'),
+            bottom=Side(style='thin', color='CCCCCC')
+        )
+        center = Alignment(horizontal='center', vertical='center')
+        widths = [20, 24, 22, 32, 32, 14, 14, 14, 14, 14, 16, 12, 12, 12, 12]
+
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Resultados CDC"
+
+        # Titulo
+        last_col = get_column_letter(len(csv_headers))
+        ws.merge_cells(f'A1:{last_col}1')
+        ws['A1'].value = "CDC Bulk Tester - Registro de Resultados"
+        ws['A1'].font = Font(bold=True, size=14, color="2F5496")
+        ws['A1'].alignment = Alignment(horizontal='center')
+
+        ws.merge_cells(f'A2:{last_col}2')
+        ws['A2'].value = f"Actualizado: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+        ws['A2'].font = Font(size=9, color="999999")
+        ws['A2'].alignment = Alignment(horizontal='center')
+
+        # Headers
+        ws.row_dimensions[4].height = 30
+        for col, h in enumerate(csv_headers, 1):
+            cell = ws.cell(row=4, column=col, value=h)
+            cell.font = header_font
+            cell.fill = header_fill
+            cell.border = thin_border
+            cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+
+        # Anchos
+        for i, w in enumerate(widths[:len(csv_headers)]):
+            ws.column_dimensions[get_column_letter(i + 1)].width = w
+
+        ws.freeze_panes = 'A5'
+        ws.auto_filter.ref = f"A4:{last_col}4"
+
+        # Indices de columnas clave
+        def col_idx(name):
+            try:
+                return csv_headers.index(name)
+            except ValueError:
+                return -1
+
+        idx_cantidad = col_idx("Cantidad")
+        idx_insertados = col_idx("Insertados")
+        idx_errores = col_idx("Errores")
+        idx_outbox = col_idx("Outbox")
+        idx_triggers = col_idx("Triggers")
+
+        # Datos
+        for row_idx, csv_row in enumerate(csv_data):
+            excel_row = row_idx + 5
+            is_alt = row_idx % 2 == 1
+
+            for col, val in enumerate(csv_row, 1):
+                # Intentar convertir numeros
+                try:
+                    if '.' in val:
+                        val = float(val)
+                    else:
+                        val = int(val)
+                except (ValueError, TypeError):
+                    pass
+
+                cell = ws.cell(row=excel_row, column=col, value=val)
+                cell.border = thin_border
+                cell.alignment = center
+                cell.font = Font(size=10)
+                if is_alt:
+                    cell.fill = alt_fill
+
+            # Colores condicionales
+            try:
+                cantidad = int(csv_row[idx_cantidad]) if idx_cantidad >= 0 and csv_row[idx_cantidad] else 0
+                insertados = int(csv_row[idx_insertados]) if idx_insertados >= 0 and csv_row[idx_insertados] else 0
+                errores = int(csv_row[idx_errores]) if idx_errores >= 0 and csv_row[idx_errores] else 0
+                outbox = int(csv_row[idx_outbox]) if idx_outbox >= 0 and csv_row[idx_outbox] else 0
+                triggers = csv_row[idx_triggers] if idx_triggers >= 0 else "ON"
+
+                # Insertados
+                if idx_insertados >= 0:
+                    c = ws.cell(row=excel_row, column=idx_insertados + 1)
+                    if insertados == cantidad and cantidad > 0:
+                        c.fill = ok_fill
+                        c.font = Font(size=10, bold=True, color="006100")
+                    elif cantidad > 0:
+                        c.fill = err_fill
+                        c.font = Font(size=10, bold=True, color="9C0006")
+
+                # Errores
+                if idx_errores >= 0:
+                    c = ws.cell(row=excel_row, column=idx_errores + 1)
+                    if errores > 0:
+                        c.fill = err_fill
+                        c.font = Font(size=10, bold=True, color="9C0006")
+                    else:
+                        c.fill = ok_fill
+                        c.font = Font(size=10, color="006100")
+
+                # Outbox
+                if idx_outbox >= 0:
+                    c = ws.cell(row=excel_row, column=idx_outbox + 1)
+                    if outbox > 0:
+                        c.fill = ok_fill
+                    elif triggers == "ON":
+                        c.fill = warn_fill
+
+                # Triggers
+                if idx_triggers >= 0:
+                    c = ws.cell(row=excel_row, column=idx_triggers + 1)
+                    if triggers == "OFF":
+                        c.fill = warn_fill
+            except:
+                pass
+
+        wb.save(xlsx_path)
+    except ImportError:
+        pass
+    except:
+        pass

@@ -185,6 +185,7 @@
                     <button class="btn btn-danger btn-sm" onclick="cleanup()" id="btnClean" disabled style="flex:1">DELETE</button>
                     <button class="btn btn-danger btn-sm" onclick="truncateTable()" id="btnTruncate" disabled style="flex:1">TRUNCATE</button>
                 </div>
+                <button class="btn btn-danger btn-sm" onclick="truncateModule()" id="btnTruncateModule" disabled style="margin-top:4px;">TRUNCATE MODULO COMPLETO</button>
             </div>
 
             <!-- Panel resultados -->
@@ -217,11 +218,15 @@
         let modulesData = {};
         let currentColumns = [];
 
-        // Resultados persistentes por pestaña
-        let tabResults = {
-            newcore_to_legacy: '',
-            legacy_to_newcore: ''
-        };
+        // Resultados persistentes por pestaña (con localStorage)
+        let tabResults = JSON.parse(localStorage.getItem('tabResults') || '{}');
+        if (!tabResults.newcore_to_legacy) tabResults.newcore_to_legacy = '';
+        if (!tabResults.legacy_to_newcore) tabResults.legacy_to_newcore = '';
+
+        function saveResults() {
+            tabResults[currentDirection] = document.getElementById('results').innerHTML;
+            localStorage.setItem('tabResults', JSON.stringify(tabResults));
+        }
 
         // Prefijo de API segun direccion
         function apiPrefix() {
@@ -232,6 +237,10 @@
             loadModules();
             refreshStatus();
             setInterval(refreshStatus, 5000);
+            fetch('/api/generate-excel').catch(() => {});
+            // Restaurar resultados guardados
+            const saved = tabResults[currentDirection];
+            if (saved) document.getElementById('results').innerHTML = saved;
         };
 
         function setDirection(dir) {
@@ -251,6 +260,7 @@
             document.getElementById('btnRun').disabled = true;
             document.getElementById('btnClean').disabled = true;
             document.getElementById('btnTruncate').disabled = true;
+            document.getElementById('btnTruncateModule').disabled = true;
 
             // Restaurar resultados de la nueva pestaña
             const saved = tabResults[dir];
@@ -302,9 +312,11 @@
                 document.getElementById('btnRun').disabled = true;
                 document.getElementById('btnClean').disabled = true;
                 document.getElementById('btnTruncate').disabled = true;
+                document.getElementById('btnTruncateModule').disabled = true;
                 return;
             }
 
+            document.getElementById('btnTruncateModule').disabled = false;
             tableSel.disabled = false;
             tableSel.innerHTML = '<option value="">-- Seleccionar tabla --</option>';
 
@@ -479,7 +491,7 @@
                     resultsDiv.innerHTML =
                         `<div class="result-section"><h3>Error</h3><p style="color:#ef4444">${data.error}</p></div>`
                         + resultsDiv.innerHTML;
-                    tabResults[currentDirection] = resultsDiv.innerHTML;
+                    saveResults();
                     return;
                 }
 
@@ -925,6 +937,52 @@
                 }
             } catch (e) {
                 alert('Error: ' + e.message);
+            }
+        }
+        async function truncateModule() {
+            const module = document.getElementById('module').value;
+            if (!module) return;
+            if (!confirm(`TRUNCATE MODULO COMPLETO: ${module}\n\nEsto eliminara TODOS los registros de:\n- Tablas TYPE en newcore\n- Tablas originales en la BD legacy\n\nEsta seguro?`)) return;
+
+            const btn = document.getElementById('btnTruncateModule');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span>Truncando...';
+
+            try {
+                const res = await fetch('/api/truncate-module', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ module })
+                });
+                const data = await res.json();
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                } else {
+                    let msg = `Modulo ${data.module} - ${data.total_deleted.toLocaleString()} registros eliminados\n\n`;
+                    const truncadas = data.details.filter(d => d.deleted > 0);
+                    const errores = data.details.filter(d => d.status.startsWith('error'));
+                    const vacias = data.details.filter(d => d.status === 'vacia');
+
+                    if (truncadas.length > 0) {
+                        msg += `Truncadas (${truncadas.length}):\n`;
+                        for (const d of truncadas) msg += `  ${d.table}: ${d.deleted.toLocaleString()} (${d.status})\n`;
+                    }
+                    if (vacias.length > 0) {
+                        msg += `\nVacias (${vacias.length}):\n`;
+                        for (const d of vacias) msg += `  ${d.table}\n`;
+                    }
+                    if (errores.length > 0) {
+                        msg += `\nErrores (${errores.length}):\n`;
+                        for (const d of errores) msg += `  ${d.table}: ${d.status}\n`;
+                    }
+                    alert(msg);
+                    refreshStatus();
+                }
+            } catch (e) {
+                alert('Error: ' + e.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'TRUNCATE MODULO COMPLETO';
             }
         }
     </script>

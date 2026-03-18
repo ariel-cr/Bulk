@@ -87,10 +87,18 @@ def generate_fake_value(col, index, offset, is_pk=False, fk_values=None):
 
 
 def get_max_numeric_id(conn, schema, table, column):
-    """Obtiene el maximo ID numerico de una columna"""
+    """Obtiene el maximo ID numerico de una columna, incluyendo IDs con prefijo BLK/BULK_"""
     try:
         cursor = conn.cursor()
-        cursor.execute(f"SELECT ISNULL(MAX(TRY_CAST([{column}] AS BIGINT)), 0) FROM [{schema}].[{table}]")
+        cursor.execute(f"""
+            SELECT ISNULL(MAX(val), 0) FROM (
+                SELECT TRY_CAST([{column}] AS BIGINT) AS val FROM [{schema}].[{table}]
+                UNION ALL
+                SELECT TRY_CAST(
+                    REPLACE(REPLACE(REPLACE([{column}], 'BLK', ''), 'BULK_', ''), ' ', '')
+                AS BIGINT) FROM [{schema}].[{table}]
+            ) t WHERE val IS NOT NULL
+        """)
         result = cursor.fetchone()[0]
         if result and int(result) > 0:
             return int(result)
