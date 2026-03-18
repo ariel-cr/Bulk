@@ -4,12 +4,18 @@ import time
 from datetime import datetime, timedelta
 
 
-def generate_fake_value(col, index, offset, is_pk=False):
-    """Genera un valor fake segun el tipo de dato"""
+def generate_fake_value(col, index, offset, is_pk=False, fk_values=None):
+    """Genera un valor fake segun el tipo de dato.
+    fk_values: dict {col_name: [valores validos]} para cols con FK constraint."""
     name = col["name"].lower()
     dtype = col["type"].lower()
     max_len = col["max_length"] or 50
     unique_id = offset + index
+
+    # Si la columna tiene FK, usar valores validos de la tabla referenciada
+    if fk_values and col["name"] in fk_values:
+        vals = fk_values[col["name"]]
+        return vals[index % len(vals)]
 
     # Columnas PK o que terminan en "id" - usar offset para unicidad
     if (is_pk or name.endswith("id")) and dtype in ("varchar", "nvarchar", "char", "nchar"):

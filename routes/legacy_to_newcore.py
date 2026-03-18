@@ -8,7 +8,7 @@ Los triggers generan outbox en fcme_legacy -> Kafka -> inbox newcore -> SP -> ta
 import time
 from flask import Blueprint, request, jsonify
 from config import get_connection
-from db import get_table_columns, get_pk_columns, sync_outbox_identity, get_max_id_across_destinations
+from db import get_table_columns, get_pk_columns, sync_outbox_identity, get_max_id_across_destinations, get_fk_values
 from data_generator import generate_fake_value, get_max_numeric_id
 from modules import get_all_original_dbs
 
@@ -88,6 +88,9 @@ def run_test():
             dest_max = get_max_id_across_destinations(db_key, table)
             offset = max(offset, dest_max) + 1
 
+        # Obtener valores validos de FK para columnas con restricciones
+        fk_vals = get_fk_values(conn, "dbo", table)
+
         # Limpiar registros rezagados del batch anterior en el destino
         _drain_destination_inbox()
 
@@ -138,7 +141,7 @@ def run_test():
             pk_names = set(pk_cols) if pk_cols else set()
             rows = []
             for i in range(current_batch):
-                row = [generate_fake_value(col, inserted + i + 1, offset, is_pk=col["name"] in pk_names) for col in insertable_cols]
+                row = [generate_fake_value(col, inserted + i + 1, offset, is_pk=col["name"] in pk_names, fk_values=fk_vals) for col in insertable_cols]
                 rows.append(tuple(row))
 
             try:
