@@ -58,10 +58,14 @@ def generate_fake_value(col, index, offset, is_pk=False, fk_values=None):
             return f"09{random.randint(10000000,99999999)}"[:max_len]
         if "correo" in name or "email" in name:
             return f"test{unique_id}@bulk.com"[:max_len]
-        if "estado" in name or "status" in name:
+        if "estado" in name or "status" in name or name.startswith("st_"):
             if max_len <= 2:
-                return random.choice(["A", "I", "E"])[:max_len]
-            return random.choice(["A", "ACTIVO", "I"])[:max_len]
+                return random.choice(["A", "E", "E"])[:max_len]
+            return random.choice(["A", "ACTIVO", "E"])[:max_len]
+        if name.startswith("in_"):
+            if max_len <= 2:
+                return random.choice(["S", "N"])[:max_len]
+            return random.choice(["SI", "NO"])[:max_len]
         if "codigo" in name or "code" in name:
             return f"{random.randint(1,999):05d}"[:max_len]
         if "usuario" in name or "user" in name:
