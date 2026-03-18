@@ -10,8 +10,12 @@ from flask import Blueprint, request, jsonify
 from config import DATABASES, get_connection
 from db import get_schemas_and_tables, get_table_columns, get_pk_columns, sync_outbox_identity
 from data_generator import generate_fake_value, get_max_numeric_id
+from modules import get_all_newcore_to_final
 
 newcore_bp = Blueprint('newcore_to_legacy', __name__)
+
+# Mapeo cargado desde los modulos (modules/*.py)
+NEWCORE_TO_FINAL_TABLE = get_all_newcore_to_final()
 
 
 # ── Modulos y tablas ──
@@ -286,15 +290,18 @@ def pipeline_start():
     table = data.get("table")
     quantity = int(data.get("quantity", 0))
 
-    # Buscar tabla _Staging destino en legacy
-    dest_schema, dest_table = _find_staging_table(schema, table)
+    # Buscar tabla final destino en base original (dbIM, dbCR, etc.)
+    mapping = NEWCORE_TO_FINAL_TABLE.get(table.upper())
+    dest_db = mapping[0] if mapping else None
+    dest_table_name = mapping[1] if mapping else None
+    dest_display = f"{dest_db}.dbo.{dest_table_name}" if mapping else "No encontrada"
 
     dest_count_before = 0
-    if dest_schema and dest_table:
+    if dest_db and dest_table_name:
         try:
-            conn = get_connection("legacy")
+            conn = get_connection(dest_db)
             cursor = conn.cursor()
-            cursor.execute(f"SELECT COUNT_BIG(*) FROM [{dest_schema}].[{dest_table}] WITH (NOLOCK)")
+            cursor.execute(f"SELECT COUNT_BIG(*) FROM dbo.[{dest_table_name}] WITH (NOLOCK)")
             dest_count_before = cursor.fetchone()[0]
             conn.close()
         except:
@@ -331,7 +338,9 @@ def pipeline_start():
     monitor_id = f"n2l_{schema}_{table}_{int(time.time())}"
     pipeline_monitors[monitor_id] = {
         "source_table": f"{schema}.{table}",
-        "dest_table": f"{dest_schema}.{dest_table}" if dest_schema else "No encontrada",
+        "dest_table": dest_display,
+        "dest_db": dest_db,
+        "dest_table_name": dest_table_name,
         "quantity": quantity,
         "start_time": time.time(),
         "source_outbox_before": source_outbox_before,
@@ -339,14 +348,12 @@ def pipeline_start():
         "dest_inbox_processed_before": dest_inbox_processed_before,
         "dest_errors_before": dest_errors_before,
         "dest_count_before": dest_count_before,
-        "dest_schema": dest_schema,
-        "dest_table_name": dest_table,
         "completed": False, "completed_at": None
     }
 
     return jsonify({
         "monitor_id": monitor_id,
-        "dest_table": f"{dest_schema}.{dest_table}" if dest_schema else None
+        "dest_table": dest_display
     })
 
 
@@ -390,9 +397,17 @@ def pipeline_poll(monitor_id):
         result["inbox_pending"] = row[2]
         result["inbox_errors"] = row[3] - mon["dest_errors_before"]
 
-        if mon["dest_schema"] and mon["dest_table_name"]:
-            cur_dst.execute(f"SELECT COUNT_BIG(*) FROM [{mon['dest_schema']}].[{mon['dest_table_name']}] WITH (NOLOCK)")
-            dest_count = cur_dst.fetchone()[0]
+        conn_dst.close()
+    except Exception as e:
+        result["inbox_error"] = str(e)[:200]
+
+    # Contar en tabla final destino (base original: dbIM, dbCR, etc.)
+    try:
+        if mon["dest_db"] and mon["dest_table_name"]:
+            conn_final = get_connection(mon["dest_db"])
+            cur_final = conn_final.cursor()
+            cur_final.execute(f"SELECT COUNT_BIG(*) FROM dbo.[{mon['dest_table_name']}] WITH (NOLOCK)")
+            dest_count = cur_final.fetchone()[0]
             result["dest_count"] = dest_count
             result["dest_new"] = dest_count - mon["dest_count_before"]
 
@@ -402,11 +417,10 @@ def pipeline_poll(monitor_id):
                 result["completed_at"] = elapsed
             elif mon["completed"]:
                 result["completed_at"] = mon["completed_at"]
+            conn_final.close()
         else:
             result["dest_count"] = "N/A"
             result["dest_new"] = "N/A"
-
-        conn_dst.close()
     except Exception as e:
         result["dest_error"] = str(e)[:200]
 
@@ -420,6 +434,7 @@ def pipeline_poll(monitor_id):
 
     result["completed"] = mon["completed"]
     return jsonify(result)
+
 
 
 def _find_staging_table(source_schema, source_table):
@@ -462,13 +477,6 @@ def _drain_destination_inbox():
                 break
             time.sleep(1)
 
-        # Limpiar errores del batch anterior
-        cursor.execute("DELETE FROM dbo.cdc_inbox_errors")
-        conn.commit()
-
-        # Limpiar inbox procesados para evitar acumulacion
-        cursor.execute("DELETE FROM dbo.cdc_inbox WHERE processed = 1")
-        conn.commit()
 
         conn.close()
     except:

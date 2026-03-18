@@ -10,87 +10,12 @@ from flask import Blueprint, request, jsonify
 from config import get_connection
 from db import get_table_columns, get_pk_columns, sync_outbox_identity, get_max_id_across_destinations
 from data_generator import generate_fake_value, get_max_numeric_id
+from modules import get_all_original_dbs
 
 legacy_bp = Blueprint('legacy_to_newcore', __name__)
 
-
-# ── Configuracion de bases originales y sus tablas CDC ──
-# Cada base de datos original con las tablas que tienen triggers outbox.
-# Para agregar mas tablas, solo agrega a la lista correspondiente.
-
-ORIGINAL_DBS = {
-    "dbIM": [
-        "imtbbene_entr",
-        "imtbbene_firm",
-        "imtbcben",
-        "imtbcpro",
-        "imtbdivi",
-        "imtbmanz",
-        "imtbmejo_tram",
-        "imtbtviv",
-    ],
-    "dbFC": [
-        "fctbafil_actu",
-        "fctbafil_info_adic",
-        "fctbagen_telf",
-        "fctbmvto_pend_cbro",
-        "fctbotro_ingr_afil",
-        "fctbsald_diar_afil_rubr",
-        "sfct_afiliado",
-        "sfct_afiliado_auditor",
-        "sfct_beneficiario",
-        "sfct_cabecera_rol",
-        "sfct_estados_afiliado",
-        "sfct_movimiento",
-    ],
-    "dbCG": [
-        "cgtbcasi",
-        "cgtbcaut_cpla",
-        "cgtbcaut_dpla",
-        "cgtbcfac",
-        "cgtbcier_proc",
-        "cgtbcncl",
-        "cgtbcncl_deta",
-        "cgtbconc",
-        "cgtbdasi",
-        "cgtbdcto",
-        "cgtbdfac_nota_cred",
-        "cgtbdfac_prod",
-        "cgtbdfac_rete",
-        "cgtbfact_dbso",
-        "cgtbgara_hipo_cdio",
-        "cgtbgara_vehi_cdio",
-        "cgtbplcn",
-        "cgtbprod",
-        "cgtbprvd",
-        "cgtbrete",
-    ],
-    "dbCR": [
-        "crtbcobr_judi_dist",
-        "crtbgara_real",
-        "crtbgest_cart_asig",
-        "crtbgest_deta_cbnz",
-        "crtbmedi_cobr",
-        "crtboper_segu",
-        "crtoblig",
-        "crtplpag",
-        "crtrecup",
-        "crtsolid",
-    ],
-    "dbIN": [
-        "intbcabe_dbso_inve",
-        "intbcinv",
-        "intbdcto_cble",
-        "intbdinv",
-        "intbdpag",
-        "intbdpre_inve",
-        "intbemis",
-        "intbgara",
-        "intbprec_diar",
-        "intbvinv",
-        "intbvinv_audi",
-    ],
-}
+# Config cargada desde los modulos (modules/*.py)
+ORIGINAL_DBS = get_all_original_dbs()
 
 
 # ── Modulos y tablas ──
@@ -601,13 +526,6 @@ def _drain_destination_inbox():
                 break
             time.sleep(1)
 
-        # Limpiar errores del batch anterior para que no aparezcan en el nuevo test
-        cursor.execute("DELETE FROM dbo.cdc_inbox_errors")
-        conn.commit()
-
-        # Limpiar inbox procesados para evitar acumulacion
-        cursor.execute("DELETE FROM dbo.cdc_inbox WHERE processed = 1")
-        conn.commit()
 
         conn.close()
     except:
