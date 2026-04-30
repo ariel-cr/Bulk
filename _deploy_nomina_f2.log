@@ -1,0 +1,73 @@
+TYPES = 21
+All trigger names <=30 chars OK
+
+[1] Oracle TRG_OUTBOX
+  CREATE TRG_OUTBOX_ANTICIPONOMINA        status=VALID
+  CREATE TRG_OUTBOX_CARGAFAMILIAR         status=VALID
+  CREATE TRG_OUTBOX_CARGOGENERAL          status=VALID
+  CREATE TRG_OUTBOX_CARGOLABORAL          status=VALID
+  CREATE TRG_OUTBOX_CATALOGONOMINA        status=VALID
+  CREATE TRG_OUTBOX_CONFIGNOMINA          status=VALID
+  CREATE TRG_OUTBOX_EMPLEADOAUDITORIA     status=VALID
+  CREATE TRG_OUTBOX_EMPLEADODETALLE       status=VALID
+  CREATE TRG_OUTBOX_EMPLEADO              status=VALID
+  CREATE TRG_OUTBOX_FIRMAHORARIO          status=VALID
+  CREATE TRG_OUTBOX_FONDORESERVA          status=VALID
+  CREATE TRG_OUTBOX_HISTORIALINGRESO      status=VALID
+  CREATE TRG_OUTBOX_NIVELACADEMICO        status=VALID
+  CREATE TRG_OUTBOX_NOMINACABECERA        status=VALID
+  CREATE TRG_OUTBOX_PAGONOMINA            status=VALID
+  CREATE TRG_OUTBOX_PARAMETRONOMINA       status=VALID
+  CREATE TRG_OUTBOX_PATRONALNOMINA        status=VALID
+  CREATE TRG_OUTBOX_ROLPAGO               status=VALID
+  CREATE TRG_OUTBOX_RUBRONOMINA           status=VALID
+  CREATE TRG_OUTBOX_SECTORIESS            status=VALID
+  CREATE TRG_OUTBOX_VIATICONOMINA         status=VALID
+
+[2] Legacy dbNO sp_<Type>_CRUD
+  CREATE dbNO.dbo.sp_AnticipoNominaType_CRUD
+  CREATE dbNO.dbo.sp_CargaFamiliarType_CRUD
+  CREATE dbNO.dbo.sp_CargoGeneralType_CRUD
+  CREATE dbNO.dbo.sp_CargoLaboralType_CRUD
+  CREATE dbNO.dbo.sp_CatalogoNominaType_CRUD
+  CREATE dbNO.dbo.sp_ConfiguracionNominaType_CRUD
+  CREATE dbNO.dbo.sp_EmpleadoAuditoriaType_CRUD
+  CREATE dbNO.dbo.sp_EmpleadoDetalleType_CRUD
+  CREATE dbNO.dbo.sp_EmpleadoType_CRUD
+  CREATE dbNO.dbo.sp_FirmaHorarioType_CRUD
+  CREATE dbNO.dbo.sp_FondoReservaType_CRUD
+  CREATE dbNO.dbo.sp_HistorialIngresoType_CRUD
+  CREATE dbNO.dbo.sp_NivelAcademicoType_CRUD
+  CREATE dbNO.dbo.sp_NominaCabeceraType_CRUD
+  CREATE dbNO.dbo.sp_PagoNominaType_CRUD
+  CREATE dbNO.dbo.sp_ParametroNominaType_CRUD
+  CREATE dbNO.dbo.sp_PatronalNominaType_CRUD
+  CREATE dbNO.dbo.sp_RolPagoType_CRUD
+  CREATE dbNO.dbo.sp_RubroNominaType_CRUD
+  CREATE dbNO.dbo.sp_SectorIessType_CRUD
+  CREATE dbNO.dbo.sp_ViaticoNominaType_CRUD
+
+[3] Canonicos wrappers + module_config
+  CREATE usp_inbox_anticipoNominaType             -> dbNO.dbo.sp_AnticipoNominaType_CRUD (+config)
+  CREATE usp_inbox_cargaFamiliarType              -> dbNO.dbo.sp_CargaFamiliarType_CRUD (+config)
+  CREATE usp_inbox_cargoGeneralType               -> dbNO.dbo.sp_CargoGeneralType_CRUD (+config)
+  CREATE usp_inbox_cargoLaboralType               -> dbNO.dbo.sp_CargoLaboralType_CRUD (+config)
+  CREATE usp_inbox_catalogoNominaType             -> dbNO.dbo.sp_CatalogoNominaType_CRUD (+config)
+  CREATE usp_inbox_configuracionNominaType        -> dbNO.dbo.sp_ConfiguracionNominaType_CRUD (+config)
+  CREATE usp_inbox_empleadoAuditoriaType          -> dbNO.dbo.sp_EmpleadoAuditoriaType_CRUD (+config)
+  CREATE usp_inbox_empleadoDetalleType            -> dbNO.dbo.sp_EmpleadoDetalleType_CRUD (+config)
+  CREATE usp_inbox_empleadoType                   -> dbNO.dbo.sp_EmpleadoType_CRUD (+config)
+  CREATE usp_inbox_firmaHorarioType               -> dbNO.dbo.sp_FirmaHorarioType_CRUD (+config)
+  CREATE usp_inbox_fondoReservaType               -> dbNO.dbo.sp_FondoReservaType_CRUD (+config)
+  CREATE usp_inbox_historialIngresoType           -> dbNO.dbo.sp_HistorialIngresoType_CRUD (+config)
+  CREATE usp_inbox_nivelAcademicoType             -> dbNO.dbo.sp_NivelAcademicoType_CRUD (+config)
+  CREATE usp_inbox_nominaCabeceraType             -> dbNO.dbo.sp_NominaCabeceraType_CRUD (+config)
+  CREATE usp_inbox_pagoNominaType                 -> dbNO.dbo.sp_PagoNominaType_CRUD (+config)
+  CREATE usp_inbox_parametroNominaType            -> dbNO.dbo.sp_ParametroNominaType_CRUD (+config)
+  CREATE usp_inbox_patronalNominaType             -> dbNO.dbo.sp_PatronalNominaType_CRUD (+config)
+  CREATE usp_inbox_rolPagoType                    -> dbNO.dbo.sp_RolPagoType_CRUD (+config)
+  CREATE usp_inbox_rubroNominaType                -> dbNO.dbo.sp_RubroNominaType_CRUD (+config)
+  CREATE usp_inbox_sectorIessType                 -> dbNO.dbo.sp_SectorIessType_CRUD (+config)
+  CREATE usp_inbox_viaticoNominaType              -> dbNO.dbo.sp_ViaticoNominaType_CRUD (+config)
+
+=== DEPLOY OK ===

@@ -1,0 +1,71 @@
+TYPES = 21
+baseline outbox.max=1492 inbox.max=340 errors=196
+
+[DISPAROS]
+  [ 1/21] anticipoNominaType           ANTICIPONOMINA_TYPE          (ID=1083) UPDATE noop
+  [ 2/21] cargaFamiliarType            CARGAFAMILIAR_TYPE           (ID=635) UPDATE noop
+  [ 3/21] cargoGeneralType             CARGOGENERAL_TYPE            (ID=2065) UPDATE noop
+  [ 4/21] cargoLaboralType             CARGOLABORAL_TYPE            (ID=1206) UPDATE noop
+  [ 5/21] catalogoNominaType           CATALOGONOMINA_TYPE          (ID=90) UPDATE noop
+  [ 6/21] configuracionNominaType      CONFIGURACIONNOMINA_TYPE     (ID=63) UPDATE noop
+  [ 7/21] empleadoAuditoriaType        EMPLEADOAUDITORIA_TYPE       (ID=635) UPDATE noop
+  [ 8/21] empleadoDetalleType          EMPLEADODETALLE_TYPE         (ID=61) UPDATE noop
+  [ 9/21] empleadoType                 EMPLEADO_TYPE                (ID=61) UPDATE noop
+  [10/21] firmaHorarioType             FIRMAHORARIO_TYPE            (ID=635) UPDATE noop
+  [11/21] fondoReservaType             FONDORESERVA_TYPE            (ID=722) UPDATE noop
+  [12/21] historialIngresoType         HISTORIALINGRESO_TYPE        (ID=14852) UPDATE noop
+  [13/21] nivelAcademicoType           NIVELACADEMICO_TYPE          (ID=263) UPDATE noop
+  [14/21] nominaCabeceraType           NOMINACABECERA_TYPE          (ID=635) UPDATE noop
+  [15/21] pagoNominaType               PAGONOMINA_TYPE              (ID=1206) UPDATE noop
+  [16/21] parametroNominaType          PARAMETRONOMINA_TYPE         (ID=62) UPDATE noop
+  [17/21] patronalNominaType           PATRONALNOMINA_TYPE          (ID=1) UPDATE noop
+  [18/21] rolPagoType                  ROLPAGO_TYPE                 (ID=61) UPDATE noop
+  [19/21] rubroNominaType              RUBRONOMINA_TYPE             (ID=635) UPDATE noop
+  [20/21] sectorIessType               SECTORIESS_TYPE              (ID=1) UPDATE noop
+  [21/21] viaticoNominaType            VIATICONOMINA_TYPE           (ID=1774) UPDATE noop
+
+Disparados: 21/21
+
+[PROPAGACION] 90s
+  out+=21 inb+=0 proc+=0 err_total=196 (89s rest)
+  out+=21 inb+=0 proc+=0 err_total=196 (81s rest)
+  out+=21 inb+=0 proc+=0 err_total=196 (73s rest)
+  out+=21 inb+=0 proc+=0 err_total=196 (65s rest)
+  out+=21 inb+=7 proc+=7 err_total=197 (57s rest)
+  out+=21 inb+=7 proc+=7 err_total=197 (49s rest)
+  out+=21 inb+=7 proc+=7 err_total=197 (41s rest)
+  out+=21 inb+=7 proc+=7 err_total=197 (33s rest)
+  out+=21 inb+=17 proc+=17 err_total=199 (25s rest)
+  out+=21 inb+=17 proc+=17 err_total=199 (17s rest)
+  out+=21 inb+=17 proc+=17 err_total=199 (8s rest)
+  out+=21 inb+=17 proc+=17 err_total=199 (0s rest)
+
+[RESULTADOS]
+  # aggregate_type               inbox  proc  err   status
+----------------------------------------------------------------------------------------------------
+  1 anticipoNominaType           0      0     0     NO INBOX
+  2 cargaFamiliarType            1      1     0     OK
+  3 cargoGeneralType             1      1     0     OK
+  4 cargoLaboralType             1      1     0     OK
+  5 catalogoNominaType           1      1     0     OK
+  6 configuracionNominaType      1      1     0     OK
+  7 empleadoAuditoriaType        1      1     1     ERR: wrapper empleadoAuditoriaType: Cannot insert the value 
+  8 empleadoDetalleType          1      1     0     OK
+  9 empleadoType                 1      1     0     OK
+ 10 firmaHorarioType             0      0     0     NO INBOX
+ 11 fondoReservaType             1      1     0     OK
+ 12 historialIngresoType         1      1     0     OK
+ 13 nivelAcademicoType           0      0     0     NO INBOX
+ 14 nominaCabeceraType           1      1     0     OK
+ 15 pagoNominaType               1      1     1     ERR: wrapper pagoNominaType: String or binary data would be 
+ 16 parametroNominaType          1      1     0     OK
+ 17 patronalNominaType           1      1     0     OK
+ 18 rolPagoType                  1      1     1     ERR: wrapper rolPagoType: Cannot insert the value NULL into 
+ 19 rubroNominaType              1      1     0     OK
+ 20 sectorIessType               1      1     0     OK
+ 21 viaticoNominaType            0      0     0     NO INBOX
+
+[RESUMEN] OK=14/21
+
+[ANTI-LOOP] outbox 3s mas tarde = +21 (initial fired=21)
+=== FIN ===

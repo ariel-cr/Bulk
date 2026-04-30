@@ -1,0 +1,120 @@
+================================================================================
+SMOKE E2E F2 - 89 types
+================================================================================
+
+[Paso 1] INSERT en FCME_USER.<TYPE> con cols del dest_match
+  INSERT Oracle OK : 88/89
+  ERR (FK Oracle)  : 0
+  NO_COLS          : 1
+
+[Paso 2] Espera 30s para drenado de Kafka + processing...
+
+[Paso 3] Verificar replicacion en legacy
+  [OK_PART  ] abonoExtraordinario_type                 inb=1 leg=0
+  [NO_EVENT ] autorizacionCreditoDetalle_type          inb=0 leg=0
+  [NO_EVENT ] autorizacionCredito_type                 inb=0 leg=0
+  [NO_EVENT ] auxDatosCobrosAdicionalesType            inb=0 leg=0
+  [NO_EVENT ] calificacionCarteraDetalle_type          inb=0 leg=0
+  [NO_EVENT ] calificacionCartera_type                 inb=0 leg=0
+  [NO_EVENT ] cancelacionCredito_type                  inb=0 leg=0
+  [NO_EVENT ] caucionCredito_type                      inb=0 leg=0
+  [NO_EVENT ] cobranzaJudicialDetalle_type             inb=0 leg=0
+  [NO_EVENT ] cobranzaJudicialDistribucion_type        inb=0 leg=0
+  [NO_EVENT ] cobranzaJudicial_type                    inb=0 leg=0
+  [NO_EVENT ] conceptoGastoJudicialType                inb=0 leg=0
+  [NO_EVENT ] contabilizacionCredito_type              inb=0 leg=0
+  [NO_EVENT ] convenioPagoCredito_type                 inb=0 leg=0
+  [NO_EVENT ] costoFinancieroCredito_type              inb=0 leg=0
+  [NO_EVENT ] creditoType                              inb=0 leg=0
+  [NO_EVENT ] cuentaAutomaticaDetalle_type             inb=0 leg=0
+  [NO_EVENT ] cuentaAutomatica_type                    inb=0 leg=0
+  [NO_EVENT ] cuentaCuotasType                         inb=0 leg=0
+  [NO_EVENT ] cuentaCxPCxCType                         inb=0 leg=0
+  [NO_EVENT ] cuentaPersonasType                       inb=0 leg=0
+  [NO_EVENT ] cuentaPorCobrarType                      inb=0 leg=0
+  [NO_EVENT ] cuentaType                               inb=0 leg=0
+  [NO_EVENT ] cuentasEnLegalType                       inb=0 leg=0
+  [NO_EVENT ] cuotaConvenio_type                       inb=0 leg=0
+  [NO_EVENT ] cuotaCreditoType                         inb=0 leg=0
+  [NO_EVENT ] desembolsoCredito_type                   inb=0 leg=0
+  [NO_EVENT ] desembolsoDevolucion_type                inb=0 leg=0
+  [NO_EVENT ] detalleRecuperacion_type                 inb=0 leg=0
+  [NO_EVENT ] devengamientoCarteraDetalle_type         inb=0 leg=0
+  [NO_EVENT ] devengamientoCartera_type                inb=0 leg=0
+  [NO_EVENT ] devolucionCredito_type                   inb=0 leg=0
+  [NO_EVENT ] devolucionMasivaDetalle_type             inb=0 leg=0
+  [NO_EVENT ] devolucionMasiva_type                    inb=0 leg=0
+  [NO_EVENT ] documentoCredito_type                    inb=0 leg=0
+  [NO_EVENT ] estadoConvenioCredito_type               inb=0 leg=0
+  [NO_EVENT ] estadoLegalType                          inb=0 leg=0
+  [NO_EVENT ] etapaJudicialCredito_type                inb=0 leg=0
+  [NO_EVENT ] fechasProcesoType                        inb=0 leg=0
+  [NO_EVENT ] flujoTrabajoCredito_type                 inb=0 leg=0
+  [NO_EVENT ] garantiaCredito_type                     inb=0 leg=0
+  [NO_EVENT ] gestionCobranzaAsignacion_type           inb=0 leg=0
+  [NO_EVENT ] gestionComunicacionCredito_type          inb=0 leg=0
+  [NO_EVENT ] grupoCreditoDetalle_type                 inb=0 leg=0
+  [NO_EVENT ] grupoCreditoDocumento_type               inb=0 leg=0
+  [NO_EVENT ] informacionLegal_type                    inb=0 leg=0
+  [NO_EVENT ] liquidacionDiariaCredito_type            inb=0 leg=0
+  [NO_COLS  ] movimientoContableCredito_type           inb=0 leg=0
+  [NO_EVENT ] obligacionRol_type                       inb=0 leg=0
+  [NO_EVENT ] operacionConyugal_type                   inb=0 leg=0
+  [NO_EVENT ] pagoCredito_type                         inb=0 leg=0
+  [NO_EVENT ] pagosCreditoType                         inb=0 leg=0
+  [NO_EVENT ] personaCreditoType                       inb=0 leg=0
+  [NO_EVENT ] personaCxPCxCType                        inb=0 leg=0
+  [NO_EVENT ] planPagoAjuste_type                      inb=0 leg=0
+  [NO_EVENT ] planPago_type                            inb=0 leg=0
+  [NO_EVENT ] plazoVencido_type                        inb=0 leg=0
+  [NO_EVENT ] precalificacionCredito_type              inb=0 leg=0
+  [NO_EVENT ] procesoAccionType                        inb=0 leg=0
+  [NO_EVENT ] recuperacionConvenio_type                inb=0 leg=0
+  [NO_EVENT ] recuperacionCredito_type                 inb=0 leg=0
+  [NO_EVENT ] referenciaCliente_type                   inb=0 leg=0
+  [NO_EVENT ] referenciaDeudor_type                    inb=0 leg=0
+  [NO_EVENT ] refinanciamientoCreditoType              inb=0 leg=0
+  [NO_EVENT ] reporteSBSCabecera_type                  inb=0 leg=0
+  [NO_EVENT ] reporteSBSDetalle_type                   inb=0 leg=0
+  [NO_EVENT ] reporteSBSGaranteCodeudor_type           inb=0 leg=0
+  [NO_EVENT ] reporteSBSGarantiaReal_type              inb=0 leg=0
+  [NO_EVENT ] reporteSBSOperacionAnterior_type         inb=0 leg=0
+  [NO_EVENT ] reporteSBSOperacionCancelada_type        inb=0 leg=0
+  [NO_EVENT ] reporteSBSOperacionConcedida_type        inb=0 leg=0
+  [NO_EVENT ] reporteSBSSaldoOperacion_type            inb=0 leg=0
+  [NO_EVENT ] reporteSBSSujetoRiesgo_type              inb=0 leg=0
+  [NO_EVENT ] rubroCobranza_type                       inb=0 leg=0
+  [NO_EVENT ] rubrosCobranzaDetalle_type               inb=0 leg=0
+  [NO_EVENT ] saldoCarteraDetalle_type                 inb=0 leg=0
+  [NO_EVENT ] saldoCartera_type                        inb=0 leg=0
+  [NO_EVENT ] saldoCxPCxCType                          inb=0 leg=0
+  [NO_EVENT ] saldoVinculadoType                       inb=0 leg=0
+  [NO_EVENT ] seguimientoAutorizacion_type             inb=0 leg=0
+  [NO_EVENT ] seguroCredito_type                       inb=0 leg=0
+  [NO_EVENT ] sobranteCaucion_type                     inb=0 leg=0
+  [NO_EVENT ] sobranteCredito_type                     inb=0 leg=0
+  [NO_EVENT ] sobranteDistribucion_type                inb=0 leg=0
+  [NO_EVENT ] solidarioCredito_type                    inb=0 leg=0
+  [NO_EVENT ] tasaInteresCredito_type                  inb=0 leg=0
+  [NO_EVENT ] tipoCredito_type                         inb=0 leg=0
+  [NO_EVENT ] tipoSobrante_type                        inb=0 leg=0
+  [NO_EVENT ] transaccionRecuperacion_type             inb=0 leg=0
+
+================================================================================
+RESUMEN F2 E2E
+================================================================================
+  NO_EVENT             87/89
+  OK_PARTIAL           1/89
+  NO_COLS              1/89
+
+[Paso 4] Cleanup: DELETE en Oracle de filas insertadas
+  DELETE Oracle OK: 88
+
+[cdc_inbox_errors ultimos 5 min]
+
+[cleanup]
+  closed fcme_canonicos
+  closed dbCR
+  closed dbCG
+  closed dbCT
+  closed Oracle

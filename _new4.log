@@ -1,0 +1,29 @@
+RUN_TS=1777391448
+baseline inbox.max_id=185 errors=19
+
+--- personaFirmasType ---
+  PERSONAFIRMASTYPE before=229
+  INSERT OK
+
+--- imagenesType ---
+  IMAGENESTYPE before=20
+  INSERT failed -> UPDATE noop
+
+--- comisionParticipe_type ---
+  COMISIONPARTICIPE_TYPE before=4
+  INSERT OK
+
+--- juridicoInformacionBasicaType ---
+  JURIDICOINFORMACIONBASICATYPE before=109
+  INSERT OK
+
+Esperando 60s propagacion...
+
+--- RESULTADOS ---
+errors+=0
+  personaFirmasType                   -> PERSONAFIRMASTYPE  after=229  OK
+  imagenesType                        -> IMAGENESTYPE  after=20  OK
+  comisionParticipe_type              -> COMISIONPARTICIPE_TYPE  after=4  OK
+  juridicoInformacionBasicaType       -> JURIDICOINFORMACIONBASICATYPE  after=109  OK
+
+Resumen: 4/4 OK

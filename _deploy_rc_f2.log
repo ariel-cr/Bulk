@@ -1,0 +1,43 @@
+TYPES = 11
+All trigger names <=30 chars OK
+
+[1] Oracle TRG_OUTBOX
+  CREATE TRG_OUTBOX_APLICACIONRECAUD       status=VALID
+  CREATE TRG_OUTBOX_CAUCIONRECAUD          status=VALID
+  CREATE TRG_OUTBOX_DEVOLUCIONRENDICION    status=VALID
+  CREATE TRG_OUTBOX_ESTADOCUENTA           status=VALID
+  CREATE TRG_OUTBOX_ESTADORECAUDACION      status=VALID
+  CREATE TRG_OUTBOX_RECAUDACION            status=VALID
+  CREATE TRG_OUTBOX_RENDICION              status=VALID
+  CREATE TRG_OUTBOX_SALDORECAUDACION       status=VALID
+  CREATE TRG_OUTBOX_SCIRECAUDACION         status=VALID
+  CREATE TRG_OUTBOX_TIPODESCUENTO          status=VALID
+  CREATE TRG_OUTBOX_TRANSACCIONRECAUD      status=VALID
+
+[2] Legacy dbRC sp_<Type>_CRUD
+  CREATE dbRC.dbo.sp_AplicacionRecaudacionType_CRUD
+  CREATE dbRC.dbo.sp_CaucionRecaudacionType_CRUD
+  CREATE dbRC.dbo.sp_DevolucionRendicionType_CRUD
+  CREATE dbRC.dbo.sp_EstadoCuentaType_CRUD
+  CREATE dbRC.dbo.sp_EstadoRecaudacionType_CRUD
+  CREATE dbRC.dbo.sp_RecaudacionType_CRUD
+  CREATE dbRC.dbo.sp_RendicionType_CRUD
+  CREATE dbRC.dbo.sp_SaldoRecaudacionType_CRUD
+  CREATE dbRC.dbo.sp_SciRecaudacionType_CRUD
+  CREATE dbRC.dbo.sp_TipoDescuentoType_CRUD
+  CREATE dbRC.dbo.sp_TransaccionRecaudacionType_CRUD
+
+[3] Canonicos wrappers + module_config
+  CREATE usp_inbox_aplicacionRecaudacion_type             -> dbRC.dbo.sp_AplicacionRecaudacionType_CRUD (+config)
+  CREATE usp_inbox_caucionRecaudacion_type                -> dbRC.dbo.sp_CaucionRecaudacionType_CRUD (+config)
+  CREATE usp_inbox_devolucionRendicion_type               -> dbRC.dbo.sp_DevolucionRendicionType_CRUD (+config)
+  CREATE usp_inbox_estadoCuenta_type                      -> dbRC.dbo.sp_EstadoCuentaType_CRUD (+config)
+  CREATE usp_inbox_estadoRecaudacion_type                 -> dbRC.dbo.sp_EstadoRecaudacionType_CRUD (+config)
+  CREATE usp_inbox_recaudacion_type                       -> dbRC.dbo.sp_RecaudacionType_CRUD (+config)
+  CREATE usp_inbox_rendicion_type                         -> dbRC.dbo.sp_RendicionType_CRUD (+config)
+  CREATE usp_inbox_saldoRecaudacion_type                  -> dbRC.dbo.sp_SaldoRecaudacionType_CRUD (+config)
+  CREATE usp_inbox_sciRecaudacion_type                    -> dbRC.dbo.sp_SciRecaudacionType_CRUD (+config)
+  CREATE usp_inbox_tipoDescuento_type                     -> dbRC.dbo.sp_TipoDescuentoType_CRUD (+config)
+  CREATE usp_inbox_transaccionRecaudacion_type            -> dbRC.dbo.sp_TransaccionRecaudacionType_CRUD (+config)
+
+=== DEPLOY OK ===

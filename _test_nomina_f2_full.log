@@ -1,0 +1,75 @@
+TYPES = 21
+baseline outbox.max=1590 inbox.max=73 errors_total=258
+legacy_before sample: {'notbcant': 1015, 'notbcgfm': 902, 'notbcarg': 607}...
+
+[DISPAROS] UPDATE no-op en cada FCME_USER table
+  [ 1] anticipoNominaType           ANTICIPONOMINA_TYPE          (ID=1083) UPDATE noop
+  [ 2] cargaFamiliarType            CARGAFAMILIAR_TYPE           (ID=635) UPDATE noop
+  [ 3] cargoGeneralType             CARGOGENERAL_TYPE            (ID=2065) UPDATE noop
+  [ 4] cargoLaboralType             CARGOLABORAL_TYPE            (ID=1206) UPDATE noop
+  [ 5] catalogoNominaType           CATALOGONOMINA_TYPE          (ID=90) UPDATE noop
+  [ 6] configuracionNominaType      CONFIGURACIONNOMINA_TYPE     (ID=63) UPDATE noop
+  [ 7] empleadoAuditoriaType        EMPLEADOAUDITORIA_TYPE       (ID=635) UPDATE noop
+  [ 8] empleadoDetalleType          EMPLEADODETALLE_TYPE         (ID=61) UPDATE noop
+  [ 9] empleadoType                 EMPLEADO_TYPE                (ID=61) UPDATE noop
+  [10] firmaHorarioType             FIRMAHORARIO_TYPE            (ID=635) UPDATE noop
+  [11] fondoReservaType             FONDORESERVA_TYPE            (ID=722) UPDATE noop
+  [12] historialIngresoType         HISTORIALINGRESO_TYPE        (ID=14852) UPDATE noop
+  [13] nivelAcademicoType           NIVELACADEMICO_TYPE          (ID=263) UPDATE noop
+  [14] nominaCabeceraType           NOMINACABECERA_TYPE          (ID=635) UPDATE noop
+  [15] pagoNominaType               PAGONOMINA_TYPE              (ID=1206) UPDATE noop
+  [16] parametroNominaType          PARAMETRONOMINA_TYPE         (ID=62) UPDATE noop
+  [17] patronalNominaType           PATRONALNOMINA_TYPE          (ID=1) UPDATE noop
+  [18] rolPagoType                  ROLPAGO_TYPE                 (ID=61) UPDATE noop
+  [19] rubroNominaType              RUBRONOMINA_TYPE             (ID=635) UPDATE noop
+  [20] sectorIessType               SECTORIESS_TYPE              (ID=1) UPDATE noop
+  [21] viaticoNominaType            VIATICONOMINA_TYPE           (ID=1774) UPDATE noop
+
+Disparados: 21/21  | Capturados para bypass: 4
+
+[PROPAGACION] esperando 60s para Kafka
+  inb+=11 proc+=21 (59s rest)
+  inb+=21 proc+=21 (51s rest)
+
+[BYPASS] Inyectando 4 eventos Kafka-stuck directo en cdc_inbox
+  anticipoNominaType           ya llego via Kafka, skip
+  firmaHorarioType             ya llego via Kafka, skip
+  nivelAcademicoType           ya llego via Kafka, skip
+  viaticoNominaType            ya llego via Kafka, skip
+
+[Esperando trigger processing 8s]...
+
+[RESULTADOS] cdc_inbox + legacy + anti-loop
+  # aggregate_type               inbox  proc  err   legacy_delta   status
+------------------------------------------------------------------------------------------------------------------------
+  1 anticipoNominaType           1      1     0     +0           OK
+  2 cargaFamiliarType            1      1     0     +0           OK
+  3 cargoGeneralType             1      1     0     +0           OK
+  4 cargoLaboralType             1      1     0     +0           OK
+  5 catalogoNominaType           1      1     0     +0           OK
+  6 configuracionNominaType      1      1     0     +0           OK
+  7 empleadoAuditoriaType        1      1     1     +0           ERR
+  8 empleadoDetalleType          1      1     0     +0           OK
+  9 empleadoType                 1      1     0     +0           OK
+ 10 firmaHorarioType             1      1     0     +0           OK
+ 11 fondoReservaType             1      1     0     +0           OK
+ 12 historialIngresoType         1      1     0     +0           OK
+ 13 nivelAcademicoType           1      1     0     +0           OK
+ 14 nominaCabeceraType           1      1     0     +0           OK
+ 15 pagoNominaType               1      1     1     +0           ERR
+ 16 parametroNominaType          1      1     0     +0           OK
+ 17 patronalNominaType           1      1     0     +0           OK
+ 18 rolPagoType                  1      1     1     +0           ERR
+ 19 rubroNominaType              1      1     0     +0           OK
+ 20 sectorIessType               1      1     0     +0           OK
+ 21 viaticoNominaType            1      1     0     +0           OK
+
+[RESUMEN] OK=18/21
+
+[ANTI-LOOP CHECK]
+  CDC_OUTBOX 5s mas tarde: +21 (initial fired=21)
+  ANTI-LOOP OK (sin propagacion descontrolada)
+  Flujo 1 echo desde dbNO (ultimos 2 min): 0
+  ANTI-LOOP F1 OK (legacy SP no re-publico)
+
+=== FIN ===

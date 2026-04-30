@@ -1,0 +1,115 @@
+Types testables: 89
+
+================================================================================
+STEP 0: Activar F2 routing (active=1 cartera entries)
+================================================================================
+  Updated rows: 91
+
+================================================================================
+STEP 1: INSERT en 89 FCME_USER.<TYPE> tables
+================================================================================
+   1 abonoExtraordinario_type                 [OK_PARTIAL   ] out=1 inb=1 leg=0
+   2 autorizacionCreditoDetalle_type          [OK_PARTIAL   ] out=1 inb=1 leg=0
+   3 autorizacionCredito_type                 [OK_PARTIAL   ] out=1 inb=1 leg=0
+   4 auxDatosCobrosAdicionalesType            [OK_PARTIAL   ] out=1 inb=1 leg=0
+   5 calificacionCarteraDetalle_type          [OK_PARTIAL   ] out=1 inb=1 leg=0
+   6 calificacionCartera_type                 [OK_PARTIAL   ] out=1 inb=1 leg=0
+   7 cancelacionCredito_type                  [OK_PARTIAL   ] out=1 inb=1 leg=0
+   8 caucionCredito_type                      [OK_PARTIAL   ] out=1 inb=1 leg=0
+   9 cobranzaJudicialDetalle_type             [OK_PARTIAL   ] out=1 inb=1 leg=0
+  10 cobranzaJudicialDistribucion_type        [OK_PARTIAL   ] out=1 inb=1 leg=0
+  11 cobranzaJudicial_type                    [OK_PARTIAL   ] out=1 inb=1 leg=0
+  12 conceptoGastoJudicialType                [OK_PARTIAL   ] out=1 inb=1 leg=0
+  13 contabilizacionCredito_type              [OK_PARTIAL   ] out=1 inb=1 leg=0
+  14 convenioPagoCredito_type                 [OK_PARTIAL   ] out=1 inb=1 leg=0
+  15 costoFinancieroCredito_type              [OK_PARTIAL   ] out=1 inb=1 leg=0
+  16 creditoType                              [OK_PARTIAL   ] out=1 inb=1 leg=0
+  17 cuentaAutomaticaDetalle_type             [OK_PARTIAL   ] out=1 inb=1 leg=0
+  18 cuentaAutomatica_type                    [OK_PARTIAL   ] out=1 inb=1 leg=0
+  19 cuentaCuotasType                         [OK_PARTIAL   ] out=1 inb=1 leg=0
+  20 cuentaCxPCxCType                         [OK_PARTIAL   ] out=1 inb=1 leg=0
+  21 cuentaPersonasType                       [OK_PARTIAL   ] out=1 inb=1 leg=0
+  22 cuentaPorCobrarType                      [OK_PARTIAL   ] out=1 inb=1 leg=0
+  23 cuentaType                               [OK_PARTIAL   ] out=1 inb=1 leg=0
+  24 cuentasEnLegalType                       [OK_PARTIAL   ] out=1 inb=1 leg=0
+  25 cuotaConvenio_type                       [OK_PARTIAL   ] out=1 inb=1 leg=0
+  26 cuotaCreditoType                         [OK_PARTIAL   ] out=1 inb=1 leg=0
+  27 desembolsoCredito_type                   [OK_PARTIAL   ] out=1 inb=1 leg=0
+  28 desembolsoDevolucion_type                [OK_PARTIAL   ] out=1 inb=1 leg=0
+  29 detalleRecuperacion_type                 [OK_PARTIAL   ] out=1 inb=1 leg=0
+  30 devengamientoCarteraDetalle_type         [OK_PARTIAL   ] out=1 inb=1 leg=0
+  31 devengamientoCartera_type                [OK_PARTIAL   ] out=1 inb=1 leg=0
+  32 devolucionCredito_type                   [OK_PARTIAL   ] out=1 inb=1 leg=0
+  33 devolucionMasivaDetalle_type             [OK_PARTIAL   ] out=1 inb=1 leg=0
+  34 devolucionMasiva_type                    [OK_PARTIAL   ] out=1 inb=1 leg=0
+  35 documentoCredito_type                    [OK_PARTIAL   ] out=1 inb=1 leg=0
+  36 estadoConvenioCredito_type               [OK_PARTIAL   ] out=1 inb=1 leg=0
+  37 estadoLegalType                          [OK_PARTIAL   ] out=1 inb=1 leg=0
+  38 etapaJudicialCredito_type                [OK_PARTIAL   ] out=1 inb=1 leg=0
+  39 fechasProcesoType                        [OK_PARTIAL   ] out=1 inb=1 leg=0
+  40 flujoTrabajoCredito_type                 [OK_PARTIAL   ] out=1 inb=1 leg=0
+  41 garantiaCredito_type                     [OK_PARTIAL   ] out=1 inb=1 leg=0
+  42 gestionCobranzaAsignacion_type           [OK_PARTIAL   ] out=1 inb=1 leg=0
+  43 gestionComunicacionCredito_type          [OK_PARTIAL   ] out=1 inb=1 leg=0
+  44 grupoCreditoDetalle_type                 [OK_PARTIAL   ] out=1 inb=1 leg=0
+  45 grupoCreditoDocumento_type               [OK_PARTIAL   ] out=1 inb=1 leg=0
+  46 informacionLegal_type                    [OK_PARTIAL   ] out=1 inb=1 leg=0
+  47 liquidacionDiariaCredito_type            [OK_PARTIAL   ] out=1 inb=1 leg=0
+  48 movimientoContableCredito_type           [OK_PARTIAL   ] out=1 inb=1 leg=0
+  49 obligacionRol_type                       [OK_PARTIAL   ] out=1 inb=1 leg=0
+  50 operacionConyugal_type                   [OK_PARTIAL   ] out=1 inb=1 leg=0
+  51 pagoCredito_type                         [OK_PARTIAL   ] out=1 inb=1 leg=0
+  52 pagosCreditoType                         [OK_PARTIAL   ] out=1 inb=1 leg=0
+  53 personaCreditoType                       [OK_PARTIAL   ] out=1 inb=1 leg=0
+  54 personaCxPCxCType                        [OK_PARTIAL   ] out=1 inb=1 leg=0
+  55 planPagoAjuste_type                      [OK_PARTIAL   ] out=1 inb=1 leg=0
+  56 planPago_type                            [OK_PARTIAL   ] out=1 inb=1 leg=0
+  57 plazoVencido_type                        [OK_PARTIAL   ] out=1 inb=1 leg=0
+  58 precalificacionCredito_type              [OK_PARTIAL   ] out=1 inb=1 leg=0
+  59 procesoAccionType                        [OK_PARTIAL   ] out=1 inb=1 leg=0
+  60 recuperacionConvenio_type                [OK_PARTIAL   ] out=1 inb=1 leg=0
+  61 recuperacionCredito_type                 [OK_PARTIAL   ] out=1 inb=1 leg=0
+  62 referenciaCliente_type                   [OK_PARTIAL   ] out=1 inb=1 leg=0
+  63 referenciaDeudor_type                    [OK_PARTIAL   ] out=1 inb=1 leg=0
+  64 refinanciamientoCreditoType              [OK_PARTIAL   ] out=1 inb=1 leg=0
+  65 reporteSBSCabecera_type                  [OK_PARTIAL   ] out=1 inb=1 leg=0
+  66 reporteSBSDetalle_type                   [OK_PARTIAL   ] out=1 inb=1 leg=0
+  67 reporteSBSGaranteCodeudor_type           [OK_PARTIAL   ] out=1 inb=1 leg=0
+  68 reporteSBSGarantiaReal_type              [OK_PARTIAL   ] out=1 inb=1 leg=0
+  69 reporteSBSOperacionAnterior_type         [OK_PARTIAL   ] out=1 inb=1 leg=0
+  70 reporteSBSOperacionCancelada_type        [OK_PARTIAL   ] out=1 inb=1 leg=0
+  71 reporteSBSOperacionConcedida_type        [OK_PARTIAL   ] out=1 inb=1 leg=0
+  72 reporteSBSSaldoOperacion_type            [OK_PARTIAL   ] out=1 inb=1 leg=0
+  73 reporteSBSSujetoRiesgo_type              [OK_PARTIAL   ] out=1 inb=1 leg=0
+  74 rubroCobranza_type                       [OK_PARTIAL   ] out=1 inb=1 leg=0
+  75 rubrosCobranzaDetalle_type               [OK_PARTIAL   ] out=1 inb=1 leg=0
+  76 saldoCarteraDetalle_type                 [OK_PARTIAL   ] out=1 inb=1 leg=0
+  77 saldoCartera_type                        [OK_PARTIAL   ] out=1 inb=1 leg=0
+  78 saldoCxPCxCType                          [OK_PARTIAL   ] out=1 inb=1 leg=0
+  79 saldoVinculadoType                       [NO_KAFKA     ] out=1 inb=0 leg=0
+  80 seguimientoAutorizacion_type             [NO_KAFKA     ] out=1 inb=0 leg=0
+  81 seguroCredito_type                       [NO_KAFKA     ] out=1 inb=0 leg=0
+  82 sobranteCaucion_type                     [NO_KAFKA     ] out=1 inb=0 leg=0
+  83 sobranteCredito_type                     [NO_KAFKA     ] out=1 inb=0 leg=0
+  84 sobranteDistribucion_type                [NO_KAFKA     ] out=1 inb=0 leg=0
+  85 solidarioCredito_type                    [OK_PARTIAL   ] out=1 inb=1 leg=0
+  86 tasaInteresCredito_type                  [OK_PARTIAL   ] out=1 inb=1 leg=0
+  87 tipoCredito_type                         [OK_PARTIAL   ] out=1 inb=1 leg=0
+  88 tipoSobrante_type                        [OK_PARTIAL   ] out=1 inb=1 leg=0
+  89 transaccionRecuperacion_type             [OK_PARTIAL   ] out=1 inb=1 leg=0
+
+================================================================================
+RESUMEN
+================================================================================
+  OK_PARTIAL           83/89
+  NO_KAFKA             6/89
+
+--- Errores nuevos en cdc_inbox_errors (ultimos 60s) ---
+
+[cleanup]
+  closed fcme_canonicos
+  closed dbCR
+  closed dbCT
+  closed dbCG
+  closed dbFC
+  closed Oracle

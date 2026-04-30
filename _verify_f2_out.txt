@@ -1,0 +1,54 @@
+======================================================================
+PRE-CHECK INFRAESTRUCTURA FLUJO 2
+======================================================================
+
+[Oracle FCME_USER]
+  CDC_OUTBOX exists: SI
+    ID (NUMBER)
+    AGGREGATE_ID (NVARCHAR2)
+    AGGREGATE_TYPE (NVARCHAR2)
+    EVENT_TYPE (NVARCHAR2)
+    PAYLOAD (CLOB)
+    SOURCE_TABLE (NVARCHAR2)
+    CREATED_AT (TIMESTAMP(6))
+  filas actuales: 13
+
+  TRG_OUTBOX_<X> Oracle preexistentes: 0/91
+
+[SQL Server fcme_canonicos]
+  cdc_inbox exists: SI
+    id
+    aggregate_id
+    aggregate_type
+    event_type
+    payload
+    source_table
+    created_at
+    processed
+    processed_at
+  filas actuales: 13
+
+  Triggers en cdc_inbox: 1
+    trg_process_cdc_inbox disabled=False
+  SPs *process_cdc_inbox*: ['usp_process_cdc_inbox']
+
+  cdc_inbox_module_config exists: SI
+    aggregate_type
+    sp_name
+    target_db
+    module_name
+    active
+    created_at
+    updated_at
+  total entries: 138
+  entries module_name=CARTERA: 0
+
+  Wrappers usp_inbox_<agg> preexistentes en canonicos: 0/91
+
+[Legacy SPs sp_<Type>_CRUD]
+  dbCR: 0 sp_*_CRUD existentes
+  dbFC: 38 sp_*_CRUD existentes
+  dbCG: 0 sp_*_CRUD existentes
+  dbCT: 2 sp_*_CRUD existentes
+
+=== PRE-CHECK COMPLETO ===

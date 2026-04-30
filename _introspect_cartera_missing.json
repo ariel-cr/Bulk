@@ -1,0 +1,956 @@
+{
+  "auxDatosCobrosAdicionalesType": {
+    "tokens": [
+      "aux",
+      "datos",
+      "cobros",
+      "adicionales"
+    ],
+    "candidates": [
+      {
+        "table": "AUXDATOSCOBROSADICIONALESTYPE",
+        "hits": 4,
+        "sim": 0.93,
+        "score": 40.93
+      },
+      {
+        "table": "DATOSOTROSACTIVOS_TYPE",
+        "hits": 1,
+        "sim": 0.62,
+        "score": 10.62
+      },
+      {
+        "table": "DATOSOTROSACTIVOSTYPE",
+        "hits": 1,
+        "sim": 0.57,
+        "score": 10.57
+      },
+      {
+        "table": "DATOSINMUEBLES_TYPE",
+        "hits": 1,
+        "sim": 0.46,
+        "score": 10.46
+      },
+      {
+        "table": "AUXILIARCONTABLE_TYPE",
+        "hits": 1,
+        "sim": 0.44,
+        "score": 10.44
+      },
+      {
+        "table": "DATOSVEHICULOSTYPE",
+        "hits": 1,
+        "sim": 0.42,
+        "score": 10.42
+      },
+      {
+        "table": "DATOSINMUEBLESTYPE",
+        "hits": 1,
+        "sim": 0.42,
+        "score": 10.42
+      },
+      {
+        "table": "DATOSVEHICULOS_TYPE",
+        "hits": 1,
+        "sim": 0.41,
+        "score": 10.41
+      }
+    ]
+  },
+  "conceptoGastoJudicialType": {
+    "tokens": [
+      "concepto",
+      "gasto",
+      "judicial"
+    ],
+    "candidates": [
+      {
+        "table": "CONCEPTOGASTOJUDICIALTYPE",
+        "hits": 3,
+        "sim": 0.91,
+        "score": 30.91
+      },
+      {
+        "table": "COBRANZAJUDICIAL_TYPE",
+        "hits": 1,
+        "sim": 0.65,
+        "score": 10.65
+      },
+      {
+        "table": "COBRANZAJUDICIALDETALLE_TYPE",
+        "hits": 1,
+        "sim": 0.55,
+        "score": 10.55
+      },
+      {
+        "table": "CONCEPTOCONTABLE_TYPE",
+        "hits": 1,
+        "sim": 0.54,
+        "score": 10.54
+      },
+      {
+        "table": "ETAPAJUDICIALCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.54,
+        "score": 10.54
+      },
+      {
+        "table": "UNIDADJUDICIALTYPE",
+        "hits": 1,
+        "sim": 0.51,
+        "score": 10.51
+      },
+      {
+        "table": "MEDIDAJUDICIALTYPE",
+        "hits": 1,
+        "sim": 0.51,
+        "score": 10.51
+      },
+      {
+        "table": "COBRANZAJUDICIALDISTRIBUCION_TYPE",
+        "hits": 1,
+        "sim": 0.49,
+        "score": 10.49
+      }
+    ]
+  },
+  "creditoType": {
+    "tokens": [
+      "credito"
+    ],
+    "candidates": [
+      {
+        "table": "TIPOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.78,
+        "score": 10.78
+      },
+      {
+        "table": "PAGOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.78,
+        "score": 10.78
+      },
+      {
+        "table": "CREDITOTYPE",
+        "hits": 1,
+        "sim": 0.78,
+        "score": 10.78
+      },
+      {
+        "table": "SEGUROCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.7,
+        "score": 10.7
+      },
+      {
+        "table": "GARANTECREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      },
+      {
+        "table": "CAUCIONCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      },
+      {
+        "table": "SOBRANTECREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.64,
+        "score": 10.64
+      },
+      {
+        "table": "GARANTIACREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.64,
+        "score": 10.64
+      }
+    ]
+  },
+  "cuentaCuotasType": {
+    "tokens": [
+      "cuenta",
+      "cuotas"
+    ],
+    "candidates": [
+      {
+        "table": "CUENTACUOTASTYPE",
+        "hits": 2,
+        "sim": 0.86,
+        "score": 20.86
+      },
+      {
+        "table": "CUENTAPORCOBRAR_TYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      },
+      {
+        "table": "CUENTANOSTRO_TYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      },
+      {
+        "table": "CUENTATYPE",
+        "hits": 1,
+        "sim": 0.64,
+        "score": 10.64
+      },
+      {
+        "table": "PLANCUENTAS_TYPE",
+        "hits": 1,
+        "sim": 0.61,
+        "score": 10.61
+      },
+      {
+        "table": "CUENTAPERSONASTYPE",
+        "hits": 1,
+        "sim": 0.6,
+        "score": 10.6
+      },
+      {
+        "table": "CUENTACXPCXC_TYPE",
+        "hits": 1,
+        "sim": 0.58,
+        "score": 10.58
+      },
+      {
+        "table": "CUENTAPORCOBRARTYPE",
+        "hits": 1,
+        "sim": 0.58,
+        "score": 10.58
+      }
+    ]
+  },
+  "cuentaPersonasType": {
+    "tokens": [
+      "cuenta",
+      "personas"
+    ],
+    "candidates": [
+      {
+        "table": "CUENTAPERSONASTYPE",
+        "hits": 2,
+        "sim": 0.88,
+        "score": 20.88
+      },
+      {
+        "table": "CUENTAPORCOBRAR_TYPE",
+        "hits": 1,
+        "sim": 0.69,
+        "score": 10.69
+      },
+      {
+        "table": "CUENTATYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      },
+      {
+        "table": "CUENTAINDIVIDUALPERSONATYPE",
+        "hits": 1,
+        "sim": 0.63,
+        "score": 10.63
+      },
+      {
+        "table": "CUENTANOSTRO_TYPE",
+        "hits": 1,
+        "sim": 0.62,
+        "score": 10.62
+      },
+      {
+        "table": "PLANCUENTAS_TYPE",
+        "hits": 1,
+        "sim": 0.56,
+        "score": 10.56
+      },
+      {
+        "table": "CUENTACXPCXC_TYPE",
+        "hits": 1,
+        "sim": 0.54,
+        "score": 10.54
+      },
+      {
+        "table": "CUENTANOSTROTYPE",
+        "hits": 1,
+        "sim": 0.53,
+        "score": 10.53
+      }
+    ]
+  },
+  "cuentaType": {
+    "tokens": [
+      "cuenta"
+    ],
+    "candidates": [
+      {
+        "table": "CUENTATYPE",
+        "hits": 1,
+        "sim": 0.75,
+        "score": 10.75
+      },
+      {
+        "table": "PLANCUENTAS_TYPE",
+        "hits": 1,
+        "sim": 0.71,
+        "score": 10.71
+      },
+      {
+        "table": "ESTADO_CUENTA_TYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      },
+      {
+        "table": "ESTADOCUENTA_TYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      },
+      {
+        "table": "CUENTANOSTRO_TYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      },
+      {
+        "table": "CUENTACXPCXC_TYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      },
+      {
+        "table": "PLANCUENTASFIT_TYPE",
+        "hits": 1,
+        "sim": 0.6,
+        "score": 10.6
+      },
+      {
+        "table": "CUENTAPORCOBRAR_TYPE",
+        "hits": 1,
+        "sim": 0.57,
+        "score": 10.57
+      }
+    ]
+  },
+  "cuentasEnLegalType": {
+    "tokens": [
+      "cuentas",
+      "en",
+      "legal"
+    ],
+    "candidates": [
+      {
+        "table": "CUENTASENLEGALTYPE",
+        "hits": 3,
+        "sim": 0.88,
+        "score": 30.88
+      },
+      {
+        "table": "PLANCUENTASLEGACY_TYPE",
+        "hits": 2,
+        "sim": 0.71,
+        "score": 20.71
+      },
+      {
+        "table": "PLANCUENTAS_TYPE",
+        "hits": 2,
+        "sim": 0.56,
+        "score": 20.56
+      },
+      {
+        "table": "PLANCUENTASFIT_TYPE",
+        "hits": 2,
+        "sim": 0.5,
+        "score": 20.5
+      },
+      {
+        "table": "CUENTATYPE",
+        "hits": 1,
+        "sim": 0.58,
+        "score": 10.58
+      },
+      {
+        "table": "ESTADOLEGALTYPE",
+        "hits": 1,
+        "sim": 0.55,
+        "score": 10.55
+      },
+      {
+        "table": "CUENTANOSTRO_TYPE",
+        "hits": 1,
+        "sim": 0.54,
+        "score": 10.54
+      },
+      {
+        "table": "CUENTANOSTROTYPE",
+        "hits": 1,
+        "sim": 0.53,
+        "score": 10.53
+      }
+    ]
+  },
+  "cuotaCreditoType": {
+    "tokens": [
+      "cuota",
+      "credito"
+    ],
+    "candidates": [
+      {
+        "table": "CUOTACREDITOTYPE",
+        "hits": 2,
+        "sim": 0.86,
+        "score": 20.86
+      },
+      {
+        "table": "CAUCIONCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.77,
+        "score": 10.77
+      },
+      {
+        "table": "SEGUROCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.72,
+        "score": 10.72
+      },
+      {
+        "table": "CUOTACONVENIO_TYPE",
+        "hits": 1,
+        "sim": 0.72,
+        "score": 10.72
+      },
+      {
+        "table": "DOCUMENTOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.71,
+        "score": 10.71
+      },
+      {
+        "table": "FLUJOTRABAJOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.71,
+        "score": 10.71
+      },
+      {
+        "table": "TIPOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.7,
+        "score": 10.7
+      },
+      {
+        "table": "PAGOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.7,
+        "score": 10.7
+      }
+    ]
+  },
+  "estadoLegalType": {
+    "tokens": [
+      "estado",
+      "legal"
+    ],
+    "candidates": [
+      {
+        "table": "ESTADOLEGALTYPE",
+        "hits": 2,
+        "sim": 0.85,
+        "score": 20.85
+      },
+      {
+        "table": "ESTADO_CUENTA_TYPE",
+        "hits": 1,
+        "sim": 0.7,
+        "score": 10.7
+      },
+      {
+        "table": "ESTADOCUENTA_TYPE",
+        "hits": 1,
+        "sim": 0.7,
+        "score": 10.7
+      },
+      {
+        "table": "ESTADO_RECAUDACION_TYPE",
+        "hits": 1,
+        "sim": 0.57,
+        "score": 10.57
+      },
+      {
+        "table": "ESTADORECAUDACION_TYPE",
+        "hits": 1,
+        "sim": 0.57,
+        "score": 10.57
+      },
+      {
+        "table": "CUENTASENLEGALTYPE",
+        "hits": 1,
+        "sim": 0.55,
+        "score": 10.55
+      },
+      {
+        "table": "ESTADOREGISTROTESORERIA_TYPE",
+        "hits": 1,
+        "sim": 0.53,
+        "score": 10.53
+      },
+      {
+        "table": "INFORMACIONLEGAL_TYPE",
+        "hits": 1,
+        "sim": 0.52,
+        "score": 10.52
+      }
+    ]
+  },
+  "medidaJudicialType": {
+    "tokens": [
+      "medida",
+      "judicial"
+    ],
+    "candidates": [
+      {
+        "table": "MEDIDAJUDICIALTYPE",
+        "hits": 2,
+        "sim": 0.88,
+        "score": 20.88
+      },
+      {
+        "table": "UNIDADJUDICIALTYPE",
+        "hits": 1,
+        "sim": 0.69,
+        "score": 10.69
+      },
+      {
+        "table": "COBRANZAJUDICIAL_TYPE",
+        "hits": 1,
+        "sim": 0.6,
+        "score": 10.6
+      },
+      {
+        "table": "ETAPAJUDICIALCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.59,
+        "score": 10.59
+      },
+      {
+        "table": "CONCEPTOGASTOJUDICIALTYPE",
+        "hits": 1,
+        "sim": 0.51,
+        "score": 10.51
+      },
+      {
+        "table": "COBRANZAJUDICIALDETALLE_TYPE",
+        "hits": 1,
+        "sim": 0.49,
+        "score": 10.49
+      },
+      {
+        "table": "COBRANZAJUDICIALDISTRIBUCION_TYPE",
+        "hits": 1,
+        "sim": 0.43,
+        "score": 10.43
+      },
+      {
+        "table": "SERVICIOADICIONAL_TYPE",
+        "hits": 0,
+        "sim": 0.58,
+        "score": 0.58
+      }
+    ]
+  },
+  "pagosCreditoType": {
+    "tokens": [
+      "pagos",
+      "credito"
+    ],
+    "candidates": [
+      {
+        "table": "PAGOSCREDITOTYPE",
+        "hits": 2,
+        "sim": 0.86,
+        "score": 20.86
+      },
+      {
+        "table": "PAGOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.96,
+        "score": 10.96
+      },
+      {
+        "table": "TIPOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.78,
+        "score": 10.78
+      },
+      {
+        "table": "SEGUROCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.72,
+        "score": 10.72
+      },
+      {
+        "table": "CONVENIOPAGOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.71,
+        "score": 10.71
+      },
+      {
+        "table": "CAUCIONCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.69,
+        "score": 10.69
+      },
+      {
+        "table": "RECUPERACIONCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.65,
+        "score": 10.65
+      },
+      {
+        "table": "SOLIDARIOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.64,
+        "score": 10.64
+      }
+    ]
+  },
+  "personaCreditoType": {
+    "tokens": [
+      "persona",
+      "credito"
+    ],
+    "candidates": [
+      {
+        "table": "PERSONACREDITOTYPE",
+        "hits": 2,
+        "sim": 0.88,
+        "score": 20.88
+      },
+      {
+        "table": "SEGUROCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.74,
+        "score": 10.74
+      },
+      {
+        "table": "RECUPERACIONCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.73,
+        "score": 10.73
+      },
+      {
+        "table": "TIPOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.72,
+        "score": 10.72
+      },
+      {
+        "table": "PAGOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.72,
+        "score": 10.72
+      },
+      {
+        "table": "SOBRANTECREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.69,
+        "score": 10.69
+      },
+      {
+        "table": "GARANTIACREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.69,
+        "score": 10.69
+      },
+      {
+        "table": "SOLIDARIOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      }
+    ]
+  },
+  "procesoAccionType": {
+    "tokens": [
+      "proceso",
+      "accion"
+    ],
+    "candidates": [
+      {
+        "table": "PROCESOACCIONTYPE",
+        "hits": 2,
+        "sim": 0.87,
+        "score": 20.87
+      },
+      {
+        "table": "FECHASPROCESO_TYPE",
+        "hits": 1,
+        "sim": 0.54,
+        "score": 10.54
+      },
+      {
+        "table": "FECHASPROCESOTYPE",
+        "hits": 1,
+        "sim": 0.47,
+        "score": 10.47
+      },
+      {
+        "table": "TRANSACCION_RECAUDACION_TYPE",
+        "hits": 1,
+        "sim": 0.46,
+        "score": 10.46
+      },
+      {
+        "table": "TRANSACCIONRECAUDACION_TYPE",
+        "hits": 1,
+        "sim": 0.46,
+        "score": 10.46
+      },
+      {
+        "table": "TRANSACCIONRECUPERACION_TYPE",
+        "hits": 1,
+        "sim": 0.44,
+        "score": 10.44
+      },
+      {
+        "table": "CUENTAINDIVIDUALFECHASPROCESOTYPE",
+        "hits": 1,
+        "sim": 0.3,
+        "score": 10.3
+      },
+      {
+        "table": "RECAUDACION_TYPE",
+        "hits": 0,
+        "sim": 0.58,
+        "score": 0.58
+      }
+    ]
+  },
+  "refinanciamientoCreditoType": {
+    "tokens": [
+      "refinanciamiento",
+      "credito"
+    ],
+    "candidates": [
+      {
+        "table": "REFINANCIAMIENTOCREDITOTYPE",
+        "hits": 2,
+        "sim": 0.92,
+        "score": 20.92
+      },
+      {
+        "table": "COSTOFINANCIEROCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.71,
+        "score": 10.71
+      },
+      {
+        "table": "PRECALIFICACIONCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      },
+      {
+        "table": "DOCUMENTOCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      },
+      {
+        "table": "GARANTIACREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.63,
+        "score": 10.63
+      },
+      {
+        "table": "RECUPERACIONCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.62,
+        "score": 10.62
+      },
+      {
+        "table": "AUTORIZACIONCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.62,
+        "score": 10.62
+      },
+      {
+        "table": "GESTIONCOMUNICACIONCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.61,
+        "score": 10.61
+      }
+    ]
+  },
+  "saldoVinculadoType": {
+    "tokens": [
+      "saldo",
+      "vinculado"
+    ],
+    "candidates": [
+      {
+        "table": "SALDOVINCULADOTYPE",
+        "hits": 2,
+        "sim": 0.88,
+        "score": 20.88
+      },
+      {
+        "table": "SALDOBANCO_TYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      },
+      {
+        "table": "SALDODIARIO_TYPE",
+        "hits": 1,
+        "sim": 0.64,
+        "score": 10.64
+      },
+      {
+        "table": "SALDORUBRO_TYPE",
+        "hits": 1,
+        "sim": 0.58,
+        "score": 10.58
+      },
+      {
+        "table": "SALDOBANCOTYPE",
+        "hits": 1,
+        "sim": 0.57,
+        "score": 10.57
+      },
+      {
+        "table": "VINCULADOINVERSION_TYPE",
+        "hits": 1,
+        "sim": 0.56,
+        "score": 10.56
+      },
+      {
+        "table": "SALDOCARTERA_TYPE",
+        "hits": 1,
+        "sim": 0.54,
+        "score": 10.54
+      },
+      {
+        "table": "SALDODIARIORUBRO_TYPE",
+        "hits": 1,
+        "sim": 0.53,
+        "score": 10.53
+      }
+    ]
+  },
+  "sobranteCaucion_type": {
+    "tokens": [
+      "sobrante",
+      "caucion"
+    ],
+    "candidates": [
+      {
+        "table": "SOBRANTECAUCI\u00d3N_TYPE",
+        "hits": 1,
+        "sim": 0.93,
+        "score": 10.93
+      },
+      {
+        "table": "SOBRANTEDISTRIBUCION_TYPE",
+        "hits": 1,
+        "sim": 0.74,
+        "score": 10.74
+      },
+      {
+        "table": "SOBRANTECREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.73,
+        "score": 10.73
+      },
+      {
+        "table": "TIPOSOBRANTE_TYPE",
+        "hits": 1,
+        "sim": 0.59,
+        "score": 10.59
+      },
+      {
+        "table": "CAUCIONCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.48,
+        "score": 10.48
+      },
+      {
+        "table": "CAUCION_RECAUDACION_TYPE",
+        "hits": 1,
+        "sim": 0.42,
+        "score": 10.42
+      },
+      {
+        "table": "CAUCIONRECAUDACION_TYPE",
+        "hits": 1,
+        "sim": 0.42,
+        "score": 10.42
+      },
+      {
+        "table": "SALDO_RECAUDACION_TYPE",
+        "hits": 0,
+        "sim": 0.71,
+        "score": 0.71
+      }
+    ]
+  },
+  "unidadJudicialType": {
+    "tokens": [
+      "unidad",
+      "judicial"
+    ],
+    "candidates": [
+      {
+        "table": "UNIDADJUDICIALTYPE",
+        "hits": 2,
+        "sim": 0.88,
+        "score": 20.88
+      },
+      {
+        "table": "MEDIDAJUDICIALTYPE",
+        "hits": 1,
+        "sim": 0.69,
+        "score": 10.69
+      },
+      {
+        "table": "COBRANZAJUDICIAL_TYPE",
+        "hits": 1,
+        "sim": 0.67,
+        "score": 10.67
+      },
+      {
+        "table": "COBRANZAJUDICIALDETALLE_TYPE",
+        "hits": 1,
+        "sim": 0.54,
+        "score": 10.54
+      },
+      {
+        "table": "ETAPAJUDICIALCREDITO_TYPE",
+        "hits": 1,
+        "sim": 0.53,
+        "score": 10.53
+      },
+      {
+        "table": "CONCEPTOGASTOJUDICIALTYPE",
+        "hits": 1,
+        "sim": 0.51,
+        "score": 10.51
+      },
+      {
+        "table": "COBRANZAJUDICIALDISTRIBUCION_TYPE",
+        "hits": 1,
+        "sim": 0.48,
+        "score": 10.48
+      },
+      {
+        "table": "SERVICIOADICIONAL_TYPE",
+        "hits": 0,
+        "sim": 0.52,
+        "score": 0.52
+      }
+    ]
+  }
+}

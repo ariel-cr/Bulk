@@ -86,6 +86,23 @@ def run_test():
         if first_id_col:
             offset = get_max_numeric_id(conn, schema, table, first_id_col["name"]) + 1
 
+        # Si la tabla destino legacy tiene CUALQUIER columna smallint, limitar offset
+        # para evitar "Arithmetic overflow error for data type smallint"
+        # Las columnas legacy usan nombres antiguos (co_prog, nu_manz, sc_casa)
+        # que no terminan en "id", por eso se chequea ANY smallint column
+        mapping = NEWCORE_TO_FINAL_TABLE.get(table.upper())
+        if mapping and first_id_col:
+            try:
+                dest_cols = get_table_columns(mapping[0], "dbo", mapping[1])
+                dest_has_smallint = any(
+                    c["type"].lower() in ("smallint", "tinyint")
+                    for c in dest_cols
+                )
+                if dest_has_smallint:
+                    offset = offset % 30000
+            except:
+                pass
+
         # Limpiar registros rezagados del batch anterior en el destino
         _drain_destination_inbox()
 

@@ -1,0 +1,55 @@
+================================================================================
+DIAGNOSTICO 7 ERR_UPDATE - probe con col no-FK
+================================================================================
+
+--- dbCR.crtbabno_extr (types=1) ---
+  lkey: ['ti_cred', 'aa_cred', 'qs_cred', 'sc_abno']
+  total cols: 17  excluidas (FK/lkey/identity): 4  candidatos: 13
+  probe_col: co_proc
+  rows=1 types=1 events=1 expected=1  [OK]
+  payload obj_count: 1  OK
+
+--- dbCR.crtbccbr_cred_judi (types=7) ---
+  lkey: ['co_empr', 'sc_cobr']
+  total cols: 25  excluidas (FK/lkey/identity): 5  candidatos: 20
+  probe_col: ci_cedu
+  rows=1 types=7 events=7 expected=7  [OK]
+  payload obj_count: 1  OK
+
+--- dbCR.crtbconv_pago (types=1) ---
+  lkey: ['ti_cred', 'aa_cred', 'qs_cred', 'sc_conv']
+  total cols: 31  excluidas (FK/lkey/identity): 5  candidatos: 26
+  probe_col: co_proc
+  rows=1 types=1 events=1 expected=1  [OK]
+  payload obj_count: 1  OK
+
+--- dbCR.crtbcred_autr_deta (types=1) ---
+  lkey: ['co_empr', 'sc_autr_deta']
+  total cols: 13  excluidas (FK/lkey/identity): 7  candidatos: 6
+  probe_col: fe_autr_deta
+  rows=1 types=1 events=1 expected=1  [OK]
+  payload obj_count: 1  OK
+
+--- dbCR.crtbcred_liqd_diar (types=2) ---
+  lkey: ['co_empr', 'ti_cred', 'aa_cred', 'qs_cred', 'sc_liqd']
+  total cols: 10  excluidas (FK/lkey/identity): 5  candidatos: 5
+  probe_col: fe_cort
+  rows=1 types=2 events=2 expected=2  [OK]
+  payload obj_count: 1  OK
+
+--- dbCR.crtbdevo_masi_deta (types=2) ---
+  lkey: ['co_empr', 'sc_devo_deta', 'sc_devo_masi']
+  total cols: 11  excluidas (FK/lkey/identity): 4  candidatos: 7
+  probe_col: ci_clie
+  rows=1 types=2 events=2 expected=2  [OK]
+  payload obj_count: 1  OK
+
+--- dbCR.crtbsegi_autr_ofic (types=1) ---
+  lkey: ['co_empr', 'ti_cred', 'aa_cred', 'qs_cred', 'sc_segi']
+  total cols: 15  excluidas (FK/lkey/identity): 6  candidatos: 9
+  probe_col: fe_actu
+  rows=1 types=1 events=1 expected=1  [OK]
+  payload obj_count: 1  OK
+
+[cleanup]
+done

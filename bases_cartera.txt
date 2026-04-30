@@ -1,0 +1,237 @@
+====================================================================================================
+CARTERA - MAPEO BASE.TABLA -> TYPE
+Servidor: 10.35.3.64,1433     Fecha: 2026-04-29
+Schema newcore: fcme_newcore.CARTERA
+====================================================================================================
+
+BDs legacy : 4
+Tablas     : 60
+Specs      : 91  (cada spec = 1 tabla legacy -> 1 TYPE en newcore)
+
+Formato de cada linea:
+  <db>.<tabla>  ->  fcme_newcore.CARTERA.<TYPE>     [agg: <aggregate_type del outbox>]
+
+====================================================================================================
+BD: dbCG     (3 tablas)
+====================================================================================================
+  dbCG.cgtbgara_hipo_cdio                       -> CARTERA.GARANTIACREDITO_TYPE                     [agg: garantiaCredito_type]
+  dbCG.cgtbprod_cnta_auto                       -> (2 types)
+      -> CARTERA.CUENTAAUTOMATICADETALLE_TYPE             [agg: cuentaAutomaticaDetalle_type]
+      -> CARTERA.CUENTAAUTOMATICA_TYPE                    [agg: cuentaAutomatica_type]
+  dbCG.cgtbrepo_anls_cnta                       -> CARTERA.CUENTAPORCOBRARTYPE                      [agg: cuentaPorCobrarType]
+
+====================================================================================================
+BD: dbCR     (47 tablas)
+====================================================================================================
+  dbCR.crtbabno_extr                            -> CARTERA.ABONOEXTRAORDINARIO_TYPE                 [agg: abonoExtraordinario_type]
+  dbCR.crtbcart_calf_prov                       -> CARTERA.CALIFICACIONCARTERA_TYPE                 [agg: calificacionCartera_type]
+  dbCR.crtbcaut_cred                            -> CARTERA.CONTABILIZACIONCREDITO_TYPE              [agg: contabilizacionCredito_type]
+  dbCR.crtbccbr_cred_judi                       -> (7 types)
+      -> CARTERA.AUTORIZACIONCREDITO_TYPE                 [agg: autorizacionCredito_type]
+      -> CARTERA.CAUCIONCREDITO_TYPE                      [agg: caucionCredito_type]
+      -> CARTERA.CONCEPTOGASTOJUDICIALTYPE                [agg: conceptoGastoJudicialType]
+      -> CARTERA.ETAPAJUDICIALCREDITO_TYPE                [agg: etapaJudicialCredito_type]
+      -> CARTERA.MEDIDAJUDICIALTYPE                       [agg: medidaJudicialType]
+      -> CARTERA.PRECALIFICACIONCREDITO_TYPE              [agg: precalificacionCredito_type]
+      -> CARTERA.UNIDADJUDICIALTYPE                       [agg: unidadJudicialType]
+  dbCR.crtbcdeb_cnta                            -> (3 types)
+      -> CARTERA.CUENTACUOTASTYPE                         [agg: cuentaCuotasType]
+      -> CARTERA.CUENTACXPCXCTYPE                         [agg: cuentaCxPCxCType]
+      -> CARTERA.CUENTATYPE                               [agg: cuentaType]
+  dbCR.crtbcobr_judi_deta                       -> CARTERA.COBRANZAJUDICIALDETALLE_TYPE             [agg: cobranzaJudicialDetalle_type]
+  dbCR.crtbcobr_judi_dist                       -> (2 types)
+      -> CARTERA.COBRANZAJUDICIALDISTRIBUCION_TYPE        [agg: cobranzaJudicialDistribucion_type]
+      -> CARTERA.COBRANZAJUDICIAL_TYPE                    [agg: cobranzaJudicial_type]
+  dbCR.crtbconv_pago                            -> CARTERA.CONVENIOPAGOCREDITO_TYPE                 [agg: convenioPagoCredito_type]
+  dbCR.crtbcred_autr_deta                       -> CARTERA.AUTORIZACIONCREDITODETALLE_TYPE          [agg: autorizacionCreditoDetalle_type]
+  dbCR.crtbcred_liqd_diar                       -> (2 types)
+      -> CARTERA.LIQUIDACIONDIARIACREDITO_TYPE            [agg: liquidacionDiariaCredito_type]
+      -> CARTERA.MOVIMIENTOCONTABLECREDITO_TYPE           [agg: movimientoContableCredito_type]
+  dbCR.crtbcred_part                            -> (2 types)
+      -> CARTERA.FLUJOTRABAJOCREDITO_TYPE                 [agg: flujoTrabajoCredito_type]
+      -> CARTERA.PERSONACREDITOTYPE                       [agg: personaCreditoType]
+  dbCR.crtbcred_plzo_venc                       -> CARTERA.PLAZOVENCIDO_TYPE                        [agg: plazoVencido_type]
+  dbCR.crtbcred_prea_whts                       -> (5 types)
+      -> CARTERA.COSTOFINANCIEROCREDITO_TYPE              [agg: costoFinancieroCredito_type]
+      -> CARTERA.CREDITOTYPE                              [agg: creditoType]
+      -> CARTERA.DESEMBOLSOCREDITO_TYPE                   [agg: desembolsoCredito_type]
+      -> CARTERA.PAGOSCREDITOTYPE                         [agg: pagosCreditoType]
+      -> CARTERA.REFINANCIAMIENTOCREDITOTYPE              [agg: refinanciamientoCreditoType]
+  dbCR.crtbctrl_oper_ante_sibs                  -> CARTERA.REPORTESBSOPERACIONANTERIOR_TYPE         [agg: reporteSBSOperacionAnterior_type]
+  dbCR.crtbdbso_devo                            -> (2 types)
+      -> CARTERA.DESEMBOLSODEVOLUCION_TYPE                [agg: desembolsoDevolucion_type]
+      -> CARTERA.DEVOLUCIONCREDITO_TYPE                   [agg: devolucionCredito_type]
+  dbCR.crtbdeud_conv                            -> CARTERA.REFERENCIADEUDOR_TYPE                    [agg: referenciaDeudor_type]
+  dbCR.crtbdevo_masi_deta                       -> (2 types)
+      -> CARTERA.DEVOLUCIONMASIVADETALLE_TYPE             [agg: devolucionMasivaDetalle_type]
+      -> CARTERA.DEVOLUCIONMASIVA_TYPE                    [agg: devolucionMasiva_type]
+  dbCR.crtbdocu_cred                            -> (2 types)
+      -> CARTERA.DOCUMENTOCREDITO_TYPE                    [agg: documentoCredito_type]
+      -> CARTERA.GRUPOCREDITODOCUMENTO_TYPE               [agg: grupoCreditoDocumento_type]
+  dbCR.crtbdsal_oper                            -> (4 types)
+      -> CARTERA.PERSONACXPCXCTYPE                        [agg: personaCxPCxCType]
+      -> CARTERA.REPORTESBSOPERACIONCANCELADA_TYPE        [agg: reporteSBSOperacionCancelada_type]
+      -> CARTERA.REPORTESBSOPERACIONCONCEDIDA_TYPE        [agg: reporteSBSOperacionConcedida_type]
+      -> CARTERA.REPORTESBSSALDOOPERACION_TYPE            [agg: reporteSBSSaldoOperacion_type]
+  dbCR.crtbdvgo_cart_deta                       -> (2 types)
+      -> CARTERA.DEVENGAMIENTOCARTERADETALLE_TYPE         [agg: devengamientoCarteraDetalle_type]
+      -> CARTERA.DEVENGAMIENTOCARTERA_TYPE                [agg: devengamientoCartera_type]
+  dbCR.crtbdvgo_cart_deta_diar                  -> CARTERA.CALIFICACIONCARTERADETALLE_TYPE          [agg: calificacionCarteraDetalle_type]
+  dbCR.crtbesta_conv_cred                       -> CARTERA.ESTADOCONVENIOCREDITO_TYPE               [agg: estadoConvenioCredito_type]
+  dbCR.crtbgest_cart_asig                       -> CARTERA.GESTIONCOBRANZAASIGNACION_TYPE           [agg: gestionCobranzaAsignacion_type]
+  dbCR.crtbgest_cred                            -> CARTERA.GESTIONCOMUNICACIONCREDITO_TYPE          [agg: gestionComunicacionCredito_type]
+  dbCR.crtbinfo_gara_real_sibs                  -> CARTERA.REPORTESBSGARANTIAREAL_TYPE              [agg: reporteSBSGarantiaReal_type]
+  dbCR.crtbinfo_legl                            -> CARTERA.INFORMACIONLEGAL_TYPE                    [agg: informacionLegal_type]
+  dbCR.crtbobli_rol                             -> CARTERA.OBLIGACIONROL_TYPE                       [agg: obligacionRol_type]
+  dbCR.crtboper_canc                            -> CARTERA.CANCELACIONCREDITO_TYPE                  [agg: cancelacionCredito_type]
+  dbCR.crtboper_dref_liqd                       -> CARTERA.OPERACIONCONYUGAL_TYPE                   [agg: operacionConyugal_type]
+  dbCR.crtbplan_ajus                            -> CARTERA.PLANPAGOAJUSTE_TYPE                      [agg: planPagoAjuste_type]
+  dbCR.crtbplpg_conv                            -> CARTERA.CUOTACONVENIO_TYPE                       [agg: cuotaConvenio_type]
+  dbCR.crtbrecu_conv                            -> (4 types)
+      -> CARTERA.DETALLERECUPERACION_TYPE                 [agg: detalleRecuperacion_type]
+      -> CARTERA.RECUPERACIONCONVENIO_TYPE                [agg: recuperacionConvenio_type]
+      -> CARTERA.RECUPERACIONCREDITO_TYPE                 [agg: recuperacionCredito_type]
+      -> CARTERA.TRANSACCIONRECUPERACION_TYPE             [agg: transaccionRecuperacion_type]
+  dbCR.crtbrepo_sobr                            -> CARTERA.REPORTESBSSUJETORIESGO_TYPE              [agg: reporteSBSSujetoRiesgo_type]
+  dbCR.crtbrngo_autr_cred                       -> CARTERA.CUOTACREDITOTYPE                         [agg: cuotaCreditoType]
+  dbCR.crtbrngo_intr_cred                       -> CARTERA.TASAINTERESCREDITO_TYPE                  [agg: tasaInteresCredito_type]
+  dbCR.crtbsald_cart                            -> CARTERA.SALDOCARTERA_TYPE                        [agg: saldoCartera_type]
+  dbCR.crtbsald_cart_deta                       -> CARTERA.SALDOCARTERADETALLE_TYPE                 [agg: saldoCarteraDetalle_type]
+  dbCR.crtbsegi_autr_ofic                       -> CARTERA.SEGUIMIENTOAUTORIZACION_TYPE             [agg: seguimientoAutorizacion_type]
+  dbCR.crtbsegu_cred                            -> CARTERA.SEGUROCREDITO_TYPE                       [agg: seguroCredito_type]
+  dbCR.crtbsobr_caut                            -> CARTERA.SOBRANTECAUCIÃ“N_TYPE                    [agg: sobranteCaucion_type]
+  dbCR.crtbtipo_cred_sibs                       -> CARTERA.TIPOCREDITO_TYPE                         [agg: tipoCredito_type]
+  dbCR.crtpagos                                 -> CARTERA.PAGOCREDITO_TYPE                         [agg: pagoCredito_type]
+  dbCR.crtplpag                                 -> CARTERA.PLANPAGO_TYPE                            [agg: planPago_type]
+  dbCR.crtrepo_sobr                             -> (3 types)
+      -> CARTERA.REPORTESBSCABECERA_TYPE                  [agg: reporteSBSCabecera_type]
+      -> CARTERA.REPORTESBSDETALLE_TYPE                   [agg: reporteSBSDetalle_type]
+      -> CARTERA.TIPOSOBRANTE_TYPE                        [agg: tipoSobrante_type]
+  dbCR.crtrubros_cobr                           -> (2 types)
+      -> CARTERA.RUBROCOBRANZA_TYPE                       [agg: rubroCobranza_type]
+      -> CARTERA.RUBROSCOBRANZADETALLE_TYPE               [agg: rubrosCobranzaDetalle_type]
+  dbCR.crtsobrante                              -> (2 types)
+      -> CARTERA.SOBRANTECREDITO_TYPE                     [agg: sobranteCredito_type]
+      -> CARTERA.SOBRANTEDISTRIBUCION_TYPE                [agg: sobranteDistribucion_type]
+  dbCR.crtsolid                                 -> CARTERA.SOLIDARIOCREDITO_TYPE                    [agg: solidarioCredito_type]
+
+====================================================================================================
+BD: dbCT     (4 tablas)
+====================================================================================================
+  dbCT.cttbesta_docu_inve                       -> CARTERA.ESTADOLEGALTYPE                          [agg: estadoLegalType]
+  dbCT.cttbproc_obse_tran                       -> CARTERA.PROCESOACCIONTYPE                        [agg: procesoAccionType]
+  dbCT.cttbrepo_gene                            -> CARTERA.REPORTESBSGARANTECODEUDOR_TYPE           [agg: reporteSBSGaranteCodeudor_type]
+  dbCT.cttbtran_inve_auxi                       -> CARTERA.AUXDATOSCOBROSADICIONALESTYPE            [agg: auxDatosCobrosAdicionalesType]
+
+====================================================================================================
+BD: dbFC     (6 tablas)
+====================================================================================================
+  dbFC.fctbdeta_liqd_cred                       -> CARTERA.GRUPOCREDITODETALLE_TYPE                 [agg: grupoCreditoDetalle_type]
+  dbFC.fctbdinf_liqd_cnta_sibs                  -> CARTERA.CUENTASENLEGALTYPE                       [agg: cuentasEnLegalType]
+  dbFC.fctbmvto_impr_esta_cnta                  -> CARTERA.CUENTAPERSONASTYPE                       [agg: cuentaPersonasType]
+  dbFC.fctbproc_tseg_noti                       -> CARTERA.FECHASPROCESOTYPE                        [agg: fechasProcesoType]
+  dbFC.sfct_afiliado_referencias                -> CARTERA.REFERENCIACLIENTE_TYPE                   [agg: referenciaCliente_type]
+  dbFC.sfct_saldos_diarios_afiliados            -> (2 types)
+      -> CARTERA.SALDOCXPCXCTYPE                          [agg: saldoCxPCxCType]
+      -> CARTERA.SALDOVINCULADOTYPE                       [agg: saldoVinculadoType]
+
+====================================================================================================
+VISTA INVERSA: TYPE -> BASE.TABLA
+====================================================================================================
+Total TYPES: 91
+
+  CARTERA.ABONOEXTRAORDINARIO_TYPE                 <- dbCR.crtbabno_extr                       [agg: abonoExtraordinario_type]
+  CARTERA.AUTORIZACIONCREDITODETALLE_TYPE          <- dbCR.crtbcred_autr_deta                  [agg: autorizacionCreditoDetalle_type]
+  CARTERA.AUTORIZACIONCREDITO_TYPE                 <- dbCR.crtbccbr_cred_judi                  [agg: autorizacionCredito_type]
+  CARTERA.AUXDATOSCOBROSADICIONALESTYPE            <- dbCT.cttbtran_inve_auxi                  [agg: auxDatosCobrosAdicionalesType]
+  CARTERA.CALIFICACIONCARTERADETALLE_TYPE          <- dbCR.crtbdvgo_cart_deta_diar             [agg: calificacionCarteraDetalle_type]
+  CARTERA.CALIFICACIONCARTERA_TYPE                 <- dbCR.crtbcart_calf_prov                  [agg: calificacionCartera_type]
+  CARTERA.CANCELACIONCREDITO_TYPE                  <- dbCR.crtboper_canc                       [agg: cancelacionCredito_type]
+  CARTERA.CAUCIONCREDITO_TYPE                      <- dbCR.crtbccbr_cred_judi                  [agg: caucionCredito_type]
+  CARTERA.COBRANZAJUDICIALDETALLE_TYPE             <- dbCR.crtbcobr_judi_deta                  [agg: cobranzaJudicialDetalle_type]
+  CARTERA.COBRANZAJUDICIALDISTRIBUCION_TYPE        <- dbCR.crtbcobr_judi_dist                  [agg: cobranzaJudicialDistribucion_type]
+  CARTERA.COBRANZAJUDICIAL_TYPE                    <- dbCR.crtbcobr_judi_dist                  [agg: cobranzaJudicial_type]
+  CARTERA.CONCEPTOGASTOJUDICIALTYPE                <- dbCR.crtbccbr_cred_judi                  [agg: conceptoGastoJudicialType]
+  CARTERA.CONTABILIZACIONCREDITO_TYPE              <- dbCR.crtbcaut_cred                       [agg: contabilizacionCredito_type]
+  CARTERA.CONVENIOPAGOCREDITO_TYPE                 <- dbCR.crtbconv_pago                       [agg: convenioPagoCredito_type]
+  CARTERA.COSTOFINANCIEROCREDITO_TYPE              <- dbCR.crtbcred_prea_whts                  [agg: costoFinancieroCredito_type]
+  CARTERA.CREDITOTYPE                              <- dbCR.crtbcred_prea_whts                  [agg: creditoType]
+  CARTERA.CUENTAAUTOMATICADETALLE_TYPE             <- dbCG.cgtbprod_cnta_auto                  [agg: cuentaAutomaticaDetalle_type]
+  CARTERA.CUENTAAUTOMATICA_TYPE                    <- dbCG.cgtbprod_cnta_auto                  [agg: cuentaAutomatica_type]
+  CARTERA.CUENTACUOTASTYPE                         <- dbCR.crtbcdeb_cnta                       [agg: cuentaCuotasType]
+  CARTERA.CUENTACXPCXCTYPE                         <- dbCR.crtbcdeb_cnta                       [agg: cuentaCxPCxCType]
+  CARTERA.CUENTAPERSONASTYPE                       <- dbFC.fctbmvto_impr_esta_cnta             [agg: cuentaPersonasType]
+  CARTERA.CUENTAPORCOBRARTYPE                      <- dbCG.cgtbrepo_anls_cnta                  [agg: cuentaPorCobrarType]
+  CARTERA.CUENTASENLEGALTYPE                       <- dbFC.fctbdinf_liqd_cnta_sibs             [agg: cuentasEnLegalType]
+  CARTERA.CUENTATYPE                               <- dbCR.crtbcdeb_cnta                       [agg: cuentaType]
+  CARTERA.CUOTACONVENIO_TYPE                       <- dbCR.crtbplpg_conv                       [agg: cuotaConvenio_type]
+  CARTERA.CUOTACREDITOTYPE                         <- dbCR.crtbrngo_autr_cred                  [agg: cuotaCreditoType]
+  CARTERA.DESEMBOLSOCREDITO_TYPE                   <- dbCR.crtbcred_prea_whts                  [agg: desembolsoCredito_type]
+  CARTERA.DESEMBOLSODEVOLUCION_TYPE                <- dbCR.crtbdbso_devo                       [agg: desembolsoDevolucion_type]
+  CARTERA.DETALLERECUPERACION_TYPE                 <- dbCR.crtbrecu_conv                       [agg: detalleRecuperacion_type]
+  CARTERA.DEVENGAMIENTOCARTERADETALLE_TYPE         <- dbCR.crtbdvgo_cart_deta                  [agg: devengamientoCarteraDetalle_type]
+  CARTERA.DEVENGAMIENTOCARTERA_TYPE                <- dbCR.crtbdvgo_cart_deta                  [agg: devengamientoCartera_type]
+  CARTERA.DEVOLUCIONCREDITO_TYPE                   <- dbCR.crtbdbso_devo                       [agg: devolucionCredito_type]
+  CARTERA.DEVOLUCIONMASIVADETALLE_TYPE             <- dbCR.crtbdevo_masi_deta                  [agg: devolucionMasivaDetalle_type]
+  CARTERA.DEVOLUCIONMASIVA_TYPE                    <- dbCR.crtbdevo_masi_deta                  [agg: devolucionMasiva_type]
+  CARTERA.DOCUMENTOCREDITO_TYPE                    <- dbCR.crtbdocu_cred                       [agg: documentoCredito_type]
+  CARTERA.ESTADOCONVENIOCREDITO_TYPE               <- dbCR.crtbesta_conv_cred                  [agg: estadoConvenioCredito_type]
+  CARTERA.ESTADOLEGALTYPE                          <- dbCT.cttbesta_docu_inve                  [agg: estadoLegalType]
+  CARTERA.ETAPAJUDICIALCREDITO_TYPE                <- dbCR.crtbccbr_cred_judi                  [agg: etapaJudicialCredito_type]
+  CARTERA.FECHASPROCESOTYPE                        <- dbFC.fctbproc_tseg_noti                  [agg: fechasProcesoType]
+  CARTERA.FLUJOTRABAJOCREDITO_TYPE                 <- dbCR.crtbcred_part                       [agg: flujoTrabajoCredito_type]
+  CARTERA.GARANTIACREDITO_TYPE                     <- dbCG.cgtbgara_hipo_cdio                  [agg: garantiaCredito_type]
+  CARTERA.GESTIONCOBRANZAASIGNACION_TYPE           <- dbCR.crtbgest_cart_asig                  [agg: gestionCobranzaAsignacion_type]
+  CARTERA.GESTIONCOMUNICACIONCREDITO_TYPE          <- dbCR.crtbgest_cred                       [agg: gestionComunicacionCredito_type]
+  CARTERA.GRUPOCREDITODETALLE_TYPE                 <- dbFC.fctbdeta_liqd_cred                  [agg: grupoCreditoDetalle_type]
+  CARTERA.GRUPOCREDITODOCUMENTO_TYPE               <- dbCR.crtbdocu_cred                       [agg: grupoCreditoDocumento_type]
+  CARTERA.INFORMACIONLEGAL_TYPE                    <- dbCR.crtbinfo_legl                       [agg: informacionLegal_type]
+  CARTERA.LIQUIDACIONDIARIACREDITO_TYPE            <- dbCR.crtbcred_liqd_diar                  [agg: liquidacionDiariaCredito_type]
+  CARTERA.MEDIDAJUDICIALTYPE                       <- dbCR.crtbccbr_cred_judi                  [agg: medidaJudicialType]
+  CARTERA.MOVIMIENTOCONTABLECREDITO_TYPE           <- dbCR.crtbcred_liqd_diar                  [agg: movimientoContableCredito_type]
+  CARTERA.OBLIGACIONROL_TYPE                       <- dbCR.crtbobli_rol                        [agg: obligacionRol_type]
+  CARTERA.OPERACIONCONYUGAL_TYPE                   <- dbCR.crtboper_dref_liqd                  [agg: operacionConyugal_type]
+  CARTERA.PAGOCREDITO_TYPE                         <- dbCR.crtpagos                            [agg: pagoCredito_type]
+  CARTERA.PAGOSCREDITOTYPE                         <- dbCR.crtbcred_prea_whts                  [agg: pagosCreditoType]
+  CARTERA.PERSONACREDITOTYPE                       <- dbCR.crtbcred_part                       [agg: personaCreditoType]
+  CARTERA.PERSONACXPCXCTYPE                        <- dbCR.crtbdsal_oper                       [agg: personaCxPCxCType]
+  CARTERA.PLANPAGOAJUSTE_TYPE                      <- dbCR.crtbplan_ajus                       [agg: planPagoAjuste_type]
+  CARTERA.PLANPAGO_TYPE                            <- dbCR.crtplpag                            [agg: planPago_type]
+  CARTERA.PLAZOVENCIDO_TYPE                        <- dbCR.crtbcred_plzo_venc                  [agg: plazoVencido_type]
+  CARTERA.PRECALIFICACIONCREDITO_TYPE              <- dbCR.crtbccbr_cred_judi                  [agg: precalificacionCredito_type]
+  CARTERA.PROCESOACCIONTYPE                        <- dbCT.cttbproc_obse_tran                  [agg: procesoAccionType]
+  CARTERA.RECUPERACIONCONVENIO_TYPE                <- dbCR.crtbrecu_conv                       [agg: recuperacionConvenio_type]
+  CARTERA.RECUPERACIONCREDITO_TYPE                 <- dbCR.crtbrecu_conv                       [agg: recuperacionCredito_type]
+  CARTERA.REFERENCIACLIENTE_TYPE                   <- dbFC.sfct_afiliado_referencias           [agg: referenciaCliente_type]
+  CARTERA.REFERENCIADEUDOR_TYPE                    <- dbCR.crtbdeud_conv                       [agg: referenciaDeudor_type]
+  CARTERA.REFINANCIAMIENTOCREDITOTYPE              <- dbCR.crtbcred_prea_whts                  [agg: refinanciamientoCreditoType]
+  CARTERA.REPORTESBSCABECERA_TYPE                  <- dbCR.crtrepo_sobr                        [agg: reporteSBSCabecera_type]
+  CARTERA.REPORTESBSDETALLE_TYPE                   <- dbCR.crtrepo_sobr                        [agg: reporteSBSDetalle_type]
+  CARTERA.REPORTESBSGARANTECODEUDOR_TYPE           <- dbCT.cttbrepo_gene                       [agg: reporteSBSGaranteCodeudor_type]
+  CARTERA.REPORTESBSGARANTIAREAL_TYPE              <- dbCR.crtbinfo_gara_real_sibs             [agg: reporteSBSGarantiaReal_type]
+  CARTERA.REPORTESBSOPERACIONANTERIOR_TYPE         <- dbCR.crtbctrl_oper_ante_sibs             [agg: reporteSBSOperacionAnterior_type]
+  CARTERA.REPORTESBSOPERACIONCANCELADA_TYPE        <- dbCR.crtbdsal_oper                       [agg: reporteSBSOperacionCancelada_type]
+  CARTERA.REPORTESBSOPERACIONCONCEDIDA_TYPE        <- dbCR.crtbdsal_oper                       [agg: reporteSBSOperacionConcedida_type]
+  CARTERA.REPORTESBSSALDOOPERACION_TYPE            <- dbCR.crtbdsal_oper                       [agg: reporteSBSSaldoOperacion_type]
+  CARTERA.REPORTESBSSUJETORIESGO_TYPE              <- dbCR.crtbrepo_sobr                       [agg: reporteSBSSujetoRiesgo_type]
+  CARTERA.RUBROCOBRANZA_TYPE                       <- dbCR.crtrubros_cobr                      [agg: rubroCobranza_type]
+  CARTERA.RUBROSCOBRANZADETALLE_TYPE               <- dbCR.crtrubros_cobr                      [agg: rubrosCobranzaDetalle_type]
+  CARTERA.SALDOCARTERADETALLE_TYPE                 <- dbCR.crtbsald_cart_deta                  [agg: saldoCarteraDetalle_type]
+  CARTERA.SALDOCARTERA_TYPE                        <- dbCR.crtbsald_cart                       [agg: saldoCartera_type]
+  CARTERA.SALDOCXPCXCTYPE                          <- dbFC.sfct_saldos_diarios_afiliados       [agg: saldoCxPCxCType]
+  CARTERA.SALDOVINCULADOTYPE                       <- dbFC.sfct_saldos_diarios_afiliados       [agg: saldoVinculadoType]
+  CARTERA.SEGUIMIENTOAUTORIZACION_TYPE             <- dbCR.crtbsegi_autr_ofic                  [agg: seguimientoAutorizacion_type]
+  CARTERA.SEGUROCREDITO_TYPE                       <- dbCR.crtbsegu_cred                       [agg: seguroCredito_type]
+  CARTERA.SOBRANTECAUCIÃ“N_TYPE                    <- dbCR.crtbsobr_caut                       [agg: sobranteCaucion_type]
+  CARTERA.SOBRANTECREDITO_TYPE                     <- dbCR.crtsobrante                         [agg: sobranteCredito_type]
+  CARTERA.SOBRANTEDISTRIBUCION_TYPE                <- dbCR.crtsobrante                         [agg: sobranteDistribucion_type]
+  CARTERA.SOLIDARIOCREDITO_TYPE                    <- dbCR.crtsolid                            [agg: solidarioCredito_type]
+  CARTERA.TASAINTERESCREDITO_TYPE                  <- dbCR.crtbrngo_intr_cred                  [agg: tasaInteresCredito_type]
+  CARTERA.TIPOCREDITO_TYPE                         <- dbCR.crtbtipo_cred_sibs                  [agg: tipoCredito_type]
+  CARTERA.TIPOSOBRANTE_TYPE                        <- dbCR.crtrepo_sobr                        [agg: tipoSobrante_type]
+  CARTERA.TRANSACCIONRECUPERACION_TYPE             <- dbCR.crtbrecu_conv                       [agg: transaccionRecuperacion_type]
+  CARTERA.UNIDADJUDICIALTYPE                       <- dbCR.crtbccbr_cred_judi                  [agg: unidadJudicialType]
+
+====================================================================================================
+FIN
+====================================================================================================

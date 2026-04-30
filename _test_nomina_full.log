@@ -1,0 +1,61 @@
+TYPES = 21
+baseline outbox.max=220 inbox.max=220 errors=34
+
+[DISPAROS]
+  [ 1/21] anticipoNominaType           notbcant             UPDATE noop rows=1
+  [ 2/21] cargaFamiliarType            notbcgfm             UPDATE noop rows=1
+  [ 3/21] cargoGeneralType             notbcarg             UPDATE noop rows=1
+  [ 4/21] cargoLaboralType             notbcarg_admi        UPDATE noop rows=1
+  [ 5/21] catalogoNominaType           notbcnom             UPDATE noop rows=1
+  [ 6/21] configuracionNominaType      notbpara             UPDATE noop rows=1
+  [ 7/21] empleadoAuditoriaType        notbempl_audi        UPDATE noop rows=1
+  [ 8/21] empleadoDetalleType          notbempl_deta        UPDATE noop rows=1
+  [ 9/21] empleadoType                 notbempl             UPDATE noop rows=1
+  [10/21] firmaHorarioType             notbfirm             UPDATE noop rows=1
+  [11/21] fondoReservaType             notbfond_rese        UPDATE noop rows=1
+  [12/21] historialIngresoType         notbhieg             UPDATE noop rows=1
+  [13/21] nivelAcademicoType           notbnive_acad_empl   UPDATE noop rows=1
+  [14/21] nominaCabeceraType           notbcrol             UPDATE noop rows=1
+  [15/21] pagoNominaType               notbpago_nomi        UPDATE noop rows=1
+  [16/21] parametroNominaType          notbpara_gene        UPDATE noop rows=1
+  [17/21] patronalNominaType           notbpatr             UPDATE noop rows=1
+  [18/21] rolPagoType                  notbdrol             UPDATE noop rows=1
+  [19/21] rubroNominaType              notbrubr             UPDATE noop rows=1
+  [20/21] sectorIessType               notbsect_iess        UPDATE noop rows=1
+  [21/21] viaticoNominaType            notbcvia             UPDATE noop rows=1
+
+Disparados: 21/21
+
+[PROPAGACION] 90s
+  out+=29 inb+=0 proc+=0 err_total=34 (89s rest)
+  out+=29 inb+=29 proc+=29 err_total=35 (81s rest)
+
+[RESULTADOS]
+  # aggregate_type               inbox  proc  err   status
+----------------------------------------------------------------------------------------------------
+  1 anticipoNominaType           1      1     0     OK
+  2 cargaFamiliarType            1      1     0     OK
+  3 cargoGeneralType             1      1     0     OK
+  4 cargoLaboralType             1      1     0     OK
+  5 catalogoNominaType           1      1     0     OK
+  6 configuracionNominaType      1      1     0     OK
+  7 empleadoAuditoriaType        1      1     0     OK
+  8 empleadoDetalleType          1      1     0     OK
+  9 empleadoType                 1      1     0     OK
+ 10 firmaHorarioType             1      1     0     OK
+ 11 fondoReservaType             1      1     0     OK
+ 12 historialIngresoType         1      1     0     OK
+ 13 nivelAcademicoType           1      1     0     OK
+ 14 nominaCabeceraType           1      1     0     OK
+ 15 pagoNominaType               1      1     0     OK
+ 16 parametroNominaType          1      1     0     OK
+ 17 patronalNominaType           1      1     0     OK
+ 18 rolPagoType                  1      1     0     OK
+ 19 rubroNominaType              1      1     0     OK
+ 20 sectorIessType               1      1     0     OK
+ 21 viaticoNominaType            1      1     0     OK
+
+[RESUMEN] OK=21/21
+
+[ANTI-LOOP] outbox 3s mas tarde = +29 (initial fired=21)
+=== FIN ===

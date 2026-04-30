@@ -1,0 +1,355 @@
+====================================================================================================
+ REPORTE MULTI-MODULO: bases, tablas y aggregate_types
+ Servidor: 10.35.3.64,1433     Fecha: 2026-04-30
+ Modulos: CARTERA, NOMINA, PARTICIPE, RECAUDACIONES, SEGURIDAD, TESORERIA
+====================================================================================================
+
+Total entries en cdc_inbox_module_config: 203
+
+Distribucion por modulo:
+  CARTERA             : 91 types
+  PARTICIPE           : 40 types
+  CATALOGOS           : 22 types
+  NOMINA              : 21 types
+  RECAUDACIONES       : 11 types
+  SEGURIDAD           : 11 types
+  TESORERIA           : 7 types
+
+[Indexando triggers F1 en 11 BDs legacy...]
+  Indexados 269 aggregate_types con trigger F1
+
+[Buscando tablas Oracle FCME_USER...]
+
+
+####################################################################################################
+# MODULO: CARTERA     (91 aggregate_types)
+####################################################################################################
+
+Distribucion por BD legacy:
+   dbCG    : 4 types
+   dbCR    : 76 types
+   dbCT    : 4 types
+   dbFC    : 7 types
+
+  ----- BD: dbCG (4 aggregate_types) -----
+    [ON ]  cuentaAutomaticaDetalle_type             -> [dbCG].dbo.[cgtbprod_cnta_auto]  ->  FCME_USER.CUENTAAUTOMATICADETALLE_TYPE
+    [ON ]  cuentaAutomatica_type                    -> [dbCG].dbo.[cgtbprod_cnta_auto]  ->  FCME_USER.CUENTAAUTOMATICA_TYPE
+    [ON ]  cuentaPorCobrarType                      -> [dbCG].dbo.[cgtbrepo_anls_cnta]  ->  FCME_USER.CUENTAPORCOBRARTYPE
+    [ON ]  garantiaCredito_type                     -> [dbCG].dbo.[cgtbgara_hipo_cdio]  ->  FCME_USER.GARANTIACREDITO_TYPE
+
+  ----- BD: dbCR (76 aggregate_types) -----
+    [ON ]  abonoExtraordinario_type                 -> [dbCR].dbo.[crtbabno_extr]  ->  FCME_USER.ABONOEXTRAORDINARIO_TYPE
+    [ON ]  autorizacionCreditoDetalle_type          -> [dbCR].dbo.[crtbcred_autr_deta]  ->  FCME_USER.AUTORIZACIONCREDITODETALLE_TYPE
+    [ON ]  autorizacionCredito_type                 -> [dbCR].dbo.[crtbccbr_cred_judi]  ->  FCME_USER.AUTORIZACIONCREDITO_TYPE
+    [ON ]  calificacionCarteraDetalle_type          -> [dbCR].dbo.[crtbdvgo_cart_deta_diar]  ->  FCME_USER.CALIFICACIONCARTERADETALLE_TYPE
+    [ON ]  calificacionCartera_type                 -> [dbCR].dbo.[crtbcart_calf_prov]  ->  FCME_USER.CALIFICACIONCARTERA_TYPE
+    [ON ]  cancelacionCredito_type                  -> [dbCR].dbo.[crtboper_canc]  ->  FCME_USER.CANCELACIONCREDITO_TYPE
+    [ON ]  caucionCredito_type                      -> [dbCR].dbo.[crtbccbr_cred_judi]  ->  FCME_USER.CAUCIONCREDITO_TYPE
+    [ON ]  cobranzaJudicialDetalle_type             -> [dbCR].dbo.[crtbcobr_judi_deta]  ->  FCME_USER.COBRANZAJUDICIALDETALLE_TYPE
+    [ON ]  cobranzaJudicialDistribucion_type        -> [dbCR].dbo.[crtbcobr_judi_dist]  ->  FCME_USER.COBRANZAJUDICIALDISTRIBUCION_TYPE
+    [ON ]  cobranzaJudicial_type                    -> [dbCR].dbo.[crtbcobr_judi_dist]  ->  FCME_USER.COBRANZAJUDICIAL_TYPE
+    [ON ]  conceptoGastoJudicialType                -> [dbCR].dbo.[crtbccbr_cred_judi]  ->  FCME_USER.CONCEPTOGASTOJUDICIALTYPE
+    [ON ]  contabilizacionCredito_type              -> [dbCR].dbo.[crtbcaut_cred]  ->  FCME_USER.CONTABILIZACIONCREDITO_TYPE
+    [ON ]  convenioPagoCredito_type                 -> [dbCR].dbo.[crtbconv_pago]  ->  FCME_USER.CONVENIOPAGOCREDITO_TYPE
+    [ON ]  costoFinancieroCredito_type              -> [dbCR].dbo.[crtbcred_prea_whts]  ->  FCME_USER.COSTOFINANCIEROCREDITO_TYPE
+    [ON ]  creditoType                              -> [dbCR].dbo.[crtbcred_prea_whts]  ->  FCME_USER.CREDITOTYPE
+    [ON ]  cuentaCuotasType                         -> [dbCR].dbo.[crtbcdeb_cnta]  ->  FCME_USER.CUENTACUOTASTYPE
+    [ON ]  cuentaCxPCxCType                         -> [dbCR].dbo.[crtbcdeb_cnta]  ->  FCME_USER.CUENTACXPCXCTYPE
+    [ON ]  cuentaType                               -> [dbCR].dbo.[crtbcdeb_cnta]  ->  FCME_USER.CUENTATYPE
+    [ON ]  cuotaConvenio_type                       -> [dbCR].dbo.[crtbplpg_conv]  ->  FCME_USER.CUOTACONVENIO_TYPE
+    [ON ]  cuotaCreditoType                         -> [dbCR].dbo.[crtbrngo_autr_cred]  ->  FCME_USER.CUOTACREDITOTYPE
+    [ON ]  desembolsoCredito_type                   -> [dbCR].dbo.[crtbcred_prea_whts]  ->  FCME_USER.DESEMBOLSOCREDITO_TYPE
+    [ON ]  desembolsoDevolucion_type                -> [dbCR].dbo.[crtbdbso_devo]  ->  FCME_USER.DESEMBOLSODEVOLUCION_TYPE
+    [ON ]  detalleRecuperacion_type                 -> [dbCR].dbo.[crtbrecu_conv]  ->  FCME_USER.DETALLERECUPERACION_TYPE
+    [ON ]  devengamientoCarteraDetalle_type         -> [dbCR].dbo.[crtbdvgo_cart_deta]  ->  FCME_USER.DEVENGAMIENTOCARTERADETALLE_TYPE
+    [ON ]  devengamientoCartera_type                -> [dbCR].dbo.[crtbdvgo_cart_deta]  ->  FCME_USER.DEVENGAMIENTOCARTERA_TYPE
+    [ON ]  devolucionCredito_type                   -> [dbCR].dbo.[crtbdbso_devo]  ->  FCME_USER.DEVOLUCIONCREDITO_TYPE
+    [ON ]  devolucionMasivaDetalle_type             -> [dbCR].dbo.[crtbdevo_masi_deta]  ->  FCME_USER.DEVOLUCIONMASIVADETALLE_TYPE
+    [ON ]  devolucionMasiva_type                    -> [dbCR].dbo.[crtbdevo_masi_deta]  ->  FCME_USER.DEVOLUCIONMASIVA_TYPE
+    [ON ]  documentoCredito_type                    -> [dbCR].dbo.[crtbdocu_cred]  ->  FCME_USER.DOCUMENTOCREDITO_TYPE
+    [ON ]  estadoConvenioCredito_type               -> [dbCR].dbo.[crtbesta_conv_cred]  ->  FCME_USER.ESTADOCONVENIOCREDITO_TYPE
+    [ON ]  etapaJudicialCredito_type                -> [dbCR].dbo.[crtbccbr_cred_judi]  ->  FCME_USER.ETAPAJUDICIALCREDITO_TYPE
+    [ON ]  flujoTrabajoCredito_type                 -> [dbCR].dbo.[crtbcred_part]  ->  FCME_USER.FLUJOTRABAJOCREDITO_TYPE
+    [ON ]  gestionCobranzaAsignacion_type           -> [dbCR].dbo.[crtbgest_cart_asig]  ->  FCME_USER.GESTIONCOBRANZAASIGNACION_TYPE
+    [ON ]  gestionComunicacionCredito_type          -> [dbCR].dbo.[crtbgest_cred]  ->  FCME_USER.GESTIONCOMUNICACIONCREDITO_TYPE
+    [ON ]  grupoCreditoDocumento_type               -> [dbCR].dbo.[crtbdocu_cred]  ->  FCME_USER.GRUPOCREDITODOCUMENTO_TYPE
+    [ON ]  informacionLegal_type                    -> [dbCR].dbo.[crtbinfo_legl]  ->  FCME_USER.INFORMACIONLEGAL_TYPE
+    [ON ]  liquidacionDiariaCredito_type            -> [dbCR].dbo.[crtbcred_liqd_diar]  ->  FCME_USER.LIQUIDACIONDIARIACREDITO_TYPE
+    [ON ]  medidaJudicialType                       -> [dbCR].dbo.[crtbccbr_cred_judi]  ->  FCME_USER.MEDIDAJUDICIALTYPE
+    [ON ]  movimientoContableCredito_type           -> [dbCR].dbo.[crtbcred_liqd_diar]  ->  FCME_USER.MOVIMIENTOCONTABLECREDITO_TYPE
+    [ON ]  obligacionRol_type                       -> [dbCR].dbo.[crtbobli_rol]  ->  FCME_USER.OBLIGACIONROL_TYPE
+    [ON ]  operacionConyugal_type                   -> [dbCR].dbo.[crtboper_dref_liqd]  ->  FCME_USER.OPERACIONCONYUGAL_TYPE
+    [ON ]  pagoCredito_type                         -> [dbCR].dbo.[crtpagos]  ->  FCME_USER.PAGOCREDITO_TYPE
+    [ON ]  pagosCreditoType                         -> [dbCR].dbo.[crtbcred_prea_whts]  ->  FCME_USER.PAGOSCREDITOTYPE
+    [ON ]  personaCreditoType                       -> [dbCR].dbo.[crtbcred_part]  ->  FCME_USER.PERSONACREDITOTYPE
+    [ON ]  personaCxPCxCType                        -> [dbCR].dbo.[crtbdsal_oper]  ->  FCME_USER.PERSONACXPCXCTYPE
+    [ON ]  planPagoAjuste_type                      -> [dbCR].dbo.[crtbplan_ajus]  ->  FCME_USER.PLANPAGOAJUSTE_TYPE
+    [ON ]  planPago_type                            -> [dbCR].dbo.[crtplpag]  ->  FCME_USER.PLANPAGO_TYPE
+    [ON ]  plazoVencido_type                        -> [dbCR].dbo.[crtbcred_plzo_venc]  ->  FCME_USER.PLAZOVENCIDO_TYPE
+    [ON ]  precalificacionCredito_type              -> [dbCR].dbo.[crtbccbr_cred_judi]  ->  FCME_USER.PRECALIFICACIONCREDITO_TYPE
+    [ON ]  recuperacionConvenio_type                -> [dbCR].dbo.[crtbrecu_conv]  ->  FCME_USER.RECUPERACIONCONVENIO_TYPE
+    [ON ]  recuperacionCredito_type                 -> [dbCR].dbo.[crtbrecu_conv]  ->  FCME_USER.RECUPERACIONCREDITO_TYPE
+    [ON ]  referenciaDeudor_type                    -> [dbCR].dbo.[crtbdeud_conv]  ->  FCME_USER.REFERENCIADEUDOR_TYPE
+    [ON ]  refinanciamientoCreditoType              -> [dbCR].dbo.[crtbcred_prea_whts]  ->  FCME_USER.REFINANCIAMIENTOCREDITOTYPE
+    [ON ]  reporteSBSCabecera_type                  -> [dbCR].dbo.[crtrepo_sobr]  ->  FCME_USER.REPORTESBSCABECERA_TYPE
+    [ON ]  reporteSBSDetalle_type                   -> [dbCR].dbo.[crtrepo_sobr]  ->  FCME_USER.REPORTESBSDETALLE_TYPE
+    [ON ]  reporteSBSGarantiaReal_type              -> [dbCR].dbo.[crtbinfo_gara_real_sibs]  ->  FCME_USER.REPORTESBSGARANTIAREAL_TYPE
+    [ON ]  reporteSBSOperacionAnterior_type         -> [dbCR].dbo.[crtbctrl_oper_ante_sibs]  ->  FCME_USER.REPORTESBSOPERACIONANTERIOR_TYPE
+    [ON ]  reporteSBSOperacionCancelada_type        -> [dbCR].dbo.[crtbdsal_oper]  ->  FCME_USER.REPORTESBSOPERACIONCANCELADA_TYPE
+    [ON ]  reporteSBSOperacionConcedida_type        -> [dbCR].dbo.[crtbdsal_oper]  ->  FCME_USER.REPORTESBSOPERACIONCONCEDIDA_TYPE
+    [ON ]  reporteSBSSaldoOperacion_type            -> [dbCR].dbo.[crtbdsal_oper]  ->  FCME_USER.REPORTESBSSALDOOPERACION_TYPE
+    [ON ]  reporteSBSSujetoRiesgo_type              -> [dbCR].dbo.[crtbrepo_sobr]  ->  FCME_USER.REPORTESBSSUJETORIESGO_TYPE
+    [ON ]  rubroCobranza_type                       -> [dbCR].dbo.[crtrubros_cobr]  ->  FCME_USER.RUBROCOBRANZA_TYPE
+    [ON ]  rubrosCobranzaDetalle_type               -> [dbCR].dbo.[crtrubros_cobr]  ->  FCME_USER.RUBROSCOBRANZADETALLE_TYPE
+    [ON ]  saldoCarteraDetalle_type                 -> [dbCR].dbo.[crtbsald_cart_deta]  ->  FCME_USER.SALDOCARTERADETALLE_TYPE
+    [ON ]  saldoCartera_type                        -> [dbCR].dbo.[crtbsald_cart]  ->  FCME_USER.SALDOCARTERA_TYPE
+    [ON ]  seguimientoAutorizacion_type             -> [dbCR].dbo.[crtbsegi_autr_ofic]  ->  FCME_USER.SEGUIMIENTOAUTORIZACION_TYPE
+    [ON ]  seguroCredito_type                       -> [dbCR].dbo.[crtbsegu_cred]  ->  FCME_USER.SEGUROCREDITO_TYPE
+    [ON ]  sobranteCaucion_type                     -> [dbCR].dbo.[crtbsobr_caut]  ->  FCME_USER.(no_existe)
+    [ON ]  sobranteCredito_type                     -> [dbCR].dbo.[crtsobrante]  ->  FCME_USER.SOBRANTECREDITO_TYPE
+    [ON ]  sobranteDistribucion_type                -> [dbCR].dbo.[crtsobrante]  ->  FCME_USER.SOBRANTEDISTRIBUCION_TYPE
+    [ON ]  solidarioCredito_type                    -> [dbCR].dbo.[crtsolid]  ->  FCME_USER.SOLIDARIOCREDITO_TYPE
+    [ON ]  tasaInteresCredito_type                  -> [dbCR].dbo.[crtbrngo_intr_cred]  ->  FCME_USER.TASAINTERESCREDITO_TYPE
+    [ON ]  tipoCredito_type                         -> [dbCR].dbo.[crtbtipo_cred_sibs]  ->  FCME_USER.TIPOCREDITO_TYPE
+    [ON ]  tipoSobrante_type                        -> [dbCR].dbo.[crtrepo_sobr]  ->  FCME_USER.TIPOSOBRANTE_TYPE
+    [ON ]  transaccionRecuperacion_type             -> [dbCR].dbo.[crtbrecu_conv]  ->  FCME_USER.TRANSACCIONRECUPERACION_TYPE
+    [ON ]  unidadJudicialType                       -> [dbCR].dbo.[crtbccbr_cred_judi]  ->  FCME_USER.UNIDADJUDICIALTYPE
+
+  ----- BD: dbCT (4 aggregate_types) -----
+    [ON ]  auxDatosCobrosAdicionalesType            -> [dbCT].dbo.[cttbtran_inve_auxi]  ->  FCME_USER.AUXDATOSCOBROSADICIONALESTYPE
+    [ON ]  estadoLegalType                          -> [dbCT].dbo.[cttbesta_docu_inve]  ->  FCME_USER.ESTADOLEGALTYPE
+    [ON ]  procesoAccionType                        -> [dbCT].dbo.[cttbproc_obse_tran]  ->  FCME_USER.PROCESOACCIONTYPE
+    [ON ]  reporteSBSGaranteCodeudor_type           -> [dbCT].dbo.[cttbrepo_gene]  ->  FCME_USER.REPORTESBSGARANTECODEUDOR_TYPE
+
+  ----- BD: dbFC (7 aggregate_types) -----
+    [ON ]  cuentaPersonasType                       -> [dbFC].dbo.[fctbmvto_impr_esta_cnta]  ->  FCME_USER.CUENTAPERSONASTYPE
+    [ON ]  cuentasEnLegalType                       -> [dbFC].dbo.[fctbdinf_liqd_cnta_sibs]  ->  FCME_USER.CUENTASENLEGALTYPE
+    [ON ]  fechasProcesoType                        -> [dbFC].dbo.[fctbproc_tseg_noti]  ->  FCME_USER.FECHASPROCESOTYPE
+    [ON ]  grupoCreditoDetalle_type                 -> [dbFC].dbo.[fctbdeta_liqd_cred]  ->  FCME_USER.GRUPOCREDITODETALLE_TYPE
+    [ON ]  referenciaCliente_type                   -> [dbFC].dbo.[sfct_afiliado_referencias]  ->  FCME_USER.REFERENCIACLIENTE_TYPE
+    [ON ]  saldoCxPCxCType                          -> [dbFC].dbo.[sfct_saldos_diarios_afiliados]  ->  FCME_USER.SALDOCXPCXCTYPE
+    [ON ]  saldoVinculadoType                       -> [dbFC].dbo.[sfct_saldos_diarios_afiliados]  ->  FCME_USER.SALDOVINCULADOTYPE
+
+
+####################################################################################################
+# MODULO: NOMINA     (21 aggregate_types)
+####################################################################################################
+
+Distribucion por BD legacy:
+   dbNO    : 21 types
+
+  ----- BD: dbNO (21 aggregate_types) -----
+    [ON ]  anticipoNominaType                       -> [dbNO].dbo.[notbcant]  ->  FCME_USER.ANTICIPONOMINA_TYPE
+    [ON ]  cargaFamiliarType                        -> [dbNO].dbo.[notbcgfm]  ->  FCME_USER.CARGAFAMILIAR_TYPE
+    [ON ]  cargoGeneralType                         -> [dbNO].dbo.[notbcarg]  ->  FCME_USER.CARGOGENERAL_TYPE
+    [ON ]  cargoLaboralType                         -> [dbNO].dbo.[notbcarg_admi]  ->  FCME_USER.CARGOLABORAL_TYPE
+    [ON ]  catalogoNominaType                       -> [dbNO].dbo.[notbcnom]  ->  FCME_USER.CATALOGONOMINA_TYPE
+    [ON ]  configuracionNominaType                  -> [dbNO].dbo.[notbpara]  ->  FCME_USER.CONFIGURACIONNOMINA_TYPE
+    [ON ]  empleadoAuditoriaType                    -> [dbNO].dbo.[notbempl_audi]  ->  FCME_USER.EMPLEADOAUDITORIA_TYPE
+    [ON ]  empleadoDetalleType                      -> [dbNO].dbo.[notbempl_deta]  ->  FCME_USER.EMPLEADODETALLE_TYPE
+    [ON ]  empleadoType                             -> [dbNO].dbo.[notbempl]  ->  FCME_USER.EMPLEADO_TYPE
+    [ON ]  firmaHorarioType                         -> [dbNO].dbo.[notbfirm]  ->  FCME_USER.FIRMAHORARIO_TYPE
+    [ON ]  fondoReservaType                         -> [dbNO].dbo.[notbfond_rese]  ->  FCME_USER.FONDORESERVA_TYPE
+    [ON ]  historialIngresoType                     -> [dbNO].dbo.[notbhieg]  ->  FCME_USER.HISTORIALINGRESO_TYPE
+    [ON ]  nivelAcademicoType                       -> [dbNO].dbo.[notbnive_acad_empl]  ->  FCME_USER.NIVELACADEMICO_TYPE
+    [ON ]  nominaCabeceraType                       -> [dbNO].dbo.[notbcrol]  ->  FCME_USER.NOMINACABECERA_TYPE
+    [ON ]  pagoNominaType                           -> [dbNO].dbo.[notbpago_nomi]  ->  FCME_USER.PAGONOMINA_TYPE
+    [ON ]  parametroNominaType                      -> [dbNO].dbo.[notbpara_gene]  ->  FCME_USER.PARAMETRONOMINA_TYPE
+    [ON ]  patronalNominaType                       -> [dbNO].dbo.[notbpatr]  ->  FCME_USER.PATRONALNOMINA_TYPE
+    [ON ]  rolPagoType                              -> [dbNO].dbo.[notbdrol]  ->  FCME_USER.ROLPAGO_TYPE
+    [ON ]  rubroNominaType                          -> [dbNO].dbo.[notbrubr]  ->  FCME_USER.RUBRONOMINA_TYPE
+    [ON ]  sectorIessType                           -> [dbNO].dbo.[notbsect_iess]  ->  FCME_USER.SECTORIESS_TYPE
+    [ON ]  viaticoNominaType                        -> [dbNO].dbo.[notbcvia]  ->  FCME_USER.VIATICONOMINA_TYPE
+
+
+####################################################################################################
+# MODULO: PARTICIPE     (40 aggregate_types)
+####################################################################################################
+
+Distribucion por BD legacy:
+   ?       : 1 types
+   dbCR    : 1 types
+   dbCT    : 1 types
+   dbFC    : 35 types
+   dbIM    : 1 types
+   dbSV    : 1 types
+
+  ----- BD: ? (1 aggregate_types) -----
+    [ON ]  comisionParticipeType                    -> [?].dbo.[(no detectado)]  ->  FCME_USER.COMISIONPARTICIPE_TYPE
+
+  ----- BD: dbCR (1 aggregate_types) -----
+    [ON ]  personaVinculacionesType                 -> [dbCR].dbo.[crtoblig]  ->  FCME_USER.PERSONAVINCULACIONESTYPE
+
+  ----- BD: dbCT (1 aggregate_types) -----
+    [ON ]  distribucionAfiliadoType                 -> [dbCT].dbo.[cttbmatr_dist_afil]  ->  FCME_USER.DISTRIBUCIONAFILIADO_TYPE
+
+  ----- BD: dbFC (35 aggregate_types) -----
+    [ON ]  actualizacionAfiliadoType                -> [dbFC].dbo.[fctbafil_actu]  ->  FCME_USER.(no_existe)
+    [ON ]  actualizacionDocumentosType              -> [dbFC].dbo.[fctbafil_info_actu_docs]  ->  FCME_USER.(no_existe)
+    [ON ]  agendaMailAfiliadoType                   -> [dbFC].dbo.[fctbagen_mail]  ->  FCME_USER.AGENDAMAILAFILIADO_TYPE
+    [ON ]  areaLaboralParticipeType                 -> [dbFC].dbo.[fctbarea_lbrl]  ->  FCME_USER.AREALABORALPARTICIPE_TYPE
+    [ON ]  auditoriaAfiliadoType                    -> [dbFC].dbo.[sfct_motivo_mant_afiliados]  ->  FCME_USER.AUDITORIAAFILIADO_TYPE
+    [ON ]  beneficiarioParticipeType                -> [dbFC].dbo.[sfct_beneficiario]  ->  FCME_USER.BENEFICIARIOPARTICIPE_TYPE
+    [ON ]  cuentaBancariaAfiliadoType               -> [dbFC].dbo.[sfct_padbs]  ->  FCME_USER.CUENTABANCARIAAFILIADO_TYPE
+    [ON ]  documentacionAfiliadoType                -> [dbFC].dbo.[fctbcart_rpag]  ->  FCME_USER.DOCUMENTACIONAFILIADO_TYPE
+    [ON ]  firmanteParticipeType                    -> [dbFC].dbo.[sfct_firmante]  ->  FCME_USER.FIRMANTEPARTICIPE_TYPE
+    [ON ]  grupoFamiliarType                        -> [dbFC].dbo.[sfct_grupo_fami]  ->  FCME_USER.GRUPOFAMILIAR_TYPE
+    [ON ]  imagenesType                             -> [dbFC].dbo.[fctbpart_foto]  ->  FCME_USER.IMAGENESTYPE
+    [ON ]  informacionAdicionalAfiliadoType         -> [dbFC].dbo.[fctbafil_dcap]  ->  FCME_USER.INFORMACIONADICIONALAFILIADO_TYPE
+    [ON ]  institucionType                          -> [dbFC].dbo.[sfct_institucion]  ->  FCME_USER.INSTITUCION_TYPE
+    [ON ]  juridicoInformacionBasicaType            -> [dbFC].dbo.[fctbjuri_inst]  ->  FCME_USER.JURIDICOINFORMACIONBASICATYPE
+    [ON ]  motivoContableType                       -> [dbFC].dbo.[sfct_motivo_cnta_cble]  ->  FCME_USER.MOTIVOCONTABLE_TYPE
+    [ON ]  movimientoCuentaType                     -> [dbFC].dbo.[sfct_banco]  ->  FCME_USER.MOVIMIENTOCUENTA_TYPE
+    [ON ]  movimientoTemporalType                   -> [dbFC].dbo.[sfct_movimiento_temp]  ->  FCME_USER.MOVIMIENTOTEMPORAL_TYPE
+    [ON ]  naturalInformacionAdicionalType          -> [dbFC].dbo.[sfct_banco]  ->  FCME_USER.NATURALINFORMACIONADICIONALTYPE
+    [ON ]  naturalInformacionBasicaType             -> [dbFC].dbo.[sfct_beneficiario]  ->  FCME_USER.NATURALINFORMACIONBASICATYPE
+    [ON ]  naturalIngresosEgresosType               -> [dbFC].dbo.[sfct_afiliado_otros]  ->  FCME_USER.NATURALINGRESOSEGRESOSTYPE
+    [ON ]  naturalTrabajoType                       -> [dbFC].dbo.[fctbafil_actu]  ->  FCME_USER.NATURALTRABAJOTYPE
+    [ON ]  otrosIngresosAfiliadoType                -> [dbFC].dbo.[fctbotro_ingr_afil]  ->  FCME_USER.OTROSINGRESOSAFILIADO_TYPE
+    [ON ]  personaDireccionesType                   -> [dbFC].dbo.[sfct_banco]  ->  FCME_USER.PERSONADIRECCIONESTYPE
+    [ON ]  personaReferenciasBancariasType          -> [dbFC].dbo.[sfct_afiliado]  ->  FCME_USER.PERSONAREFERENCIASBANCARIASTYPE
+    [ON ]  personaReferenciasPersonalesType         -> [dbFC].dbo.[fctbafil_ahor_refe]  ->  FCME_USER.PERSONAREFERENCIASPERSONALESTYPE
+    [ON ]  personaTelefonosType                     -> [dbFC].dbo.[fctbafil_actu]  ->  FCME_USER.PERSONATELEFONOSTYPE
+    [ON ]  personaType                              -> [dbFC].dbo.[sfct_banco]  ->  FCME_USER.PERSONATYPE
+    [ON ]  referenciaParticipeType                  -> [dbFC].dbo.[sfct_referencias]  ->  FCME_USER.REFERENCIAPARTICIPE_TYPE
+    [ON ]  reporteSIBSParticipeType                 -> [dbFC].dbo.[fctbcinf_part_sibs]  ->  FCME_USER.REPORTESIBSPARTICIPE_TYPE
+    [ON ]  retiroLiquidacionType                    -> [dbFC].dbo.[sfct_retiro]  ->  FCME_USER.RETIROLIQUIDACION_TYPE
+    [ON ]  retiroVoluntarioEstadoType               -> [dbFC].dbo.[fctbrvol_esta_afil]  ->  FCME_USER.RETIROVOLUNTARIOESTADO_TYPE
+    [ON ]  rolNominaType                            -> [dbFC].dbo.[sfct_cabecera_rol]  ->  FCME_USER.ROLNOMINA_TYPE
+    [ON ]  saldoDiarioRubroType                     -> [dbFC].dbo.[fctbsald_diar_rubr]  ->  FCME_USER.SALDODIARIORUBRO_TYPE
+    [ON ]  saldoDiarioType                          -> [dbFC].dbo.[fctbsald_diar_afil_rubr]  ->  FCME_USER.SALDODIARIO_TYPE
+    [ON ]  servicioAdicionalType                    -> [dbFC].dbo.[fctbcser_adic]  ->  FCME_USER.SERVICIOADICIONAL_TYPE
+
+  ----- BD: dbIM (1 aggregate_types) -----
+    [ON ]  personaFirmasType                        -> [dbIM].dbo.[imtbbene_firm]  ->  FCME_USER.PERSONAFIRMASTYPE
+
+  ----- BD: dbSV (1 aggregate_types) -----
+    [ON ]  seguroVidaParticipeType                  -> [dbSV].dbo.[svtbfmpg]  ->  FCME_USER.SEGUROVIDAPARTICIPE_TYPE
+
+
+####################################################################################################
+# MODULO: RECAUDACIONES     (11 aggregate_types)
+####################################################################################################
+
+Distribucion por BD legacy:
+   dbFC    : 1 types
+   dbRC    : 10 types
+
+  ----- BD: dbFC (1 aggregate_types) -----
+    [ON ]  tipoDescuento_type                       -> [dbFC].dbo.[fctbdsto]  ->  FCME_USER.TIPODESCUENTO_TYPE
+
+  ----- BD: dbRC (10 aggregate_types) -----
+    [ON ]  aplicacionRecaudacion_type               -> [dbRC].dbo.[rctbapli_reca]  ->  FCME_USER.APLICACIONRECAUDACION_TYPE
+    [ON ]  caucionRecaudacion_type                  -> [dbRC].dbo.[rctbcaut]  ->  FCME_USER.CAUCIONRECAUDACION_TYPE
+    [ON ]  devolucionRendicion_type                 -> [dbRC].dbo.[rctbdevo_rind]  ->  FCME_USER.DEVOLUCIONRENDICION_TYPE
+    [ON ]  estadoCuenta_type                        -> [dbRC].dbo.[rctbesta_cnta]  ->  FCME_USER.ESTADOCUENTA_TYPE
+    [ON ]  estadoRecaudacion_type                   -> [dbRC].dbo.[rctbesta_reca]  ->  FCME_USER.ESTADORECAUDACION_TYPE
+    [ON ]  recaudacion_type                         -> [dbRC].dbo.[rctbreca]  ->  FCME_USER.RECAUDACION_TYPE
+    [ON ]  rendicion_type                           -> [dbRC].dbo.[rctbrind]  ->  FCME_USER.RENDICION_TYPE
+    [ON ]  saldoRecaudacion_type                    -> [dbRC].dbo.[rctbcsal_reca]  ->  FCME_USER.SALDORECAUDACION_TYPE
+    [ON ]  sciRecaudacion_type                      -> [dbRC].dbo.[rctbcsci_bce]  ->  FCME_USER.SCIRECAUDACION_TYPE
+    [ON ]  transaccionRecaudacion_type              -> [dbRC].dbo.[rctbtrec]  ->  FCME_USER.TRANSACCIONRECAUDACION_TYPE
+
+
+####################################################################################################
+# MODULO: SEGURIDAD     (11 aggregate_types)
+####################################################################################################
+
+Distribucion por BD legacy:
+   dbSG    : 11 types
+
+  ----- BD: dbSG (11 aggregate_types) -----
+    [ON ]  aplicacionFuncion_type                   -> [dbSG].dbo.[sgtbapli]  ->  FCME_USER.APLICACIONFUNCION_TYPE
+    [ON ]  auditoriaFlujo_type                      -> [dbSG].dbo.[sgtbtran]  ->  FCME_USER.AUDITORIAFLUJO_TYPE
+    [ON ]  cuentaNostroType                         -> [dbSG].dbo.[sgtbcnts]  ->  FCME_USER.CUENTANOSTROTYPE
+    [ON ]  empresa_type                             -> [dbSG].dbo.[sgtbempr]  ->  FCME_USER.EMPRESA_TYPE
+    [ON ]  firmaSeguridad_type                      -> [dbSG].dbo.[sgtbfirm]  ->  FCME_USER.FIRMASEGURIDAD_TYPE
+    [ON ]  fondoSeguridad_type                      -> [dbSG].dbo.[sgtbfond]  ->  FCME_USER.FONDOSEGURIDAD_TYPE
+    [ON ]  localidad_type                           -> [dbSG].dbo.[sgtbloca]  ->  FCME_USER.LOCALIDAD_TYPE
+    [ON ]  parametroSeguridad_type                  -> [dbSG].dbo.[sgtbpara]  ->  FCME_USER.PARAMETROSEGURIDAD_TYPE
+    [ON ]  passwordSeguridad_type                   -> [dbSG].dbo.[sgtbpass]  ->  FCME_USER.PASSWORDSEGURIDAD_TYPE
+    [ON ]  usuarioSeguridad_type                    -> [dbSG].dbo.[sgtbusua]  ->  FCME_USER.USUARIOSEGURIDAD_TYPE
+    [ON ]  usuarioServicio_type                     -> [dbSG].dbo.[sgtbconf_serv_apli]  ->  FCME_USER.USUARIOSERVICIO_TYPE
+
+
+####################################################################################################
+# MODULO: TESORERIA     (7 aggregate_types)
+####################################################################################################
+
+Distribucion por BD legacy:
+   ?       : 7 types
+
+  ----- BD: ? (7 aggregate_types) -----
+    [ON ]  bancoTesoreria_type                      -> [?].dbo.[(no detectado)]  ->  FCME_USER.BANCOTESORERIA_TYPE
+    [ON ]  cheque_type                              -> [?].dbo.[(no detectado)]  ->  FCME_USER.CHEQUE_TYPE
+    [ON ]  estadoRegistroTesoreria_type             -> [?].dbo.[(no detectado)]  ->  FCME_USER.ESTADOREGISTROTESORERIA_TYPE
+    [ON ]  facturaTesoreria_type                    -> [?].dbo.[(no detectado)]  ->  FCME_USER.FACTURATESORERIA_TYPE
+    [ON ]  ordenPago_type                           -> [?].dbo.[(no detectado)]  ->  FCME_USER.ORDENPAGO_TYPE
+    [ON ]  reversaDesembolso_type                   -> [?].dbo.[(no detectado)]  ->  FCME_USER.REVERSADESEMBOLSO_TYPE
+    [ON ]  transferenciaOrden_type                  -> [?].dbo.[(no detectado)]  ->  FCME_USER.TRANSFERENCIAORDEN_TYPE
+
+
+####################################################################################################
+# MODULO: CATALOGOS     (22 aggregate_types)
+####################################################################################################
+
+Distribucion por BD legacy:
+   dbCG    : 2 types
+   dbCT    : 1 types
+   dbFC    : 15 types
+   dbGN    : 4 types
+
+  ----- BD: dbCG (2 aggregate_types) -----
+    [ON ]  auxiliarContable_type                    -> [dbCG].dbo.[cgtbauxi]  ->  FCME_USER.AUXILIARCONTABLE_TYPE
+    [ON ]  centroCosto_type                         -> [dbCG].dbo.[cgtbccos]  ->  FCME_USER.CENTROCOSTO_TYPE
+
+  ----- BD: dbCT (1 aggregate_types) -----
+    [ON ]  distritoCanton_type                      -> [dbCT].dbo.[cttbdist_cant]  ->  FCME_USER.DISTRITOCANTON_TYPE
+
+  ----- BD: dbFC (15 aggregate_types) -----
+    [ON ]  areaLaboral_type                         -> [dbFC].dbo.[fctbarea_lbrl]  ->  FCME_USER.AREALABORAL_TYPE
+    [ON ]  bancoSpi_type                            -> [dbFC].dbo.[fctbbnco_ospi]  ->  FCME_USER.BANCOSPI_TYPE
+    [ON ]  banco_type                               -> [dbFC].dbo.[sfct_banco]  ->  FCME_USER.BANCO_TYPE
+    [ON ]  categoria_type                           -> [dbFC].dbo.[sfct_categoria]  ->  FCME_USER.CATEGORIA_TYPE
+    [ON ]  ciudad_type                              -> [dbFC].dbo.[sfct_ciudad]  ->  FCME_USER.CIUDAD_TYPE
+    [ON ]  distritoRol_type                         -> [dbFC].dbo.[fctbdeta_rol_dist]  ->  FCME_USER.DISTRITOROL_TYPE
+    [ON ]  motivo_type                              -> [dbFC].dbo.[sfct_motivo]  ->  FCME_USER.MOTIVO_TYPE
+    [ON ]  movimientoReporte_type                   -> [dbFC].dbo.[fctbmvto_repo]  ->  FCME_USER.MOVIMIENTOREPORTE_TYPE
+    [ON ]  origenIngreso_type                       -> [dbFC].dbo.[fctborgn_ingr]  ->  FCME_USER.ORIGENINGRESO_TYPE
+    [ON ]  parametro_type                           -> [dbFC].dbo.[fctbpara]  ->  FCME_USER.PARAMETRO_TYPE
+    [ON ]  parroquia_type                           -> [dbFC].dbo.[sfct_parroquia]  ->  FCME_USER.PARROQUIA_TYPE
+    [ON ]  provincia_type                           -> [dbFC].dbo.[sfct_provincia]  ->  FCME_USER.PROVINCIA_TYPE
+    [ON ]  rubroRenta_type                          -> [dbFC].dbo.[fctbrubr_rent]  ->  FCME_USER.RUBRORENTA_TYPE
+    [ON ]  tipoDato_type                            -> [dbFC].dbo.[fctbtdat]  ->  FCME_USER.TIPODATO_TYPE
+    [ON ]  titulo_type                              -> [dbFC].dbo.[sfct_titulos]  ->  FCME_USER.TITULO_TYPE
+
+  ----- BD: dbGN (4 aggregate_types) -----
+    [ON ]  documento_type                           -> [dbGN].dbo.[gntbdcto]  ->  FCME_USER.DOCUMENTO_TYPE
+    [ON ]  jornadaLaboral_type                      -> [dbGN].dbo.[gntbjorn_lbrl]  ->  FCME_USER.JORNADALABORAL_TYPE
+    [ON ]  operadoraCelular_type                    -> [dbGN].dbo.[gntboper_celu]  ->  FCME_USER.OPERADORACELULAR_TYPE
+    [ON ]  pais_type                                -> [dbGN].dbo.[gntbpais]  ->  FCME_USER.PAIS_TYPE
+
+
+====================================================================================================
+ RESUMEN EJECUTIVO
+====================================================================================================
+
+  Total aggregate_types     : 203
+  Active (F2 routing)       : 203/203
+  Con trigger F1 detectado  : 195/203
+  Con tabla Oracle destino  : 200/203
+
+  BDs legacy en uso:
+    dbCG    : 6 types
+    dbCR    : 77 types
+    dbCT    : 6 types
+    dbFC    : 58 types
+    dbGN    : 4 types
+    dbIM    : 1 types
+    dbNO    : 21 types
+    dbRC    : 10 types
+    dbSG    : 11 types
+    dbSV    : 1 types
+
+=== FIN ===
+Archivo: C:\Users\Usuario\Downloads\Bulk\modulos_bases_tablas_types.txt

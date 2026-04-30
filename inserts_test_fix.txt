@@ -1,0 +1,370 @@
+====================================================================================================
+INSERTS DE PRUEBA - 32 TYPES de CARTERA con wrappers parchados
+Servidor: 10.35.3.64,1433        Fecha: 2026-04-29
+====================================================================================================
+
+USO:
+  1) Aplica primero los wrappers parchados:  python _gen_cartera_wrappers.py --apply
+  2) Ejecuta este script (5 inserts por tabla legacy fuente).
+  3) Verifica filas en FCME_USER.<TYPE> y errores en FCME_USER.CDC_INBOX_ERRORS.
+
+Cada bloque marca el TYPE de Oracle al que llega via Kafka -> CDC_INBOX -> wrapper.
+Seed con offset 50000: no choca con inserts anteriores (que usaron seed < 10000).
+FKs resueltos contra valores reales de las tablas padre.
+
+Tablas legacy fuente para los 32 TYPES: 19
+  dbCR.crtbcred_liqd_diar  ->  LIQUIDACIONDIARIACREDITO_TYPE, MOVIMIENTOCONTABLECREDITO_TYPE
+  dbCR.crtbcred_part  ->  FLUJOTRABAJOCREDITO_TYPE, PERSONACREDITOTYPE
+  dbCR.crtbcred_prea_whts  ->  COSTOFINANCIEROCREDITO_TYPE, CREDITOTYPE, DESEMBOLSOCREDITO_TYPE, PAGOSCREDITOTYPE, REFINANCIAMIENTOCREDITOTYPE
+  dbCR.crtbdeud_conv  ->  REFERENCIADEUDOR_TYPE
+  dbCR.crtbdevo_masi_deta  ->  DEVOLUCIONMASIVADETALLE_TYPE, DEVOLUCIONMASIVA_TYPE
+  dbCR.crtbdsal_oper  ->  PERSONACXPCXCTYPE, REPORTESBSOPERACIONCANCELADA_TYPE, REPORTESBSOPERACIONCONCEDIDA_TYPE, REPORTESBSSALDOOPERACION_TYPE
+  dbCR.crtboper_dref_liqd  ->  OPERACIONCONYUGAL_TYPE
+  dbCR.crtbrecu_conv  ->  DETALLERECUPERACION_TYPE, RECUPERACIONCONVENIO_TYPE, RECUPERACIONCREDITO_TYPE, TRANSACCIONRECUPERACION_TYPE
+  dbCR.crtbrepo_sobr  ->  REPORTESBSSUJETORIESGO_TYPE
+  dbCR.crtbrngo_autr_cred  ->  CUOTACREDITOTYPE
+  dbCR.crtbsald_cart_deta  ->  SALDOCARTERADETALLE_TYPE
+  dbCR.crtpagos  ->  PAGOCREDITO_TYPE
+  dbCR.crtsolid  ->  SOLIDARIOCREDITO_TYPE
+  dbCT.cttbesta_docu_inve  ->  ESTADOLEGALTYPE
+  dbCT.cttbrepo_gene  ->  REPORTESBSGARANTECODEUDOR_TYPE
+  dbCT.cttbtran_inve_auxi  ->  AUXDATOSCOBROSADICIONALESTYPE
+  dbFC.fctbdeta_liqd_cred  ->  GRUPOCREDITODETALLE_TYPE
+  dbFC.fctbdinf_liqd_cnta_sibs  ->  CUENTASENLEGALTYPE
+  dbFC.fctbproc_tseg_noti  ->  FECHASPROCESOTYPE
+
+
+####################################################################################################
+# BD: dbCR
+####################################################################################################
+USE [dbCR];
+GO
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCR].[dbo].[crtbcred_liqd_diar]
+--   ->  fcme_newcore.CARTERA.LIQUIDACIONDIARIACREDITO_TYPE        (agg='liquidacionDiariaCredito_type')
+--   ->  fcme_newcore.CARTERA.MOVIMIENTOCONTABLECREDITO_TYPE       (agg='movimientoContableCredito_type')
+-- PK   : co_empr, ti_cred, aa_cred, qs_cred, sc_liqd
+-- FKs  :
+--   (ti_cred, aa_cred, qs_cred               ) -> [dbo].[crtoblig]                    [OK, 200 rows]
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[crtbcred_liqd_diar] ([co_empr], [ti_cred], [aa_cred], [qs_cred], [fe_cort], [ci_rubr], [mo_rubr], [st_cred], [st_liqd_diar]) VALUES (50061, 1, 2021, 100775, '2024-01-02 01:00:00', 50061, 50061.9900, 'X', 'X');
+INSERT INTO [dbo].[crtbcred_liqd_diar] ([co_empr], [ti_cred], [aa_cred], [qs_cred], [fe_cort], [ci_rubr], [mo_rubr], [st_cred], [st_liqd_diar]) VALUES (50062, 1, 2021, 100805, '2024-01-03 02:00:00', 50062, 50062.9900, 'X', 'X');
+INSERT INTO [dbo].[crtbcred_liqd_diar] ([co_empr], [ti_cred], [aa_cred], [qs_cred], [fe_cort], [ci_rubr], [mo_rubr], [st_cred], [st_liqd_diar]) VALUES (50063, 1, 2021, 100835, '2024-01-04 03:00:00', 50063, 50063.9900, 'X', 'X');
+INSERT INTO [dbo].[crtbcred_liqd_diar] ([co_empr], [ti_cred], [aa_cred], [qs_cred], [fe_cort], [ci_rubr], [mo_rubr], [st_cred], [st_liqd_diar]) VALUES (50064, 1, 2021, 100865, '2024-01-05 04:00:00', 50064, 50064.9900, 'X', 'X');
+INSERT INTO [dbo].[crtbcred_liqd_diar] ([co_empr], [ti_cred], [aa_cred], [qs_cred], [fe_cort], [ci_rubr], [mo_rubr], [st_cred], [st_liqd_diar]) VALUES (50065, 1, 2021, 100895, '2024-01-06 05:00:00', 50065, 50065.9900, 'X', 'X');
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCR].[dbo].[crtbcred_part]
+--   ->  fcme_newcore.CARTERA.FLUJOTRABAJOCREDITO_TYPE             (agg='flujoTrabajoCredito_type')
+--   ->  fcme_newcore.CARTERA.PERSONACREDITOTYPE                   (agg='personaCreditoType')
+-- PK   : ti_cred, aa_cred, qs_cred
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[crtbcred_part] ([ti_cred], [aa_cred], [qs_cred], [nu_iden], [ti_iden], [fe_ingr], [co_usua_ingr], [fe_modi], [co_usua_modi], [fe_elim], [co_usua_elim], [st_regi]) VALUES (50082, 50082, 50082, 'X081_01', 'X', '2024-01-02 01:00:00', 50082, '2024-01-02 01:00:00', 50082, '2024-01-02 01:00:00', 50082, 50082);
+INSERT INTO [dbo].[crtbcred_part] ([ti_cred], [aa_cred], [qs_cred], [nu_iden], [ti_iden], [fe_ingr], [co_usua_ingr], [fe_modi], [co_usua_modi], [fe_elim], [co_usua_elim], [st_regi]) VALUES (50083, 50083, 50083, 'X081_02', 'X', '2024-01-03 02:00:00', 50083, '2024-01-03 02:00:00', 50083, '2024-01-03 02:00:00', 50083, 50083);
+INSERT INTO [dbo].[crtbcred_part] ([ti_cred], [aa_cred], [qs_cred], [nu_iden], [ti_iden], [fe_ingr], [co_usua_ingr], [fe_modi], [co_usua_modi], [fe_elim], [co_usua_elim], [st_regi]) VALUES (50084, 50084, 50084, 'X081_03', 'X', '2024-01-04 03:00:00', 50084, '2024-01-04 03:00:00', 50084, '2024-01-04 03:00:00', 50084, 50084);
+INSERT INTO [dbo].[crtbcred_part] ([ti_cred], [aa_cred], [qs_cred], [nu_iden], [ti_iden], [fe_ingr], [co_usua_ingr], [fe_modi], [co_usua_modi], [fe_elim], [co_usua_elim], [st_regi]) VALUES (50085, 50085, 50085, 'X081_04', 'X', '2024-01-05 04:00:00', 50085, '2024-01-05 04:00:00', 50085, '2024-01-05 04:00:00', 50085, 50085);
+INSERT INTO [dbo].[crtbcred_part] ([ti_cred], [aa_cred], [qs_cred], [nu_iden], [ti_iden], [fe_ingr], [co_usua_ingr], [fe_modi], [co_usua_modi], [fe_elim], [co_usua_elim], [st_regi]) VALUES (50086, 50086, 50086, 'X081_05', 'X', '2024-01-06 05:00:00', 50086, '2024-01-06 05:00:00', 50086, '2024-01-06 05:00:00', 50086, 50086);
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCR].[dbo].[crtbcred_prea_whts]
+--   ->  fcme_newcore.CARTERA.COSTOFINANCIEROCREDITO_TYPE          (agg='costoFinancieroCredito_type')
+--   ->  fcme_newcore.CARTERA.CREDITOTYPE                          (agg='creditoType')
+--   ->  fcme_newcore.CARTERA.DESEMBOLSOCREDITO_TYPE               (agg='desembolsoCredito_type')
+--   ->  fcme_newcore.CARTERA.PAGOSCREDITOTYPE                     (agg='pagosCreditoType')
+--   ->  fcme_newcore.CARTERA.REFINANCIAMIENTOCREDITOTYPE          (agg='refinanciamientoCreditoType')
+-- PK   : sc_prea, ci_cedu
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[crtbcred_prea_whts] ([sc_prea], [ci_cedu], [ti_serv], [ti_calf], [co_rol], [mo_suel_liqd], [ti_cred_cncd], [co_comb], [ds_mail], [mo_cred], [mo_cuot], [nu_plzo], [ds_oper], [ds_obsr], [co_usua_ingr], [fe_ingr], [co_usua_aprb], [fe_aprb], [ho_aprb], [fe_elim], [co_usua_elim], [co_tran_whtp], [in_fide], [st_regi_whts], [st_regi]) VALUES (54293, 'X292_01', 54293, 'X2', 'X292_0', 54293.9900, 54293, 'X292_0', 'X292_01', 54293.9900, 54293.9900, 54293, 'X292_01', 'X292_01', 54293, '2024-01-02 01:00:00', 54293, '2024-01-02 01:00:00', 'X292_01', '2024-01-02 01:00:00', 54293, 'X292_01', 'X', 'X', 54293);
+INSERT INTO [dbo].[crtbcred_prea_whts] ([sc_prea], [ci_cedu], [ti_serv], [ti_calf], [co_rol], [mo_suel_liqd], [ti_cred_cncd], [co_comb], [ds_mail], [mo_cred], [mo_cuot], [nu_plzo], [ds_oper], [ds_obsr], [co_usua_ingr], [fe_ingr], [co_usua_aprb], [fe_aprb], [ho_aprb], [fe_elim], [co_usua_elim], [co_tran_whtp], [in_fide], [st_regi_whts], [st_regi]) VALUES (54294, 'X292_02', 54294, 'X2', 'X292_0', 54294.9900, 54294, 'X292_0', 'X292_02', 54294.9900, 54294.9900, 54294, 'X292_02', 'X292_02', 54294, '2024-01-03 02:00:00', 54294, '2024-01-03 02:00:00', 'X292_02', '2024-01-03 02:00:00', 54294, 'X292_02', 'X', 'X', 54294);
+INSERT INTO [dbo].[crtbcred_prea_whts] ([sc_prea], [ci_cedu], [ti_serv], [ti_calf], [co_rol], [mo_suel_liqd], [ti_cred_cncd], [co_comb], [ds_mail], [mo_cred], [mo_cuot], [nu_plzo], [ds_oper], [ds_obsr], [co_usua_ingr], [fe_ingr], [co_usua_aprb], [fe_aprb], [ho_aprb], [fe_elim], [co_usua_elim], [co_tran_whtp], [in_fide], [st_regi_whts], [st_regi]) VALUES (54295, 'X292_03', 54295, 'X2', 'X292_0', 54295.9900, 54295, 'X292_0', 'X292_03', 54295.9900, 54295.9900, 54295, 'X292_03', 'X292_03', 54295, '2024-01-04 03:00:00', 54295, '2024-01-04 03:00:00', 'X292_03', '2024-01-04 03:00:00', 54295, 'X292_03', 'X', 'X', 54295);
+INSERT INTO [dbo].[crtbcred_prea_whts] ([sc_prea], [ci_cedu], [ti_serv], [ti_calf], [co_rol], [mo_suel_liqd], [ti_cred_cncd], [co_comb], [ds_mail], [mo_cred], [mo_cuot], [nu_plzo], [ds_oper], [ds_obsr], [co_usua_ingr], [fe_ingr], [co_usua_aprb], [fe_aprb], [ho_aprb], [fe_elim], [co_usua_elim], [co_tran_whtp], [in_fide], [st_regi_whts], [st_regi]) VALUES (54296, 'X292_04', 54296, 'X2', 'X292_0', 54296.9900, 54296, 'X292_0', 'X292_04', 54296.9900, 54296.9900, 54296, 'X292_04', 'X292_04', 54296, '2024-01-05 04:00:00', 54296, '2024-01-05 04:00:00', 'X292_04', '2024-01-05 04:00:00', 54296, 'X292_04', 'X', 'X', 54296);
+INSERT INTO [dbo].[crtbcred_prea_whts] ([sc_prea], [ci_cedu], [ti_serv], [ti_calf], [co_rol], [mo_suel_liqd], [ti_cred_cncd], [co_comb], [ds_mail], [mo_cred], [mo_cuot], [nu_plzo], [ds_oper], [ds_obsr], [co_usua_ingr], [fe_ingr], [co_usua_aprb], [fe_aprb], [ho_aprb], [fe_elim], [co_usua_elim], [co_tran_whtp], [in_fide], [st_regi_whts], [st_regi]) VALUES (54297, 'X292_05', 54297, 'X2', 'X292_0', 54297.9900, 54297, 'X292_0', 'X292_05', 54297.9900, 54297.9900, 54297, 'X292_05', 'X292_05', 54297, '2024-01-06 05:00:00', 54297, '2024-01-06 05:00:00', 'X292_05', '2024-01-06 05:00:00', 54297, 'X292_05', 'X', 'X', 54297);
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCR].[dbo].[crtbdeud_conv]
+--   ->  fcme_newcore.CARTERA.REFERENCIADEUDOR_TYPE                (agg='referenciaDeudor_type')
+-- PK   : co_empr, ti_cred, aa_cred, qs_cred, sc_conv, co_tipo_deud
+-- FKs  :
+--   (ti_cred, aa_cred, qs_cred, sc_conv      ) -> [dbo].[crtbconv_pago]               [OK, 200 rows]
+--   (co_tipo_deud                            ) -> [dbo].[crtbtipo_deud]               [OK, 2 rows]
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[crtbdeud_conv] ([co_empr], [ti_cred], [aa_cred], [qs_cred], [sc_conv], [co_tipo_deud], [no_nomb], [ci_cedu], [fe_crea_deud], [co_usua_crea], [fe_modi_deud], [co_usua_modi], [fe_elim_deud], [co_usua_elim], [st_regi]) VALUES (52244, 2, 11, 13010695, 193, 1, 'X243_01', 'X243_01', '2024-01-02 01:00:00', 52244, '2024-01-02 01:00:00', 52244, '2024-01-02 01:00:00', 52244, 52244);
+INSERT INTO [dbo].[crtbdeud_conv] ([co_empr], [ti_cred], [aa_cred], [qs_cred], [sc_conv], [co_tipo_deud], [no_nomb], [ci_cedu], [fe_crea_deud], [co_usua_crea], [fe_modi_deud], [co_usua_modi], [fe_elim_deud], [co_usua_elim], [st_regi]) VALUES (52245, 2, 11, 13011047, 176, 3, 'X243_02', 'X243_02', '2024-01-03 02:00:00', 52245, '2024-01-03 02:00:00', 52245, '2024-01-03 02:00:00', 52245, 52245);
+INSERT INTO [dbo].[crtbdeud_conv] ([co_empr], [ti_cred], [aa_cred], [qs_cred], [sc_conv], [co_tipo_deud], [no_nomb], [ci_cedu], [fe_crea_deud], [co_usua_crea], [fe_modi_deud], [co_usua_modi], [fe_elim_deud], [co_usua_elim], [st_regi]) VALUES (52246, 2, 11, 13011066, 326, 1, 'X243_03', 'X243_03', '2024-01-04 03:00:00', 52246, '2024-01-04 03:00:00', 52246, '2024-01-04 03:00:00', 52246, 52246);
+INSERT INTO [dbo].[crtbdeud_conv] ([co_empr], [ti_cred], [aa_cred], [qs_cred], [sc_conv], [co_tipo_deud], [no_nomb], [ci_cedu], [fe_crea_deud], [co_usua_crea], [fe_modi_deud], [co_usua_modi], [fe_elim_deud], [co_usua_elim], [st_regi]) VALUES (52247, 2, 11, 13020039, 227, 3, 'X243_04', 'X243_04', '2024-01-05 04:00:00', 52247, '2024-01-05 04:00:00', 52247, '2024-01-05 04:00:00', 52247, 52247);
+INSERT INTO [dbo].[crtbdeud_conv] ([co_empr], [ti_cred], [aa_cred], [qs_cred], [sc_conv], [co_tipo_deud], [no_nomb], [ci_cedu], [fe_crea_deud], [co_usua_crea], [fe_modi_deud], [co_usua_modi], [fe_elim_deud], [co_usua_elim], [st_regi]) VALUES (52248, 2, 11, 13020040, 213, 1, 'X243_05', 'X243_05', '2024-01-06 05:00:00', 52248, '2024-01-06 05:00:00', 52248, '2024-01-06 05:00:00', 52248, 52248);
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCR].[dbo].[crtbdevo_masi_deta]
+--   ->  fcme_newcore.CARTERA.DEVOLUCIONMASIVADETALLE_TYPE         (agg='devolucionMasivaDetalle_type')
+--   ->  fcme_newcore.CARTERA.DEVOLUCIONMASIVA_TYPE                (agg='devolucionMasiva_type')
+-- PK   : co_empr, sc_devo_deta, sc_devo_masi
+-- FKs  :
+--   (co_empr, sc_devo_masi                   ) -> [dbo].[crtbdevo_masi]               [OK, 148 rows]
+--   (sc_sobr                                 ) -> [dbo].[crtsobrante]                 [OK, 200 rows]
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[crtbdevo_masi_deta] ([co_empr], [sc_devo_masi], [ci_clie], [sc_sobr], [mo_disp], [sc_mvto], [co_liqd_rubr], [mo_mvto], [st_devo_deta], [co_rubr_rol]) VALUES (1, 130, 'X484_01', 85, 51485.9900, 51485, 51485, 51485.9900, 'X', 'X4');
+INSERT INTO [dbo].[crtbdevo_masi_deta] ([co_empr], [sc_devo_masi], [ci_clie], [sc_sobr], [mo_disp], [sc_mvto], [co_liqd_rubr], [mo_mvto], [st_devo_deta], [co_rubr_rol]) VALUES (1, 132, 'X484_02', 86, 51486.9900, 51486, 51486, 51486.9900, 'X', 'X4');
+INSERT INTO [dbo].[crtbdevo_masi_deta] ([co_empr], [sc_devo_masi], [ci_clie], [sc_sobr], [mo_disp], [sc_mvto], [co_liqd_rubr], [mo_mvto], [st_devo_deta], [co_rubr_rol]) VALUES (1, 133, 'X484_03', 87, 51487.9900, 51487, 51487, 51487.9900, 'X', 'X4');
+INSERT INTO [dbo].[crtbdevo_masi_deta] ([co_empr], [sc_devo_masi], [ci_clie], [sc_sobr], [mo_disp], [sc_mvto], [co_liqd_rubr], [mo_mvto], [st_devo_deta], [co_rubr_rol]) VALUES (1, 134, 'X484_04', 88, 51488.9900, 51488, 51488, 51488.9900, 'X', 'X4');
+INSERT INTO [dbo].[crtbdevo_masi_deta] ([co_empr], [sc_devo_masi], [ci_clie], [sc_sobr], [mo_disp], [sc_mvto], [co_liqd_rubr], [mo_mvto], [st_devo_deta], [co_rubr_rol]) VALUES (1, 135, 'X484_05', 89, 51489.9900, 51489, 51489, 51489.9900, 'X', 'X4');
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCR].[dbo].[crtbdsal_oper]
+--   ->  fcme_newcore.CARTERA.PERSONACXPCXCTYPE                    (agg='personaCxPCxCType')
+--   ->  fcme_newcore.CARTERA.REPORTESBSOPERACIONCANCELADA_TYPE    (agg='reporteSBSOperacionCancelada_type')
+--   ->  fcme_newcore.CARTERA.REPORTESBSOPERACIONCONCEDIDA_TYPE    (agg='reporteSBSOperacionConcedida_type')
+--   ->  fcme_newcore.CARTERA.REPORTESBSSALDOOPERACION_TYPE        (agg='reporteSBSSaldoOperacion_type')
+-- PK   : sc_regi, ci_cedu, ti_iden, nu_oper
+-- FKs  :
+--   (sc_regi                                 ) -> [dbo].[crtbcsal_oper_sibs]          [OK, 200 rows]
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[crtbdsal_oper] ([sc_regi], [ci_cedu], [ti_iden], [nu_oper], [co_tipo_cred], [nu_dias_moro], [ti_calf], [pr_inte], [mo_xven], [mo_ndev_inte], [mo_venc], [mo_cost_oper], [pr_inte_ordi], [pr_inte_mora], [mo_dema_judi], [mo_cart_cast], [mo_prov_requ], [mo_prov_cons], [mo_cnta_indv], [mo_suje_prov], [co_tamo], [mo_capi_cred], [mo_cuot], [fe_docu]) VALUES (83, 'X081_01', 'X', 'X081_01', 'X0', 54082, 'X08', 54082.9900, 54082.9900, 54082.9900, 54082.9900, 54082.9900, 54082.9900, 54082.9900, 54082.9900, 54082.9900, 54082.9900, 54082.9900, 54082.9900, 54082.9900, 'X0', 54082.9900, 54082.9900, '2024-01-02 01:00:00');
+INSERT INTO [dbo].[crtbdsal_oper] ([sc_regi], [ci_cedu], [ti_iden], [nu_oper], [co_tipo_cred], [nu_dias_moro], [ti_calf], [pr_inte], [mo_xven], [mo_ndev_inte], [mo_venc], [mo_cost_oper], [pr_inte_ordi], [pr_inte_mora], [mo_dema_judi], [mo_cart_cast], [mo_prov_requ], [mo_prov_cons], [mo_cnta_indv], [mo_suje_prov], [co_tamo], [mo_capi_cred], [mo_cuot], [fe_docu]) VALUES (84, 'X081_02', 'X', 'X081_02', 'X0', 54083, 'X08', 54083.9900, 54083.9900, 54083.9900, 54083.9900, 54083.9900, 54083.9900, 54083.9900, 54083.9900, 54083.9900, 54083.9900, 54083.9900, 54083.9900, 54083.9900, 'X0', 54083.9900, 54083.9900, '2024-01-03 02:00:00');
+INSERT INTO [dbo].[crtbdsal_oper] ([sc_regi], [ci_cedu], [ti_iden], [nu_oper], [co_tipo_cred], [nu_dias_moro], [ti_calf], [pr_inte], [mo_xven], [mo_ndev_inte], [mo_venc], [mo_cost_oper], [pr_inte_ordi], [pr_inte_mora], [mo_dema_judi], [mo_cart_cast], [mo_prov_requ], [mo_prov_cons], [mo_cnta_indv], [mo_suje_prov], [co_tamo], [mo_capi_cred], [mo_cuot], [fe_docu]) VALUES (85, 'X081_03', 'X', 'X081_03', 'X0', 54084, 'X08', 54084.9900, 54084.9900, 54084.9900, 54084.9900, 54084.9900, 54084.9900, 54084.9900, 54084.9900, 54084.9900, 54084.9900, 54084.9900, 54084.9900, 54084.9900, 'X0', 54084.9900, 54084.9900, '2024-01-04 03:00:00');
+INSERT INTO [dbo].[crtbdsal_oper] ([sc_regi], [ci_cedu], [ti_iden], [nu_oper], [co_tipo_cred], [nu_dias_moro], [ti_calf], [pr_inte], [mo_xven], [mo_ndev_inte], [mo_venc], [mo_cost_oper], [pr_inte_ordi], [pr_inte_mora], [mo_dema_judi], [mo_cart_cast], [mo_prov_requ], [mo_prov_cons], [mo_cnta_indv], [mo_suje_prov], [co_tamo], [mo_capi_cred], [mo_cuot], [fe_docu]) VALUES (86, 'X081_04', 'X', 'X081_04', 'X0', 54085, 'X08', 54085.9900, 54085.9900, 54085.9900, 54085.9900, 54085.9900, 54085.9900, 54085.9900, 54085.9900, 54085.9900, 54085.9900, 54085.9900, 54085.9900, 54085.9900, 'X0', 54085.9900, 54085.9900, '2024-01-05 04:00:00');
+INSERT INTO [dbo].[crtbdsal_oper] ([sc_regi], [ci_cedu], [ti_iden], [nu_oper], [co_tipo_cred], [nu_dias_moro], [ti_calf], [pr_inte], [mo_xven], [mo_ndev_inte], [mo_venc], [mo_cost_oper], [pr_inte_ordi], [pr_inte_mora], [mo_dema_judi], [mo_cart_cast], [mo_prov_requ], [mo_prov_cons], [mo_cnta_indv], [mo_suje_prov], [co_tamo], [mo_capi_cred], [mo_cuot], [fe_docu]) VALUES (87, 'X081_05', 'X', 'X081_05', 'X0', 54086, 'X08', 54086.9900, 54086.9900, 54086.9900, 54086.9900, 54086.9900, 54086.9900, 54086.9900, 54086.9900, 54086.9900, 54086.9900, 54086.9900, 54086.9900, 54086.9900, 'X0', 54086.9900, 54086.9900, '2024-01-06 05:00:00');
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCR].[dbo].[crtboper_dref_liqd]
+--   ->  fcme_newcore.CARTERA.OPERACIONCONYUGAL_TYPE               (agg='operacionConyugal_type')
+-- PK   : ti_cred, aa_cred, qs_cred, qs_refe
+-- FKs  :
+--   (co_tipo_deud                            ) -> [dbo].[crtbtipo_deud]               [OK, 2 rows]
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[crtboper_dref_liqd] ([ti_cred], [aa_cred], [qs_cred], [qs_refe], [ci_rol], [va_liqd], [mo_dsto_fcme], [co_tipo_deud], [co_otro_ingr_rubr]) VALUES (56509, 56509, 56509, 56509, 'X508_0', 56509.9900, 56509.9900, 3, 56509);
+INSERT INTO [dbo].[crtboper_dref_liqd] ([ti_cred], [aa_cred], [qs_cred], [qs_refe], [ci_rol], [va_liqd], [mo_dsto_fcme], [co_tipo_deud], [co_otro_ingr_rubr]) VALUES (56510, 56510, 56510, 56510, 'X508_0', 56510.9900, 56510.9900, 1, 56510);
+INSERT INTO [dbo].[crtboper_dref_liqd] ([ti_cred], [aa_cred], [qs_cred], [qs_refe], [ci_rol], [va_liqd], [mo_dsto_fcme], [co_tipo_deud], [co_otro_ingr_rubr]) VALUES (56511, 56511, 56511, 56511, 'X508_0', 56511.9900, 56511.9900, 3, 56511);
+INSERT INTO [dbo].[crtboper_dref_liqd] ([ti_cred], [aa_cred], [qs_cred], [qs_refe], [ci_rol], [va_liqd], [mo_dsto_fcme], [co_tipo_deud], [co_otro_ingr_rubr]) VALUES (56512, 56512, 56512, 56512, 'X508_0', 56512.9900, 56512.9900, 1, 56512);
+INSERT INTO [dbo].[crtboper_dref_liqd] ([ti_cred], [aa_cred], [qs_cred], [qs_refe], [ci_rol], [va_liqd], [mo_dsto_fcme], [co_tipo_deud], [co_otro_ingr_rubr]) VALUES (56513, 56513, 56513, 56513, 'X508_0', 56513.9900, 56513.9900, 3, 56513);
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCR].[dbo].[crtbrecu_conv]
+--   ->  fcme_newcore.CARTERA.DETALLERECUPERACION_TYPE             (agg='detalleRecuperacion_type')
+--   ->  fcme_newcore.CARTERA.RECUPERACIONCONVENIO_TYPE            (agg='recuperacionConvenio_type')
+--   ->  fcme_newcore.CARTERA.RECUPERACIONCREDITO_TYPE             (agg='recuperacionCredito_type')
+--   ->  fcme_newcore.CARTERA.TRANSACCIONRECUPERACION_TYPE         (agg='transaccionRecuperacion_type')
+-- PK   : ti_cred, aa_cred, qs_cred, qs_abno
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[crtbrecu_conv] ([ti_cred], [aa_cred], [qs_cred], [qs_abno], [ti_recp], [st_regi], [st_mvto], [fe_mvto], [fe_abno], [fe_cble], [fe_revz], [mo_mvto], [nu_cpbt_cble], [in_conf_fond], [st_autr], [ds_liqd], [co_usua_conf], [co_usua_liqd], [nu_dias_atra], [ti_revz], [co_rol], [co_usua_revz], [ti_diar], [in_cble_revz]) VALUES (50246, 50246, 50246, 50246, 50246, 'X', 'X', '2024-01-02 01:00:00', '2024-01-02 01:00:00', '2024-01-02 01:00:00', '2024-01-02 01:00:00', 50246.9900, 'X245_01', 'X', 'X', 'X245_01', 'X245_0', 'X245_0', 50246, 50246, 'X245_0', 50246, 'X2', 'X');
+INSERT INTO [dbo].[crtbrecu_conv] ([ti_cred], [aa_cred], [qs_cred], [qs_abno], [ti_recp], [st_regi], [st_mvto], [fe_mvto], [fe_abno], [fe_cble], [fe_revz], [mo_mvto], [nu_cpbt_cble], [in_conf_fond], [st_autr], [ds_liqd], [co_usua_conf], [co_usua_liqd], [nu_dias_atra], [ti_revz], [co_rol], [co_usua_revz], [ti_diar], [in_cble_revz]) VALUES (50247, 50247, 50247, 50247, 50247, 'X', 'X', '2024-01-03 02:00:00', '2024-01-03 02:00:00', '2024-01-03 02:00:00', '2024-01-03 02:00:00', 50247.9900, 'X245_02', 'X', 'X', 'X245_02', 'X245_0', 'X245_0', 50247, 50247, 'X245_0', 50247, 'X2', 'X');
+INSERT INTO [dbo].[crtbrecu_conv] ([ti_cred], [aa_cred], [qs_cred], [qs_abno], [ti_recp], [st_regi], [st_mvto], [fe_mvto], [fe_abno], [fe_cble], [fe_revz], [mo_mvto], [nu_cpbt_cble], [in_conf_fond], [st_autr], [ds_liqd], [co_usua_conf], [co_usua_liqd], [nu_dias_atra], [ti_revz], [co_rol], [co_usua_revz], [ti_diar], [in_cble_revz]) VALUES (50248, 50248, 50248, 50248, 50248, 'X', 'X', '2024-01-04 03:00:00', '2024-01-04 03:00:00', '2024-01-04 03:00:00', '2024-01-04 03:00:00', 50248.9900, 'X245_03', 'X', 'X', 'X245_03', 'X245_0', 'X245_0', 50248, 50248, 'X245_0', 50248, 'X2', 'X');
+INSERT INTO [dbo].[crtbrecu_conv] ([ti_cred], [aa_cred], [qs_cred], [qs_abno], [ti_recp], [st_regi], [st_mvto], [fe_mvto], [fe_abno], [fe_cble], [fe_revz], [mo_mvto], [nu_cpbt_cble], [in_conf_fond], [st_autr], [ds_liqd], [co_usua_conf], [co_usua_liqd], [nu_dias_atra], [ti_revz], [co_rol], [co_usua_revz], [ti_diar], [in_cble_revz]) VALUES (50249, 50249, 50249, 50249, 50249, 'X', 'X', '2024-01-05 04:00:00', '2024-01-05 04:00:00', '2024-01-05 04:00:00', '2024-01-05 04:00:00', 50249.9900, 'X245_04', 'X', 'X', 'X245_04', 'X245_0', 'X245_0', 50249, 50249, 'X245_0', 50249, 'X2', 'X');
+INSERT INTO [dbo].[crtbrecu_conv] ([ti_cred], [aa_cred], [qs_cred], [qs_abno], [ti_recp], [st_regi], [st_mvto], [fe_mvto], [fe_abno], [fe_cble], [fe_revz], [mo_mvto], [nu_cpbt_cble], [in_conf_fond], [st_autr], [ds_liqd], [co_usua_conf], [co_usua_liqd], [nu_dias_atra], [ti_revz], [co_rol], [co_usua_revz], [ti_diar], [in_cble_revz]) VALUES (50250, 50250, 50250, 50250, 50250, 'X', 'X', '2024-01-06 05:00:00', '2024-01-06 05:00:00', '2024-01-06 05:00:00', '2024-01-06 05:00:00', 50250.9900, 'X245_05', 'X', 'X', 'X245_05', 'X245_0', 'X245_0', 50250, 50250, 'X245_0', 50250, 'X2', 'X');
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCR].[dbo].[crtbrepo_sobr]
+--   ->  fcme_newcore.CARTERA.REPORTESBSSUJETORIESGO_TYPE          (agg='reporteSBSSujetoRiesgo_type')
+-- PK   : (sin PK)
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[crtbrepo_sobr] ([co_usua], [co_prov], [no_prov], [ti_inst], [co_inst], [no_inst], [co_rol], [co_afil], [no_afil], [ti_cred], [aa_cred], [qs_Cred], [qs_abno], [va_abno], [mo_capi], [mo_inte], [mo_mora], [mo_unic], [mo_solc], [mo_sobr], [nu_ctas], [co_paga], [sc_reca]) VALUES (56358, 'X3', 'X357_01', 'X', 'X357_0', 'X357_01', 'X357_0', 'X357_01', 'X357_01', 56358, 56358, 56358, 56358, 56358.9900, 56358.9900, 56358.9900, 56358.9900, 56358.9900, 56358.9900, 56358.9900, 'X357_01', 'X', 56358);
+INSERT INTO [dbo].[crtbrepo_sobr] ([co_usua], [co_prov], [no_prov], [ti_inst], [co_inst], [no_inst], [co_rol], [co_afil], [no_afil], [ti_cred], [aa_cred], [qs_Cred], [qs_abno], [va_abno], [mo_capi], [mo_inte], [mo_mora], [mo_unic], [mo_solc], [mo_sobr], [nu_ctas], [co_paga], [sc_reca]) VALUES (56359, 'X3', 'X357_02', 'X', 'X357_0', 'X357_02', 'X357_0', 'X357_02', 'X357_02', 56359, 56359, 56359, 56359, 56359.9900, 56359.9900, 56359.9900, 56359.9900, 56359.9900, 56359.9900, 56359.9900, 'X357_02', 'X', 56359);
+INSERT INTO [dbo].[crtbrepo_sobr] ([co_usua], [co_prov], [no_prov], [ti_inst], [co_inst], [no_inst], [co_rol], [co_afil], [no_afil], [ti_cred], [aa_cred], [qs_Cred], [qs_abno], [va_abno], [mo_capi], [mo_inte], [mo_mora], [mo_unic], [mo_solc], [mo_sobr], [nu_ctas], [co_paga], [sc_reca]) VALUES (56360, 'X3', 'X357_03', 'X', 'X357_0', 'X357_03', 'X357_0', 'X357_03', 'X357_03', 56360, 56360, 56360, 56360, 56360.9900, 56360.9900, 56360.9900, 56360.9900, 56360.9900, 56360.9900, 56360.9900, 'X357_03', 'X', 56360);
+INSERT INTO [dbo].[crtbrepo_sobr] ([co_usua], [co_prov], [no_prov], [ti_inst], [co_inst], [no_inst], [co_rol], [co_afil], [no_afil], [ti_cred], [aa_cred], [qs_Cred], [qs_abno], [va_abno], [mo_capi], [mo_inte], [mo_mora], [mo_unic], [mo_solc], [mo_sobr], [nu_ctas], [co_paga], [sc_reca]) VALUES (56361, 'X3', 'X357_04', 'X', 'X357_0', 'X357_04', 'X357_0', 'X357_04', 'X357_04', 56361, 56361, 56361, 56361, 56361.9900, 56361.9900, 56361.9900, 56361.9900, 56361.9900, 56361.9900, 56361.9900, 'X357_04', 'X', 56361);
+INSERT INTO [dbo].[crtbrepo_sobr] ([co_usua], [co_prov], [no_prov], [ti_inst], [co_inst], [no_inst], [co_rol], [co_afil], [no_afil], [ti_cred], [aa_cred], [qs_Cred], [qs_abno], [va_abno], [mo_capi], [mo_inte], [mo_mora], [mo_unic], [mo_solc], [mo_sobr], [nu_ctas], [co_paga], [sc_reca]) VALUES (56362, 'X3', 'X357_05', 'X', 'X357_0', 'X357_05', 'X357_0', 'X357_05', 'X357_05', 56362, 56362, 56362, 56362, 56362.9900, 56362.9900, 56362.9900, 56362.9900, 56362.9900, 56362.9900, 56362.9900, 'X357_05', 'X', 56362);
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCR].[dbo].[crtbrngo_autr_cred]
+--   ->  fcme_newcore.CARTERA.CUOTACREDITOTYPE                     (agg='cuotaCreditoType')
+-- PK   : co_empr, sc_rngo
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[crtbrngo_autr_cred] ([co_empr], [sc_rngo], [co_usua], [co_carg], [co_grup], [mo_mini], [mo_maxi], [fe_ingr], [co_usua_ingr], [fe_modi], [co_usua_modi], [fe_elim], [co_usua_elim], [st_rngo]) VALUES (50103, 50103, 50103, 50103, 50103, 50103.9900, 50103.9900, '2024-01-02 01:00:00', 50103, '2024-01-02 01:00:00', 50103, '2024-01-02 01:00:00', 50103, 'X');
+INSERT INTO [dbo].[crtbrngo_autr_cred] ([co_empr], [sc_rngo], [co_usua], [co_carg], [co_grup], [mo_mini], [mo_maxi], [fe_ingr], [co_usua_ingr], [fe_modi], [co_usua_modi], [fe_elim], [co_usua_elim], [st_rngo]) VALUES (50104, 50104, 50104, 50104, 50104, 50104.9900, 50104.9900, '2024-01-03 02:00:00', 50104, '2024-01-03 02:00:00', 50104, '2024-01-03 02:00:00', 50104, 'X');
+INSERT INTO [dbo].[crtbrngo_autr_cred] ([co_empr], [sc_rngo], [co_usua], [co_carg], [co_grup], [mo_mini], [mo_maxi], [fe_ingr], [co_usua_ingr], [fe_modi], [co_usua_modi], [fe_elim], [co_usua_elim], [st_rngo]) VALUES (50105, 50105, 50105, 50105, 50105, 50105.9900, 50105.9900, '2024-01-04 03:00:00', 50105, '2024-01-04 03:00:00', 50105, '2024-01-04 03:00:00', 50105, 'X');
+INSERT INTO [dbo].[crtbrngo_autr_cred] ([co_empr], [sc_rngo], [co_usua], [co_carg], [co_grup], [mo_mini], [mo_maxi], [fe_ingr], [co_usua_ingr], [fe_modi], [co_usua_modi], [fe_elim], [co_usua_elim], [st_rngo]) VALUES (50106, 50106, 50106, 50106, 50106, 50106.9900, 50106.9900, '2024-01-05 04:00:00', 50106, '2024-01-05 04:00:00', 50106, '2024-01-05 04:00:00', 50106, 'X');
+INSERT INTO [dbo].[crtbrngo_autr_cred] ([co_empr], [sc_rngo], [co_usua], [co_carg], [co_grup], [mo_mini], [mo_maxi], [fe_ingr], [co_usua_ingr], [fe_modi], [co_usua_modi], [fe_elim], [co_usua_elim], [st_rngo]) VALUES (50107, 50107, 50107, 50107, 50107, 50107.9900, 50107.9900, '2024-01-06 05:00:00', 50107, '2024-01-06 05:00:00', 50107, '2024-01-06 05:00:00', 50107, 'X');
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCR].[dbo].[crtbsald_cart_deta]
+--   ->  fcme_newcore.CARTERA.SALDOCARTERADETALLE_TYPE             (agg='saldoCarteraDetalle_type')
+-- PK   : (sin PK)
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[crtbsald_cart_deta] ([fe_cort], [ti_cred], [aa_cred], [qs_cred], [nu_dcto], [mo_sald_capi_vcdo], [mo_sald_capi_xven], [mo_inte_dvgo], [mo_inte_abno], [co_empr]) VALUES ('2024-01-02 01:00:00', 50090, 50090, 50090, 50090, 50090.9900, 50090.9900, 50090.9900, 50090.9900, 50090);
+INSERT INTO [dbo].[crtbsald_cart_deta] ([fe_cort], [ti_cred], [aa_cred], [qs_cred], [nu_dcto], [mo_sald_capi_vcdo], [mo_sald_capi_xven], [mo_inte_dvgo], [mo_inte_abno], [co_empr]) VALUES ('2024-01-03 02:00:00', 50091, 50091, 50091, 50091, 50091.9900, 50091.9900, 50091.9900, 50091.9900, 50091);
+INSERT INTO [dbo].[crtbsald_cart_deta] ([fe_cort], [ti_cred], [aa_cred], [qs_cred], [nu_dcto], [mo_sald_capi_vcdo], [mo_sald_capi_xven], [mo_inte_dvgo], [mo_inte_abno], [co_empr]) VALUES ('2024-01-04 03:00:00', 50092, 50092, 50092, 50092, 50092.9900, 50092.9900, 50092.9900, 50092.9900, 50092);
+INSERT INTO [dbo].[crtbsald_cart_deta] ([fe_cort], [ti_cred], [aa_cred], [qs_cred], [nu_dcto], [mo_sald_capi_vcdo], [mo_sald_capi_xven], [mo_inte_dvgo], [mo_inte_abno], [co_empr]) VALUES ('2024-01-05 04:00:00', 50093, 50093, 50093, 50093, 50093.9900, 50093.9900, 50093.9900, 50093.9900, 50093);
+INSERT INTO [dbo].[crtbsald_cart_deta] ([fe_cort], [ti_cred], [aa_cred], [qs_cred], [nu_dcto], [mo_sald_capi_vcdo], [mo_sald_capi_xven], [mo_inte_dvgo], [mo_inte_abno], [co_empr]) VALUES ('2024-01-06 05:00:00', 50094, 50094, 50094, 50094, 50094.9900, 50094.9900, 50094.9900, 50094.9900, 50094);
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCR].[dbo].[crtpagos]
+--   ->  fcme_newcore.CARTERA.PAGOCREDITO_TYPE                     (agg='pagoCredito_type')
+-- PK   : (sin PK)
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[crtpagos] ([ci_rol], [co_prov], [ti_inst], [ci_inst], [ci_clie], [ti_cred], [aa_cred], [qs_cred], [ce_regi], [va_pagr], [va_abno], [fx_pago], [qs_abno], [dx_canc], [fx_proc], [co_paga], [ti_pago], [sc_rol], [sc_reca], [co_fond]) VALUES ('X997_0', 'X9', 'X', 'X997_0', 'X997_01', 50998, 50998, 50998, 'X', 50998.9900, 50998.9900, '2024-01-02 01:00:00', 50998, 'X997_01', '2024-01-02 01:00:00', 'X', 50998, 50998, 50998, 50998);
+INSERT INTO [dbo].[crtpagos] ([ci_rol], [co_prov], [ti_inst], [ci_inst], [ci_clie], [ti_cred], [aa_cred], [qs_cred], [ce_regi], [va_pagr], [va_abno], [fx_pago], [qs_abno], [dx_canc], [fx_proc], [co_paga], [ti_pago], [sc_rol], [sc_reca], [co_fond]) VALUES ('X997_0', 'X9', 'X', 'X997_0', 'X997_02', 50999, 50999, 50999, 'X', 50999.9900, 50999.9900, '2024-01-03 02:00:00', 50999, 'X997_02', '2024-01-03 02:00:00', 'X', 50999, 50999, 50999, 50999);
+INSERT INTO [dbo].[crtpagos] ([ci_rol], [co_prov], [ti_inst], [ci_inst], [ci_clie], [ti_cred], [aa_cred], [qs_cred], [ce_regi], [va_pagr], [va_abno], [fx_pago], [qs_abno], [dx_canc], [fx_proc], [co_paga], [ti_pago], [sc_rol], [sc_reca], [co_fond]) VALUES ('X997_0', 'X9', 'X', 'X997_0', 'X997_03', 51000, 51000, 51000, 'X', 51000.9900, 51000.9900, '2024-01-04 03:00:00', 51000, 'X997_03', '2024-01-04 03:00:00', 'X', 51000, 51000, 51000, 51000);
+INSERT INTO [dbo].[crtpagos] ([ci_rol], [co_prov], [ti_inst], [ci_inst], [ci_clie], [ti_cred], [aa_cred], [qs_cred], [ce_regi], [va_pagr], [va_abno], [fx_pago], [qs_abno], [dx_canc], [fx_proc], [co_paga], [ti_pago], [sc_rol], [sc_reca], [co_fond]) VALUES ('X997_0', 'X9', 'X', 'X997_0', 'X997_04', 51001, 51001, 51001, 'X', 51001.9900, 51001.9900, '2024-01-05 04:00:00', 51001, 'X997_04', '2024-01-05 04:00:00', 'X', 51001, 51001, 51001, 51001);
+INSERT INTO [dbo].[crtpagos] ([ci_rol], [co_prov], [ti_inst], [ci_inst], [ci_clie], [ti_cred], [aa_cred], [qs_cred], [ce_regi], [va_pagr], [va_abno], [fx_pago], [qs_abno], [dx_canc], [fx_proc], [co_paga], [ti_pago], [sc_rol], [sc_reca], [co_fond]) VALUES ('X997_0', 'X9', 'X', 'X997_0', 'X997_05', 51002, 51002, 51002, 'X', 51002.9900, 51002.9900, '2024-01-06 05:00:00', 51002, 'X997_05', '2024-01-06 05:00:00', 'X', 51002, 51002, 51002, 51002);
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCR].[dbo].[crtsolid]
+--   ->  fcme_newcore.CARTERA.SOLIDARIOCREDITO_TYPE                (agg='solidarioCredito_type')
+-- PK   : (sin PK)
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[crtsolid] ([ti_cred], [aa_cred], [qs_cred], [ci_clie], [pr_dist], [mo_cuot], [in_soli]) VALUES (56985, 56985, 56985, 'X984_01', 56985.9900, 56985.9900, 'X');
+INSERT INTO [dbo].[crtsolid] ([ti_cred], [aa_cred], [qs_cred], [ci_clie], [pr_dist], [mo_cuot], [in_soli]) VALUES (56986, 56986, 56986, 'X984_02', 56986.9900, 56986.9900, 'X');
+INSERT INTO [dbo].[crtsolid] ([ti_cred], [aa_cred], [qs_cred], [ci_clie], [pr_dist], [mo_cuot], [in_soli]) VALUES (56987, 56987, 56987, 'X984_03', 56987.9900, 56987.9900, 'X');
+INSERT INTO [dbo].[crtsolid] ([ti_cred], [aa_cred], [qs_cred], [ci_clie], [pr_dist], [mo_cuot], [in_soli]) VALUES (56988, 56988, 56988, 'X984_04', 56988.9900, 56988.9900, 'X');
+INSERT INTO [dbo].[crtsolid] ([ti_cred], [aa_cred], [qs_cred], [ci_clie], [pr_dist], [mo_cuot], [in_soli]) VALUES (56989, 56989, 56989, 'X984_05', 56989.9900, 56989.9900, 'X');
+GO
+
+####################################################################################################
+# BD: dbCT
+####################################################################################################
+USE [dbCT];
+GO
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCT].[dbo].[cttbesta_docu_inve]
+--   ->  fcme_newcore.CARTERA.ESTADOLEGALTYPE                      (agg='estadoLegalType')
+-- PK   : (sin PK)
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[cttbesta_docu_inve] ([ci_cedu], [ds_esta_cred_inve], [fe_cred_inve], [ds_esta_docu_inve], [fe_docu_inve], [in_ingr_docu], [in_revi_docu], [in_veri_docu], [in_veri_fidu], [mo_reca_inve], [in_prop_prov], [st_docu_base], [st_docu_cred], [st_docu_efec], [ci_cedu_ingr], [no_usua_ingr], [ds_carg_usua], [in_cntr_adhe], [in_cedu], [in_pren_fidu], [in_comp_depo_tran], [in_docu_cred], [in_insc_jubi], [fe_revi_adhe], [mo_inve_apli], [nu_oper], [mo_fide], [mo_gest_fcme], [fe_conc], [in_esta_inve], [mo_cost_fide], [mo_inve_fide], [fe_trnf_fide], [mo_depo_fidu]) VALUES ('X306_01', 'X306_01', '2024-01-02 01:00:00', 'X306_01', '2024-01-02 01:00:00', 'X', 'X', 'X', 'X', 52307.9900, 'X', 'X', 'X', 'X', 'X306_01', 'X306_01', 'X306_01', 'X', 'X', 'X', 'X', 'X', 'X', '2024-01-02 01:00:00', 52307.9900, 'X306_01', 52307.9900, 52307.9900, '2024-01-02 01:00:00', 'X', 52307.9900, 52307.9900, '2024-01-02 01:00:00', 52307.9900);
+INSERT INTO [dbo].[cttbesta_docu_inve] ([ci_cedu], [ds_esta_cred_inve], [fe_cred_inve], [ds_esta_docu_inve], [fe_docu_inve], [in_ingr_docu], [in_revi_docu], [in_veri_docu], [in_veri_fidu], [mo_reca_inve], [in_prop_prov], [st_docu_base], [st_docu_cred], [st_docu_efec], [ci_cedu_ingr], [no_usua_ingr], [ds_carg_usua], [in_cntr_adhe], [in_cedu], [in_pren_fidu], [in_comp_depo_tran], [in_docu_cred], [in_insc_jubi], [fe_revi_adhe], [mo_inve_apli], [nu_oper], [mo_fide], [mo_gest_fcme], [fe_conc], [in_esta_inve], [mo_cost_fide], [mo_inve_fide], [fe_trnf_fide], [mo_depo_fidu]) VALUES ('X306_02', 'X306_02', '2024-01-03 02:00:00', 'X306_02', '2024-01-03 02:00:00', 'X', 'X', 'X', 'X', 52308.9900, 'X', 'X', 'X', 'X', 'X306_02', 'X306_02', 'X306_02', 'X', 'X', 'X', 'X', 'X', 'X', '2024-01-03 02:00:00', 52308.9900, 'X306_02', 52308.9900, 52308.9900, '2024-01-03 02:00:00', 'X', 52308.9900, 52308.9900, '2024-01-03 02:00:00', 52308.9900);
+INSERT INTO [dbo].[cttbesta_docu_inve] ([ci_cedu], [ds_esta_cred_inve], [fe_cred_inve], [ds_esta_docu_inve], [fe_docu_inve], [in_ingr_docu], [in_revi_docu], [in_veri_docu], [in_veri_fidu], [mo_reca_inve], [in_prop_prov], [st_docu_base], [st_docu_cred], [st_docu_efec], [ci_cedu_ingr], [no_usua_ingr], [ds_carg_usua], [in_cntr_adhe], [in_cedu], [in_pren_fidu], [in_comp_depo_tran], [in_docu_cred], [in_insc_jubi], [fe_revi_adhe], [mo_inve_apli], [nu_oper], [mo_fide], [mo_gest_fcme], [fe_conc], [in_esta_inve], [mo_cost_fide], [mo_inve_fide], [fe_trnf_fide], [mo_depo_fidu]) VALUES ('X306_03', 'X306_03', '2024-01-04 03:00:00', 'X306_03', '2024-01-04 03:00:00', 'X', 'X', 'X', 'X', 52309.9900, 'X', 'X', 'X', 'X', 'X306_03', 'X306_03', 'X306_03', 'X', 'X', 'X', 'X', 'X', 'X', '2024-01-04 03:00:00', 52309.9900, 'X306_03', 52309.9900, 52309.9900, '2024-01-04 03:00:00', 'X', 52309.9900, 52309.9900, '2024-01-04 03:00:00', 52309.9900);
+INSERT INTO [dbo].[cttbesta_docu_inve] ([ci_cedu], [ds_esta_cred_inve], [fe_cred_inve], [ds_esta_docu_inve], [fe_docu_inve], [in_ingr_docu], [in_revi_docu], [in_veri_docu], [in_veri_fidu], [mo_reca_inve], [in_prop_prov], [st_docu_base], [st_docu_cred], [st_docu_efec], [ci_cedu_ingr], [no_usua_ingr], [ds_carg_usua], [in_cntr_adhe], [in_cedu], [in_pren_fidu], [in_comp_depo_tran], [in_docu_cred], [in_insc_jubi], [fe_revi_adhe], [mo_inve_apli], [nu_oper], [mo_fide], [mo_gest_fcme], [fe_conc], [in_esta_inve], [mo_cost_fide], [mo_inve_fide], [fe_trnf_fide], [mo_depo_fidu]) VALUES ('X306_04', 'X306_04', '2024-01-05 04:00:00', 'X306_04', '2024-01-05 04:00:00', 'X', 'X', 'X', 'X', 52310.9900, 'X', 'X', 'X', 'X', 'X306_04', 'X306_04', 'X306_04', 'X', 'X', 'X', 'X', 'X', 'X', '2024-01-05 04:00:00', 52310.9900, 'X306_04', 52310.9900, 52310.9900, '2024-01-05 04:00:00', 'X', 52310.9900, 52310.9900, '2024-01-05 04:00:00', 52310.9900);
+INSERT INTO [dbo].[cttbesta_docu_inve] ([ci_cedu], [ds_esta_cred_inve], [fe_cred_inve], [ds_esta_docu_inve], [fe_docu_inve], [in_ingr_docu], [in_revi_docu], [in_veri_docu], [in_veri_fidu], [mo_reca_inve], [in_prop_prov], [st_docu_base], [st_docu_cred], [st_docu_efec], [ci_cedu_ingr], [no_usua_ingr], [ds_carg_usua], [in_cntr_adhe], [in_cedu], [in_pren_fidu], [in_comp_depo_tran], [in_docu_cred], [in_insc_jubi], [fe_revi_adhe], [mo_inve_apli], [nu_oper], [mo_fide], [mo_gest_fcme], [fe_conc], [in_esta_inve], [mo_cost_fide], [mo_inve_fide], [fe_trnf_fide], [mo_depo_fidu]) VALUES ('X306_05', 'X306_05', '2024-01-06 05:00:00', 'X306_05', '2024-01-06 05:00:00', 'X', 'X', 'X', 'X', 52311.9900, 'X', 'X', 'X', 'X', 'X306_05', 'X306_05', 'X306_05', 'X', 'X', 'X', 'X', 'X', 'X', '2024-01-06 05:00:00', 52311.9900, 'X306_05', 52311.9900, 52311.9900, '2024-01-06 05:00:00', 'X', 52311.9900, 52311.9900, '2024-01-06 05:00:00', 52311.9900);
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCT].[dbo].[cttbrepo_gene]
+--   ->  fcme_newcore.CARTERA.REPORTESBSGARANTECODEUDOR_TYPE       (agg='reporteSBSGaranteCodeudor_type')
+-- PK   : ti_cred, aa_cred, qs_cred
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[cttbrepo_gene] ([ci_cedu], [ci_cedu_nume], [co_prov], [no_prov], [ci_tipo], [ci_inst], [no_inst], [no_afil], [ce_esta], [ds_cred], [ti_cred], [aa_cred], [qs_cred], [fe_cncd], [fe_vcto], [mo_cred], [mo_sald_capi], [nu_plaz], [ds_rol_npag], [ci_rol_ultm_pago], [ci_rol_ultm_gene], [nu_oper_canc], [in_auto_gara], [mo_cuot], [nu_rol_indi], [mo_sald_fcme], [mo_sald_cam], [in_firm_cart], [fe_afil_fcme], [nu_telf_celu], [no_prog], [tx_tel1], [tx_tel2], [ds_esta_cart], [ds_esta_dbto], [ds_mesp], [mo_vcdo], [mo_xvec], [mo_segu], [mo_vcdo_60], [mo_vcdo_90], [mo_vcdo_180], [mo_vcdo_30], [mo_sald_cap], [mo_sald_cins], [mo_sald_fas], [in_cart_gara], [mo_sald_cins_bnco], [ci_cedu_gara], [no_gara], [tx_telf_gara], [tx_tel2_gara], [tx_tel3_gara], [mo_sald_cred_gara], [mo_fcme_gara], [mo_cam_gara], [mo_cap_gara], [aa_cmpr_ccrd], [no_ciud], [no_parr], [fe_naci], [ul_rol_apor], [in_tipo_reca], [ds_stdo_dbto], [fx_ultm_abno], [fe_actu], [in_actu], [in_reno_actu], [in_reno_Ccrd], [in_cuot_npag], [mo_tota_abno], [no_zona], [no_dist], [no_circ], [ds_dire_afil], [ds_dire_afil1], [ds_dire_inst], [no_inst_gara], [no_dire_inst_gara], [tx_esta_gara], [no_dire_gara], [ti_jorn_afil], [mo_cuen_unic_gara], [co_prov_afil], [co_ciud_afil], [co_parr_afil], [ds_prov_afil], [ds_ciud_afil], [ds_parr_afil], [co_amie], [no_usua_ingr_cred], [no_autr_mtrz], [ds_mail_afil], [ds_mail_gara], [no_prov_gara], [mo_cuot_npag], [ti_calf], [mo_prov_ante], [mo_prov_actu], [mo_totl_abnd], [ds_frec_cobr], [fe_inst], [in_cred_vcdo], [ds_comp_pago], [nu_dias_vcdo], [mo_vcdo_tota], [nu_punt_calf], [nu_punt_venc], [ds_prio_cobr], [co_usua_gest_cobr], [no_gest_cobr], [ds_rol_gest_cobr], [ci_cedu_refe_deud], [no_refe_deud], [nu_telf_refe_deud], [nu_celu_refe_deud], [ci_cedu_refe_gara], [no_refe_gara], [nu_telf_refe_gara], [nu_celu_refe_gara], [mo_intr], [mo_mora], [mo_desg], [mo_gast_judi], [mo_prec], [pr_prov], [ds_esta_gast_judi], [ds_nive_educ], [co_inst_gara], [co_prov_inst], [ds_prov_inst], [co_cant_inst], [ds_cant_inst], [co_parr_inst], [ds_parr_inst], [rf_ubic_resi], [mo_abon_capi], [ds_tipo_desc], [in_judi], [in_cobr_conv], [mo_capi_venc_conv], [in_perd_conv], [in_rast_sate]) VALUES ('X152_01', 54153.99, 'X1', 'X152_01', 'X', 'X152_0', 'X152_01', 'X152_01', 'X', 'X152_01', 54153, 54153, 54153, '2024-01-02 01:00:00', '2024-01-02 01:00:00', 54153.9900, 54153.9900, 54153, 'X152_01', 'X152_0', 'X152_0', 54153, 'X', 54153.9900, 54153, 54153.9900, 54153.9900, 'X', '2024-01-02 01:00:00', 'X152_01', 'X152_01', 'X152_01', 'X15', 'X152_01', 'X152_01', 'X152_01', 54153.9900, 54153.9900, 54153.9900, 54153.9900, 54153.9900, 54153.9900, 54153.9900, 54153.9900, 54153.9900, 54153.9900, 'X', 54153.9900, 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 54153.9900, 54153.9900, 54153.9900, 54153.9900, 54153, 'X152_01', 'X152_01', '2024-01-02 01:00:00', 'X152_0', 'X', 'X152_01', '2024-01-02 01:00:00', '2024-01-02 01:00:00', 'X', 'X', 'X', 'X', 54153.9900, 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 54153.9900, 'X1', 'X152_', 'X152_', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 54153.9900, 'X152_', 54153.9900, 54153.9900, 54153.9900, 'X152_01', '2024-01-02 01:00:00', 'X', 'X152_01', 54153, 54153.9900, 54153, 54153, 'X152_01', 54153, 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 'X152_01', 54153.9900, 54153.9900, 54153.9900, 54153.9900, 54153.9900, 54153.9900, 'X152_01', 'X152_01', 'X152_0', 'X1', 'X152_01', 'X152_', 'X152_01', 'X152_', 'X152_01', 'X152_01', 54153.9900, 'X152_01', 'X', 'X', 54153.9900, 'X', 'X');
+INSERT INTO [dbo].[cttbrepo_gene] ([ci_cedu], [ci_cedu_nume], [co_prov], [no_prov], [ci_tipo], [ci_inst], [no_inst], [no_afil], [ce_esta], [ds_cred], [ti_cred], [aa_cred], [qs_cred], [fe_cncd], [fe_vcto], [mo_cred], [mo_sald_capi], [nu_plaz], [ds_rol_npag], [ci_rol_ultm_pago], [ci_rol_ultm_gene], [nu_oper_canc], [in_auto_gara], [mo_cuot], [nu_rol_indi], [mo_sald_fcme], [mo_sald_cam], [in_firm_cart], [fe_afil_fcme], [nu_telf_celu], [no_prog], [tx_tel1], [tx_tel2], [ds_esta_cart], [ds_esta_dbto], [ds_mesp], [mo_vcdo], [mo_xvec], [mo_segu], [mo_vcdo_60], [mo_vcdo_90], [mo_vcdo_180], [mo_vcdo_30], [mo_sald_cap], [mo_sald_cins], [mo_sald_fas], [in_cart_gara], [mo_sald_cins_bnco], [ci_cedu_gara], [no_gara], [tx_telf_gara], [tx_tel2_gara], [tx_tel3_gara], [mo_sald_cred_gara], [mo_fcme_gara], [mo_cam_gara], [mo_cap_gara], [aa_cmpr_ccrd], [no_ciud], [no_parr], [fe_naci], [ul_rol_apor], [in_tipo_reca], [ds_stdo_dbto], [fx_ultm_abno], [fe_actu], [in_actu], [in_reno_actu], [in_reno_Ccrd], [in_cuot_npag], [mo_tota_abno], [no_zona], [no_dist], [no_circ], [ds_dire_afil], [ds_dire_afil1], [ds_dire_inst], [no_inst_gara], [no_dire_inst_gara], [tx_esta_gara], [no_dire_gara], [ti_jorn_afil], [mo_cuen_unic_gara], [co_prov_afil], [co_ciud_afil], [co_parr_afil], [ds_prov_afil], [ds_ciud_afil], [ds_parr_afil], [co_amie], [no_usua_ingr_cred], [no_autr_mtrz], [ds_mail_afil], [ds_mail_gara], [no_prov_gara], [mo_cuot_npag], [ti_calf], [mo_prov_ante], [mo_prov_actu], [mo_totl_abnd], [ds_frec_cobr], [fe_inst], [in_cred_vcdo], [ds_comp_pago], [nu_dias_vcdo], [mo_vcdo_tota], [nu_punt_calf], [nu_punt_venc], [ds_prio_cobr], [co_usua_gest_cobr], [no_gest_cobr], [ds_rol_gest_cobr], [ci_cedu_refe_deud], [no_refe_deud], [nu_telf_refe_deud], [nu_celu_refe_deud], [ci_cedu_refe_gara], [no_refe_gara], [nu_telf_refe_gara], [nu_celu_refe_gara], [mo_intr], [mo_mora], [mo_desg], [mo_gast_judi], [mo_prec], [pr_prov], [ds_esta_gast_judi], [ds_nive_educ], [co_inst_gara], [co_prov_inst], [ds_prov_inst], [co_cant_inst], [ds_cant_inst], [co_parr_inst], [ds_parr_inst], [rf_ubic_resi], [mo_abon_capi], [ds_tipo_desc], [in_judi], [in_cobr_conv], [mo_capi_venc_conv], [in_perd_conv], [in_rast_sate]) VALUES ('X152_02', 54154.99, 'X1', 'X152_02', 'X', 'X152_0', 'X152_02', 'X152_02', 'X', 'X152_02', 54154, 54154, 54154, '2024-01-03 02:00:00', '2024-01-03 02:00:00', 54154.9900, 54154.9900, 54154, 'X152_02', 'X152_0', 'X152_0', 54154, 'X', 54154.9900, 54154, 54154.9900, 54154.9900, 'X', '2024-01-03 02:00:00', 'X152_02', 'X152_02', 'X152_02', 'X15', 'X152_02', 'X152_02', 'X152_02', 54154.9900, 54154.9900, 54154.9900, 54154.9900, 54154.9900, 54154.9900, 54154.9900, 54154.9900, 54154.9900, 54154.9900, 'X', 54154.9900, 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 54154.9900, 54154.9900, 54154.9900, 54154.9900, 54154, 'X152_02', 'X152_02', '2024-01-03 02:00:00', 'X152_0', 'X', 'X152_02', '2024-01-03 02:00:00', '2024-01-03 02:00:00', 'X', 'X', 'X', 'X', 54154.9900, 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 54154.9900, 'X1', 'X152_', 'X152_', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 54154.9900, 'X152_', 54154.9900, 54154.9900, 54154.9900, 'X152_02', '2024-01-03 02:00:00', 'X', 'X152_02', 54154, 54154.9900, 54154, 54154, 'X152_02', 54154, 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 'X152_02', 54154.9900, 54154.9900, 54154.9900, 54154.9900, 54154.9900, 54154.9900, 'X152_02', 'X152_02', 'X152_0', 'X1', 'X152_02', 'X152_', 'X152_02', 'X152_', 'X152_02', 'X152_02', 54154.9900, 'X152_02', 'X', 'X', 54154.9900, 'X', 'X');
+INSERT INTO [dbo].[cttbrepo_gene] ([ci_cedu], [ci_cedu_nume], [co_prov], [no_prov], [ci_tipo], [ci_inst], [no_inst], [no_afil], [ce_esta], [ds_cred], [ti_cred], [aa_cred], [qs_cred], [fe_cncd], [fe_vcto], [mo_cred], [mo_sald_capi], [nu_plaz], [ds_rol_npag], [ci_rol_ultm_pago], [ci_rol_ultm_gene], [nu_oper_canc], [in_auto_gara], [mo_cuot], [nu_rol_indi], [mo_sald_fcme], [mo_sald_cam], [in_firm_cart], [fe_afil_fcme], [nu_telf_celu], [no_prog], [tx_tel1], [tx_tel2], [ds_esta_cart], [ds_esta_dbto], [ds_mesp], [mo_vcdo], [mo_xvec], [mo_segu], [mo_vcdo_60], [mo_vcdo_90], [mo_vcdo_180], [mo_vcdo_30], [mo_sald_cap], [mo_sald_cins], [mo_sald_fas], [in_cart_gara], [mo_sald_cins_bnco], [ci_cedu_gara], [no_gara], [tx_telf_gara], [tx_tel2_gara], [tx_tel3_gara], [mo_sald_cred_gara], [mo_fcme_gara], [mo_cam_gara], [mo_cap_gara], [aa_cmpr_ccrd], [no_ciud], [no_parr], [fe_naci], [ul_rol_apor], [in_tipo_reca], [ds_stdo_dbto], [fx_ultm_abno], [fe_actu], [in_actu], [in_reno_actu], [in_reno_Ccrd], [in_cuot_npag], [mo_tota_abno], [no_zona], [no_dist], [no_circ], [ds_dire_afil], [ds_dire_afil1], [ds_dire_inst], [no_inst_gara], [no_dire_inst_gara], [tx_esta_gara], [no_dire_gara], [ti_jorn_afil], [mo_cuen_unic_gara], [co_prov_afil], [co_ciud_afil], [co_parr_afil], [ds_prov_afil], [ds_ciud_afil], [ds_parr_afil], [co_amie], [no_usua_ingr_cred], [no_autr_mtrz], [ds_mail_afil], [ds_mail_gara], [no_prov_gara], [mo_cuot_npag], [ti_calf], [mo_prov_ante], [mo_prov_actu], [mo_totl_abnd], [ds_frec_cobr], [fe_inst], [in_cred_vcdo], [ds_comp_pago], [nu_dias_vcdo], [mo_vcdo_tota], [nu_punt_calf], [nu_punt_venc], [ds_prio_cobr], [co_usua_gest_cobr], [no_gest_cobr], [ds_rol_gest_cobr], [ci_cedu_refe_deud], [no_refe_deud], [nu_telf_refe_deud], [nu_celu_refe_deud], [ci_cedu_refe_gara], [no_refe_gara], [nu_telf_refe_gara], [nu_celu_refe_gara], [mo_intr], [mo_mora], [mo_desg], [mo_gast_judi], [mo_prec], [pr_prov], [ds_esta_gast_judi], [ds_nive_educ], [co_inst_gara], [co_prov_inst], [ds_prov_inst], [co_cant_inst], [ds_cant_inst], [co_parr_inst], [ds_parr_inst], [rf_ubic_resi], [mo_abon_capi], [ds_tipo_desc], [in_judi], [in_cobr_conv], [mo_capi_venc_conv], [in_perd_conv], [in_rast_sate]) VALUES ('X152_03', 54155.99, 'X1', 'X152_03', 'X', 'X152_0', 'X152_03', 'X152_03', 'X', 'X152_03', 54155, 54155, 54155, '2024-01-04 03:00:00', '2024-01-04 03:00:00', 54155.9900, 54155.9900, 54155, 'X152_03', 'X152_0', 'X152_0', 54155, 'X', 54155.9900, 54155, 54155.9900, 54155.9900, 'X', '2024-01-04 03:00:00', 'X152_03', 'X152_03', 'X152_03', 'X15', 'X152_03', 'X152_03', 'X152_03', 54155.9900, 54155.9900, 54155.9900, 54155.9900, 54155.9900, 54155.9900, 54155.9900, 54155.9900, 54155.9900, 54155.9900, 'X', 54155.9900, 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 54155.9900, 54155.9900, 54155.9900, 54155.9900, 54155, 'X152_03', 'X152_03', '2024-01-04 03:00:00', 'X152_0', 'X', 'X152_03', '2024-01-04 03:00:00', '2024-01-04 03:00:00', 'X', 'X', 'X', 'X', 54155.9900, 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 54155.9900, 'X1', 'X152_', 'X152_', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 54155.9900, 'X152_', 54155.9900, 54155.9900, 54155.9900, 'X152_03', '2024-01-04 03:00:00', 'X', 'X152_03', 54155, 54155.9900, 54155, 54155, 'X152_03', 54155, 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 'X152_03', 54155.9900, 54155.9900, 54155.9900, 54155.9900, 54155.9900, 54155.9900, 'X152_03', 'X152_03', 'X152_0', 'X1', 'X152_03', 'X152_', 'X152_03', 'X152_', 'X152_03', 'X152_03', 54155.9900, 'X152_03', 'X', 'X', 54155.9900, 'X', 'X');
+INSERT INTO [dbo].[cttbrepo_gene] ([ci_cedu], [ci_cedu_nume], [co_prov], [no_prov], [ci_tipo], [ci_inst], [no_inst], [no_afil], [ce_esta], [ds_cred], [ti_cred], [aa_cred], [qs_cred], [fe_cncd], [fe_vcto], [mo_cred], [mo_sald_capi], [nu_plaz], [ds_rol_npag], [ci_rol_ultm_pago], [ci_rol_ultm_gene], [nu_oper_canc], [in_auto_gara], [mo_cuot], [nu_rol_indi], [mo_sald_fcme], [mo_sald_cam], [in_firm_cart], [fe_afil_fcme], [nu_telf_celu], [no_prog], [tx_tel1], [tx_tel2], [ds_esta_cart], [ds_esta_dbto], [ds_mesp], [mo_vcdo], [mo_xvec], [mo_segu], [mo_vcdo_60], [mo_vcdo_90], [mo_vcdo_180], [mo_vcdo_30], [mo_sald_cap], [mo_sald_cins], [mo_sald_fas], [in_cart_gara], [mo_sald_cins_bnco], [ci_cedu_gara], [no_gara], [tx_telf_gara], [tx_tel2_gara], [tx_tel3_gara], [mo_sald_cred_gara], [mo_fcme_gara], [mo_cam_gara], [mo_cap_gara], [aa_cmpr_ccrd], [no_ciud], [no_parr], [fe_naci], [ul_rol_apor], [in_tipo_reca], [ds_stdo_dbto], [fx_ultm_abno], [fe_actu], [in_actu], [in_reno_actu], [in_reno_Ccrd], [in_cuot_npag], [mo_tota_abno], [no_zona], [no_dist], [no_circ], [ds_dire_afil], [ds_dire_afil1], [ds_dire_inst], [no_inst_gara], [no_dire_inst_gara], [tx_esta_gara], [no_dire_gara], [ti_jorn_afil], [mo_cuen_unic_gara], [co_prov_afil], [co_ciud_afil], [co_parr_afil], [ds_prov_afil], [ds_ciud_afil], [ds_parr_afil], [co_amie], [no_usua_ingr_cred], [no_autr_mtrz], [ds_mail_afil], [ds_mail_gara], [no_prov_gara], [mo_cuot_npag], [ti_calf], [mo_prov_ante], [mo_prov_actu], [mo_totl_abnd], [ds_frec_cobr], [fe_inst], [in_cred_vcdo], [ds_comp_pago], [nu_dias_vcdo], [mo_vcdo_tota], [nu_punt_calf], [nu_punt_venc], [ds_prio_cobr], [co_usua_gest_cobr], [no_gest_cobr], [ds_rol_gest_cobr], [ci_cedu_refe_deud], [no_refe_deud], [nu_telf_refe_deud], [nu_celu_refe_deud], [ci_cedu_refe_gara], [no_refe_gara], [nu_telf_refe_gara], [nu_celu_refe_gara], [mo_intr], [mo_mora], [mo_desg], [mo_gast_judi], [mo_prec], [pr_prov], [ds_esta_gast_judi], [ds_nive_educ], [co_inst_gara], [co_prov_inst], [ds_prov_inst], [co_cant_inst], [ds_cant_inst], [co_parr_inst], [ds_parr_inst], [rf_ubic_resi], [mo_abon_capi], [ds_tipo_desc], [in_judi], [in_cobr_conv], [mo_capi_venc_conv], [in_perd_conv], [in_rast_sate]) VALUES ('X152_04', 54156.99, 'X1', 'X152_04', 'X', 'X152_0', 'X152_04', 'X152_04', 'X', 'X152_04', 54156, 54156, 54156, '2024-01-05 04:00:00', '2024-01-05 04:00:00', 54156.9900, 54156.9900, 54156, 'X152_04', 'X152_0', 'X152_0', 54156, 'X', 54156.9900, 54156, 54156.9900, 54156.9900, 'X', '2024-01-05 04:00:00', 'X152_04', 'X152_04', 'X152_04', 'X15', 'X152_04', 'X152_04', 'X152_04', 54156.9900, 54156.9900, 54156.9900, 54156.9900, 54156.9900, 54156.9900, 54156.9900, 54156.9900, 54156.9900, 54156.9900, 'X', 54156.9900, 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 54156.9900, 54156.9900, 54156.9900, 54156.9900, 54156, 'X152_04', 'X152_04', '2024-01-05 04:00:00', 'X152_0', 'X', 'X152_04', '2024-01-05 04:00:00', '2024-01-05 04:00:00', 'X', 'X', 'X', 'X', 54156.9900, 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 54156.9900, 'X1', 'X152_', 'X152_', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 54156.9900, 'X152_', 54156.9900, 54156.9900, 54156.9900, 'X152_04', '2024-01-05 04:00:00', 'X', 'X152_04', 54156, 54156.9900, 54156, 54156, 'X152_04', 54156, 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 'X152_04', 54156.9900, 54156.9900, 54156.9900, 54156.9900, 54156.9900, 54156.9900, 'X152_04', 'X152_04', 'X152_0', 'X1', 'X152_04', 'X152_', 'X152_04', 'X152_', 'X152_04', 'X152_04', 54156.9900, 'X152_04', 'X', 'X', 54156.9900, 'X', 'X');
+INSERT INTO [dbo].[cttbrepo_gene] ([ci_cedu], [ci_cedu_nume], [co_prov], [no_prov], [ci_tipo], [ci_inst], [no_inst], [no_afil], [ce_esta], [ds_cred], [ti_cred], [aa_cred], [qs_cred], [fe_cncd], [fe_vcto], [mo_cred], [mo_sald_capi], [nu_plaz], [ds_rol_npag], [ci_rol_ultm_pago], [ci_rol_ultm_gene], [nu_oper_canc], [in_auto_gara], [mo_cuot], [nu_rol_indi], [mo_sald_fcme], [mo_sald_cam], [in_firm_cart], [fe_afil_fcme], [nu_telf_celu], [no_prog], [tx_tel1], [tx_tel2], [ds_esta_cart], [ds_esta_dbto], [ds_mesp], [mo_vcdo], [mo_xvec], [mo_segu], [mo_vcdo_60], [mo_vcdo_90], [mo_vcdo_180], [mo_vcdo_30], [mo_sald_cap], [mo_sald_cins], [mo_sald_fas], [in_cart_gara], [mo_sald_cins_bnco], [ci_cedu_gara], [no_gara], [tx_telf_gara], [tx_tel2_gara], [tx_tel3_gara], [mo_sald_cred_gara], [mo_fcme_gara], [mo_cam_gara], [mo_cap_gara], [aa_cmpr_ccrd], [no_ciud], [no_parr], [fe_naci], [ul_rol_apor], [in_tipo_reca], [ds_stdo_dbto], [fx_ultm_abno], [fe_actu], [in_actu], [in_reno_actu], [in_reno_Ccrd], [in_cuot_npag], [mo_tota_abno], [no_zona], [no_dist], [no_circ], [ds_dire_afil], [ds_dire_afil1], [ds_dire_inst], [no_inst_gara], [no_dire_inst_gara], [tx_esta_gara], [no_dire_gara], [ti_jorn_afil], [mo_cuen_unic_gara], [co_prov_afil], [co_ciud_afil], [co_parr_afil], [ds_prov_afil], [ds_ciud_afil], [ds_parr_afil], [co_amie], [no_usua_ingr_cred], [no_autr_mtrz], [ds_mail_afil], [ds_mail_gara], [no_prov_gara], [mo_cuot_npag], [ti_calf], [mo_prov_ante], [mo_prov_actu], [mo_totl_abnd], [ds_frec_cobr], [fe_inst], [in_cred_vcdo], [ds_comp_pago], [nu_dias_vcdo], [mo_vcdo_tota], [nu_punt_calf], [nu_punt_venc], [ds_prio_cobr], [co_usua_gest_cobr], [no_gest_cobr], [ds_rol_gest_cobr], [ci_cedu_refe_deud], [no_refe_deud], [nu_telf_refe_deud], [nu_celu_refe_deud], [ci_cedu_refe_gara], [no_refe_gara], [nu_telf_refe_gara], [nu_celu_refe_gara], [mo_intr], [mo_mora], [mo_desg], [mo_gast_judi], [mo_prec], [pr_prov], [ds_esta_gast_judi], [ds_nive_educ], [co_inst_gara], [co_prov_inst], [ds_prov_inst], [co_cant_inst], [ds_cant_inst], [co_parr_inst], [ds_parr_inst], [rf_ubic_resi], [mo_abon_capi], [ds_tipo_desc], [in_judi], [in_cobr_conv], [mo_capi_venc_conv], [in_perd_conv], [in_rast_sate]) VALUES ('X152_05', 54157.99, 'X1', 'X152_05', 'X', 'X152_0', 'X152_05', 'X152_05', 'X', 'X152_05', 54157, 54157, 54157, '2024-01-06 05:00:00', '2024-01-06 05:00:00', 54157.9900, 54157.9900, 54157, 'X152_05', 'X152_0', 'X152_0', 54157, 'X', 54157.9900, 54157, 54157.9900, 54157.9900, 'X', '2024-01-06 05:00:00', 'X152_05', 'X152_05', 'X152_05', 'X15', 'X152_05', 'X152_05', 'X152_05', 54157.9900, 54157.9900, 54157.9900, 54157.9900, 54157.9900, 54157.9900, 54157.9900, 54157.9900, 54157.9900, 54157.9900, 'X', 54157.9900, 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 54157.9900, 54157.9900, 54157.9900, 54157.9900, 54157, 'X152_05', 'X152_05', '2024-01-06 05:00:00', 'X152_0', 'X', 'X152_05', '2024-01-06 05:00:00', '2024-01-06 05:00:00', 'X', 'X', 'X', 'X', 54157.9900, 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 54157.9900, 'X1', 'X152_', 'X152_', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 54157.9900, 'X152_', 54157.9900, 54157.9900, 54157.9900, 'X152_05', '2024-01-06 05:00:00', 'X', 'X152_05', 54157, 54157.9900, 54157, 54157, 'X152_05', 54157, 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 'X152_05', 54157.9900, 54157.9900, 54157.9900, 54157.9900, 54157.9900, 54157.9900, 'X152_05', 'X152_05', 'X152_0', 'X1', 'X152_05', 'X152_', 'X152_05', 'X152_', 'X152_05', 'X152_05', 54157.9900, 'X152_05', 'X', 'X', 54157.9900, 'X', 'X');
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbCT].[dbo].[cttbtran_inve_auxi]
+--   ->  fcme_newcore.CARTERA.AUXDATOSCOBROSADICIONALESTYPE        (agg='auxDatosCobrosAdicionalesType')
+-- PK   : ci_cedu, sc_auxi
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[cttbtran_inve_auxi] ([ci_cedu], [co_tipo_inve], [fe_tran], [mo_inve_fide], [mo_cost_fide], [co_prov], [fe_gene_arch], [co_usua], [st_mvto]) VALUES ('X445_01', 50446, '2024-01-02 01:00:00', 50446.9900, 50446.9900, 'X44', '2024-01-02 01:00:00', 50446, 50446);
+INSERT INTO [dbo].[cttbtran_inve_auxi] ([ci_cedu], [co_tipo_inve], [fe_tran], [mo_inve_fide], [mo_cost_fide], [co_prov], [fe_gene_arch], [co_usua], [st_mvto]) VALUES ('X445_02', 50447, '2024-01-03 02:00:00', 50447.9900, 50447.9900, 'X44', '2024-01-03 02:00:00', 50447, 50447);
+INSERT INTO [dbo].[cttbtran_inve_auxi] ([ci_cedu], [co_tipo_inve], [fe_tran], [mo_inve_fide], [mo_cost_fide], [co_prov], [fe_gene_arch], [co_usua], [st_mvto]) VALUES ('X445_03', 50448, '2024-01-04 03:00:00', 50448.9900, 50448.9900, 'X44', '2024-01-04 03:00:00', 50448, 50448);
+INSERT INTO [dbo].[cttbtran_inve_auxi] ([ci_cedu], [co_tipo_inve], [fe_tran], [mo_inve_fide], [mo_cost_fide], [co_prov], [fe_gene_arch], [co_usua], [st_mvto]) VALUES ('X445_04', 50449, '2024-01-05 04:00:00', 50449.9900, 50449.9900, 'X44', '2024-01-05 04:00:00', 50449, 50449);
+INSERT INTO [dbo].[cttbtran_inve_auxi] ([ci_cedu], [co_tipo_inve], [fe_tran], [mo_inve_fide], [mo_cost_fide], [co_prov], [fe_gene_arch], [co_usua], [st_mvto]) VALUES ('X445_05', 50450, '2024-01-06 05:00:00', 50450.9900, 50450.9900, 'X44', '2024-01-06 05:00:00', 50450, 50450);
+GO
+
+####################################################################################################
+# BD: dbFC
+####################################################################################################
+USE [dbFC];
+GO
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbFC].[dbo].[fctbdeta_liqd_cred]
+--   ->  fcme_newcore.CARTERA.GRUPOCREDITODETALLE_TYPE             (agg='grupoCreditoDetalle_type')
+-- PK   : co_empr, sc_liqd, sc_deta, ti_cred, aa_cred, qs_cred
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[fctbdeta_liqd_cred] ([sc_liqd], [sc_deta], [ti_cred], [aa_cred], [qs_cred], [co_rubr], [mo_cred_liqd], [st_liqd_cred], [co_usua_mvto], [fe_mvto], [co_empr], [in_cred_judi]) VALUES (51487, 51487, 51487, 51487, 51487, 'X4', 51487.9900, 51487, 51487, '2024-01-02 01:00:00', 51487, 'X');
+INSERT INTO [dbo].[fctbdeta_liqd_cred] ([sc_liqd], [sc_deta], [ti_cred], [aa_cred], [qs_cred], [co_rubr], [mo_cred_liqd], [st_liqd_cred], [co_usua_mvto], [fe_mvto], [co_empr], [in_cred_judi]) VALUES (51488, 51488, 51488, 51488, 51488, 'X4', 51488.9900, 51488, 51488, '2024-01-03 02:00:00', 51488, 'X');
+INSERT INTO [dbo].[fctbdeta_liqd_cred] ([sc_liqd], [sc_deta], [ti_cred], [aa_cred], [qs_cred], [co_rubr], [mo_cred_liqd], [st_liqd_cred], [co_usua_mvto], [fe_mvto], [co_empr], [in_cred_judi]) VALUES (51489, 51489, 51489, 51489, 51489, 'X4', 51489.9900, 51489, 51489, '2024-01-04 03:00:00', 51489, 'X');
+INSERT INTO [dbo].[fctbdeta_liqd_cred] ([sc_liqd], [sc_deta], [ti_cred], [aa_cred], [qs_cred], [co_rubr], [mo_cred_liqd], [st_liqd_cred], [co_usua_mvto], [fe_mvto], [co_empr], [in_cred_judi]) VALUES (51490, 51490, 51490, 51490, 51490, 'X4', 51490.9900, 51490, 51490, '2024-01-05 04:00:00', 51490, 'X');
+INSERT INTO [dbo].[fctbdeta_liqd_cred] ([sc_liqd], [sc_deta], [ti_cred], [aa_cred], [qs_cred], [co_rubr], [mo_cred_liqd], [st_liqd_cred], [co_usua_mvto], [fe_mvto], [co_empr], [in_cred_judi]) VALUES (51491, 51491, 51491, 51491, 51491, 'X4', 51491.9900, 51491, 51491, '2024-01-06 05:00:00', 51491, 'X');
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbFC].[dbo].[fctbdinf_liqd_cnta_sibs]
+--   ->  fcme_newcore.CARTERA.CUENTASENLEGALTYPE                   (agg='cuentasEnLegalType')
+-- PK   : sc_regi, ci_cedu
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[fctbdinf_liqd_cnta_sibs] ([sc_regi], [ci_cedu], [ti_iden], [fe_term_rela], [nu_impo_pers], [nu_impo_patr], [fe_liqd], [mo_cnta_indi], [mo_desc], [mo_tota_paga]) VALUES (56137, 'X136_01', 'X', '2024-01-02 01:00:00', 56137, 56137, '2024-01-02 01:00:00', 56137.9900, 56137.9900, 56137.9900);
+INSERT INTO [dbo].[fctbdinf_liqd_cnta_sibs] ([sc_regi], [ci_cedu], [ti_iden], [fe_term_rela], [nu_impo_pers], [nu_impo_patr], [fe_liqd], [mo_cnta_indi], [mo_desc], [mo_tota_paga]) VALUES (56138, 'X136_02', 'X', '2024-01-03 02:00:00', 56138, 56138, '2024-01-03 02:00:00', 56138.9900, 56138.9900, 56138.9900);
+INSERT INTO [dbo].[fctbdinf_liqd_cnta_sibs] ([sc_regi], [ci_cedu], [ti_iden], [fe_term_rela], [nu_impo_pers], [nu_impo_patr], [fe_liqd], [mo_cnta_indi], [mo_desc], [mo_tota_paga]) VALUES (56139, 'X136_03', 'X', '2024-01-04 03:00:00', 56139, 56139, '2024-01-04 03:00:00', 56139.9900, 56139.9900, 56139.9900);
+INSERT INTO [dbo].[fctbdinf_liqd_cnta_sibs] ([sc_regi], [ci_cedu], [ti_iden], [fe_term_rela], [nu_impo_pers], [nu_impo_patr], [fe_liqd], [mo_cnta_indi], [mo_desc], [mo_tota_paga]) VALUES (56140, 'X136_04', 'X', '2024-01-05 04:00:00', 56140, 56140, '2024-01-05 04:00:00', 56140.9900, 56140.9900, 56140.9900);
+INSERT INTO [dbo].[fctbdinf_liqd_cnta_sibs] ([sc_regi], [ci_cedu], [ti_iden], [fe_term_rela], [nu_impo_pers], [nu_impo_patr], [fe_liqd], [mo_cnta_indi], [mo_desc], [mo_tota_paga]) VALUES (56141, 'X136_05', 'X', '2024-01-06 05:00:00', 56141, 56141, '2024-01-06 05:00:00', 56141.9900, 56141.9900, 56141.9900);
+
+----------------------------------------------------------------------------------------------------
+-- TABLA : [dbFC].[dbo].[fctbproc_tseg_noti]
+--   ->  fcme_newcore.CARTERA.FECHASPROCESOTYPE                    (agg='fechasProcesoType')
+-- PK   : co_empr, co_proc, co_tseg, co_noti, sc_regi
+----------------------------------------------------------------------------------------------------
+INSERT INTO [dbo].[fctbproc_tseg_noti] ([co_empr], [co_proc], [co_tseg], [co_noti], [co_mens_telf], [fe_crea_regi], [co_usua_crea], [fe_modi_regi], [co_usua_modi], [fe_elim_regi], [co_usua_elim], [st_regi]) VALUES (55284, 55284, 55284, 55284, 'X283_01', '2024-01-02 01:00:00', 55284, '2024-01-02 01:00:00', 55284, '2024-01-02 01:00:00', 55284, 55284);
+INSERT INTO [dbo].[fctbproc_tseg_noti] ([co_empr], [co_proc], [co_tseg], [co_noti], [co_mens_telf], [fe_crea_regi], [co_usua_crea], [fe_modi_regi], [co_usua_modi], [fe_elim_regi], [co_usua_elim], [st_regi]) VALUES (55285, 55285, 55285, 55285, 'X283_02', '2024-01-03 02:00:00', 55285, '2024-01-03 02:00:00', 55285, '2024-01-03 02:00:00', 55285, 55285);
+INSERT INTO [dbo].[fctbproc_tseg_noti] ([co_empr], [co_proc], [co_tseg], [co_noti], [co_mens_telf], [fe_crea_regi], [co_usua_crea], [fe_modi_regi], [co_usua_modi], [fe_elim_regi], [co_usua_elim], [st_regi]) VALUES (55286, 55286, 55286, 55286, 'X283_03', '2024-01-04 03:00:00', 55286, '2024-01-04 03:00:00', 55286, '2024-01-04 03:00:00', 55286, 55286);
+INSERT INTO [dbo].[fctbproc_tseg_noti] ([co_empr], [co_proc], [co_tseg], [co_noti], [co_mens_telf], [fe_crea_regi], [co_usua_crea], [fe_modi_regi], [co_usua_modi], [fe_elim_regi], [co_usua_elim], [st_regi]) VALUES (55287, 55287, 55287, 55287, 'X283_04', '2024-01-05 04:00:00', 55287, '2024-01-05 04:00:00', 55287, '2024-01-05 04:00:00', 55287, 55287);
+INSERT INTO [dbo].[fctbproc_tseg_noti] ([co_empr], [co_proc], [co_tseg], [co_noti], [co_mens_telf], [fe_crea_regi], [co_usua_crea], [fe_modi_regi], [co_usua_modi], [fe_elim_regi], [co_usua_elim], [st_regi]) VALUES (55288, 55288, 55288, 55288, 'X283_05', '2024-01-06 05:00:00', 55288, '2024-01-06 05:00:00', 55288, '2024-01-06 05:00:00', 55288, 55288);
+GO
+
+====================================================================================================
+TOTAL INSERTS: 95
+Tablas omitidas (parent vacio): 0
+====================================================================================================
+
+VERIFICACION POST-INSERT (en Oracle FCME_USER):
+  -- Conteo por TYPE
+  SELECT 'FLUJOTRABAJOCREDITO_TYPE' AS t, COUNT(*) FROM FCME_USER.FLUJOTRABAJOCREDITO_TYPE
+  UNION ALL
+  SELECT 'PERSONACREDITOTYPE' AS t, COUNT(*) FROM FCME_USER.PERSONACREDITOTYPE
+  UNION ALL
+  SELECT 'LIQUIDACIONDIARIACREDITO_TYPE' AS t, COUNT(*) FROM FCME_USER.LIQUIDACIONDIARIACREDITO_TYPE
+  UNION ALL
+  SELECT 'MOVIMIENTOCONTABLECREDITO_TYPE' AS t, COUNT(*) FROM FCME_USER.MOVIMIENTOCONTABLECREDITO_TYPE
+  UNION ALL
+  SELECT 'COSTOFINANCIEROCREDITO_TYPE' AS t, COUNT(*) FROM FCME_USER.COSTOFINANCIEROCREDITO_TYPE
+  UNION ALL
+  SELECT 'CREDITOTYPE' AS t, COUNT(*) FROM FCME_USER.CREDITOTYPE
+  UNION ALL
+  SELECT 'DESEMBOLSOCREDITO_TYPE' AS t, COUNT(*) FROM FCME_USER.DESEMBOLSOCREDITO_TYPE
+  UNION ALL
+  SELECT 'PAGOSCREDITOTYPE' AS t, COUNT(*) FROM FCME_USER.PAGOSCREDITOTYPE
+  UNION ALL
+  SELECT 'REFINANCIAMIENTOCREDITOTYPE' AS t, COUNT(*) FROM FCME_USER.REFINANCIAMIENTOCREDITOTYPE
+  UNION ALL
+  SELECT 'REFERENCIADEUDOR_TYPE' AS t, COUNT(*) FROM FCME_USER.REFERENCIADEUDOR_TYPE
+  UNION ALL
+  SELECT 'DEVOLUCIONMASIVADETALLE_TYPE' AS t, COUNT(*) FROM FCME_USER.DEVOLUCIONMASIVADETALLE_TYPE
+  UNION ALL
+  SELECT 'DEVOLUCIONMASIVA_TYPE' AS t, COUNT(*) FROM FCME_USER.DEVOLUCIONMASIVA_TYPE
+  UNION ALL
+  SELECT 'PERSONACXPCXCTYPE' AS t, COUNT(*) FROM FCME_USER.PERSONACXPCXCTYPE
+  UNION ALL
+  SELECT 'REPORTESBSOPERACIONCANCELADA_TYPE' AS t, COUNT(*) FROM FCME_USER.REPORTESBSOPERACIONCANCELADA_TYPE
+  UNION ALL
+  SELECT 'REPORTESBSOPERACIONCONCEDIDA_TYPE' AS t, COUNT(*) FROM FCME_USER.REPORTESBSOPERACIONCONCEDIDA_TYPE
+  UNION ALL
+  SELECT 'REPORTESBSSALDOOPERACION_TYPE' AS t, COUNT(*) FROM FCME_USER.REPORTESBSSALDOOPERACION_TYPE
+  UNION ALL
+  SELECT 'OPERACIONCONYUGAL_TYPE' AS t, COUNT(*) FROM FCME_USER.OPERACIONCONYUGAL_TYPE
+  UNION ALL
+  SELECT 'DETALLERECUPERACION_TYPE' AS t, COUNT(*) FROM FCME_USER.DETALLERECUPERACION_TYPE
+  UNION ALL
+  SELECT 'RECUPERACIONCONVENIO_TYPE' AS t, COUNT(*) FROM FCME_USER.RECUPERACIONCONVENIO_TYPE
+  UNION ALL
+  SELECT 'RECUPERACIONCREDITO_TYPE' AS t, COUNT(*) FROM FCME_USER.RECUPERACIONCREDITO_TYPE
+  UNION ALL
+  SELECT 'TRANSACCIONRECUPERACION_TYPE' AS t, COUNT(*) FROM FCME_USER.TRANSACCIONRECUPERACION_TYPE
+  UNION ALL
+  SELECT 'REPORTESBSSUJETORIESGO_TYPE' AS t, COUNT(*) FROM FCME_USER.REPORTESBSSUJETORIESGO_TYPE
+  UNION ALL
+  SELECT 'CUOTACREDITOTYPE' AS t, COUNT(*) FROM FCME_USER.CUOTACREDITOTYPE
+  UNION ALL
+  SELECT 'SALDOCARTERADETALLE_TYPE' AS t, COUNT(*) FROM FCME_USER.SALDOCARTERADETALLE_TYPE
+  UNION ALL
+  SELECT 'PAGOCREDITO_TYPE' AS t, COUNT(*) FROM FCME_USER.PAGOCREDITO_TYPE
+  UNION ALL
+  SELECT 'SOLIDARIOCREDITO_TYPE' AS t, COUNT(*) FROM FCME_USER.SOLIDARIOCREDITO_TYPE
+  UNION ALL
+  SELECT 'ESTADOLEGALTYPE' AS t, COUNT(*) FROM FCME_USER.ESTADOLEGALTYPE
+  UNION ALL
+  SELECT 'REPORTESBSGARANTECODEUDOR_TYPE' AS t, COUNT(*) FROM FCME_USER.REPORTESBSGARANTECODEUDOR_TYPE
+  UNION ALL
+  SELECT 'AUXDATOSCOBROSADICIONALESTYPE' AS t, COUNT(*) FROM FCME_USER.AUXDATOSCOBROSADICIONALESTYPE
+  UNION ALL
+  SELECT 'GRUPOCREDITODETALLE_TYPE' AS t, COUNT(*) FROM FCME_USER.GRUPOCREDITODETALLE_TYPE
+  UNION ALL
+  SELECT 'CUENTASENLEGALTYPE' AS t, COUNT(*) FROM FCME_USER.CUENTASENLEGALTYPE
+  UNION ALL
+  SELECT 'FECHASPROCESOTYPE' AS t, COUNT(*) FROM FCME_USER.FECHASPROCESOTYPE
+  UNION ALL
+
+  -- Errores recientes (deberian ser 0)
+  SELECT AGGREGATE_TYPE, COUNT(*) FROM FCME_USER.CDC_INBOX_ERRORS
+  WHERE CREATED_AT > SYSDATE - 1/24
+  GROUP BY AGGREGATE_TYPE ORDER BY 2 DESC;
+====================================================================================================
+FIN
+====================================================================================================

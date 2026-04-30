@@ -1,0 +1,42 @@
+TYPES = 11
+baseline outbox.max=1661 inbox.max=166 errors_total=261
+
+[DISPAROS]
+  [ 1] aplicacionRecaudacion_type       APLICACIONRECAUDACION_TYPE       (ID=1) UPDATE noop
+  [ 2] caucionRecaudacion_type          CAUCIONRECAUDACION_TYPE          (ID=1) UPDATE noop
+  [ 3] devolucionRendicion_type         DEVOLUCIONRENDICION_TYPE         (ID=1) UPDATE noop
+  [ 4] estadoCuenta_type                ESTADOCUENTA_TYPE                (ID=1) UPDATE noop
+  [ 5] estadoRecaudacion_type           ESTADORECAUDACION_TYPE           (ID=1) UPDATE noop
+  [ 6] recaudacion_type                 RECAUDACION_TYPE                 (ID=7081) UPDATE noop
+  [ 7] rendicion_type                   RENDICION_TYPE                   (ID=27066) UPDATE noop
+  [ 8] saldoRecaudacion_type            SALDORECAUDACION_TYPE            (ID=1) UPDATE noop
+  [ 9] sciRecaudacion_type              SCIRECAUDACION_TYPE              (ID=1) UPDATE noop
+  [10] tipoDescuento_type               TIPODESCUENTO_TYPE               (ID=2) UPDATE noop
+  [11] transaccionRecaudacion_type      TRANSACCIONRECAUDACION_TYPE      (ID=1) UPDATE noop
+
+Disparados: 11/11
+
+[PROPAGACION] 90s
+  out+=11 inb+=2 proc+=2 err_total=261 (89s rest)
+  out+=11 inb+=11 proc+=11 err_total=261 (81s rest)
+
+[RESULTADOS]
+  # aggregate_type                   inbox  proc  err   leg_delta  status
+------------------------------------------------------------------------------------------------------------------------
+  1 aplicacionRecaudacion_type       1      1     0     +0        OK
+  2 caucionRecaudacion_type          1      1     0     +0        OK
+  3 devolucionRendicion_type         1      1     0     +0        OK
+  4 estadoCuenta_type                1      1     0     +0        OK
+  5 estadoRecaudacion_type           1      1     0     +0        OK
+  6 recaudacion_type                 1      1     0     +0        OK
+  7 rendicion_type                   1      1     0     +0        OK
+  8 saldoRecaudacion_type            1      1     0     +0        OK
+  9 sciRecaudacion_type              1      1     0     +0        OK
+ 10 tipoDescuento_type               1      1     0     +0        OK
+ 11 transaccionRecaudacion_type      1      1     0     +0        OK
+
+[RESUMEN] OK=11/11
+
+[ANTI-LOOP] outbox 3s mas tarde = +11 (initial fired=11)
+  Flujo 1 echo dbRC ultimos 2 min: 0
+=== FIN ===

@@ -1,0 +1,223 @@
+====================================================================================================
+====================================================================================================
+ MODULO: GARANTIAS - bases legacy, tablas y aggregate_types (formato base.tabla -> type)
+ Servidor: 10.35.3.64,1433     Fecha: 2026-04-30
+====================================================================================================
+
+ Total aggregate_types modulo GARANTIAS: 14
+ Distribucion por BD legacy:
+   dbCG    : 3 types
+   dbCR    : 6 types
+   dbFC    : 3 types
+   dbIN    : 2 types
+
+
+####################################################################################################
+# BD LEGACY: dbCG     (3 aggregate_types - tablas que disparan triggers F1)
+####################################################################################################
+USE [dbCG];
+GO
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : avaluoGarantiaType
+-- LEGACY TABLE   : [dbCG].[dbo].[cgtbaval_hipo_cdio]
+-- TRIGGER F1     : dbCG.dbo.tr_cgtbaval_hipo_cdio_cdc
+-- ORACLE DEST    : FCME_USER.AVALUOGARANTIA_TYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_avaluoGarantiaType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : datosInmueblesType
+-- LEGACY TABLE   : [dbCG].[dbo].[cgtbgara_hipo_cdio]
+-- TRIGGER F1     : dbCG.dbo.trg_cgtbgara_hipo_cdio_outbox
+-- ORACLE DEST    : FCME_USER.DATOSINMUEBLESTYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_datosInmueblesType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : datosVehiculosType
+-- LEGACY TABLE   : [dbCG].[dbo].[cgtbgara_vehi_cdio]
+-- TRIGGER F1     : dbCG.dbo.trg_cgtbgara_vehi_cdio_outbox
+-- ORACLE DEST    : FCME_USER.DATOSVEHICULOSTYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_datosVehiculosType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+
+####################################################################################################
+# BD LEGACY: dbCR     (6 aggregate_types - tablas que disparan triggers F1)
+####################################################################################################
+USE [dbCR];
+GO
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : contabilizacionGarantiaType
+-- LEGACY TABLE   : [dbCR].[dbo].[crtbcaut_gara]
+-- TRIGGER F1     : dbCR.dbo.trg_outbox_crtbcaut_gara
+-- ORACLE DEST    : FCME_USER.CONTABILIZACIONGARANTIA_TYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_contabilizacionGarantiaType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : garanteCreditoType
+-- LEGACY TABLE   : [dbCR].[dbo].[crtgrtes]
+-- TRIGGER F1     : dbCR.dbo.trg_crtgrtes_outbox
+-- ORACLE DEST    : FCME_USER.GARANTECREDITO_TYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_garanteCreditoType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : garantiaGeneralType
+-- LEGACY TABLE   : [dbCR].[dbo].[crtbgara_real]
+-- TRIGGER F1     : dbCR.dbo.trg_outbox_crtbgara_real
+-- ORACLE DEST    : FCME_USER.GARANTIAGENERALTYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_garantiaGeneralType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : garantiaPagareType
+-- LEGACY TABLE   : [dbCR].[dbo].[crtbgara_pgre]
+-- TRIGGER F1     : dbCR.dbo.trg_outbox_crtbgara_pgre
+-- ORACLE DEST    : FCME_USER.GARANTIAPAGARE_TYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_garantiaPagareType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : garantiaPorPrestamoType
+-- LEGACY TABLE   : [dbCR].[dbo].[crtbcaut_gara]
+-- TRIGGER F1     : dbCR.dbo.tr_crtbcaut_gara_cdc
+-- ORACLE DEST    : FCME_USER.GARANTIAPORPRESTAMOTYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_garantiaPorPrestamoType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : reporteSBSGarantiaType
+-- LEGACY TABLE   : [dbCR].[dbo].[crtbcgar_code_sibs]
+-- TRIGGER F1     : dbCR.dbo.trg_outbox_crtbcgar_code_sibs
+-- ORACLE DEST    : FCME_USER.REPORTESBSGARANTIA_TYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_reporteSBSGarantiaType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+
+####################################################################################################
+# BD LEGACY: dbFC     (3 aggregate_types - tablas que disparan triggers F1)
+####################################################################################################
+USE [dbFC];
+GO
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : datosOtrosActivosType
+-- LEGACY TABLE   : [dbFC].[dbo].[sfct_afiliado_bienes]
+-- TRIGGER F1     : dbFC.dbo.trg_outbox_sfct_afiliado_bienes
+-- ORACLE DEST    : FCME_USER.DATOSOTROSACTIVOSTYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_datosOtrosActivosType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : liquidacionGarantiaType
+-- LEGACY TABLE   : [dbFC].[dbo].[fctbdeta_liqd_grnt]
+-- TRIGGER F1     : dbFC.dbo.trg_outbox_fctbdeta_liqd_grnt
+-- ORACLE DEST    : FCME_USER.LIQUIDACIONGARANTIA_TYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_liquidacionGarantiaType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : tipoBienType
+-- LEGACY TABLE   : [dbFC].[dbo].[sfct_bienes]
+-- TRIGGER F1     : dbFC.dbo.trg_outbox_sfct_bienes
+-- ORACLE DEST    : FCME_USER.TIPOBIEN_TYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_tipoBienType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+
+####################################################################################################
+# BD LEGACY: dbIN     (2 aggregate_types - tablas que disparan triggers F1)
+####################################################################################################
+USE [dbIN];
+GO
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : datosRentaVariableType
+-- LEGACY TABLE   : [dbIN].[dbo].[intbcinv]
+-- TRIGGER F1     : dbIN.dbo.trg_intbcinv_rentavar_outbox
+-- ORACLE DEST    : FCME_USER.DATOSRENTAVARIABLETYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_datosRentaVariableType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+-- AGGREGATE TYPE : garantiaInversionType
+-- LEGACY TABLE   : [dbIN].[dbo].[intbgara]
+-- TRIGGER F1     : dbIN.dbo.trg_intbgara_outbox
+-- ORACLE DEST    : FCME_USER.GARANTIAINVERSION_TYPE
+-- ORACLE PK      : ID
+-- WRAPPER CANON  : dbo.usp_inbox_garantiaInversionType
+-- TARGET DB (F2) : dbCR
+-- F2 ACTIVO      : True
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+ RESUMEN base.tabla -> aggregate_type
+====================================================================================================
+
+ dbCG:
+   dbCG.dbo.cgtbaval_hipo_cdio                  -> avaluoGarantiaType  (AVALUOGARANTIA_TYPE)
+   dbCG.dbo.cgtbgara_hipo_cdio                  -> datosInmueblesType  (DATOSINMUEBLESTYPE)
+   dbCG.dbo.cgtbgara_vehi_cdio                  -> datosVehiculosType  (DATOSVEHICULOSTYPE)
+
+ dbCR:
+   dbCR.dbo.crtbcaut_gara                       -> contabilizacionGarantiaType  (CONTABILIZACIONGARANTIA_TYPE)
+   dbCR.dbo.crtgrtes                            -> garanteCreditoType  (GARANTECREDITO_TYPE)
+   dbCR.dbo.crtbgara_real                       -> garantiaGeneralType  (GARANTIAGENERALTYPE)
+   dbCR.dbo.crtbgara_pgre                       -> garantiaPagareType  (GARANTIAPAGARE_TYPE)
+   dbCR.dbo.crtbcaut_gara                       -> garantiaPorPrestamoType  (GARANTIAPORPRESTAMOTYPE)
+   dbCR.dbo.crtbcgar_code_sibs                  -> reporteSBSGarantiaType  (REPORTESBSGARANTIA_TYPE)
+
+ dbFC:
+   dbFC.dbo.sfct_afiliado_bienes                -> datosOtrosActivosType  (DATOSOTROSACTIVOSTYPE)
+   dbFC.dbo.fctbdeta_liqd_grnt                  -> liquidacionGarantiaType  (LIQUIDACIONGARANTIA_TYPE)
+   dbFC.dbo.sfct_bienes                         -> tipoBienType  (TIPOBIEN_TYPE)
+
+ dbIN:
+   dbIN.dbo.intbcinv                            -> datosRentaVariableType  (DATOSRENTAVARIABLETYPE)
+   dbIN.dbo.intbgara                            -> garantiaInversionType  (GARANTIAINVERSION_TYPE)
+
+=== FIN REPORTE ===
+Archivo: C:\Users\Usuario\Downloads\Bulk\garantia_modulo_bases.txt

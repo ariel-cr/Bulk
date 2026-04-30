@@ -1,0 +1,6 @@
+[RUN] ts=1777390431  offset_base=77739043100
+[TYPES] 40 aggregate_types
+
+[BASELINE] outbox.max_id=185  inbox.max_id=185  errors=19
+
+[INSERTS]

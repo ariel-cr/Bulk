@@ -1,0 +1,86 @@
+================================================================================
+SMOKE TEST 60 TABLAS CARTERA (anti-zombi v2)
+================================================================================
+   1  dbCG   cgtbgara_hipo_cdio                  [OK            ] rows=1 types=1 events=1  err=-
+   2  dbCG   cgtbprod_cnta_auto                  [OK            ] rows=1 types=2 events=2  err=-
+   3  dbCG   cgtbrepo_anls_cnta                  [EMPTY         ] rows=0 types=1 events=0  err=-
+   4  dbCR   crtbabno_extr                       [ERR_UPDATE    ] rows=0 types=1 events=0  err=('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri1abno_extr". The conflict occurred in database "dbCR", table "dbo.
+   5  dbCR   crtbcart_calf_prov                  [EMPTY         ] rows=0 types=1 events=0  err=-
+   6  dbCR   crtbcaut_cred                       [OK            ] rows=1 types=1 events=1  err=-
+   7  dbCR   crtbccbr_cred_judi                  [ERR_UPDATE    ] rows=0 types=7 events=0  err=('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri1ccbr_cred_judi". The conflict occurred in database "dbCR", table 
+   8  dbCR   crtbcdeb_cnta                       [EMPTY         ] rows=0 types=3 events=0  err=-
+   9  dbCR   crtbcobr_judi_deta                  [OK            ] rows=1 types=1 events=1  err=-
+  10  dbCR   crtbcobr_judi_dist                  [OK            ] rows=1 types=2 events=2  err=-
+  11  dbCR   crtbconv_pago                       [ERR_UPDATE    ] rows=0 types=1 events=0  err=('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri1conv_pago". The conflict occurred in database "dbCR", table "dbo.
+  12  dbCR   crtbcred_autr_deta                  [ERR_UPDATE    ] rows=0 types=1 events=0  err=('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri0cred_autr_deta". The conflict occurred in database "dbCR", table 
+  13  dbCR   crtbcred_liqd_diar                  [ERR_UPDATE    ] rows=0 types=2 events=0  err=('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri1cred_liqd_diar". The conflict occurred in database "dbCR", table 
+  14  dbCR   crtbcred_part                       [EMPTY         ] rows=0 types=2 events=0  err=-
+  15  dbCR   crtbcred_plzo_venc                  [OK            ] rows=1 types=1 events=1  err=-
+  16  dbCR   crtbcred_prea_whts                  [EMPTY         ] rows=0 types=5 events=0  err=-
+  17  dbCR   crtbctrl_oper_ante_sibs             [EMPTY         ] rows=0 types=1 events=0  err=-
+  18  dbCR   crtbdbso_devo                       [OK            ] rows=1 types=2 events=2  err=-
+  19  dbCR   crtbdeud_conv                       [EMPTY         ] rows=0 types=1 events=0  err=-
+  20  dbCR   crtbdevo_masi_deta                  [ERR_UPDATE    ] rows=0 types=2 events=0  err=('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri2devo_masi_deta". The conflict occurred in database "dbCR", table 
+  21  dbCR   crtbdocu_cred                       [OK            ] rows=1 types=2 events=2  err=-
+  22  dbCR   crtbdsal_oper                       [OK            ] rows=1 types=4 events=4  err=-
+  23  dbCR   crtbdvgo_cart_deta                  [OK            ] rows=1 types=2 events=2  err=-
+  24  dbCR   crtbdvgo_cart_deta_diar             [EMPTY         ] rows=0 types=1 events=0  err=-
+  25  dbCR   crtbesta_conv_cred                  [OK            ] rows=1 types=1 events=1  err=-
+  26  dbCR   crtbgest_cart_asig                  [OK            ] rows=1 types=1 events=1  err=-
+  27  dbCR   crtbgest_cred                       [EMPTY         ] rows=0 types=1 events=0  err=-
+  28  dbCR   crtbinfo_gara_real_sibs             [OK            ] rows=1 types=1 events=1  err=-
+  29  dbCR   crtbinfo_legl                       [OK            ] rows=1 types=1 events=1  err=-
+  30  dbCR   crtbobli_rol                        [OK            ] rows=1 types=1 events=1  err=-
+  31  dbCR   crtboper_canc                       [OK            ] rows=1 types=1 events=1  err=-
+  32  dbCR   crtboper_dref_liqd                  [EMPTY         ] rows=0 types=1 events=0  err=-
+  33  dbCR   crtbplan_ajus                       [OK            ] rows=1 types=1 events=1  err=-
+  34  dbCR   crtbplpg_conv                       [OK            ] rows=1 types=1 events=1  err=-
+  35  dbCR   crtbrecu_conv                       [OK            ] rows=1 types=4 events=4  err=-
+  36  dbCR   crtbrepo_sobr                       [EMPTY         ] rows=0 types=1 events=0  err=-
+  37  dbCR   crtbrngo_autr_cred                  [EMPTY         ] rows=0 types=1 events=0  err=-
+  38  dbCR   crtbrngo_intr_cred                  [EMPTY         ] rows=0 types=1 events=0  err=-
+  39  dbCR   crtbsald_cart                       [OK            ] rows=1 types=1 events=1  err=-
+  40  dbCR   crtbsald_cart_deta                  [OK            ] rows=1 types=1 events=1  err=-
+  41  dbCR   crtbsegi_autr_ofic                  [ERR_UPDATE    ] rows=0 types=1 events=0  err=('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri1segi_autr_ofic". The conflict occurred in database "dbCR", table 
+  42  dbCR   crtbsegu_cred                       [EMPTY         ] rows=0 types=1 events=0  err=-
+  43  dbCR   crtbsobr_caut                       [OK            ] rows=1 types=1 events=1  err=-
+  44  dbCR   crtbtipo_cred_sibs                  [EMPTY         ] rows=0 types=1 events=0  err=-
+  45  dbCR   crtpagos                            [OK            ] rows=1 types=1 events=1  err=-
+  46  dbCR   crtplpag                            [OK            ] rows=1 types=1 events=1  err=-
+  47  dbCR   crtrepo_sobr                        [EMPTY         ] rows=0 types=3 events=0  err=-
+  48  dbCR   crtrubros_cobr                      [OK            ] rows=2 types=2 events=4  err=-
+  49  dbCR   crtsobrante                         [OK            ] rows=1 types=2 events=2  err=-
+  50  dbCR   crtsolid                            [OK            ] rows=2 types=1 events=2  err=-
+  51  dbCT   cttbesta_docu_inve                  [EMPTY         ] rows=0 types=1 events=0  err=-
+  52  dbCT   cttbproc_obse_tran                  [EMPTY         ] rows=0 types=1 events=0  err=-
+  53  dbCT   cttbrepo_gene                       [EMPTY         ] rows=0 types=1 events=0  err=-
+  54  dbCT   cttbtran_inve_auxi                  [EMPTY         ] rows=0 types=1 events=0  err=-
+  55  dbFC   fctbdeta_liqd_cred                  [OK            ] rows=1 types=1 events=1  err=-
+  56  dbFC   fctbdinf_liqd_cnta_sibs             [OK            ] rows=1 types=1 events=1  err=-
+  57  dbFC   fctbmvto_impr_esta_cnta             [EMPTY         ] rows=0 types=1 events=0  err=-
+  58  dbFC   fctbproc_tseg_noti                  [EMPTY         ] rows=0 types=1 events=0  err=-
+  59  dbFC   sfct_afiliado_referencias           [OK            ] rows=1 types=1 events=1  err=-
+  60  dbFC   sfct_saldos_diarios_afiliados       [OK            ] rows=1 types=2 events=2  err=-
+
+================================================================================
+RESUMEN
+================================================================================
+  OK                   31/60
+  EMPTY                22/60
+  ERR_UPDATE           7/60
+
+--- ERR DETAIL (7) ---
+  [ERR_UPDATE] dbCR.crtbabno_extr -> ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri1abno_extr". The conflict occurred in database "dbCR", table "dbo.
+  [ERR_UPDATE] dbCR.crtbccbr_cred_judi -> ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri1ccbr_cred_judi". The conflict occurred in database "dbCR", table 
+  [ERR_UPDATE] dbCR.crtbconv_pago -> ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri1conv_pago". The conflict occurred in database "dbCR", table "dbo.
+  [ERR_UPDATE] dbCR.crtbcred_autr_deta -> ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri0cred_autr_deta". The conflict occurred in database "dbCR", table 
+  [ERR_UPDATE] dbCR.crtbcred_liqd_diar -> ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri1cred_liqd_diar". The conflict occurred in database "dbCR", table 
+  [ERR_UPDATE] dbCR.crtbdevo_masi_deta -> ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri2devo_masi_deta". The conflict occurred in database "dbCR", table 
+  [ERR_UPDATE] dbCR.crtbsegi_autr_ofic -> ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The UPDATE statement conflicted with the FOREIGN KEY constraint "cri1segi_autr_ofic". The conflict occurred in database "dbCR", table 
+
+[cleanup] cerrando conexiones...
+  closed fcme_canonicos
+  closed dbCG
+  closed dbCR
+  closed dbCT
+  closed dbFC

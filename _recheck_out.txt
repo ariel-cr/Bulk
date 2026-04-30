@@ -1,0 +1,26 @@
+Recheck eventos en cdc_inbox (ultimos 15 min):
+
+Types con evento en cdc_inbox: 88/89
+Types con todos PROCESSED=1: 88/88
+
+Errores cdc_inbox_errors ultimos 15 min: 12
+  cols cdc_inbox_errors: ['error_id', 'inbox_id', 'aggregate_type', 'event_type', 'error_message', 'created_at']
+
+Ultimos errores:
+  [UPDATE] retiroVoluntarioType: wrapper retiroVoluntarioType: The UPDATE statement conflicted with the FOREIGN KEY constraint "fci1cret_volu". The conflict occurred in database "dbFC", table "dbo.sfct_afiliado".
+  [UPDATE] cuentaIndividualPersonaType: wrapper cuentaIndividualPersonaType: String or binary data would be truncated.
+  [UPDATE] servicioGeneralType: wrapper servicioGeneralType: Accion invalida: use GET, POST, PUT o DELETE
+  [UPDATE] saldoRubroType: wrapper saldoRubroType: Accion invalida: use GET, POST, PUT o DELETE
+  [UPDATE] retiroVoluntarioType: wrapper retiroVoluntarioType: Accion invalida: use GET, POST, PUT o DELETE
+  [UPDATE] retiroVoluntarioParametroType: wrapper retiroVoluntarioParametroType: Accion invalida: use GET, POST, PUT o DELETE
+  [UPDATE] retiroVoluntarioDesembolsoType: wrapper retiroVoluntarioDesembolsoType: Accion invalida: use GET, POST, PUT o DELETE
+  [UPDATE] retiroVoluntarioCreditoType: wrapper retiroVoluntarioCreditoType: Accion invalida: use GET, POST, PUT o DELETE
+  [UPDATE] reporteSIBSCuentaType: wrapper reporteSIBSCuentaType: Accion invalida: use GET, POST, PUT o DELETE
+  [UPDATE] movimientoCuentaHistoricoType: wrapper movimientoCuentaHistoricoType: Accion invalida: use GET, POST, PUT o DELETE
+  [UPDATE] cuentaIndividualPersonaType: wrapper cuentaIndividualPersonaType: String or binary data would be truncated.
+  [UPDATE] auditoriaCuentaType: wrapper auditoriaCuentaType: Accion invalida: use GET, POST, PUT o DELETE
+
+
+Filas con marker TEST_E2E en legacy:
+  dbCR.crtbinfo_gara_real_sibs (reporteSBSGarantiaReal_type): 1 filas con marker
+  TOTAL dbCR: 1 filas con marker E2E

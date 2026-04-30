@@ -1,0 +1,85 @@
+================================================================================
+TEST inserts_garantia.txt - ROLLBACK al final, no persiste
+================================================================================
+
+Parseados:
+  dbCG: 30 inserts
+  dbCR: 50 inserts
+  dbFC: 30 inserts
+  dbIN: 20 inserts
+  TOTAL: 130
+
+Ejecutando (con ROLLBACK garantizado al final)...
+
+--- BD: dbCG ---
+
+--- BD: dbCR ---
+
+--- BD: dbFC ---
+
+--- BD: dbIN ---
+
+================================================================================
+RESUMEN POR TABLA
+================================================================================
+  [FAIL  ] dbCG.cgtbaval_hipo_cdio                       ok= 0 fail=10
+          - L28: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cgi0aval_hipo_cdio'. Cannot insert duplicate key in object 'dbo.cgtbaval_hipo_cdio'. The duplicat
+          - L29: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cgi0aval_hipo_cdio'. Cannot insert duplicate key in object 'dbo.cgtbaval_hipo_cdio'. The duplicat
+          - L30: ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cgi2aval_hipo_cdio". The conflict occurred in database "dbCG", table 
+          ... y 7 mas
+  [FAIL  ] dbCG.cgtbgara_hipo_cdio                       ok= 0 fail=10
+          - L47: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cgi0gara_hipo_cdio'. Cannot insert duplicate key in object 'dbo.cgtbgara_hipo_cdio'. The duplicat
+          - L48: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cgi0gara_hipo_cdio'. Cannot insert duplicate key in object 'dbo.cgtbgara_hipo_cdio'. The duplicat
+          - L49: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cgi0gara_hipo_cdio'. Cannot insert duplicate key in object 'dbo.cgtbgara_hipo_cdio'. The duplicat
+          ... y 7 mas
+  [FAIL  ] dbCG.cgtbgara_vehi_cdio                       ok= 0 fail=10
+          - L65: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cgi0gara_vehi_cdio'. Cannot insert duplicate key in object 'dbo.cgtbgara_vehi_cdio'. The duplicat
+          - L66: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cgi0gara_vehi_cdio'. Cannot insert duplicate key in object 'dbo.cgtbgara_vehi_cdio'. The duplicat
+          - L67: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cgi0gara_vehi_cdio'. Cannot insert duplicate key in object 'dbo.cgtbgara_vehi_cdio'. The duplicat
+          ... y 7 mas
+  [FAIL  ] dbCR.crtbcaut_gara                            ok= 0 fail=10
+          - L90: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0caut_gara'. Cannot insert duplicate key in object 'dbo.crtbcaut_gara'. The duplicate key valu
+          - L91: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0caut_gara'. Cannot insert duplicate key in object 'dbo.crtbcaut_gara'. The duplicate key valu
+          - L92: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0caut_gara'. Cannot insert duplicate key in object 'dbo.crtbcaut_gara'. The duplicate key valu
+          ... y 7 mas
+  [FAIL  ] dbCR.crtbcgar_code_sibs                       ok= 0 fail=10
+          - L165: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0cgar_code_sibs'. Cannot insert duplicate key in object 'dbo.crtbcgar_code_sibs'. The duplicat
+          - L166: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0cgar_code_sibs'. Cannot insert duplicate key in object 'dbo.crtbcgar_code_sibs'. The duplicat
+          - L167: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0cgar_code_sibs'. Cannot insert duplicate key in object 'dbo.crtbcgar_code_sibs'. The duplicat
+          ... y 7 mas
+  [FAIL  ] dbCR.crtbgara_pgre                            ok= 0 fail=10
+          - L147: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0gara_pgre'. Cannot insert duplicate key in object 'dbo.crtbgara_pgre'. The duplicate key valu
+          - L148: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0gara_pgre'. Cannot insert duplicate key in object 'dbo.crtbgara_pgre'. The duplicate key valu
+          - L149: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0gara_pgre'. Cannot insert duplicate key in object 'dbo.crtbgara_pgre'. The duplicate key valu
+          ... y 7 mas
+  [FAIL  ] dbCR.crtbgara_real                            ok= 0 fail=10
+          - L127: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0gara_real'. Cannot insert duplicate key in object 'dbo.crtbgara_real'. The duplicate key valu
+          - L128: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0gara_real'. Cannot insert duplicate key in object 'dbo.crtbgara_real'. The duplicate key valu
+          - L129: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0gara_real'. Cannot insert duplicate key in object 'dbo.crtbgara_real'. The duplicate key valu
+          ... y 7 mas
+  [FAIL  ] dbCR.crtgrtes                                 ok= 0 fail=10
+          - L108: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0grtes'. Cannot insert duplicate key in object 'dbo.crtgrtes'. The duplicate key value is (100
+          - L109: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0grtes'. Cannot insert duplicate key in object 'dbo.crtgrtes'. The duplicate key value is (100
+          - L110: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri0grtes'. Cannot insert duplicate key in object 'dbo.crtgrtes'. The duplicate key value is (100
+          ... y 7 mas
+  [FAIL  ] dbFC.fctbdeta_liqd_grnt                       ok= 0 fail=10
+          - L209: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'fci0deta_liqd_grnt'. Cannot insert duplicate key in object 'dbo.fctbdeta_liqd_grnt'. The duplicat
+          - L210: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'fci0deta_liqd_grnt'. Cannot insert duplicate key in object 'dbo.fctbdeta_liqd_grnt'. The duplicat
+          - L211: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'fci0deta_liqd_grnt'. Cannot insert duplicate key in object 'dbo.fctbdeta_liqd_grnt'. The duplicat
+          ... y 7 mas
+  [OK    ] dbFC.sfct_afiliado_bienes                     ok=10 fail= 0
+  [OK    ] dbFC.sfct_bienes                              ok=10 fail= 0
+  [OK    ] dbIN.intbcinv                                 ok=10 fail= 0
+  [FAIL  ] dbIN.intbgara                                 ok= 0 fail=10
+          - L270: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'ini0gara'. Cannot insert duplicate key in object 'dbo.intbgara'. The duplicate key value is (3270
+          - L271: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'ini0gara'. Cannot insert duplicate key in object 'dbo.intbgara'. The duplicate key value is (3269
+          - L272: ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'ini0gara'. Cannot insert duplicate key in object 'dbo.intbgara'. The duplicate key value is (3269
+          ... y 7 mas
+
+--- TOTAL ---
+  OK   : 30/130
+  FAIL : 100
+
+[cleanup] ROLLBACK + close en todas las conexiones...
+  ROLLBACK dbCG
+  ROLLBACK dbCR

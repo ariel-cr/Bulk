@@ -3,6 +3,21 @@ import random
 import time
 from datetime import datetime, timedelta
 
+# Limites por tipo numerico de SQL Server
+INT_MAX      = 2_147_483_647
+SMALLINT_MAX = 32_767
+TINYINT_MAX  = 255
+
+def _numeric_pk(unique_id, dtype):
+    """ID numerico determinista pero acotado al rango del tipo."""
+    if dtype == "tinyint":
+        return unique_id % TINYINT_MAX
+    if dtype == "smallint":
+        return unique_id % SMALLINT_MAX
+    if dtype in ("int",):
+        return unique_id % INT_MAX
+    return unique_id
+
 
 def generate_fake_value(col, index, offset, is_pk=False, fk_values=None):
     """Genera un valor fake segun el tipo de dato.
@@ -12,31 +27,44 @@ def generate_fake_value(col, index, offset, is_pk=False, fk_values=None):
     max_len = col["max_length"] or 50
     unique_id = offset + index
 
-    # Si la columna tiene FK, usar valores validos de la tabla referenciada
+    # 1) FK: usar valor real de la tabla referenciada
+    #    Pick rota por (offset+index) para que distintas corridas elijan filas
+    #    distintas y no colisionen en PK (cuando la PK incluye FKs).
     if fk_values and col["name"] in fk_values:
         vals = fk_values[col["name"]]
-        return vals[index % len(vals)]
+        if vals:
+            return vals[unique_id % len(vals)]
 
-    # Columnas PK o que terminan en "id" - usar offset para unicidad
-    # Asegurar que el ID unico quepa dentro de max_len para evitar truncaciones
-    # que generen valores duplicados (ej: BLK1773858282 y BLK1773858283 truncados a 10 = mismo)
-    if (is_pk or name.endswith("id")) and dtype in ("varchar", "nvarchar", "char", "nchar"):
-        prefix = "BLK"
-        max_id_digits = max(1, min(max_len, 20) - len(prefix))
-        short_id = unique_id % (10 ** max_id_digits)
-        return f"{prefix}{short_id}"[:min(max_len, 20)]
+    # 2) Defaults por convencion: co_empr siempre 1 (sistema mono-tenant)
+    #    Solo si NO es PK — si es PK, dejamos que el bloque de PK genere unico
+    if not is_pk and name in ("co_empr", "ci_empresa", "codigoempresa"):
+        return 1
 
-    if (is_pk or name.endswith("id")) and dtype in ("int", "bigint"):
-        return unique_id
+    # 3) PKs/IDs: clamp al rango del tipo numerico para evitar overflow
+    if is_pk or name.endswith("id") or name.endswith("_id"):
+        if dtype in ("varchar", "nvarchar", "char", "nchar"):
+            prefix = "BLK"
+            max_id_digits = max(1, min(max_len, 20) - len(prefix))
+            short_id = unique_id % (10 ** max_id_digits)
+            return f"{prefix}{short_id}"[:min(max_len, 20)]
+        if dtype == "tinyint":
+            return _numeric_pk(unique_id, "tinyint")
+        if dtype == "smallint":
+            return _numeric_pk(unique_id, "smallint")
+        if dtype == "int":
+            return _numeric_pk(unique_id, "int")
+        if dtype == "bigint":
+            return unique_id
 
-    if (is_pk or name.endswith("id")) and dtype in ("smallint", "tinyint"):
-        return unique_id % 30000
-
-    # Tipos numericos
-    if dtype in ("int", "bigint"):
+    # 4) Tipos numericos no-PK (siempre dentro del rango)
+    if dtype == "tinyint":
+        return random.randint(1, min(100, TINYINT_MAX))
+    if dtype == "smallint":
+        return random.randint(1, min(100, SMALLINT_MAX))
+    if dtype == "int":
         return random.randint(1, 10000)
-    if dtype in ("smallint", "tinyint"):
-        return random.randint(1, 100)
+    if dtype == "bigint":
+        return random.randint(1, 10000)
     if dtype in ("decimal", "numeric", "float", "real"):
         return round(random.uniform(100, 99999), 2)
     if dtype == "money":

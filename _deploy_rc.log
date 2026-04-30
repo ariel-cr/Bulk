@@ -1,0 +1,40 @@
+[1] Triggers legacy dbRC
+  CREATE trg_outbox_rctbapli_reca ON dbo.rctbapli_reca
+  CREATE trg_outbox_rctbcaut ON dbo.rctbcaut
+  CREATE trg_outbox_rctbdevo_rind ON dbo.rctbdevo_rind
+  CREATE trg_outbox_rctbesta_cnta ON dbo.rctbesta_cnta
+  CREATE trg_outbox_rctbesta_reca ON dbo.rctbesta_reca
+  CREATE trg_outbox_rctbreca ON dbo.rctbreca
+  CREATE trg_outbox_rctbrind ON dbo.rctbrind
+  CREATE trg_outbox_rctbcsal_reca ON dbo.rctbcsal_reca
+  CREATE trg_outbox_rctbcsci_bce ON dbo.rctbcsci_bce
+  CREATE trg_outbox_rctbtipo_desc ON dbo.rctbtipo_desc
+  CREATE trg_outbox_rctbtrec ON dbo.rctbtrec
+
+[2] Wrappers Oracle USP_INBOX_*
+  CREATE USP_INBOX_APLICACIONRECAUD      status=VALID
+  CREATE USP_INBOX_CAUCIONRECAUD         status=VALID
+  CREATE USP_INBOX_DEVOLUCIONRENDICION   status=VALID
+  CREATE USP_INBOX_ESTADOCUENTA          status=VALID
+  CREATE USP_INBOX_ESTADORECAUDACION     status=VALID
+  CREATE USP_INBOX_RECAUDACION           status=VALID
+  CREATE USP_INBOX_RENDICION             status=VALID
+  CREATE USP_INBOX_SALDORECAUDACION      status=VALID
+  CREATE USP_INBOX_SCIRECAUDACION        status=VALID
+  CREATE USP_INBOX_TIPODESCUENTO         status=VALID
+  CREATE USP_INBOX_TRANSACCIONRECAUD     status=VALID
+
+[3] module_config Oracle
+  + aplicacionRecaudacion_type       -> USP_INBOX_APLICACIONRECAUD
+  + caucionRecaudacion_type          -> USP_INBOX_CAUCIONRECAUD
+  + devolucionRendicion_type         -> USP_INBOX_DEVOLUCIONRENDICION
+  + estadoCuenta_type                -> USP_INBOX_ESTADOCUENTA
+  + estadoRecaudacion_type           -> USP_INBOX_ESTADORECAUDACION
+  + recaudacion_type                 -> USP_INBOX_RECAUDACION
+  + rendicion_type                   -> USP_INBOX_RENDICION
+  + saldoRecaudacion_type            -> USP_INBOX_SALDORECAUDACION
+  + sciRecaudacion_type              -> USP_INBOX_SCIRECAUDACION
+  + tipoDescuento_type               -> USP_INBOX_TIPODESCUENTO
+  + transaccionRecaudacion_type      -> USP_INBOX_TRANSACCIONRECAUD
+
+=== DEPLOY OK ===

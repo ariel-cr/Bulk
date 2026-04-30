@@ -1,0 +1,2241 @@
+====================================================================================================
+DETALLE COMPLETO POR MODULO - BASES, TABLAS, COLUMNAS, PK, ROWCOUNT
+Servidor: 10.35.3.64,1433
+Fecha: 2026-04-29
+====================================================================================================
+
+CONVENCIONES
+  - 'lado legacy'  = BD origen (dbCG, dbCR, dbCT, dbFC, dbIM, dbIN, dbRC, dbSG)
+  - 'lado newcore' = BD fcme_newcore, schema = MODULE_NAME, tablas xxxType
+  - 'rows' es conteo aprox al momento de la consulta
+  - PK = columnas de la primary key
+
+====================================================================================================
+[1] MODULO: INMUEBLES
+====================================================================================================
+  Schema en fcme_newcore : INMUEBLES
+  ORIGINAL_DB declarada  : dbIM
+  BD(s) legacy usadas    : dbIM
+
+  >>> LADO NEWCORE (fcme_newcore.INMUEBLES) <<<
+    Total tablas en schema: 9
+      INMUEBLES.CIUDADELATYPE                                           rows=180
+      INMUEBLES.GASTOMANTENIMIENTOTYPE                                  rows=31
+      INMUEBLES.INMUEBLETYPE                                            rows=1179
+      INMUEBLES.MANZANATYPE                                             rows=367
+      INMUEBLES.ORDENTRABAJOTYPE                                        rows=31
+      INMUEBLES.PROGRAMAVIVIENDATYPE                                    rows=174
+      INMUEBLES.PROPIETARIOTYPE                                         rows=1
+      INMUEBLES.RESERVAINMUEBLETYPE                                     rows=1021
+      INMUEBLES.VENTAINMUEBLETYPE                                       rows=5
+
+  >>> LADO LEGACY (BDs origen) <<<
+
+    --- BD: dbIM ---
+
+      Tabla : [dbIM].[dbo].[imtbbene_entr]
+      PK    : co_prog, co_bene, sc_casa
+      Rows  : 7
+      Cols  : 13
+        - co_prog                             smallint               NOT NULL
+        - co_bene                             char(10)               NOT NULL
+        - co_tviv                             smallint               NOT NULL
+        - nu_manz                             smallint               NOT NULL
+        - nu_bloq                             smallint               NOT NULL
+        - nu_vivi                             smallint               NOT NULL
+        - nu_sola                             smallint               NOT NULL
+        - ds_entr                             varchar(50)            NOT NULL
+        - ds_reci                             varchar(50)            NOT NULL
+        - fe_entr                             datetime               NOT NULL
+        - co_usua_ingr                        smallint               NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - sc_casa                             smallint               NOT NULL
+
+      Tabla : [dbIM].[dbo].[imtbbene_firm]
+      PK    : (sin PK)
+      Rows  : 2011
+      Cols  : 16
+        - co_prog                             smallint               NOT NULL
+        - co_bene                             char(10)               NOT NULL
+        - sc_vivi                             smallint               NOT NULL
+        - fe_firm                             datetime               NULL    
+        - ds_obse                             varchar(100)           NOT NULL
+        - co_usua_firm                        smallint               NULL    
+        - st_firm                             char(1)                NULL    
+        - co_usua_ingr                        smallint               NULL    
+        - fe_ingr                             datetime               NULL    
+        - co_usua_veri                        smallint               NULL    
+        - fe_veri                             datetime               NULL    
+        - co_usua_elim                        smallint               NULL    
+        - fe_elim                             datetime               NULL    
+        - co_usua_mvto                        smallint               NULL    
+        - fe_mvto                             datetime               NULL    
+        - sc_casa                             smallint               NOT NULL
+
+      Tabla : [dbIM].[dbo].[imtbcben]
+      PK    : co_prog, co_bene, sc_casa
+      Rows  : 1024
+      Cols  : 39
+        - co_prog                             smallint               NOT NULL
+        - co_bene                             char(10)               NOT NULL
+        - nu_carp                             smallint               NOT NULL
+        - co_prol_dsto                        char(6)                NOT NULL
+        - co_urol_dsto                        char(6)                NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - mo_acum_drol                        money                  NOT NULL
+        - mo_acum_dind                        money                  NOT NULL
+        - in_dcto                             char(1)                NOT NULL
+        - in_adic                             char(1)                NOT NULL
+        - co_tviv                             smallint               NOT NULL
+        - nu_manz                             smallint               NOT NULL
+        - nu_bloq                             smallint               NOT NULL
+        - nu_vivi                             smallint               NOT NULL
+        - nu_sola                             smallint               NOT NULL
+        - nu_mese_plaz                        smallint               NOT NULL
+        - in_bono                             char(1)                NOT NULL
+        - nu_bono                             varchar(10)            NOT NULL
+        - st_bono                             char(1)                NOT NULL
+        - mo_acre_bono                        money                  NOT NULL
+        - fe_acre_bono                        datetime               NOT NULL
+        - ds_adic                             varchar(255)           NOT NULL
+        - st_bene                             char(1)                NOT NULL
+        - in_pviv                             char(1)                NOT NULL
+        - co_ciud_naci                        char(5)                NOT NULL
+        - nu_hijo_myed                        smallint               NOT NULL
+        - nu_hijo_mned                        smallint               NOT NULL
+        - ti_secc_inst                        char(1)                NOT NULL
+        - nu_piso_dpto                        smallint               NOT NULL
+        - fe_adju_bono                        datetime               NOT NULL
+        - nu_infr                             varchar(9)             NOT NULL
+        - in_cred                             char(1)                NOT NULL
+        - co_empr                             smallint               NOT NULL
+        - co_cont                             smallint               NOT NULL
+        - fe_hast_devo                        datetime               NOT NULL
+        - mo_inte                             money                  NOT NULL
+        - mo_entr_vivi                        money                  NOT NULL
+        - mo_resr_vivi                        money                  NOT NULL
+        - sc_casa                             smallint               NOT NULL
+
+      Tabla : [dbIM].[dbo].[imtbcpro]
+      PK    : (sin PK)
+      Rows  : 321
+      Cols  : 48
+        - co_prog                             int                    NOT NULL
+        - no_prog                             varchar(50)            NOT NULL
+        - co_prov                             char(2)                NOT NULL
+        - nu_vivi                             smallint               NOT NULL
+        - nu_ocup                             smallint               NOT NULL
+        - nu_espe                             smallint               NOT NULL
+        - mo_dsto                             money                  NOT NULL
+        - mo_base                             money                  NOT NULL
+        - nu_manz                             smallint               NOT NULL
+        - co_cant                             char(5)                NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - ds_adic                             varchar(255)           NOT NULL
+        - me_terr                             money                  NOT NULL
+        - nu_dpto                             smallint               NOT NULL
+        - st_prog                             char(1)                NOT NULL
+        - mo_terr                             money                  NOT NULL
+        - mo_cnst                             money                  NOT NULL
+        - mo_adic                             money                  NOT NULL
+        - mo_otro                             money                  NOT NULL
+        - mo_cpro_villa                       money                  NOT NULL
+        - mo_cpro_dpto                        money                  NOT NULL
+        - dd_plaz_mbas                        smallint               NOT NULL
+        - co_parr                             char(5)                NOT NULL
+        - ds_sect                             varchar(100)           NOT NULL
+        - in_ante_proy                        char(1)                NOT NULL
+        - in_perm_cons                        char(1)                NOT NULL
+        - in_prop_hori                        char(1)                NOT NULL
+        - st_escr_terr                        char(1)                NOT NULL
+        - fe_apro                             datetime               NOT NULL
+        - ci_cedu_vend                        char(10)               NOT NULL
+        - no_nomb_vend                        varchar(80)            NOT NULL
+        - ci_cedu_fisc                        char(10)               NOT NULL
+        - mo_estu                             money                  NOT NULL
+        - mo_valo_m2                          money                  NOT NULL
+        - nu_anio                             char(4)                NOT NULL
+        - ti_prog                             char(1)                NULL    
+        - nu_bloq                             smallint               NULL    
+        - ds_ante_proy                        varchar(250)           NULL    
+        - ds_perm_cons                        varchar(250)           NULL    
+        - ds_prop_hori                        varchar(250)           NULL    
+        - fe_modi                             datetime               NOT NULL
+        - co_usua_ingr                        smallint               NOT NULL
+        - co_usua_modi                        smallint               NOT NULL
+        - ti_iden                             char(1)                NOT NULL
+        - nu_rol_pdsto                        char(6)                NOT NULL
+        - nu_terr                             smallint               NOT NULL
+        - in_proy_term                        char(1)                NOT NULL
+        - in_prec_espe                        char(1)                NOT NULL
+
+      Tabla : [dbIM].[dbo].[imtbdivi]
+      PK    : (sin PK)
+      Rows  : 1017
+      Cols  : 34
+        - co_prog                             smallint               NOT NULL
+        - nu_manz                             smallint               NOT NULL
+        - nu_bloq                             smallint               NOT NULL
+        - nu_vivi                             smallint               NOT NULL
+        - me_terr                             money                  NOT NULL
+        - me_cons                             money                  NOT NULL
+        - in_esqu                             char(1)                NOT NULL
+        - sc_fase                             smallint               NOT NULL
+        - mo_cost                             money                  NOT NULL
+        - mo_aval                             money                  NOT NULL
+        - ds_lind_norte                       varchar(100)           NOT NULL
+        - ds_lind_sur                         varchar(100)           NOT NULL
+        - ds_lind_este                        varchar(100)           NOT NULL
+        - ds_lind_oest                        varchar(100)           NOT NULL
+        - ds_vivi                             varchar(200)           NOT NULL
+        - in_ados                             char(1)                NOT NULL
+        - ds_lind_arr                         varchar(100)           NOT NULL
+        - ds_lind_aba                         varchar(100)           NOT NULL
+        - st_divi                             char(1)                NOT NULL
+        - mo_cost_aval                        money                  NULL    
+        - co_tviv                             smallint               NULL    
+        - mo_cons_terr                        money                  NOT NULL
+        - me_balc                             money                  NOT NULL
+        - me_trrz                             money                  NOT NULL
+        - me_parq                             money                  NOT NULL
+        - me_cubi_lvdo                        money                  NOT NULL
+        - mo_valo_mant                        money                  NOT NULL
+        - mo_valo_cmrc                        money                  NOT NULL
+        - mo_vent_rapi                        money                  NOT NULL
+        - in_prec_cmrc                        char(1)                NOT NULL
+        - in_prec_vent_rapi                   char(1)                NOT NULL
+        - in_valo_mant                        char(1)                NOT NULL
+        - in_ubic_mdnr                        char(1)                NOT NULL
+        - ds_adic_ubic                        nvarchar(100)          NULL    
+
+      Tabla : [dbIM].[dbo].[imtbmanz]
+      PK    : (sin PK)
+      Rows  : 636
+      Cols  : 11
+        - co_prog                             smallint               NOT NULL
+        - nu_manz                             smallint               NOT NULL
+        - nu_villa                            smallint               NOT NULL
+        - nu_dpto                             smallint               NOT NULL
+        - di_nort                             varchar(100)           NOT NULL
+        - di_sur                              varchar(100)           NOT NULL
+        - di_este                             varchar(100)           NOT NULL
+        - di_oeste                            varchar(100)           NOT NULL
+        - no_manz                             varchar(50)            NOT NULL
+        - nu_bloq                             smallint               NOT NULL
+        - st_manz                             char(1)                NOT NULL
+
+      Tabla : [dbIM].[dbo].[imtbmejo_tram]
+      PK    : co_bene, co_tram
+      Rows  : 0
+      Cols  : 15
+        - co_bene                             char(10)               NOT NULL
+        - co_tram                             smallint               NOT NULL
+        - mo_tram                             money                  NOT NULL
+        - st_mejo                             char(1)                NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - co_usua_ingr                        smallint               NOT NULL
+        - fe_modi                             datetime               NOT NULL
+        - co_usua_modi                        smallint               NOT NULL
+        - fe_cobr                             datetime               NOT NULL
+        - co_usua_cobr                        smallint               NOT NULL
+        - fe_elim                             datetime               NOT NULL
+        - co_usua_elim                        smallint               NOT NULL
+        - ds_liqd_hipo                        varchar(10)            NOT NULL
+        - fe_rece_docu                        datetime               NOT NULL
+        - ds_obse                             varchar(100)           NOT NULL
+
+      Tabla : [dbIM].[dbo].[imtbtviv]
+      PK    : (sin PK)
+      Rows  : 2008
+      Cols  : 6
+        - co_tviv                             smallint               NOT NULL
+        - no_tviv                             varchar(70)            NOT NULL
+        - ds_adic                             varchar(255)           NOT NULL
+        - in_bloq                             char(1)                NOT NULL
+        - me_cons                             money                  NOT NULL
+        - mo_cost_pvp                         money                  NOT NULL
+
+  >>> MAPEO NEWCORE_TO_FINAL  (TYPE en fcme_newcore  ->  destino legacy) <<<
+    fcme_newcore.INMUEBLES.CIUDADELATYPE                       -> [dbIM].[dbo].[imtbcpro]
+    fcme_newcore.INMUEBLES.INMUEBLETYPE                        -> [dbIM].[dbo].[imtbdivi]
+    fcme_newcore.INMUEBLES.MANZANATYPE                         -> [dbIM].[dbo].[imtbmanz]
+    fcme_newcore.INMUEBLES.PROGRAMAVIVIENDATYPE                -> [dbIM].[dbo].[imtbcpro]
+    fcme_newcore.INMUEBLES.PROPIETARIOTYPE                     -> [dbIM].[dbo].[imtbcben]
+    fcme_newcore.INMUEBLES.RESERVAINMUEBLETYPE                 -> [dbIM].[dbo].[imtbcben]
+    fcme_newcore.INMUEBLES.VENTAINMUEBLETYPE                   -> [dbIM].[dbo].[imtbbene_entr]
+    fcme_newcore.INMUEBLES.GASTOMANTENIMIENTOTYPE              -> [dbIM].[dbo].[imtbmejo_tram]
+    fcme_newcore.INMUEBLES.ORDENTRABAJOTYPE                    -> [dbIM].[dbo].[imtbmejo_tram]
+
+====================================================================================================
+[2] MODULO: CUENTAS_INDIVIDUALES
+====================================================================================================
+  Schema en fcme_newcore : CUENTAS_INDIVIDUALES
+  ORIGINAL_DB declarada  : dbFC
+  BD(s) legacy usadas    : dbFC, dbRC
+
+  >>> LADO NEWCORE (fcme_newcore.CUENTAS_INDIVIDUALES) <<<
+    Total tablas en schema: 4
+      CUENTAS_INDIVIDUALES.CUENTABLOQUEOFONDOSTYPE                                 rows=708
+      CUENTAS_INDIVIDUALES.CUENTASPORCOBRARTYPES                                   rows=936
+      CUENTAS_INDIVIDUALES.CUENTATYPE                                              rows=0
+      CUENTAS_INDIVIDUALES.SALDOSTYPE                                              rows=0
+
+  >>> LADO LEGACY (BDs origen) <<<
+
+    --- BD: dbFC ---
+
+      Tabla : [dbFC].[dbo].[fctbmvto_pend_cbro]
+      PK    : co_empr, sc_mvto, ci_cedu
+      Rows  : 1000
+      Cols  : 9
+        - co_empr                             smallint               NOT NULL
+        - sc_mvto                             int                    NOT NULL
+        - ci_cedu                             varchar(10)            NOT NULL
+        - co_liqd_rubr                        smallint               NOT NULL
+        - ti_cnta                             char(2)                NOT NULL
+        - mo_mvto                             money                  NOT NULL
+        - fe_mvto                             datetime               NOT NULL
+        - co_usua_mvto                        int                    NOT NULL
+        - ds_refe                             varchar(100)           NULL    
+
+      Tabla : [dbFC].[dbo].[fctbsald_diar_afil_rubr]
+      PK    : fx_saldo, ci_cedula, ci_rubro_rol, co_empr
+      Rows  : 8
+      Cols  : 10
+        - fx_saldo                            datetime               NOT NULL
+        - ci_tipo                             char(1)                NULL    
+        - ci_institucion                      char(6)                NULL    
+        - ci_provincia                        char(2)                NULL    
+        - ci_pagador                          char(1)                NULL    
+        - ci_cedula                           char(10)               NOT NULL
+        - ce_estado                           char(1)                NULL    
+        - ci_rubro_rol                        char(2)                NOT NULL
+        - va_saldo                            money                  NULL    
+        - co_empr                             smallint               NOT NULL
+
+      Tabla : [dbFC].[dbo].[sfct_afiliado]
+      PK    : co_empr, ci_cedula
+      Rows  : 1043
+      Cols  : 56
+        - ci_tipo                             varchar(1)             NOT NULL
+        - ci_institucion                      varchar(6)             NOT NULL
+        - ci_cedula                           varchar(10)            NOT NULL
+        - no_nombre                           varchar(100)           NOT NULL
+        - no_apellido                         varchar(100)           NOT NULL
+        - no_direccion                        varchar(50)            NOT NULL
+        - tx_telefono                         varchar(20)            NOT NULL
+        - ci_titulo                           char(2)                NOT NULL
+        - ci_provincia                        varchar(3)             NOT NULL
+        - ci_categoria                        varchar(2)             NOT NULL
+        - ci_nivel                            varchar(1)             NOT NULL
+        - ci_regimen                          varchar(1)             NOT NULL
+        - ci_pagador                          varchar(1)             NOT NULL
+        - tx_iess                             varchar(15)            NOT NULL
+        - tx_contrato                         varchar(10)            NOT NULL
+        - fx_nacimiento                       datetime               NOT NULL
+        - fx_ingreso                          datetime               NOT NULL
+        - fx_fondo                            datetime               NOT NULL
+        - fx_reingreso                        datetime               NOT NULL
+        - fx_retiro                           datetime               NOT NULL
+        - va_sueldo                           money                  NOT NULL
+        - va_liquido                          money                  NOT NULL
+        - va_funcional                        money                  NOT NULL
+        - va_adicional                        money                  NOT NULL
+        - va_antiguedad                       money                  NOT NULL
+        - pr_cam                              money                  NOT NULL
+        - nu_anios_antiguedad                 smallint               NOT NULL
+        - fx_creacion                         datetime               NOT NULL
+        - ce_estado                           varchar(1)             NOT NULL
+        - ci_ciudad                           varchar(5)             NOT NULL
+        - ce_estadocivil                      char(1)                NOT NULL
+        - tx_telefono2                        varchar(20)            NOT NULL
+        - co_escuela                          varchar(6)             NOT NULL
+        - ti_sector                           char(1)                NOT NULL
+        - ci_nivelaporte                      char(3)                NOT NULL
+        - ci_cedula_numerica                  float                  NOT NULL
+        - fx_modificacion                     datetime               NOT NULL
+        - ci_provincia_residencia             char(2)                NOT NULL
+        - in_sexo                             char(1)                NOT NULL
+        - va_hipotecario                      money                  NOT NULL
+        - ci_usuario_ingr                     smallint               NOT NULL
+        - tx_email                            varchar(50)            NOT NULL
+        - ci_usuario_modi                     smallint               NOT NULL
+        - tx_barrio                           varchar(20)            NOT NULL
+        - ci_parroquia                        char(5)                NOT NULL
+        - ci_rold_dsto_hipo                   char(6)                NOT NULL
+        - ci_rolh_dsto_hipo                   char(6)                NOT NULL
+        - tx_telefono3                        varchar(20)            NOT NULL
+        - tx_telefono4                        varchar(20)            NOT NULL
+        - ds_observaciones                    varchar(100)           NOT NULL
+        - ci_cargo                            char(3)                NOT NULL
+        - nu_carga                            smallint               NOT NULL
+        - ci_cedula_correccion                varchar(10)            NOT NULL
+        - pr_funcional                        money                  NOT NULL
+        - fe_reti_parc                        datetime               NOT NULL
+        - co_empr                             smallint               NOT NULL
+
+    --- BD: dbRC ---
+
+      Tabla : [dbRC].[dbo].[rctbesta_cnta_bloq]
+      PK    : co_empr, sc_esta_cnta
+      Rows  : 711
+      Cols  : 18
+        - co_empr                             smallint               NOT NULL
+        - sc_esta_cnta                        int                    NOT NULL
+        - sc_cpbt                             int                    NOT NULL
+        - qs_cnta_bnco                        smallint               NOT NULL
+        - nu_cpbt                             varchar(20)            NOT NULL
+        - fe_depo                             datetime               NOT NULL
+        - mo_depo                             money                  NOT NULL
+        - mo_bloq                             money                  NOT NULL
+        - co_moti_bloq                        smallint               NOT NULL
+        - co_usua_ingr                        smallint               NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - co_usua_modi                        smallint               NOT NULL
+        - fe_modi                             datetime               NOT NULL
+        - co_usua_elim                        smallint               NOT NULL
+        - fe_elim                             datetime               NOT NULL
+        - in_cble                             char(1)                NOT NULL
+        - st_mvto                             char(1)                NOT NULL
+        - ds_bloq                             varchar(250)           NOT NULL
+
+  >>> MAPEO NEWCORE_TO_FINAL  (TYPE en fcme_newcore  ->  destino legacy) <<<
+    fcme_newcore.CUENTAS_INDIVIDUALES.CUENTABLOQUEOFONDOSTYPE             -> [dbRC].[dbo].[rctbesta_cnta_bloq]
+    fcme_newcore.CUENTAS_INDIVIDUALES.CUENTATYPE                          -> [dbFC].[dbo].[sfct_afiliado]
+    fcme_newcore.CUENTAS_INDIVIDUALES.CUENTASPORCOBRARTYPES               -> [dbFC].[dbo].[fctbmvto_pend_cbro]
+    fcme_newcore.CUENTAS_INDIVIDUALES.SALDOSTYPE                          -> [dbFC].[dbo].[fctbsald_diar_afil_rubr]
+
+====================================================================================================
+[3] MODULO: CREDITOS
+====================================================================================================
+  Schema en fcme_newcore : CREDITOS
+  ORIGINAL_DB declarada  : dbCR
+  BD(s) legacy usadas    : dbCR
+
+  >>> LADO NEWCORE (fcme_newcore.CREDITOS) <<<
+    Total tablas en schema: 10
+      CREDITOS.CREDITOGENERALTYPE                                      rows=2016
+      CREDITOS.CREDITOTYPE                                             rows=2016
+      CREDITOS.CUOTACREDITOTYPE                                        rows=1005
+      CREDITOS.ESTADOLEGALTYPE                                         rows=1025
+      CREDITOS.PAGOSCREDITOTYPE                                        rows=2019
+      CREDITOS.PERSONAGARANTETYPE                                      rows=1001
+      CREDITOS.PRESTAMOTYPE                                            rows=2016
+      CREDITOS.REFINANCIAMIENTOCREDITOTYPE                             rows=2016
+      CREDITOS.SEGUROTYPE                                              rows=1026
+      CREDITOS.TASATYPE                                                rows=1078
+
+  >>> LADO LEGACY (BDs origen) <<<
+
+    --- BD: dbCR ---
+
+      Tabla : [dbCR].[dbo].[crtbcobr_judi_dist]
+      PK    : co_empr, ti_cred, aa_cred, qs_cred, sc_cobr_judi
+      Rows  : 433
+      Cols  : 21
+        - co_empr                             int                    NOT NULL
+        - ti_cred                             smallint               NOT NULL
+        - aa_cred                             smallint               NOT NULL
+        - qs_cred                             int                    NOT NULL
+        - sc_cobr_judi                        int                    NOT NULL
+        - fe_carg                             datetime               NOT NULL
+        - mo_carg                             money                  NOT NULL
+        - fe_depo                             datetime               NOT NULL
+        - fe_liqu_cred                        datetime               NOT NULL
+        - co_rol                              varchar(6)             NOT NULL
+        - nu_cpbt                             varchar(50)            NOT NULL
+        - ti_cobr                             smallint               NOT NULL
+        - ti_abno                             smallint               NOT NULL
+        - ti_proc                             smallint               NOT NULL
+        - ds_url                              varchar(500)           NOT NULL
+        - co_usua_ingr                        int                    NOT NULL
+        - fe_modi                             datetime               NOT NULL
+        - co_usua_modi                        int                    NOT NULL
+        - fe_elim                             datetime               NOT NULL
+        - co_usua_elim                        int                    NOT NULL
+        - st_regi                             char(1)                NOT NULL
+
+      Tabla : [dbCR].[dbo].[crtbgara_real]
+      PK    : ti_cred, aa_cred, qs_cred, sc_regi
+      Rows  : 1018
+      Cols  : 29
+        - ti_cred                             smallint               NOT NULL
+        - aa_cred                             smallint               NOT NULL
+        - qs_cred                             int                    NOT NULL
+        - sc_regi                             int                    NOT NULL
+        - ti_gara                             smallint               NOT NULL
+        - ds_obse                             varchar(250)           NOT NULL
+        - mo_aval                             money                  NOT NULL
+        - co_prog                             smallint               NOT NULL
+        - nu_manz                             smallint               NOT NULL
+        - nu_bloq                             smallint               NOT NULL
+        - nu_vivi                             smallint               NOT NULL
+        - co_tviv                             smallint               NOT NULL
+        - sc_gara                             smallint               NOT NULL
+        - fe_veri                             datetime               NOT NULL
+        - co_usua_veri                        int                    NOT NULL
+        - fe_entr                             datetime               NOT NULL
+        - co_usua_entr                        int                    NOT NULL
+        - fe_elim                             datetime               NOT NULL
+        - co_usua_elim                        int                    NOT NULL
+        - ti_diar                             char(2)                NOT NULL
+        - nu_cpbt_cble                        varchar(20)            NOT NULL
+        - in_cble_anul                        char(1)                NOT NULL
+        - st_regi                             smallint               NOT NULL
+        - sc_aval                             int                    NOT NULL
+        - in_acci_gara                        char(1)                NOT NULL
+        - ti_diar_anul                        char(2)                NOT NULL
+        - nu_cpbt_cble_anul                   varchar(20)            NOT NULL
+        - ti_diar_libe                        char(2)                NOT NULL
+        - nu_cpbt_cble_libe                   varchar(20)            NOT NULL
+
+      Tabla : [dbCR].[dbo].[crtbgest_cart_asig]
+      PK    : co_gest_cart_asig, sc_gene_cart_asig
+      Rows  : 1001
+      Cols  : 10
+        - co_gest_cart_asig                   int                    NOT NULL
+        - sc_gene_cart_asig                   int                    NOT NULL
+        - co_usua_gest                        int                    NOT NULL
+        - ti_cred                             smallint               NOT NULL
+        - aa_cred                             smallint               NOT NULL
+        - qs_cred                             int                    NOT NULL
+        - fe_cort                             datetime               NOT NULL
+        - ti_calf_homo                        char(5)                NOT NULL
+        - st_gest_cart_asig                   char(1)                NOT NULL
+        - co_usua_ante                        int                    NOT NULL
+
+      Tabla : [dbCR].[dbo].[crtbgest_deta_cbnz]
+      PK    : sc_gest_deta_cbnz, ti_nego_cbnz, sc_gene_deta_cbnz, co_gest_cart_asig
+      Rows  : 4
+      Cols  : 9
+        - sc_gest_deta_cbnz                   int                    NOT NULL
+        - ti_nego_cbnz                        varchar(5)             NOT NULL
+        - sc_gene_deta_cbnz                   int                    NOT NULL
+        - co_gest_cart_asig                   int                    NOT NULL
+        - nu_dias_pago                        char(2)                NOT NULL
+        - nu_plaz_mes                         char(2)                NOT NULL
+        - mo_abno                             money                  NOT NULL
+        - fe_abno                             datetime               NOT NULL
+        - fe_regi                             datetime               NOT NULL
+
+      Tabla : [dbCR].[dbo].[crtbmedi_cobr]
+      PK    : co_empr, co_medi
+      Rows  : 28
+      Cols  : 4
+        - co_empr                             smallint               NOT NULL
+        - co_medi                             smallint               NOT NULL
+        - ds_medi                             varchar(100)           NOT NULL
+        - st_medi                             char(1)                NOT NULL
+
+      Tabla : [dbCR].[dbo].[crtboper_segu]
+      PK    : ti_cred, aa_cred, qs_cred, fe_crea
+      Rows  : 1026
+      Cols  : 7
+        - ti_cred                             smallint               NOT NULL
+        - aa_cred                             smallint               NOT NULL
+        - qs_cred                             int                    NOT NULL
+        - fe_crea                             datetime               NOT NULL
+        - pr_segu_vehi                        money                  NOT NULL
+        - pr_segu_ince                        money                  NOT NULL
+        - pr_segu_dsgr                        money                  NOT NULL
+
+      Tabla : [dbCR].[dbo].[crtoblig]
+      PK    : ti_cred, aa_cred, qs_cred
+      Rows  : 1017
+      Cols  : 77
+        - ti_cred                             smallint               NOT NULL
+        - aa_cred                             smallint               NOT NULL
+        - qs_cred                             int                    NOT NULL
+        - ce_cred                             char(1)                NOT NULL
+        - ci_clie                             float                  NOT NULL
+        - fx_ppta                             datetime               NOT NULL
+        - fx_autr                             datetime               NOT NULL
+        - fx_cncd                             datetime               NOT NULL
+        - fx_vcto                             datetime               NOT NULL
+        - fx_canc                             datetime               NOT NULL
+        - fx_inst                             datetime               NOT NULL
+        - ci_mnda                             smallint               NOT NULL
+        - mo_cred                             money                  NOT NULL
+        - mo_intr                             money                  NOT NULL
+        - mo_abno_capi                        money                  NOT NULL
+        - mo_abno_intr                        money                  NOT NULL
+        - pr_cobr_impt                        money                  NOT NULL
+        - fr_cobr_capi                        smallint               NOT NULL
+        - fr_cobr_intr                        smallint               NOT NULL
+        - ci_pais                             int                    NOT NULL
+        - ci_prov                             smallint               NOT NULL
+        - pr_intr                             money                  NOT NULL
+        - du_anos                             smallint               NOT NULL
+        - du_dias                             smallint               NOT NULL
+        - nu_dcto                             smallint               NOT NULL
+        - in_anci                             char(1)                NOT NULL
+        - nu_peri_grac                        smallint               NOT NULL
+        - ti_peri_grac                        char(1)                NOT NULL
+        - ti_cuot                             char(1)                NOT NULL
+        - pr_marg_intr                        money                  NOT NULL
+        - ti_marg_reaj                        char(1)                NOT NULL
+        - fr_reaj                             smallint               NOT NULL
+        - ti_tasa_reaj                        char(1)                NOT NULL
+        - ti_oprc                             char(1)                NOT NULL
+        - in_gara                             char(1)                NOT NULL
+        - in_grte                             char(1)                NOT NULL
+        - ti_tasa_intr                        smallint               NOT NULL
+        - in_base_calc                        char(1)                NOT NULL
+        - in_cred_dudo                        char(1)                NOT NULL
+        - fx_dudo                             datetime               NOT NULL
+        - fx_ultm_actu                        datetime               NOT NULL
+        - ci_usua_actu                        char(8)                NOT NULL
+        - qs_abno                             smallint               NOT NULL
+        - fx_dolr                             datetime               NOT NULL
+        - ci_mnda_antr                        smallint               NOT NULL
+        - pr_tasa_inic                        money                  NOT NULL
+        - ci_ejec                             char(8)                NOT NULL
+        - co_prog                             smallint               NOT NULL
+        - sc_casa                             smallint               NOT NULL
+        - co_afil_refe                        char(10)               NOT NULL
+        - co_usua_ingr                        varchar(4)             NOT NULL
+        - co_usua_inst                        varchar(4)             NOT NULL
+        - nu_oper_cc                          char(20)               NULL    
+        - ti_oper_cc                          smallint               NOT NULL
+        - nu_oper_ante                        varchar(15)            NOT NULL
+        - pr_comi                             money                  NOT NULL
+        - in_soli                             char(1)                NOT NULL
+        - co_fond                             smallint               NOT NULL
+        - fe_inic_dvgo                        datetime               NOT NULL
+        - sc_cupo                             smallint               NOT NULL
+        - co_zona                             char(2)                NOT NULL
+        - co_loca                             char(1)                NOT NULL
+        - nu_rol_hist                         smallint               NOT NULL
+        - in_cobr_segu                        char(1)                NOT NULL
+        - mo_pagd_segu                        money                  NOT NULL
+        - fx_ultm_dvgo                        datetime               NOT NULL
+        - st_calf                             char(1)                NOT NULL
+        - fe_ultm_calf                        datetime               NOT NULL
+        - co_empr                             smallint               NOT NULL
+        - co_tamo                             smallint               NULL    
+        - ti_diar                             char(2)                NOT NULL
+        - nu_cpbt_cble                        varchar(20)            NOT NULL
+        - in_cble_anul                        char(1)                NOT NULL
+        - in_gara_cnta                        char(1)                NOT NULL
+        - pr_gara_cnta                        money                  NOT NULL
+        - mo_gara_cind                        money                  NOT NULL
+        - co_tipo_segu                        smallint               NOT NULL
+
+      Tabla : [dbCR].[dbo].[crtplpag]
+      PK    : ti_cred, aa_cred, qs_cred, nu_dcto, sc_dcto
+      Rows  : 1006
+      Cols  : 42
+        - ti_cred                             smallint               NOT NULL
+        - aa_cred                             smallint               NOT NULL
+        - qs_cred                             int                    NOT NULL
+        - nu_dcto                             smallint               NOT NULL
+        - sc_dcto                             int                    NOT NULL
+        - ce_cred                             char(1)                NOT NULL
+        - fx_intr                             datetime               NULL    
+        - fx_vcto                             datetime               NOT NULL
+        - du_anos                             smallint               NULL    
+        - du_dias                             smallint               NULL    
+        - mo_capi                             money                  NOT NULL
+        - mo_intr                             money                  NOT NULL
+        - mo_dvdo                             money                  NULL    
+        - mo_abno_capi                        money                  NOT NULL
+        - mo_abno_intr                        money                  NOT NULL
+        - mo_abno_mora                        money                  NULL    
+        - mo_abno_slca_mora                   money                  NOT NULL
+        - mo_dvgd_intr                        money                  NOT NULL
+        - mo_dvgd_mora                        money                  NULL    
+        - mo_segu                             money                  NOT NULL
+        - mo_otro                             money                  NOT NULL
+        - mo_comi                             money                  NOT NULL
+        - fx_pago_fcme                        datetime               NOT NULL
+        - st_pago_fcme                        char(1)                NOT NULL
+        - mo_admi                             money                  NOT NULL
+        - mo_emis                             money                  NOT NULL
+        - mo_incd                             money                  NOT NULL
+        - mo_dvgo_diar                        money                  NOT NULL
+        - mo_dvgo_acum                        money                  NOT NULL
+        - st_vcto                             char(1)                NOT NULL
+        - in_reve_dvgo                        char(1)                NOT NULL
+        - fe_ultm_envi                        datetime               NOT NULL
+        - mo_prec                             money                  NOT NULL
+        - mo_segu_vehi                        money                  NOT NULL
+        - fe_inic_venc                        datetime               NOT NULL
+        - mo_cuot                             money                  NOT NULL
+        - sc_rol                              int                    NOT NULL
+        - fe_elim                             datetime               NOT NULL
+        - co_usua_elim                        int                    NOT NULL
+        - mo_inte_pmes                        money                  NOT NULL
+        - mo_gast_judi                        money                  NOT NULL
+        - mo_rast                             money                  NOT NULL
+
+      Tabla : [dbCR].[dbo].[crtrecup]
+      PK    : (sin PK)
+      Rows  : 1032
+      Cols  : 24
+        - ti_cred                             smallint               NOT NULL
+        - aa_cred                             smallint               NOT NULL
+        - qs_cred                             int                    NOT NULL
+        - qs_abno                             smallint               NOT NULL
+        - ti_recp                             smallint               NOT NULL
+        - ce_regi                             char(1)                NOT NULL
+        - ce_mvto                             char(1)                NOT NULL
+        - fx_mvto                             datetime               NOT NULL
+        - fx_abno                             datetime               NOT NULL
+        - fx_cble                             datetime               NOT NULL
+        - fx_revz                             datetime               NOT NULL
+        - mo_mvto                             money                  NOT NULL
+        - nu_cpbt_cble                        varchar(20)            NOT NULL
+        - in_conf_fond                        char(1)                NOT NULL
+        - ce_autr                             char(1)                NOT NULL
+        - tx_liqd                             varchar(250)           NOT NULL
+        - ci_usua_conf                        char(6)                NOT NULL
+        - ci_usua_liqd                        char(6)                NOT NULL
+        - nu_dias_atra                        smallint               NOT NULL
+        - ti_revz                             smallint               NOT NULL
+        - ci_rol                              char(6)                NOT NULL
+        - co_usua_revz                        smallint               NOT NULL
+        - ti_diar                             char(2)                NOT NULL
+        - in_cble_revz                        char(1)                NOT NULL
+
+      Tabla : [dbCR].[dbo].[crtsolid]
+      PK    : (sin PK)
+      Rows  : 1002
+      Cols  : 7
+        - ti_cred                             smallint               NOT NULL
+        - aa_cred                             smallint               NOT NULL
+        - qs_cred                             int                    NOT NULL
+        - ci_clie                             char(10)               NOT NULL
+        - pr_dist                             money                  NOT NULL
+        - mo_cuot                             money                  NOT NULL
+        - in_soli                             char(1)                NULL    
+
+  >>> MAPEO NEWCORE_TO_FINAL  (TYPE en fcme_newcore  ->  destino legacy) <<<
+    fcme_newcore.CREDITOS.CREDITOGENERALTYPE                  -> [dbCR].[dbo].[crtoblig]
+    fcme_newcore.CREDITOS.CREDITOTYPE                         -> [dbCR].[dbo].[crtoblig]
+    fcme_newcore.CREDITOS.PRESTAMOTYPE                        -> [dbCR].[dbo].[crtoblig]
+    fcme_newcore.CREDITOS.REFINANCIAMIENTOCREDITOTYPE         -> [dbCR].[dbo].[crtoblig]
+    fcme_newcore.CREDITOS.PERSONAGARANTETYPE                  -> [dbCR].[dbo].[crtsolid]
+    fcme_newcore.CREDITOS.CUOTACREDITOTYPE                    -> [dbCR].[dbo].[crtplpag]
+    fcme_newcore.CREDITOS.PAGOSCREDITOTYPE                    -> [dbCR].[dbo].[crtrecup]
+
+====================================================================================================
+[4] MODULO: CONTABILIDAD
+====================================================================================================
+  Schema en fcme_newcore : CONTABILIDAD
+  ORIGINAL_DB declarada  : (ninguna)
+  BD(s) legacy usadas    : dbCT
+
+  >>> LADO NEWCORE (fcme_newcore.CONTABILIDAD) <<<
+    Total tablas en schema: 8
+      CONTABILIDAD.COMPROBANTEDETALLETYPE                                  rows=1006
+      CONTABILIDAD.COMPROBANTETYPE                                         rows=1002
+      CONTABILIDAD.CONCEPTOCONTABLETYPE                                    rows=1025
+      CONTABILIDAD.CONCILIACIONBANCARIATYPE                                rows=1031
+      CONTABILIDAD.CONTROLCONTABLETYPE                                     rows=1036
+      CONTABILIDAD.CONTROLMESTYPE                                          rows=1017
+      CONTABILIDAD.CUENTACONTABLETYPE                                      rows=1007
+      CONTABILIDAD.EXTRACTOBANCARIOTYPE                                    rows=1026
+
+  >>> LADO LEGACY (BDs origen) <<<
+
+    --- BD: dbCT ---
+      [dbCT].[?].[cttbccta]   <NO EXISTE EN ESTA BD>
+      [dbCT].[?].[cttbcmpr]   <NO EXISTE EN ESTA BD>
+      [dbCT].[?].[cttbcncl]   <NO EXISTE EN ESTA BD>
+      [dbCT].[?].[cttbconc]   <NO EXISTE EN ESTA BD>
+      [dbCT].[?].[cttbctrl]   <NO EXISTE EN ESTA BD>
+      [dbCT].[?].[cttbctrl_mes]   <NO EXISTE EN ESTA BD>
+      [dbCT].[?].[cttbdcmpr]   <NO EXISTE EN ESTA BD>
+      [dbCT].[?].[cttbextr]   <NO EXISTE EN ESTA BD>
+
+  >>> MAPEO NEWCORE_TO_FINAL  (TYPE en fcme_newcore  ->  destino legacy) <<<
+    fcme_newcore.CONTABILIDAD.COMPROBANTETYPE                     -> [dbCT].[dbo].[cttbcmpr]
+    fcme_newcore.CONTABILIDAD.COMPROBANTEDETALLETYPE              -> [dbCT].[dbo].[cttbdcmpr]
+    fcme_newcore.CONTABILIDAD.CONCEPTOCONTABLETYPE                -> [dbCT].[dbo].[cttbcncl]
+    fcme_newcore.CONTABILIDAD.CONCILIACIONBANCARIATYPE            -> [dbCT].[dbo].[cttbconc]
+    fcme_newcore.CONTABILIDAD.CONTROLCONTABLETYPE                 -> [dbCT].[dbo].[cttbctrl]
+    fcme_newcore.CONTABILIDAD.CONTROLMESTYPE                      -> [dbCT].[dbo].[cttbctrl_mes]
+    fcme_newcore.CONTABILIDAD.CUENTACONTABLETYPE                  -> [dbCT].[dbo].[cttbccta]
+    fcme_newcore.CONTABILIDAD.EXTRACTOBANCARIOTYPE                -> [dbCT].[dbo].[cttbextr]
+
+====================================================================================================
+[5] MODULO: GARANTIAS
+====================================================================================================
+  Schema en fcme_newcore : GARANTIAS
+  ORIGINAL_DB declarada  : (ninguna)
+  BD(s) legacy usadas    : (ninguna)
+
+  >>> LADO NEWCORE (fcme_newcore.GARANTIAS) <<<
+    Total tablas en schema: 4
+      GARANTIAS.DATOSINMUEBLESTYPE                                      rows=1039
+      GARANTIAS.DATOSOTROSACTIVOSTYPE                                   rows=1026
+      GARANTIAS.DATOSVEHICULOSTYPE                                      rows=1030
+      GARANTIAS.GARANTIAGENERALTYPE                                     rows=1032
+
+  >>> LADO LEGACY (BDs origen) <<<
+    (sin BD legacy configurada)
+
+  >>> MAPEO NEWCORE_TO_FINAL  (TYPE en fcme_newcore  ->  destino legacy) <<<
+    (vacio)
+
+====================================================================================================
+[6] MODULO: INVERSIONES
+====================================================================================================
+  Schema en fcme_newcore : INVERSIONES
+  ORIGINAL_DB declarada  : dbIN
+  BD(s) legacy usadas    : dbIN
+
+  >>> LADO NEWCORE (fcme_newcore.INVERSIONES) <<<
+    Total tablas en schema: 13
+      INVERSIONES.AGENTEBOLSATYPE                                         rows=1000
+      INVERSIONES.BANCODETALLETYPE                                        rows=1000
+      INVERSIONES.CONTABILIZACIONINVERSIONTYPE                            rows=1002
+      INVERSIONES.EMISORDETALLETYPE                                       rows=1000
+      INVERSIONES.GESTIONINVERSIONTYPE                                    rows=1000
+      INVERSIONES.HISTORIALINVERSIONTYPE                                  rows=1000
+      INVERSIONES.INVERSIONRENTAVARIABLETYPE                              rows=1000
+      INVERSIONES.INVERSIONTYPE                                           rows=1020
+      INVERSIONES.PRECANCELACIONTYPE                                      rows=1003
+      INVERSIONES.PRECIOCIERRETYPE                                        rows=1017
+      INVERSIONES.RENTABILIDADTYPE                                        rows=1026
+      INVERSIONES.TABLAAMORTIZACIONTYPE                                   rows=1021
+      INVERSIONES.VECTORPRECIOSTYPE                                       rows=1020
+
+  >>> LADO LEGACY (BDs origen) <<<
+
+    --- BD: dbIN ---
+
+      Tabla : [dbIN].[dbo].[intbcabe_dbso_inve]
+      PK    : sc_dbso, nu_inve, co_dbso
+      Rows  : 294
+      Cols  : 13
+        - sc_dbso                             int                    NOT NULL
+        - nu_inve                             smallint               NOT NULL
+        - co_dbso                             smallint               NOT NULL
+        - co_banc                             char(2)                NOT NULL
+        - nu_cheq                             varchar(25)            NOT NULL
+        - mo_dbso                             money                  NOT NULL
+        - st_dbso                             char(1)                NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - fe_modi                             datetime               NOT NULL
+        - fe_elim                             datetime               NOT NULL
+        - co_usua_ingr                        int                    NOT NULL
+        - co_usua_modi                        int                    NOT NULL
+        - co_usua_elim                        int                    NOT NULL
+
+      Tabla : [dbIN].[dbo].[intbcinv]
+      PK    : (sin PK)
+      Rows  : 1043
+      Cols  : 54
+        - nu_inve                             smallint               NOT NULL
+        - co_dcto                             smallint               NOT NULL
+        - co_emis                             smallint               NOT NULL
+        - mo_nomi                             money                  NOT NULL
+        - mo_dese                             money                  NOT NULL
+        - ti_inte                             smallint               NOT NULL
+        - pr_inte                             money                  NOT NULL
+        - pl_dias                             smallint               NOT NULL
+        - pl_anos                             smallint               NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - fe_conf                             datetime               NOT NULL
+        - fe_emis                             datetime               NOT NULL
+        - fe_vcto                             datetime               NOT NULL
+        - fr_pago_capi                        smallint               NOT NULL
+        - fr_pago_inte                        smallint               NOT NULL
+        - nu_mese_gcap                        smallint               NOT NULL
+        - nu_mese_gint                        smallint               NOT NULL
+        - fe_vent                             datetime               NOT NULL
+        - pr_vent                             money                  NOT NULL
+        - nu_dcto_fisi                        varchar(20)            NOT NULL
+        - nu_liqu_bols                        varchar(20)            NOT NULL
+        - pr_rend                             money                  NOT NULL
+        - fe_valo                             datetime               NOT NULL
+        - pr_prec                             decimal                NULL    
+        - ti_base_calc                        smallint               NOT NULL
+        - co_usua_ingr                        smallint               NOT NULL
+        - co_usua_conf                        smallint               NOT NULL
+        - in_cble                             char(1)                NOT NULL
+        - st_inve                             char(1)                NOT NULL
+        - fe_inic_cupn                        datetime               NOT NULL
+        - pr_tea                              money                  NOT NULL
+        - nu_dias_tran                        smallint               NOT NULL
+        - pr_inte_tran                        money                  NOT NULL
+        - in_cupn                             char(1)                NOT NULL
+        - co_fond                             smallint               NOT NULL
+        - mo_piso_bols                        money                  NOT NULL
+        - mo_com_pcv                          money                  NOT NULL
+        - fr_rea_inte                         int                    NOT NULL
+        - in_pign                             char(1)                NOT NULL
+        - ti_inve                             int                    NOT NULL
+        - ds_inve                             varchar(100)           NOT NULL
+        - co_fidu                             smallint               NOT NULL
+        - qs_cnta_dese                        smallint               NOT NULL
+        - fe_emis_titu                        datetime               NOT NULL
+        - co_inst_sibs                        smallint               NOT NULL
+        - co_empr                             smallint               NOT NULL
+        - in_ngbv                             char(1)                NOT NULL
+        - in_ndso                             char(1)                NOT NULL
+        - nu_liqd_blsv                        varchar(50)            NOT NULL
+        - nu_tota_dcto                        smallint               NOT NULL
+        - in_base_inte                        char(1)                NOT NULL
+        - mo_rete_piso_bols                   money                  NOT NULL
+        - mo_rete_comi_pcvi                   money                  NOT NULL
+        - in_dbso                             char(1)                NOT NULL
+
+      Tabla : [dbIN].[dbo].[intbdcto_cble]
+      PK    : (sin PK)
+      Rows  : 69
+      Cols  : 16
+        - co_dcto                             smallint               NOT NULL
+        - co_fond                             smallint               NOT NULL
+        - co_cnta_capi                        varchar(3)             NOT NULL
+        - co_cnta_igan                        varchar(3)             NOT NULL
+        - co_cnta_icob                        varchar(3)             NOT NULL
+        - co_cnta_gban                        varchar(3)             NOT NULL
+        - co_cnta_gbur                        varchar(3)             NOT NULL
+        - co_cnta_cxco                        varchar(3)             NOT NULL
+        - st_dcto                             char(1)                NOT NULL
+        - co_cnta_icob_habe                   varchar(3)             NOT NULL
+        - co_cnta_sude                        varchar(3)             NOT NULL
+        - co_cnta_comi                        varchar(3)             NOT NULL
+        - co_cnta_ineg                        varchar(3)             NOT NULL
+        - co_cnta_perd_vent                   varchar(3)             NOT NULL
+        - co_cnta_amor                        varchar(3)             NOT NULL
+        - co_cnta_amor_habe                   varchar(3)             NOT NULL
+
+      Tabla : [dbIN].[dbo].[intbdinv]
+      PK    : (sin PK)
+      Rows  : 1014
+      Cols  : 7
+        - nu_inve                             smallint               NOT NULL
+        - sc_dese                             smallint               NOT NULL
+        - ti_mvto                             smallint               NOT NULL
+        - co_orig                             smallint               NOT NULL
+        - mo_dese                             money                  NOT NULL
+        - nu_cheq                             varchar(25)            NOT NULL
+        - in_cble                             char(1)                NOT NULL
+
+      Tabla : [dbIN].[dbo].[intbdpag]
+      PK    : (sin PK)
+      Rows  : 0
+      Cols  : 5
+        - nu_inve                             smallint               NOT NULL
+        - sc_pago                             smallint               NOT NULL
+        - ti_pago                             smallint               NOT NULL
+        - mo_pago                             money                  NOT NULL
+        - co_orig                             int                    NOT NULL
+
+      Tabla : [dbIN].[dbo].[intbdpre_inve]
+      PK    : nu_inve, sc_vcto, fe_vnta
+      Rows  : 3
+      Cols  : 11
+        - nu_inve                             smallint               NOT NULL
+        - sc_vcto                             smallint               NOT NULL
+        - fe_vnta                             datetime               NOT NULL
+        - pr_vent                             decimal                NOT NULL
+        - mo_amor                             money                  NOT NULL
+        - mo_capi                             money                  NOT NULL
+        - mo_vnta                             money                  NOT NULL
+        - fe_ingr_vnta                        datetime               NULL    
+        - co_usua_ingr                        smallint               NOT NULL
+        - mo_inte_tran                        money                  NOT NULL
+        - mo_inte_tran_prec                   money                  NOT NULL
+
+      Tabla : [dbIN].[dbo].[intbemis]
+      PK    : (sin PK)
+      Rows  : 560
+      Cols  : 18
+        - co_emis                             smallint               NOT NULL
+        - no_emis                             varchar(100)           NOT NULL
+        - ds_dire                             varchar(100)           NOT NULL
+        - nu_tel1                             varchar(20)            NOT NULL
+        - nu_tel2                             varchar(20)            NOT NULL
+        - ds_adic                             varchar(250)           NOT NULL
+        - st_emis                             char(18)               NOT NULL
+        - no_agen                             varchar(250)           NULL    
+        - no_cali                             varchar(10)            NOT NULL
+        - ci_ciudad                           varchar(6)             NOT NULL
+        - ci_provincia                        varchar(2)             NOT NULL
+        - in_fidu                             char(1)                NOT NULL
+        - co_emis_bvq                         varchar(3)             NOT NULL
+        - co_tipo_sect                        char(1)                NOT NULL
+        - co_iden_emis                        char(13)               NOT NULL
+        - co_pais_emis                        char(2)                NOT NULL
+        - co_tipo_iden                        char(1)                NOT NULL
+        - st_envi_sibs                        char(1)                NOT NULL
+
+      Tabla : [dbIN].[dbo].[intbgara]
+      PK    : nu_inve, co_gara
+      Rows  : 1037
+      Cols  : 9
+        - nu_inve                             smallint               NOT NULL
+        - co_gara                             smallint               NOT NULL
+        - no_gara                             varchar(255)           NULL    
+        - no_favo                             varchar(255)           NULL    
+        - mo_nomi                             decimal                NULL    
+        - fe_inic                             datetime               NULL    
+        - fe_vcto                             datetime               NULL    
+        - no_conc                             varchar(255)           NULL    
+        - st_gara                             char(1)                NULL    
+
+      Tabla : [dbIN].[dbo].[intbprec_diar]
+      PK    : nu_inve, nu_cupo, fe_diar
+      Rows  : 1020
+      Cols  : 12
+        - nu_inve                             smallint               NOT NULL
+        - nu_cupo                             smallint               NOT NULL
+        - fe_diar                             datetime               NOT NULL
+        - pr_prec                             decimal                NOT NULL
+        - ds_prec                             varchar(25)            NOT NULL
+        - st_prec                             char(1)                NOT NULL
+        - fe_proc                             datetime               NULL    
+        - co_usua_ingr                        smallint               NOT NULL
+        - co_usua_conf                        smallint               NOT NULL
+        - fe_conf                             datetime               NULL    
+        - ce_cont                             char(1)                NOT NULL
+        - no_cali                             varchar(5)             NOT NULL
+
+      Tabla : [dbIN].[dbo].[intbvinv]
+      PK    : (sin PK)
+      Rows  : 1026
+      Cols  : 31
+        - nu_inve                             smallint               NOT NULL
+        - sc_vcto                             smallint               NOT NULL
+        - fe_inic                             datetime               NOT NULL
+        - fe_vcto                             datetime               NOT NULL
+        - mo_capi                             money                  NOT NULL
+        - mo_inte                             money                  NOT NULL
+        - mo_capi_cobr                        money                  NOT NULL
+        - mo_inte_cobr                        money                  NOT NULL
+        - mo_inte_dvgd                        money                  NOT NULL
+        - mo_dsto                             money                  NOT NULL
+        - mo_sobr                             money                  NOT NULL
+        - mo_sobr_dvgd                        money                  NOT NULL
+        - pr_inte                             money                  NOT NULL
+        - in_cble                             char(1)                NOT NULL
+        - st_vcto                             char(1)                NOT NULL
+        - mo_amor                             money                  NOT NULL
+        - mo_recu                             money                  NOT NULL
+        - mo_valo_pres                        money                  NOT NULL
+        - mo_VP_Cond                          money                  NOT NULL
+        - ds_desc                             varchar(100)           NOT NULL
+        - fe_ultm_dvgd                        datetime               NULL    
+        - mo_dvgd_anti                        money                  NULL    
+        - mo_capi_gan                         money                  NULL    
+        - mo_capi_dvgd                        money                  NULL    
+        - fe_cobr                             datetime               NOT NULL
+        - in_ajus_dvgd                        char(1)                NOT NULL
+        - fe_ajus_dvgd                        datetime               NOT NULL
+        - qs_cnta_cobr                        smallint               NOT NULL
+        - pr_inte_cobr                        money                  NOT NULL
+        - mo_ajus_dvgd                        money                  NOT NULL
+        - fe_ultm_valo                        datetime               NOT NULL
+
+      Tabla : [dbIN].[dbo].[intbvinv_audi]
+      PK    : (sin PK)
+      Rows  : 15
+      Cols  : 33
+        - fe_crea                             datetime               NOT NULL
+        - nu_inve                             smallint               NOT NULL
+        - sc_vcto                             smallint               NOT NULL
+        - fe_inic                             datetime               NOT NULL
+        - fe_vcto                             datetime               NOT NULL
+        - mo_capi                             money                  NOT NULL
+        - mo_inte                             money                  NOT NULL
+        - mo_capi_cobr                        money                  NOT NULL
+        - mo_inte_cobr                        money                  NOT NULL
+        - mo_inte_dvgd                        money                  NOT NULL
+        - mo_dsto                             money                  NOT NULL
+        - mo_sobr                             money                  NOT NULL
+        - mo_sobr_dvgd                        money                  NOT NULL
+        - pr_inte                             money                  NOT NULL
+        - in_cble                             char(1)                NOT NULL
+        - st_vcto                             char(1)                NOT NULL
+        - mo_amor                             money                  NOT NULL
+        - mo_recu                             money                  NOT NULL
+        - mo_valo_pres                        money                  NOT NULL
+        - mo_vprs_cond                        money                  NOT NULL
+        - ds_desc                             varchar(100)           NOT NULL
+        - fe_ultm_dvgd                        datetime               NULL    
+        - mo_dvgd_anti                        money                  NULL    
+        - mo_capi_gan                         money                  NULL    
+        - mo_capi_dvgd                        money                  NULL    
+        - fe_cobr                             datetime               NOT NULL
+        - in_ajus_dvgd                        char(1)                NOT NULL
+        - fe_ajus_dvgd                        datetime               NOT NULL
+        - qs_cnta_cobr                        smallint               NOT NULL
+        - pr_inte_cobr                        money                  NOT NULL
+        - mo_ajus_dvgd                        money                  NOT NULL
+        - fe_vnta                             datetime               NOT NULL
+        - fe_ultm_valo                        datetime               NOT NULL
+
+  >>> MAPEO NEWCORE_TO_FINAL  (TYPE en fcme_newcore  ->  destino legacy) <<<
+    fcme_newcore.INVERSIONES.INVERSIONTYPE                       -> [dbIN].[dbo].[intbcinv]
+    fcme_newcore.INVERSIONES.INVERSIONRENTAVARIABLETYPE          -> [dbIN].[dbo].[intbdinv]
+    fcme_newcore.INVERSIONES.TABLAAMORTIZACIONTYPE               -> [dbIN].[dbo].[intbvinv]
+    fcme_newcore.INVERSIONES.HISTORIALINVERSIONTYPE              -> [dbIN].[dbo].[intbvinv_audi]
+    fcme_newcore.INVERSIONES.EMISORDETALLETYPE                   -> [dbIN].[dbo].[intbemis]
+    fcme_newcore.INVERSIONES.PRECANCELACIONTYPE                  -> [dbIN].[dbo].[intbdpre_inve]
+    fcme_newcore.INVERSIONES.PRECIOCIERRETYPE                    -> [dbIN].[dbo].[intbprec_diar]
+    fcme_newcore.INVERSIONES.VECTORPRECIOSTYPE                   -> [dbIN].[dbo].[intbprec_diar]
+    fcme_newcore.INVERSIONES.RENTABILIDADTYPE                    -> [dbIN].[dbo].[intbcinv]
+    fcme_newcore.INVERSIONES.BANCODETALLETYPE                    -> [dbIN].[dbo].[intbcabe_dbso_inve]
+
+====================================================================================================
+[7] MODULO: PAGOS_PROVEEDORES
+====================================================================================================
+  Schema en fcme_newcore : PAGOS_PROVEEDORES
+  ORIGINAL_DB declarada  : dbCG
+  BD(s) legacy usadas    : dbCG
+
+  >>> LADO NEWCORE (fcme_newcore.PAGOS_PROVEEDORES) <<<
+    Total tablas en schema: 17
+      PAGOS_PROVEEDORES.CASTIGOINVERSIONDETALLETYPE                             rows=1000
+      PAGOS_PROVEEDORES.CASTIGOINVERSIONTYPE                                    rows=1000
+      PAGOS_PROVEEDORES.DOCUMENTOPROVEEDORDETALLETYPE                           rows=1000
+      PAGOS_PROVEEDORES.DOCUMENTOPROVEEDORTYPE                                  rows=1782
+      PAGOS_PROVEEDORES.METODOPAGOTYPE                                          rows=1000
+      PAGOS_PROVEEDORES.MOTIVOCASTIGOTYPE                                       rows=1000
+      PAGOS_PROVEEDORES.PAGODOCUMENTOTYPE                                       rows=2000
+      PAGOS_PROVEEDORES.PAGOPROVEEDORTYPE                                       rows=1000
+      PAGOS_PROVEEDORES.PLANTILLACONTABLEDETALLETYPE                            rows=1000
+      PAGOS_PROVEEDORES.PLANTILLACONTABLETYPE                                   rows=1105
+      PAGOS_PROVEEDORES.PRODUCTOPROVEEDORTYPE                                   rows=1000
+      PAGOS_PROVEEDORES.PROVEEDORTYPE                                           rows=1000
+      PAGOS_PROVEEDORES.RETENCIONPAGOTYPE                                       rows=1000
+      PAGOS_PROVEEDORES.TIPODOCUMENTOPROVEEDORTYPE                              rows=1003
+      PAGOS_PROVEEDORES.TIPOPAGOTYPE                                            rows=1008
+      PAGOS_PROVEEDORES.TIPOPROVEEDORTYPE                                       rows=1000
+      PAGOS_PROVEEDORES.TIPORETENCIONPAGOTYPE                                   rows=1000
+
+  >>> LADO LEGACY (BDs origen) <<<
+
+    --- BD: dbCG ---
+
+      Tabla : [dbCG].[dbo].[cgtbcasi]
+      PK    : (sin PK)
+      Rows  : 1007
+      Cols  : 29
+        - co_empr                             smallint               NOT NULL
+        - qs_secasiento                       varchar(12)            NOT NULL
+        - fx_fechaasiento                     datetime               NOT NULL
+        - tx_observacion                      varchar(255)           NOT NULL
+        - fx_fechacreacion                    datetime               NOT NULL
+        - fx_mayorizacion                     datetime               NOT NULL
+        - ci_usarcreo                         varchar(8)             NOT NULL
+        - ce_mayorizado                       varchar(1)             NOT NULL
+        - ce_cuadrado                         varchar(1)             NOT NULL
+        - ci_aplicacion                       varchar(4)             NOT NULL
+        - ci_tipoasiento                      varchar(2)             NOT NULL
+        - ci_numasiento                       varchar(9)             NOT NULL
+        - qn_anio                             varchar(4)             NOT NULL
+        - qn_mes                              varchar(2)             NOT NULL
+        - co_dpto                             smallint               NOT NULL
+        - co_loca                             smallint               NOT NULL
+        - in_auto                             char(1)                NOT NULL
+        - in_autr                             char(1)                NOT NULL
+        - co_even                             smallint               NOT NULL
+        - co_fond                             smallint               NOT NULL
+        - fx_modificacion                     datetime               NOT NULL
+        - ci_usarmodi                         varchar(8)             NOT NULL
+        - fx_eliminacion                      datetime               NOT NULL
+        - ci_usarelim                         varchar(8)             NOT NULL
+        - fx_autorizacion                     datetime               NOT NULL
+        - ci_usarautr                         varchar(8)             NOT NULL
+        - ci_usarmayo                         varchar(8)             NOT NULL
+        - co_prov                             char(2)                NOT NULL
+        - nu_anio                             smallint               NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbcaut_cpla]
+      PK    : (sin PK)
+      Rows  : 212
+      Cols  : 6
+        - co_empr                             smallint               NOT NULL
+        - co_plan                             smallint               NOT NULL
+        - co_even                             smallint               NOT NULL
+        - co_sube                             smallint               NOT NULL
+        - ds_plan                             varchar(50)            NOT NULL
+        - st_plan                             char(1)                NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbcaut_dpla]
+      PK    : (sin PK)
+      Rows  : 1005
+      Cols  : 5
+        - co_empr                             smallint               NOT NULL
+        - co_plan                             smallint               NOT NULL
+        - sc_deta                             smallint               NOT NULL
+        - co_cnta_auto                        varchar(3)             NOT NULL
+        - in_mvto                             varchar(1)             NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbcfac]
+      PK    : co_empr, nu_fact
+      Rows  : 1015
+      Cols  : 65
+        - co_empr                             smallint               NOT NULL
+        - co_prov                             char(2)                NOT NULL
+        - nu_fact                             int                    NOT NULL
+        - co_prvd                             smallint               NOT NULL
+        - fe_fact                             datetime               NOT NULL
+        - fe_vcto                             datetime               NOT NULL
+        - fr_pago                             smallint               NOT NULL
+        - mo_fact_civa                        money                  NOT NULL
+        - mo_fact_siva                        money                  NOT NULL
+        - pr_iva                              money                  NOT NULL
+        - mo_rete                             money                  NOT NULL
+        - mo_fact_otro                        money                  NOT NULL
+        - ti_prod                             smallint               NOT NULL
+        - ds_conc                             varchar(255)           NOT NULL
+        - co_usua_ingr                        int                    NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - co_usua_auto                        int                    NOT NULL
+        - fe_auto                             datetime               NOT NULL
+        - nu_fact_fisi                        varchar(50)            NOT NULL
+        - ti_fcme                             smallint               NOT NULL
+        - in_dcto                             char(1)                NOT NULL
+        - in_acti_fijo                        char(1)                NOT NULL
+        - co_even                             smallint               NULL    
+        - st_fact                             char(1)                NOT NULL
+        - mo_anti                             money                  NOT NULL
+        - po_anti                             money                  NOT NULL
+        - in_anti_paga                        char(1)                NOT NULL
+        - co_fond                             smallint               NOT NULL
+        - co_prov_even                        char(2)                NOT NULL
+        - ds_dsia                             varchar(50)            NOT NULL
+        - co_loca                             smallint               NOT NULL
+        - co_dpto                             smallint               NOT NULL
+        - fe_cadu                             datetime               NOT NULL
+        - nu_seri_fact                        varchar(10)            NOT NULL
+        - nu_fact_ingr                        varchar(20)            NOT NULL
+        - nu_autr_fact                        varchar(50)            NULL    
+        - fe_emis_rete                        datetime               NOT NULL
+        - fe_cadu_rete                        datetime               NOT NULL
+        - nu_seri_rete                        varchar(10)            NOT NULL
+        - nu_rete                             varchar(20)            NOT NULL
+        - nu_autr_rete                        varchar(100)           NOT NULL
+        - nu_dsto                             smallint               NOT NULL
+        - in_anti                             char(1)                NOT NULL
+        - co_anti                             smallint               NOT NULL
+        - in_prov                             char(1)                NOT NULL
+        - ti_dcto                             smallint               NOT NULL
+        - co_proc_admv                        smallint               NOT NULL
+        - mo_ajus_fact                        money                  NOT NULL
+        - co_rete_ajus                        smallint               NOT NULL
+        - co_tprd_ajus                        smallint               NOT NULL
+        - fe_veri                             datetime               NOT NULL
+        - co_prog                             smallint               NOT NULL
+        - fe_canc                             datetime               NOT NULL
+        - ti_fact_elec                        char(1)                NOT NULL
+        - mo_subt_noob_iva                    money                  NOT NULL
+        - mo_subt_exen_iva                    money                  NOT NULL
+        - mo_desc                             money                  NOT NULL
+        - mo_prop                             money                  NOT NULL
+        - mo_ice                              money                  NOT NULL
+        - co_usua_veri                        int                    NOT NULL
+        - pr_comp_soli                        money                  NOT NULL
+        - mo_comp_soli                        money                  NOT NULL
+        - mo_pago_terc                        money                  NOT NULL
+        - co_usua_gene_orde                   int                    NOT NULL
+        - fe_gene_orde                        datetime               NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbcier_proc]
+      PK    : co_empr, co_dpto, co_proc
+      Rows  : 50
+      Cols  : 10
+        - co_empr                             smallint               NOT NULL
+        - co_dpto                             smallint               NOT NULL
+        - co_proc                             smallint               NOT NULL
+        - fe_inic_cier                        datetime               NOT NULL
+        - fe_fina_cier                        datetime               NOT NULL
+        - co_usua_ingr                        int                    NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - co_usua_modi                        int                    NOT NULL
+        - fe_modi                             datetime               NOT NULL
+        - st_regi_cier                        smallint               NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbcncl]
+      PK    : co_empr, sc_cncl
+      Rows  : 1000
+      Cols  : 8
+        - co_empr                             smallint               NOT NULL
+        - sc_cncl                             int                    NOT NULL
+        - ti_cncl                             smallint               NOT NULL
+        - fe_cncl                             datetime               NOT NULL
+        - co_usua_cncl                        int                    NOT NULL
+        - fe_elim                             datetime               NOT NULL
+        - co_usua_elim                        int                    NOT NULL
+        - st_regi                             smallint               NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbcncl_deta]
+      PK    : co_empr, sc_cncl, sc_cpbt, sc_asie, sc_deta_asie
+      Rows  : 1027
+      Cols  : 10
+        - co_empr                             smallint               NOT NULL
+        - sc_cncl                             int                    NOT NULL
+        - sc_cpbt                             int                    NOT NULL
+        - sc_asie                             varchar(12)            NOT NULL
+        - sc_deta_asie                        smallint               NOT NULL
+        - ci_tipo_asie                        varchar(2)             NOT NULL
+        - ci_nume_asie                        varchar(9)             NOT NULL
+        - ci_anio_asie                        varchar(4)             NOT NULL
+        - ds_refe                             varchar(20)            NOT NULL
+        - mo_util                             money                  NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbconc]
+      PK    : (sin PK)
+      Rows  : 378
+      Cols  : 17
+        - co_empr                             smallint               NOT NULL
+        - co_conc                             smallint               NOT NULL
+        - no_conc                             varchar(100)           NULL    
+        - ti_conc                             smallint               NOT NULL
+        - in_cont                             char(1)                NOT NULL
+        - co_cnta_auto                        varchar(3)             NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - co_usua_ingr                        smallint               NOT NULL
+        - fe_modi                             datetime               NOT NULL
+        - co_usua_modi                        smallint               NOT NULL
+        - co_fond                             smallint               NOT NULL
+        - ti_cpbt                             smallint               NOT NULL
+        - in_reca                             char(1)                NOT NULL
+        - st_mvto                             char(1)                NOT NULL
+        - in_rasg                             char(1)                NOT NULL
+        - in_reca_vivi                        char(1)                NOT NULL
+        - co_cnta_auto_rasg                   char(3)                NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbdasi]
+      PK    : (sin PK)
+      Rows  : 1011
+      Cols  : 9
+        - co_empr                             smallint               NOT NULL
+        - qs_secasiento                       varchar(12)            NOT NULL
+        - qs_detalle                          smallint               NOT NULL
+        - ci_cuentacontable                   varchar(15)            NOT NULL
+        - va_debe                             money                  NOT NULL
+        - va_haber                            money                  NOT NULL
+        - tx_referencia                       varchar(50)            NULL    
+        - tx_glosa                            varchar(450)           NOT NULL
+        - co_auxi                             varchar(15)            NULL    
+
+      Tabla : [dbCG].[dbo].[cgtbdcto]
+      PK    : ti_dcto
+      Rows  : 18
+      Cols  : 4
+        - ti_dcto                             smallint               NOT NULL
+        - ds_dcto                             varchar(50)            NOT NULL
+        - st_dcto                             char(1)                NOT NULL
+        - co_cpbt                             char(2)                NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbdfac_nota_cred]
+      PK    : co_empr, nu_nota_cred, nu_fact_afec
+      Rows  : 1013
+      Cols  : 7
+        - co_empr                             smallint               NOT NULL
+        - co_fond                             smallint               NOT NULL
+        - nu_nota_cred                        int                    NOT NULL
+        - nu_fact_afec                        int                    NOT NULL
+        - fe_emis                             datetime               NOT NULL
+        - st_nota_cred                        char(1)                NOT NULL
+        - ti_dcto                             smallint               NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbdfac_prod]
+      PK    : co_empr, co_prov, nu_fact, sc_deta
+      Rows  : 1004
+      Cols  : 16
+        - co_empr                             smallint               NOT NULL
+        - co_prov                             char(2)                NOT NULL
+        - nu_fact                             int                    NOT NULL
+        - sc_deta                             smallint               NOT NULL
+        - co_prod                             smallint               NOT NULL
+        - mo_comp                             money                  NOT NULL
+        - co_auxi                             varchar(15)            NOT NULL
+        - co_tprd                             smallint               NOT NULL
+        - co_func                             smallint               NOT NULL
+        - co_ccos                             smallint               NOT NULL
+        - co_ucos                             smallint               NOT NULL
+        - in_iva                              char(1)                NOT NULL
+        - mo_subt_noob_iva                    char(1)                NOT NULL
+        - mo_subt_exen_iva                    char(1)                NOT NULL
+        - mo_dsct                             money                  NOT NULL
+        - co_acos                             smallint               NULL    
+
+      Tabla : [dbCG].[dbo].[cgtbdfac_rete]
+      PK    : co_empr, nu_fact, qs_rete
+      Rows  : 1005
+      Cols  : 10
+        - co_empr                             smallint               NOT NULL
+        - co_prov                             char(2)                NOT NULL
+        - nu_fact                             int                    NOT NULL
+        - qs_rete                             smallint               NOT NULL
+        - co_prod                             smallint               NOT NULL
+        - co_rete                             smallint               NOT NULL
+        - mo_rete                             money                  NOT NULL
+        - co_tprd                             smallint               NOT NULL
+        - sc_deta                             smallint               NOT NULL
+        - mo_base_impo                        money                  NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbfact_dbso]
+      PK    : co_empr, nu_fact, qs_dbso
+      Rows  : 1014
+      Cols  : 21
+        - co_empr                             smallint               NOT NULL
+        - nu_fact                             int                    NOT NULL
+        - qs_dbso                             smallint               NOT NULL
+        - ci_bnco                             varchar(2)             NOT NULL
+        - co_bnco_acre                        char(2)                NOT NULL
+        - co_tord                             smallint               NOT NULL
+        - nu_cnta                             char(15)               NOT NULL
+        - ti_cnta                             char(1)                NOT NULL
+        - ci_clie                             varchar(13)            NOT NULL
+        - no_bene                             varchar(100)           NOT NULL
+        - st_dbso                             char(1)                NOT NULL
+        - mo_dbso                             money                  NOT NULL
+        - nu_orde                             int                    NOT NULL
+        - fe_pago                             datetime               NOT NULL
+        - co_usua                             char(5)                NOT NULL
+        - ds_obse                             varchar(255)           NOT NULL
+        - ti_pago_dbso                        smallint               NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - co_usua_ingr                        int                    NOT NULL
+        - fe_elim                             datetime               NOT NULL
+        - co_usua_elim                        int                    NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbgara_hipo_cdio]
+      PK    : co_empr, sc_gara_hipo, ci_cedu
+      Rows  : 1024
+      Cols  : 27
+        - co_empr                             smallint               NOT NULL
+        - sc_gara_hipo                        int                    NOT NULL
+        - ci_cedu                             char(10)               NOT NULL
+        - co_prov                             char(2)                NOT NULL
+        - co_ciud                             char(6)                NOT NULL
+        - co_parr                             char(6)                NOT NULL
+        - ds_cdla                             varchar(250)           NOT NULL
+        - ds_call_prin                        varchar(250)           NOT NULL
+        - ds_call_secu                        varchar(250)           NOT NULL
+        - nu_manz                             varchar(50)            NOT NULL
+        - nu_bloq                             varchar(50)            NOT NULL
+        - nu_vill                             varchar(50)            NOT NULL
+        - nu_parq                             varchar(50)            NOT NULL
+        - nu_escr                             varchar(50)            NOT NULL
+        - fe_cele_escr                        datetime               NOT NULL
+        - fe_regi_prop                        datetime               NOT NULL
+        - nu_regi_gara                        varchar(50)            NOT NULL
+        - ds_clav_cata                        varchar(250)           NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - co_usua_ingr                        int                    NOT NULL
+        - fe_conf                             datetime               NOT NULL
+        - co_usua_conf                        int                    NOT NULL
+        - fe_elim                             datetime               NOT NULL
+        - co_usua_elim                        int                    NOT NULL
+        - co_moti                             smallint               NOT NULL
+        - st_regi                             smallint               NOT NULL
+        - ds_refe                             varchar(250)           NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbgara_vehi_cdio]
+      PK    : sc_gara, ci_cedu
+      Rows  : 1020
+      Cols  : 37
+        - sc_gara                             smallint               NOT NULL
+        - ci_cedu                             char(10)               NOT NULL
+        - co_marc                             smallint               NOT NULL
+        - ds_mode                             varchar(250)           NOT NULL
+        - co_tipo                             smallint               NOT NULL
+        - nu_chas                             varchar(50)            NOT NULL
+        - nu_anio                             int                    NOT NULL
+        - nu_moto                             varchar(50)            NOT NULL
+        - ds_colo                             varchar(50)            NOT NULL
+        - nu_plac                             varchar(50)            NOT NULL
+        - fe_regi                             datetime               NOT NULL
+        - nu_regi                             int                    NOT NULL
+        - mo_aval                             money                  NOT NULL
+        - co_usua_ingr                        int                    NOT NULL
+        - co_usua_autr                        int                    NOT NULL
+        - co_usua_veri                        int                    NOT NULL
+        - co_usua_conf                        int                    NOT NULL
+        - co_usua_elim                        int                    NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - fe_autr                             datetime               NOT NULL
+        - fe_veri                             datetime               NOT NULL
+        - fe_conf                             datetime               NOT NULL
+        - fe_elim                             datetime               NOT NULL
+        - st_regi                             smallint               NOT NULL
+        - st_prnd                             smallint               NOT NULL
+        - mo_cntr_prnd                        money                  NOT NULL
+        - ti_cntr                             smallint               NOT NULL
+        - fe_cele_cntr                        datetime               NOT NULL
+        - fe_cont_prnd                        datetime               NOT NULL
+        - nu_aute_firm                        varchar(100)           NOT NULL
+        - nu_nota                             varchar(100)           NOT NULL
+        - fe_regi_prnd                        datetime               NOT NULL
+        - ds_lugar                            varchar(100)           NOT NULL
+        - mo_real                             money                  NOT NULL
+        - fe_aval                             datetime               NOT NULL
+        - co_peri                             smallint               NOT NULL
+        - co_prvd                             smallint               NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbplcn]
+      PK    : (sin PK)
+      Rows  : 1017
+      Cols  : 13
+        - co_empr                             smallint               NOT NULL
+        - ci_cuentacontable                   varchar(15)            NOT NULL
+        - ci_naturalezacuenta                 varchar(1)             NOT NULL
+        - ci_nivelcuenta                      int                    NOT NULL
+        - ci_tipocuentacontable               varchar(1)             NOT NULL
+        - tx_nomcortocuentacontable           varchar(150)           NOT NULL
+        - tx_descripcioncuentacontable        varchar(255)           NOT NULL
+        - ci_cuentacierre                     varchar(1)             NOT NULL
+        - ci_cuentademayor                    varchar(15)            NOT NULL
+        - ce_plancuenta                       varchar(1)             NOT NULL
+        - ti_auxiliar                         smallint               NOT NULL
+        - co_fond                             smallint               NOT NULL
+        - in_impr                             char(1)                NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbprod]
+      PK    : co_empr, co_prod
+      Rows  : 769
+      Cols  : 16
+        - co_empr                             smallint               NOT NULL
+        - co_prod                             smallint               NOT NULL
+        - ds_prod                             varchar(50)            NOT NULL
+        - co_cnta_auto                        varchar(3)             NOT NULL
+        - in_pror                             char(1)                NOT NULL
+        - co_tprd                             smallint               NOT NULL
+        - in_iva                              char(1)                NOT NULL
+        - in_ingr_bien                        char(1)                NOT NULL
+        - co_rete                             smallint               NOT NULL
+        - st_prod                             char(1)                NOT NULL
+        - co_proc_admv                        smallint               NOT NULL
+        - co_conc_rete                        char(5)                NOT NULL
+        - co_scpt                             char(2)                NOT NULL
+        - ds_prod_refe                        varchar(250)           NOT NULL
+        - in_veri_csri                        char(1)                NOT NULL
+        - co_ice                              smallint               NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbprvd]
+      PK    : (sin PK)
+      Rows  : 1011
+      Cols  : 38
+        - co_empr                             smallint               NOT NULL
+        - co_prvd                             smallint               NOT NULL
+        - no_prvd                             varchar(100)           NOT NULL
+        - ds_dire                             varchar(100)           NOT NULL
+        - nu_tel1                             varchar(15)            NOT NULL
+        - nu_tel2                             varchar(15)            NOT NULL
+        - di_emai                             varchar(100)           NOT NULL
+        - ti_iden                             smallint               NOT NULL
+        - nu_iden                             decimal                NOT NULL
+        - ti_pers                             smallint               NOT NULL
+        - st_prvd                             char(1)                NOT NULL
+        - in_dpro                             char(1)                NOT NULL
+        - ci_bnco                             varchar(2)             NOT NULL
+        - ti_cnta                             char(1)                NOT NULL
+        - nu_cnta                             char(20)               NOT NULL
+        - co_loca                             smallint               NOT NULL
+        - co_dpto                             smallint               NOT NULL
+        - co_iden                             char(2)                NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - fe_modi                             datetime               NOT NULL
+        - fe_elim                             datetime               NOT NULL
+        - co_usua_ingr                        int                    NOT NULL
+        - co_usua_modi                        int                    NOT NULL
+        - co_usua_elim                        int                    NOT NULL
+        - ti_prvd                             smallint               NOT NULL
+        - no_gere                             varchar(100)           NOT NULL
+        - in_cont                             char(1)                NOT NULL
+        - in_segu                             char(1)                NOT NULL
+        - in_segu_cred                        char(1)                NOT NULL
+        - in_conv_fcme                        char(1)                NOT NULL
+        - nu_edad                             smallint               NOT NULL
+        - in_pago_bene                        char(1)                NOT NULL
+        - co_iden_sri                         smallint               NOT NULL
+        - no_bene                             varchar(100)           NOT NULL
+        - co_iden_bene                        varchar(13)            NOT NULL
+        - ci_bnco_bene                        varchar(2)             NOT NULL
+        - ti_cnta_bene                        char(1)                NOT NULL
+        - nu_cnta_bene                        char(20)               NOT NULL
+
+      Tabla : [dbCG].[dbo].[cgtbrete]
+      PK    : co_empr, co_rete
+      Rows  : 30
+      Cols  : 6
+        - co_empr                             smallint               NOT NULL
+        - co_rete                             smallint               NOT NULL
+        - ds_rete                             varchar(50)            NOT NULL
+        - po_rete                             money                  NOT NULL
+        - ti_base_calc                        smallint               NOT NULL
+        - st_rete                             char(1)                NOT NULL
+
+  >>> MAPEO NEWCORE_TO_FINAL  (TYPE en fcme_newcore  ->  destino legacy) <<<
+    fcme_newcore.PAGOS_PROVEEDORES.PROVEEDORTYPE                       -> [dbCG].[dbo].[cgtbprvd]
+    fcme_newcore.PAGOS_PROVEEDORES.DOCUMENTOPROVEEDORTYPE              -> [dbCG].[dbo].[cgtbcfac]
+    fcme_newcore.PAGOS_PROVEEDORES.DOCUMENTOPROVEEDORDETALLETYPE       -> [dbCG].[dbo].[cgtbcfac]
+    fcme_newcore.PAGOS_PROVEEDORES.PAGOPROVEEDORTYPE                   -> [dbCG].[dbo].[cgtbfact_dbso]
+    fcme_newcore.PAGOS_PROVEEDORES.PAGODOCUMENTOTYPE                   -> [dbCG].[dbo].[cgtbdfac_nota_cred]
+    fcme_newcore.PAGOS_PROVEEDORES.RETENCIONPAGOTYPE                   -> [dbCG].[dbo].[cgtbdfac_rete]
+    fcme_newcore.PAGOS_PROVEEDORES.TIPODOCUMENTOPROVEEDORTYPE          -> [dbCG].[dbo].[cgtbdcto]
+
+====================================================================================================
+[8] MODULO: PARTICIPE
+====================================================================================================
+  Schema en fcme_newcore : PARTICIPE
+  ORIGINAL_DB declarada  : dbFC
+  BD(s) legacy usadas    : dbFC
+
+  >>> LADO NEWCORE (fcme_newcore.PARTICIPE) <<<
+    Total tablas en schema: 9
+      PARTICIPE.DIRECCIONTYPE                                           rows=2004
+      PARTICIPE.HISTORICOESTADOSTYPE                                    rows=2006
+      PARTICIPE.INFOADICIONALTYPE                                       rows=3021
+      PARTICIPE.INFOBASICATYPE                                          rows=2600
+      PARTICIPE.INGRESOSEGRESOSTYPE                                     rows=2004
+      PARTICIPE.PERSONATYPE                                             rows=2600
+      PARTICIPE.PERSONAVINCULADATYPE                                    rows=2001
+      PARTICIPE.SALDOPERSONANATURALTYPE                                 rows=4001
+      PARTICIPE.TELEFONOTYPE                                            rows=1000
+
+  >>> LADO LEGACY (BDs origen) <<<
+
+    --- BD: dbFC ---
+
+      Tabla : [dbFC].[dbo].[fctbafil_actu]
+      PK    : ci_cedu
+      Rows  : 1018
+      Cols  : 49
+        - ci_cedu                             varchar(10)            NOT NULL
+        - co_prov                             char(10)               NOT NULL
+        - co_cant                             char(5)                NOT NULL
+        - co_parr                             char(5)                NOT NULL
+        - ds_call_prim                        varchar(50)            NOT NULL
+        - nu_call_prim                        varchar(15)            NOT NULL
+        - ds_call_secu                        varchar(50)            NOT NULL
+        - nu_call_secu                        varchar(15)            NOT NULL
+        - nu_manz                             varchar(10)            NOT NULL
+        - nu_vill                             varchar(10)            NOT NULL
+        - ds_cdla                             varchar(50)            NOT NULL
+        - tx_telf_conv                        varchar(20)            NOT NULL
+        - tx_telf_celu                        varchar(20)            NOT NULL
+        - ti_oper                             smallint               NOT NULL
+        - ds_refe_vivi                        varchar(100)           NULL    
+        - tx_mail                             varchar(50)            NOT NULL
+        - no_cont_adic                        varchar(100)           NOT NULL
+        - tx_telf_con1                        varchar(20)            NOT NULL
+        - tx_telf_con2                        varchar(20)            NOT NULL
+        - ti_rela                             smallint               NOT NULL
+        - co_prov_inst                        char(2)                NOT NULL
+        - ci_tipo                             char(1)                NOT NULL
+        - co_inst                             char(6)                NOT NULL
+        - co_carg                             char(3)                NOT NULL
+        - co_nive                             char(1)                NOT NULL
+        - co_cate                             char(2)                NOT NULL
+        - ti_cont                             char(1)                NOT NULL
+        - ti_jorn                             char(1)                NOT NULL
+        - co_prov_obsq                        char(2)                NOT NULL
+        - co_zona_obsq                        char(2)                NOT NULL
+        - in_reno_cred                        char(1)                NOT NULL
+        - in_acci                             smallint               NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - fe_modi                             datetime               NOT NULL
+        - fe_ultm_envi                        datetime               NOT NULL
+        - in_impr_docu                        char(1)                NOT NULL
+        - fe_impr_docu                        datetime               NOT NULL
+        - in_cobr_pres                        char(1)                NOT NULL
+        - in_vald_celu                        char(1)                NOT NULL
+        - in_vald_mail                        char(1)                NOT NULL
+        - co_ami                              varchar(20)            NOT NULL
+        - st_entr_obsq                        char(1)                NOT NULL
+        - fe_entr_obsq                        datetime               NOT NULL
+        - fe_veri_dato                        datetime               NOT NULL
+        - in_impr_docu_cred                   char(1)                NOT NULL
+        - fe_impr_docu_cred                   datetime               NOT NULL
+        - no_inst                             varchar(100)           NOT NULL
+        - co_cant_inst                        char(5)                NOT NULL
+        - co_parr_inst                        char(5)                NOT NULL
+
+      Tabla : [dbFC].[dbo].[fctbafil_info_adic]
+      PK    : ci_cedu
+      Rows  : 2024
+      Cols  : 23
+        - ci_cedu                             varchar(10)            NOT NULL
+        - ds_calle_prim                       varchar(50)            NOT NULL
+        - nu_calle_prim                       varchar(15)            NOT NULL
+        - ds_calle_secu                       varchar(50)            NOT NULL
+        - nu_calle_secu                       varchar(15)            NOT NULL
+        - nu_manz                             varchar(10)            NOT NULL
+        - nu_villa                            varchar(10)            NOT NULL
+        - ds_refe_vivi                        varchar(100)           NULL    
+        - ti_oper                             smallint               NOT NULL
+        - no_cont_adic                        varchar(100)           NOT NULL
+        - tx_telf_con1                        varchar(20)            NOT NULL
+        - tx_telf_con2                        varchar(20)            NOT NULL
+        - ti_rela                             smallint               NOT NULL
+        - ti_jorn                             char(1)                NOT NULL
+        - co_usua_ingr                        smallint               NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - co_usua_modi                        smallint               NOT NULL
+        - fe_modi                             datetime               NOT NULL
+        - co_dist_amie                        varchar(10)            NOT NULL
+        - co_dist_mins                        varchar(10)            NOT NULL
+        - in_corr_cedu                        char(1)                NOT NULL
+        - co_pais_naci                        smallint               NOT NULL
+        - co_area_lbrl                        smallint               NOT NULL
+
+      Tabla : [dbFC].[dbo].[fctbagen_telf]
+      PK    : ci_cedu, nu_telf
+      Rows  : 1028
+      Cols  : 6
+        - ci_cedu                             char(13)               NOT NULL
+        - nu_telf                             varchar(20)            NOT NULL
+        - co_oper_celu                        smallint               NOT NULL
+        - ti_refe                             smallint               NOT NULL
+        - ti_line                             smallint               NOT NULL
+        - st_agen                             smallint               NOT NULL
+
+      Tabla : [dbFC].[dbo].[fctbmvto_pend_cbro]
+      PK    : co_empr, sc_mvto, ci_cedu
+      Rows  : 1000
+      Cols  : 9
+        - co_empr                             smallint               NOT NULL
+        - sc_mvto                             int                    NOT NULL
+        - ci_cedu                             varchar(10)            NOT NULL
+        - co_liqd_rubr                        smallint               NOT NULL
+        - ti_cnta                             char(2)                NOT NULL
+        - mo_mvto                             money                  NOT NULL
+        - fe_mvto                             datetime               NOT NULL
+        - co_usua_mvto                        int                    NOT NULL
+        - ds_refe                             varchar(100)           NULL    
+
+      Tabla : [dbFC].[dbo].[fctbotro_ingr_afil]
+      PK    : co_rol, ci_cedu, co_otro_ingr_rubr
+      Rows  : 1018
+      Cols  : 12
+        - co_rol                              char(6)                NOT NULL
+        - ci_cedu                             varchar(10)            NOT NULL
+        - co_otro_ingr_rubr                   smallint               NOT NULL
+        - mo_rubr                             money                  NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - co_usua_ingr                        int                    NOT NULL
+        - fe_modi                             datetime               NOT NULL
+        - co_usua_modi                        int                    NOT NULL
+        - fe_elim                             datetime               NOT NULL
+        - co_usua_elim                        int                    NOT NULL
+        - ds_adic                             varchar(50)            NOT NULL
+        - st_regi                             smallint               NOT NULL
+
+      Tabla : [dbFC].[dbo].[fctbsald_diar_afil_rubr]
+      PK    : fx_saldo, ci_cedula, ci_rubro_rol, co_empr
+      Rows  : 8
+      Cols  : 10
+        - fx_saldo                            datetime               NOT NULL
+        - ci_tipo                             char(1)                NULL    
+        - ci_institucion                      char(6)                NULL    
+        - ci_provincia                        char(2)                NULL    
+        - ci_pagador                          char(1)                NULL    
+        - ci_cedula                           char(10)               NOT NULL
+        - ce_estado                           char(1)                NULL    
+        - ci_rubro_rol                        char(2)                NOT NULL
+        - va_saldo                            money                  NULL    
+        - co_empr                             smallint               NOT NULL
+
+      Tabla : [dbFC].[dbo].[sfct_afiliado]
+      PK    : co_empr, ci_cedula
+      Rows  : 1043
+      Cols  : 56
+        - ci_tipo                             varchar(1)             NOT NULL
+        - ci_institucion                      varchar(6)             NOT NULL
+        - ci_cedula                           varchar(10)            NOT NULL
+        - no_nombre                           varchar(100)           NOT NULL
+        - no_apellido                         varchar(100)           NOT NULL
+        - no_direccion                        varchar(50)            NOT NULL
+        - tx_telefono                         varchar(20)            NOT NULL
+        - ci_titulo                           char(2)                NOT NULL
+        - ci_provincia                        varchar(3)             NOT NULL
+        - ci_categoria                        varchar(2)             NOT NULL
+        - ci_nivel                            varchar(1)             NOT NULL
+        - ci_regimen                          varchar(1)             NOT NULL
+        - ci_pagador                          varchar(1)             NOT NULL
+        - tx_iess                             varchar(15)            NOT NULL
+        - tx_contrato                         varchar(10)            NOT NULL
+        - fx_nacimiento                       datetime               NOT NULL
+        - fx_ingreso                          datetime               NOT NULL
+        - fx_fondo                            datetime               NOT NULL
+        - fx_reingreso                        datetime               NOT NULL
+        - fx_retiro                           datetime               NOT NULL
+        - va_sueldo                           money                  NOT NULL
+        - va_liquido                          money                  NOT NULL
+        - va_funcional                        money                  NOT NULL
+        - va_adicional                        money                  NOT NULL
+        - va_antiguedad                       money                  NOT NULL
+        - pr_cam                              money                  NOT NULL
+        - nu_anios_antiguedad                 smallint               NOT NULL
+        - fx_creacion                         datetime               NOT NULL
+        - ce_estado                           varchar(1)             NOT NULL
+        - ci_ciudad                           varchar(5)             NOT NULL
+        - ce_estadocivil                      char(1)                NOT NULL
+        - tx_telefono2                        varchar(20)            NOT NULL
+        - co_escuela                          varchar(6)             NOT NULL
+        - ti_sector                           char(1)                NOT NULL
+        - ci_nivelaporte                      char(3)                NOT NULL
+        - ci_cedula_numerica                  float                  NOT NULL
+        - fx_modificacion                     datetime               NOT NULL
+        - ci_provincia_residencia             char(2)                NOT NULL
+        - in_sexo                             char(1)                NOT NULL
+        - va_hipotecario                      money                  NOT NULL
+        - ci_usuario_ingr                     smallint               NOT NULL
+        - tx_email                            varchar(50)            NOT NULL
+        - ci_usuario_modi                     smallint               NOT NULL
+        - tx_barrio                           varchar(20)            NOT NULL
+        - ci_parroquia                        char(5)                NOT NULL
+        - ci_rold_dsto_hipo                   char(6)                NOT NULL
+        - ci_rolh_dsto_hipo                   char(6)                NOT NULL
+        - tx_telefono3                        varchar(20)            NOT NULL
+        - tx_telefono4                        varchar(20)            NOT NULL
+        - ds_observaciones                    varchar(100)           NOT NULL
+        - ci_cargo                            char(3)                NOT NULL
+        - nu_carga                            smallint               NOT NULL
+        - ci_cedula_correccion                varchar(10)            NOT NULL
+        - pr_funcional                        money                  NOT NULL
+        - fe_reti_parc                        datetime               NOT NULL
+        - co_empr                             smallint               NOT NULL
+
+      Tabla : [dbFC].[dbo].[sfct_afiliado_auditor]
+      PK    : (sin PK)
+      Rows  : 1058
+      Cols  : 16
+        - ci_cedula                           char(10)               NOT NULL
+        - fe_generacion                       datetime               NOT NULL
+        - ho_generacion                       char(8)                NOT NULL
+        - ce_estado                           char(1)                NOT NULL
+        - tx_contrato                         char(1)                NOT NULL
+        - ci_nivelaporte                      char(3)                NOT NULL
+        - va_hipotecario                      money                  NOT NULL
+        - ci_categoria                        char(2)                NOT NULL
+        - ci_usuario                          smallint               NOT NULL
+        - ci_motivo_mant                      smallint               NOT NULL
+        - ci_cedula_coord                     varchar(10)            NOT NULL
+        - pr_cam                              money                  NOT NULL
+        - ci_cargo                            char(3)                NOT NULL
+        - ds_fondos                           varchar(30)            NOT NULL
+        - pr_funcional                        money                  NOT NULL
+        - co_empr                             smallint               NOT NULL
+
+      Tabla : [dbFC].[dbo].[sfct_beneficiario]
+      PK    : co_empr, ci_cedula, sc_bene
+      Rows  : 1013
+      Cols  : 15
+        - ci_cedula                           varchar(10)            NOT NULL
+        - ci_cedula_beneficiario              varchar(10)            NOT NULL
+        - no_nombre                           varchar(30)            NOT NULL
+        - no_apellido                         varchar(30)            NOT NULL
+        - pr_porcentaje                       money                  NOT NULL
+        - fx_creacion                         datetime               NOT NULL
+        - ce_beneficiario                     char(1)                NOT NULL
+        - fx_modificacion                     datetime               NOT NULL
+        - ci_usuario_ingr                     smallint               NOT NULL
+        - ci_usuario_modi                     smallint               NOT NULL
+        - sc_bene                             smallint               NOT NULL
+        - co_bnco_pago                        char(2)                NOT NULL
+        - ti_cnta_pago                        char(1)                NOT NULL
+        - nu_cnta_pago                        varchar(50)            NOT NULL
+        - co_empr                             smallint               NOT NULL
+
+      Tabla : [dbFC].[dbo].[sfct_cabecera_rol]
+      PK    : sc_rol
+      Rows  : 1004
+      Cols  : 7
+        - ci_rol                              char(6)                NOT NULL
+        - ci_tipo                             char(1)                NOT NULL
+        - ci_institucion                      varchar(6)             NOT NULL
+        - ci_provincia                        char(2)                NOT NULL
+        - fx_creacion                         datetime               NOT NULL
+        - sc_rol                              int                    NOT NULL
+        - co_empr                             smallint               NOT NULL
+
+      Tabla : [dbFC].[dbo].[sfct_estados_afiliado]
+      PK    : (sin PK)
+      Rows  : 8
+      Cols  : 5
+        - ci_estado                           char(1)                NOT NULL
+        - tx_estado                           varchar(50)            NOT NULL
+        - in_acti                             char(1)                NULL    
+        - in_pre                              char(1)                NOT NULL
+        - co_esta_sibs                        char(1)                NOT NULL
+
+      Tabla : [dbFC].[dbo].[sfct_movimiento]
+      PK    : (sin PK)
+      Rows  : 1061
+      Cols  : 27
+        - ci_tipo_transaccion                 varchar(2)             NOT NULL
+        - ci_transaccion                      varchar(10)            NOT NULL
+        - ci_motivo                           varchar(3)             NOT NULL
+        - ci_tipo                             varchar(1)             NOT NULL
+        - ci_institucion                      varchar(6)             NOT NULL
+        - ci_cedula                           varchar(10)            NOT NULL
+        - ci_rol                              varchar(6)             NOT NULL
+        - ci_rubro_rol                        char(2)                NOT NULL
+        - ci_motivo_retiro                    varchar(2)             NOT NULL
+        - fx_ajuste                           datetime               NOT NULL
+        - fx_final_ajuste                     datetime               NOT NULL
+        - fx_proceso                          datetime               NOT NULL
+        - fx_retiro                           datetime               NOT NULL
+        - pr_porcentaje                       money                  NOT NULL
+        - va_transaccion                      money                  NOT NULL
+        - va_saldo_anterior                   money                  NOT NULL
+        - fx_creacion                         datetime               NOT NULL
+        - ce_capitalizado                     varchar(1)             NOT NULL
+        - ce_estado                           varchar(1)             NOT NULL
+        - qs_hora                             int                    NOT NULL
+        - ti_comprobante                      varchar(2)             NOT NULL
+        - nu_comprobante                      varchar(20)            NULL    
+        - ci_provincia                        char(2)                NOT NULL
+        - ci_pagador                          char(1)                NOT NULL
+        - in_impresion                        char(1)                NULL    
+        - sc_rol                              int                    NOT NULL
+        - co_empr                             smallint               NOT NULL
+
+  >>> MAPEO NEWCORE_TO_FINAL  (TYPE en fcme_newcore  ->  destino legacy) <<<
+    fcme_newcore.PARTICIPE.PERSONATYPE                         -> [dbFC].[dbo].[sfct_afiliado]
+    fcme_newcore.PARTICIPE.DIRECCIONTYPE                       -> [dbFC].[dbo].[fctbafil_actu]
+    fcme_newcore.PARTICIPE.TELEFONOTYPE                        -> [dbFC].[dbo].[fctbagen_telf]
+    fcme_newcore.PARTICIPE.INFOADICIONALTYPE                   -> [dbFC].[dbo].[fctbafil_info_adic]
+    fcme_newcore.PARTICIPE.INFOBASICATYPE                      -> [dbFC].[dbo].[fctbafil_actu]
+    fcme_newcore.PARTICIPE.INGRESOSEGRESOSTYPE                 -> [dbFC].[dbo].[fctbotro_ingr_afil]
+    fcme_newcore.PARTICIPE.PERSONAVINCULADATYPE                -> [dbFC].[dbo].[sfct_beneficiario]
+    fcme_newcore.PARTICIPE.SALDOPERSONANATURALTYPE             -> [dbFC].[dbo].[fctbsald_diar_afil_rubr]
+    fcme_newcore.PARTICIPE.HISTORICOESTADOSTYPE                -> [dbFC].[dbo].[sfct_afiliado_auditor]
+
+====================================================================================================
+[9] MODULO: RECAUDACIONES
+====================================================================================================
+  Schema en fcme_newcore : RECAUDACIONES
+  ORIGINAL_DB declarada  : (ninguna)
+  BD(s) legacy usadas    : dbCR, dbCT, dbFC, dbRC
+
+  >>> LADO NEWCORE (fcme_newcore.RECAUDACIONES) <<<
+    Total tablas en schema: 8
+      RECAUDACIONES.DISTRITOTYPE                                            rows=1000
+      RECAUDACIONES.RECAUDACIONDETALLETYPE                                  rows=4009
+      RECAUDACIONES.RECAUDACIONTYPE                                         rows=2006
+      RECAUDACIONES.RECUPERACIONDETALLETYPE                                 rows=2019
+      RECAUDACIONES.RECUPERACIONTYPE                                        rows=2019
+      RECAUDACIONES.ROLPAGOTYPE                                             rows=2004
+      RECAUDACIONES.TRANSACCIONCUENTATYPE                                   rows=2002
+      RECAUDACIONES.TRANSACCIONPRESTAMOTYPE                                 rows=2016
+
+  >>> LADO LEGACY (BDs origen) <<<
+
+    --- BD: dbCR ---
+
+      Tabla : [dbCR].[dbo].[crtrecup]
+      PK    : (sin PK)
+      Rows  : 1032
+      Cols  : 24
+        - ti_cred                             smallint               NOT NULL
+        - aa_cred                             smallint               NOT NULL
+        - qs_cred                             int                    NOT NULL
+        - qs_abno                             smallint               NOT NULL
+        - ti_recp                             smallint               NOT NULL
+        - ce_regi                             char(1)                NOT NULL
+        - ce_mvto                             char(1)                NOT NULL
+        - fx_mvto                             datetime               NOT NULL
+        - fx_abno                             datetime               NOT NULL
+        - fx_cble                             datetime               NOT NULL
+        - fx_revz                             datetime               NOT NULL
+        - mo_mvto                             money                  NOT NULL
+        - nu_cpbt_cble                        varchar(20)            NOT NULL
+        - in_conf_fond                        char(1)                NOT NULL
+        - ce_autr                             char(1)                NOT NULL
+        - tx_liqd                             varchar(250)           NOT NULL
+        - ci_usua_conf                        char(6)                NOT NULL
+        - ci_usua_liqd                        char(6)                NOT NULL
+        - nu_dias_atra                        smallint               NOT NULL
+        - ti_revz                             smallint               NOT NULL
+        - ci_rol                              char(6)                NOT NULL
+        - co_usua_revz                        smallint               NOT NULL
+        - ti_diar                             char(2)                NOT NULL
+        - in_cble_revz                        char(1)                NOT NULL
+
+    --- BD: dbCT ---
+
+      Tabla : [dbCT].[dbo].[cttbdist_cant]
+      PK    : (sin PK)
+      Rows  : 485
+      Cols  : 3
+        - COD_DISTRI                          nvarchar(255)          NULL    
+        - COD_CANT                            nvarchar(255)          NULL    
+        - DES_DISTRI                          nvarchar(255)          NULL    
+
+    --- BD: dbFC ---
+
+      Tabla : [dbFC].[dbo].[sfct_cabecera_rol]
+      PK    : sc_rol
+      Rows  : 1004
+      Cols  : 7
+        - ci_rol                              char(6)                NOT NULL
+        - ci_tipo                             char(1)                NOT NULL
+        - ci_institucion                      varchar(6)             NOT NULL
+        - ci_provincia                        char(2)                NOT NULL
+        - fx_creacion                         datetime               NOT NULL
+        - sc_rol                              int                    NOT NULL
+        - co_empr                             smallint               NOT NULL
+
+      Tabla : [dbFC].[dbo].[sfct_movimiento]
+      PK    : (sin PK)
+      Rows  : 1061
+      Cols  : 27
+        - ci_tipo_transaccion                 varchar(2)             NOT NULL
+        - ci_transaccion                      varchar(10)            NOT NULL
+        - ci_motivo                           varchar(3)             NOT NULL
+        - ci_tipo                             varchar(1)             NOT NULL
+        - ci_institucion                      varchar(6)             NOT NULL
+        - ci_cedula                           varchar(10)            NOT NULL
+        - ci_rol                              varchar(6)             NOT NULL
+        - ci_rubro_rol                        char(2)                NOT NULL
+        - ci_motivo_retiro                    varchar(2)             NOT NULL
+        - fx_ajuste                           datetime               NOT NULL
+        - fx_final_ajuste                     datetime               NOT NULL
+        - fx_proceso                          datetime               NOT NULL
+        - fx_retiro                           datetime               NOT NULL
+        - pr_porcentaje                       money                  NOT NULL
+        - va_transaccion                      money                  NOT NULL
+        - va_saldo_anterior                   money                  NOT NULL
+        - fx_creacion                         datetime               NOT NULL
+        - ce_capitalizado                     varchar(1)             NOT NULL
+        - ce_estado                           varchar(1)             NOT NULL
+        - qs_hora                             int                    NOT NULL
+        - ti_comprobante                      varchar(2)             NOT NULL
+        - nu_comprobante                      varchar(20)            NULL    
+        - ci_provincia                        char(2)                NOT NULL
+        - ci_pagador                          char(1)                NOT NULL
+        - in_impresion                        char(1)                NULL    
+        - sc_rol                              int                    NOT NULL
+        - co_empr                             smallint               NOT NULL
+
+    --- BD: dbRC ---
+
+      Tabla : [dbRC].[dbo].[rctbdsto_rol]
+      PK    : ci_cedu, ti_dsto, ci_peri
+      Rows  : 1019
+      Cols  : 11
+        - ci_cedu                             varchar(10)            NOT NULL
+        - ti_dsto                             smallint               NOT NULL
+        - ci_peri                             varchar(6)             NOT NULL
+        - mo_dsto                             money                  NOT NULL
+        - ci_rol_ingr                         varchar(6)             NOT NULL
+        - ci_rol_fin                          varchar(6)             NOT NULL
+        - st_dsto                             smallint               NOT NULL
+        - co_usua_ingr                        smallint               NOT NULL
+        - fe_ingr_regi                        datetime               NOT NULL
+        - co_usua_elim                        smallint               NOT NULL
+        - fe_elim_regi                        datetime               NOT NULL
+
+      Tabla : [dbRC].[dbo].[rctbreca]
+      PK    : (sin PK)
+      Rows  : 1005
+      Cols  : 32
+        - ti_reca                             char(1)                NOT NULL
+        - st_reca                             char(1)                NOT NULL
+        - mo_reca                             money                  NOT NULL
+        - sc_reca                             int                    NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - fe_autr                             datetime               NOT NULL
+        - fe_veri                             datetime               NOT NULL
+        - fe_apli                             datetime               NOT NULL
+        - co_usua_ingr                        smallint               NOT NULL
+        - co_usua_autr                        smallint               NOT NULL
+        - co_usua_veri                        smallint               NOT NULL
+        - co_usua_apli                        smallint               NOT NULL
+        - ti_orig                             smallint               NOT NULL
+        - fe_depo                             datetime               NOT NULL
+        - nu_cheq_cpbt                        varchar(20)            NOT NULL
+        - co_banc_tdep                        varchar(2)             NOT NULL
+        - nu_cnta_cheq                        varchar(20)            NOT NULL
+        - co_cnta_cpbt                        smallint               NOT NULL
+        - in_reca_prov                        char(1)                NOT NULL
+        - co_cnta_depo                        smallint               NOT NULL
+        - nu_cpbt_depo                        varchar(20)            NOT NULL
+        - in_cble                             char(1)                NOT NULL
+        - in_efec                             char(1)                NOT NULL
+        - in_autr                             char(1)                NULL    
+        - fe_elim                             datetime               NOT NULL
+        - co_usua_elim                        smallint               NULL    
+        - in_impr                             char(1)                NULL    
+        - sc_rol                              int                    NOT NULL
+        - in_acti                             char(1)                NOT NULL
+        - co_cnta_depo_tran                   smallint               NOT NULL
+        - nu_cpbt_depo_tran                   varchar(20)            NOT NULL
+        - co_empr                             smallint               NOT NULL
+
+      Tabla : [dbRC].[dbo].[rctbrind_deta]
+      PK    : co_empr, sc_reca, co_rubr
+      Rows  : 3009
+      Cols  : 4
+        - sc_reca                             int                    NOT NULL
+        - co_rubr                             char(2)                NOT NULL
+        - mo_reca                             money                  NOT NULL
+        - co_empr                             smallint               NOT NULL
+
+  >>> MAPEO NEWCORE_TO_FINAL  (TYPE en fcme_newcore  ->  destino legacy) <<<
+    fcme_newcore.RECAUDACIONES.RECAUDACIONTYPE                     -> [dbRC].[dbo].[rctbreca]
+    fcme_newcore.RECAUDACIONES.RECAUDACIONDETALLETYPE              -> [dbRC].[dbo].[rctbrind_deta]
+    fcme_newcore.RECAUDACIONES.RECUPERACIONTYPE                    -> [dbRC].[dbo].[rctbdsto_rol]
+    fcme_newcore.RECAUDACIONES.RECUPERACIONDETALLETYPE             -> [dbRC].[dbo].[rctbdsto_rol]
+    fcme_newcore.RECAUDACIONES.ROLPAGOTYPE                         -> [dbFC].[dbo].[sfct_cabecera_rol]
+    fcme_newcore.RECAUDACIONES.TRANSACCIONCUENTATYPE               -> [dbFC].[dbo].[sfct_movimiento]
+    fcme_newcore.RECAUDACIONES.TRANSACCIONPRESTAMOTYPE             -> [dbCR].[dbo].[crtrecup]
+    fcme_newcore.RECAUDACIONES.DISTRITOTYPE                        -> [dbCT].[dbo].[cttbdist_cant]
+
+====================================================================================================
+[10] MODULO: SEGURIDAD
+====================================================================================================
+  Schema en fcme_newcore : SEGURIDAD
+  ORIGINAL_DB declarada  : dbSG
+  BD(s) legacy usadas    : dbSG
+
+  >>> LADO NEWCORE (fcme_newcore.SEGURIDAD) <<<
+    Total tablas en schema: 7
+      SEGURIDAD.DETALLEUSUARIOSEGURIDADTYPE                             rows=1017
+      SEGURIDAD.OPCIONMENUTYPE                                          rows=1006
+      SEGURIDAD.PERFILACCESOTYPE                                        rows=1009
+      SEGURIDAD.PERFILOPCIONMENUTYPE                                    rows=1009
+      SEGURIDAD.ROLTYPE                                                 rows=1021
+      SEGURIDAD.USUARIOPERFILACCESOTYPE                                 rows=1010
+      SEGURIDAD.USUARIOTYPE                                             rows=1020
+
+  >>> LADO LEGACY (BDs origen) <<<
+
+    --- BD: dbSG ---
+
+      Tabla : [dbSG].[dbo].[sgtbautr_perf]
+      PK    : co_empr, co_perf, co_apli, co_func, nu_tran, ti_loca
+      Rows  : 7
+      Cols  : 8
+        - co_empr                             smallint               NOT NULL
+        - co_perf                             int                    NOT NULL
+        - co_apli                             char(2)                NOT NULL
+        - co_func                             char(2)                NOT NULL
+        - nu_tran                             smallint               NOT NULL
+        - ti_loca                             char(1)                NOT NULL
+        - ds_autr                             char(5)                NOT NULL
+        - ds_nive_autr                        varchar(5)             NOT NULL
+
+      Tabla : [dbSG].[dbo].[sgtbperf]
+      PK    : co_empr, co_perf
+      Rows  : 7
+      Cols  : 5
+        - co_empr                             smallint               NOT NULL
+        - co_perf                             int                    NOT NULL
+        - no_perf                             varchar(150)           NOT NULL
+        - ds_perf                             varchar(250)           NOT NULL
+        - st_regi                             int                    NOT NULL
+
+      Tabla : [dbSG].[dbo].[sgtbperf_usua]
+      PK    : co_empr, co_perf, co_usua
+      Rows  : 8
+      Cols  : 3
+        - co_empr                             smallint               NOT NULL
+        - co_perf                             int                    NOT NULL
+        - co_usua                             int                    NOT NULL
+
+      Tabla : [dbSG].[dbo].[sgtbrol]
+      PK    : co_rol_usua
+      Rows  : 19
+      Cols  : 5
+        - co_empr                             smallint               NOT NULL
+        - co_rol_usua                         int                    NOT NULL
+        - no_rol                              varchar(150)           NOT NULL
+        - ds_rol                              varchar(250)           NOT NULL
+        - st_regi                             int                    NOT NULL
+
+      Tabla : [dbSG].[dbo].[sgtbtran]
+      PK    : co_apli, co_func, nu_tran, ti_loca
+      Rows  : 1010
+      Cols  : 16
+        - co_apli                             char(2)                NOT NULL
+        - co_func                             char(2)                NOT NULL
+        - nu_tran                             smallint               NOT NULL
+        - ti_loca                             char(1)                NOT NULL
+        - no_tran                             varchar(50)            NOT NULL
+        - ds_exec                             varchar(50)            NOT NULL
+        - ds_para                             varchar(50)            NOT NULL
+        - in_proc_fdia                        char(1)                NULL    
+        - in_conf                             char(1)                NOT NULL
+        - in_nive                             char(1)                NOT NULL
+        - in_ctrl_vali                        varchar(1)             NOT NULL
+        - fe_actu_tran                        datetime               NOT NULL
+        - st_tran                             char(1)                NOT NULL
+        - ti_apli                             smallint               NOT NULL
+        - in_firm                             char(1)                NOT NULL
+        - nu_firm                             smallint               NOT NULL
+
+      Tabla : [dbSG].[dbo].[sgtbusua]
+      PK    : co_empr, co_usua
+      Rows  : 1004
+      Cols  : 21
+        - co_empr                             smallint               NOT NULL
+        - co_usua                             int                    NOT NULL
+        - no_usua                             varchar(50)            NOT NULL
+        - fe_ingr                             datetime               NOT NULL
+        - fe_expi                             datetime               NOT NULL
+        - ds_pass                             varchar(100)           NOT NULL
+        - nu_dias_vali                        smallint               NOT NULL
+        - nu_cedu                             char(10)               NOT NULL
+        - in_just_atfl                        char(1)                NOT NULL
+        - in_perm_anti                        char(1)                NULL    
+        - ti_loca                             char(1)                NOT NULL
+        - co_prov                             char(2)                NOT NULL
+        - st_usua                             char(1)                NOT NULL
+        - in_cred_empl                        char(1)                NOT NULL
+        - co_dpto                             smallint               NOT NULL
+        - in_sumi                             char(1)                NOT NULL
+        - ti_sucu                             char(1)                NOT NULL
+        - ds_mail                             varchar(100)           NOT NULL
+        - no_maqui                            varchar(50)            NOT NULL
+        - co_empl                             smallint               NOT NULL
+        - fe_ultm_bloq                        datetime               NOT NULL
+
+  >>> MAPEO NEWCORE_TO_FINAL  (TYPE en fcme_newcore  ->  destino legacy) <<<
+    fcme_newcore.SEGURIDAD.USUARIOTYPE                         -> [dbSG].[dbo].[sgtbusua]
+    fcme_newcore.SEGURIDAD.ROLTYPE                             -> [dbSG].[dbo].[sgtbrol]
+    fcme_newcore.SEGURIDAD.PERFILACCESOTYPE                    -> [dbSG].[dbo].[sgtbperf]
+    fcme_newcore.SEGURIDAD.OPCIONMENUTYPE                      -> [dbSG].[dbo].[sgtbtran]
+    fcme_newcore.SEGURIDAD.PERFILOPCIONMENUTYPE                -> [dbSG].[dbo].[sgtbautr_perf]
+    fcme_newcore.SEGURIDAD.USUARIOPERFILACCESOTYPE             -> [dbSG].[dbo].[sgtbperf_usua]
+
+====================================================================================================
+[11] MODULO: COBRANZAS
+====================================================================================================
+  Schema en fcme_newcore : COBRANZAS
+  ORIGINAL_DB declarada  : (ninguna)
+  BD(s) legacy usadas    : (ninguna)
+
+  >>> LADO NEWCORE (fcme_newcore.COBRANZAS) <<<
+    Total tablas en schema: 4
+      COBRANZAS.ACCIONTYPE                                              rows=1027
+      COBRANZAS.COBRANZADETALLETYPE                                     rows=1007
+      COBRANZAS.COBRANZALEGALTYPE                                       rows=1014
+      COBRANZAS.COBRANZATYPE                                            rows=1002
+
+  >>> LADO LEGACY (BDs origen) <<<
+    (sin BD legacy configurada)
+
+  >>> MAPEO NEWCORE_TO_FINAL  (TYPE en fcme_newcore  ->  destino legacy) <<<
+    (vacio)
+
+====================================================================================================
+RESUMEN GLOBAL
+====================================================================================================
+BDs legacy distintas tocadas por todos los modulos: 8
+  dbCG       usada por: PAGOS_PROVEEDORES
+  dbCR       usada por: CREDITOS, RECAUDACIONES
+  dbCT       usada por: CONTABILIDAD, RECAUDACIONES
+  dbFC       usada por: CUENTAS_INDIVIDUALES, PARTICIPE, RECAUDACIONES
+  dbIM       usada por: INMUEBLES
+  dbIN       usada por: INVERSIONES
+  dbRC       usada por: CUENTAS_INDIVIDUALES, RECAUDACIONES
+  dbSG       usada por: SEGURIDAD
+
+BDs de infraestructura CDC: fcme_legacy, fcme_newcore
+====================================================================================================
+FIN
+====================================================================================================

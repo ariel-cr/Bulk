@@ -1,0 +1,134 @@
+=== Sesiones activas (no system) en SQL Server ===
+Total user sessions: 129
+
+  spid=  51 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  52 [idle   ] login=NT AUTHORITY\SYSTEM prog=SQLServerCEIP             cmd=-               blkby=   - wait=-               db=-
+  spid=  53 [idle   ] login=NT AUTHORITY\NETWORK SERVICE prog=SQLAgent - Email Logger   cmd=-               blkby=   - wait=-               db=-
+  spid=  54 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  55 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  56 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  57 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  58 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  59 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  60 [RUN    ] login=sa         prog=Python                    cmd=SELECT          blkby=   - wait=-               db=master
+  spid=  61 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  62 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  63 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  64 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  65 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  66 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  67 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  68 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  69 [idle   ] login=sa         prog=DBeaver 26.0.0 - Main     cmd=-               blkby=   - wait=-               db=-
+  spid=  70 [idle   ] login=sa         prog=DBeaver 26.0.0 - Metadata cmd=-               blkby=   - wait=-               db=-
+  spid=  71 [idle   ] login=NT AUTHORITY\NETWORK SERVICE prog=SQLAgent - Job invocation cmd=-               blkby=   - wait=-               db=-
+  spid=  72 [idle   ] login=sa         prog=DBeaver 26.0.3 - Main     cmd=-               blkby=   - wait=-               db=-
+  spid=  73 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  74 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  75 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  76 [idle   ] login=sa         prog=DBeaver 26.0.3 - Metadata cmd=-               blkby=   - wait=-               db=-
+  spid=  77 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  78 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  79 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  80 [idle   ] login=sa         prog=DBeaver 26.0.0 - SQLEdito cmd=-               blkby=   - wait=-               db=-
+  spid=  81 [idle   ] login=sa         prog=DBeaver 26.0.3 - Main     cmd=-               blkby=   - wait=-               db=-
+  spid=  82 [idle   ] login=sa         prog=DBeaver 26.0.3 - Metadata cmd=-               blkby=   - wait=-               db=-
+  spid=  84 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  85 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  86 [idle   ] login=sa         prog=Microsoft JDBC Driver for cmd=-               blkby=   - wait=-               db=-
+  spid=  89 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  90 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  91 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  92 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  93 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  94 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  95 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  96 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  98 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid=  99 [idle   ] login=sa         prog=Microsoft SQL Server Mana cmd=-               blkby=   - wait=-               db=-
+  spid= 104 [idle   ] login=sa         prog=Microsoft SQL Server Mana cmd=-               blkby=   - wait=-               db=-
+  spid= 105 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 107 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 108 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 109 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 112 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 113 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 114 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 118 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 120 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 129 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 130 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 131 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 132 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 134 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 139 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 141 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 142 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 144 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 145 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 147 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 148 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 151 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 153 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 154 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 168 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 175 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 200 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 201 [idle   ] login=NT AUTHORITY\NETWORK SERVICE prog=SQLAgent - Generic Refres cmd=-               blkby=   - wait=-               db=-
+  spid= 202 [idle   ] login=NT AUTHORITY\NETWORK SERVICE prog=SQLAgent - Contained AG   cmd=-               blkby=   - wait=-               db=-
+  spid= 203 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 205 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 206 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 212 [idle   ] login=sa         prog=Microsoft JDBC Driver for cmd=-               blkby=   - wait=-               db=-
+  spid= 213 [idle   ] login=sa         prog=Microsoft JDBC Driver for cmd=-               blkby=   - wait=-               db=-
+  spid= 273 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 278 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 280 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 282 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 283 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 285 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 286 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 287 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 288 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 290 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 291 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 292 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 293 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 294 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 295 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 298 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 301 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 302 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 306 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 307 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 310 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 312 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 313 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 314 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 315 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 317 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 318 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 319 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 322 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 323 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 324 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 325 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 326 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 328 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 330 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 331 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 332 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 333 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 334 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 335 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 336 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 337 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 338 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 339 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 340 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 341 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 343 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 348 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+  spid= 350 [idle   ] login=sa         prog=vertx-mssql-client        cmd=-               blkby=   - wait=-               db=-
+
+=== Sesiones que tienen lock sobre fcme_canonicos.cdc_outbox ===

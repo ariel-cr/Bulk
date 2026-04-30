@@ -1,0 +1,43 @@
+[1] Oracle TRG_OUTBOX triggers
+  CREATE TRG_OUTBOX_ACTUALIZACION_AFILI  status=VALID
+  CREATE TRG_OUTBOX_ACTUALIZACION_DOCUM  status=VALID
+  CREATE TRG_OUTBOX_AREALABORALPARTICIP  status=VALID
+  CREATE TRG_OUTBOX_COMISIONPARTICIPE_T  status=VALID
+  CREATE TRG_OUTBOX_IMAGENESTYPE  status=VALID
+  CREATE TRG_OUTBOX_JURIDICOINFORMACION  status=VALID
+  CREATE TRG_OUTBOX_NATURALINFORMACIONB  status=VALID
+  CREATE TRG_OUTBOX_OTROSINGRESOSAFILIA  status=VALID
+  CREATE TRG_OUTBOX_PERSONADIRECCIONEST  status=VALID
+  CREATE TRG_OUTBOX_PERSONAFIRMASTYPE  status=VALID
+  CREATE TRG_OUTBOX_PERSONATYPE  status=VALID
+  CREATE TRG_OUTBOX_ROLNOMINA_TYPE  status=VALID
+
+[2] Legacy sp_<TYPE>_CRUD
+  CREATE dbFC.dbo.sp_actualizacionAfiliadoType_CRUD
+  FAIL sp_actualizacionDocumentosType_CRUD: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Cannot update identity column 'sc_actu_docs'. (8102) (SQLExecDirectW)")
+  CREATE dbFC.dbo.sp_areaLaboralParticipeType_CRUD
+  CREATE dbCT.dbo.sp_comisionParticipeType_CRUD
+  CREATE dbFC.dbo.sp_imagenesType_CRUD
+  CREATE dbFC.dbo.sp_juridicoInformacionBasicaType_CRUD
+  CREATE dbFC.dbo.sp_naturalInformacionBasicaType_CRUD
+  CREATE dbFC.dbo.sp_otrosIngresosAfiliadoType_CRUD
+  CREATE dbFC.dbo.sp_personaDireccionesType_CRUD
+  CREATE dbIM.dbo.sp_personaFirmasType_CRUD
+  CREATE dbFC.dbo.sp_personaType_CRUD
+  CREATE dbFC.dbo.sp_rolNominaType_CRUD
+
+[3] Canonicos wrappers + module_config
+  CREATE usp_inbox_actualizacionAfiliadoType -> dbFC.dbo.sp_actualizacionAfiliadoType_CRUD  (exists)
+  CREATE usp_inbox_actualizacionDocumentosType -> dbFC.dbo.sp_actualizacionDocumentosType_CRUD  (exists)
+  CREATE usp_inbox_areaLaboralParticipeType -> dbFC.dbo.sp_areaLaboralParticipeType_CRUD  (+config)
+  CREATE usp_inbox_comisionParticipeType -> dbCT.dbo.sp_comisionParticipeType_CRUD  (+config)
+  CREATE usp_inbox_imagenesType -> dbFC.dbo.sp_imagenesType_CRUD  (+config)
+  CREATE usp_inbox_juridicoInformacionBasicaType -> dbFC.dbo.sp_juridicoInformacionBasicaType_CRUD  (+config)
+  CREATE usp_inbox_naturalInformacionBasicaType -> dbFC.dbo.sp_naturalInformacionBasicaType_CRUD  (+config)
+  CREATE usp_inbox_otrosIngresosAfiliadoType -> dbFC.dbo.sp_otrosIngresosAfiliadoType_CRUD  (+config)
+  CREATE usp_inbox_personaDireccionesType -> dbFC.dbo.sp_personaDireccionesType_CRUD  (+config)
+  CREATE usp_inbox_personaFirmasType -> dbIM.dbo.sp_personaFirmasType_CRUD  (+config)
+  CREATE usp_inbox_personaType -> dbFC.dbo.sp_personaType_CRUD  (+config)
+  CREATE usp_inbox_rolNominaType -> dbFC.dbo.sp_rolNominaType_CRUD  (+config)
+
+=== DEPLOY OK ===

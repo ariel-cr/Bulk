@@ -1,0 +1,68 @@
+  #  BD     tabla                               status   rows  types  events  expected payload
+----------------------------------------------------------------------------------------------------
+  1  dbCG   cgtbgara_hipo_cdio                  [OK    ]    1      1       1         1  OK
+  2  dbCG   cgtbprod_cnta_auto                  [OK    ]    1      2       2         2  OK
+  3  dbCG   cgtbrepo_anls_cnta                  [EMPTY ]    0      1       0         -  --
+  4  dbCR   crtbabno_extr                       [ERR   ]    0      1       0         -  --
+  5  dbCR   crtbcart_calf_prov                  [EMPTY ]    0      1       0         -  --
+  6  dbCR   crtbcaut_cred                       [OK    ]    1      1       1         1  OK
+  7  dbCR   crtbccbr_cred_judi                  [ERR   ]    0      7       0         -  --
+  8  dbCR   crtbcdeb_cnta                       [EMPTY ]    0      3       0         -  --
+  9  dbCR   crtbcobr_judi_deta                  [OK    ]    1      1       1         1  OK
+ 10  dbCR   crtbcobr_judi_dist                  [OK    ]    1      2       2         2  OK
+ 11  dbCR   crtbconv_pago                       [ERR   ]    0      1       0         -  --
+ 12  dbCR   crtbcred_autr_deta                  [ERR   ]    0      1       0         -  --
+ 13  dbCR   crtbcred_liqd_diar                  [ERR   ]    0      2       0         -  --
+ 14  dbCR   crtbcred_part                       [EMPTY ]    0      2       0         -  --
+ 15  dbCR   crtbcred_plzo_venc                  [OK    ]    1      1       1         1  OK
+ 16  dbCR   crtbcred_prea_whts                  [EMPTY ]    0      5       0         -  --
+ 17  dbCR   crtbctrl_oper_ante_sibs             [EMPTY ]    0      1       0         -  --
+ 18  dbCR   crtbdbso_devo                       [OK    ]    1      2       2         2  OK
+ 19  dbCR   crtbdeud_conv                       [EMPTY ]    0      1       0         -  --
+ 20  dbCR   crtbdevo_masi_deta                  [ERR   ]    0      2       0         -  --
+ 21  dbCR   crtbdocu_cred                       [OK    ]    1      2       2         2  OK
+ 22  dbCR   crtbdsal_oper                       [OK    ]    1      4       4         4  OK
+ 23  dbCR   crtbdvgo_cart_deta                  [OK    ]    1      2       2         2  OK
+ 24  dbCR   crtbdvgo_cart_deta_diar             [EMPTY ]    0      1       0         -  --
+ 25  dbCR   crtbesta_conv_cred                  [OK    ]    1      1       1         1  OK
+ 26  dbCR   crtbgest_cart_asig                  [OK    ]    1      1       1         1  OK
+ 27  dbCR   crtbgest_cred                       [EMPTY ]    0      1       0         -  --
+ 28  dbCR   crtbinfo_gara_real_sibs             [OK    ]    1      1       1         1  OK
+ 29  dbCR   crtbinfo_legl                       [OK    ]    1      1       1         1  OK
+ 30  dbCR   crtbobli_rol                        [OK    ]    1      1       1         1  OK
+ 31  dbCR   crtboper_canc                       [OK    ]    1      1       1         1  OK
+ 32  dbCR   crtboper_dref_liqd                  [EMPTY ]    0      1       0         -  --
+ 33  dbCR   crtbplan_ajus                       [OK    ]    1      1       1         1  OK
+ 34  dbCR   crtbplpg_conv                       [OK    ]    1      1       1         1  OK
+ 35  dbCR   crtbrecu_conv                       [OK    ]    1      4       4         4  OK
+ 36  dbCR   crtbrepo_sobr                       [EMPTY ]    0      1       0         -  --
+ 37  dbCR   crtbrngo_autr_cred                  [EMPTY ]    0      1       0         -  --
+ 38  dbCR   crtbrngo_intr_cred                  [EMPTY ]    0      1       0         -  --
+ 39  dbCR   crtbsald_cart                       [OK    ]    1      1       1         1  OK
+ 40  dbCR   crtbsald_cart_deta                  [OK    ]    1      1       1         1  OK
+ 41  dbCR   crtbsegi_autr_ofic                  [ERR   ]    0      1       0         -  --
+ 42  dbCR   crtbsegu_cred                       [EMPTY ]    0      1       0         -  --
+ 43  dbCR   crtbsobr_caut                       [OK    ]    1      1       1         1  OK
+ 44  dbCR   crtbtipo_cred_sibs                  [EMPTY ]    0      1       0         -  --
+ 45  dbCR   crtpagos                            [OK    ]    1      1       1         1  OK
+ 46  dbCR   crtplpag                            [OK    ]    1      1       1         1  OK
+ 47  dbCR   crtrepo_sobr                        [EMPTY ]    0      3       0         -  --
+ 48  dbCR   crtrubros_cobr                      [OK    ]    2      2       4         4  OK
+ 49  dbCR   crtsobrante                         [OK    ]    1      2       2         2  OK
+ 50  dbCR   crtsolid                            [OK    ]    2      1       2         2  OK
+ 51  dbCT   cttbesta_docu_inve                  [EMPTY ]    0      1       0         -  --
+ 52  dbCT   cttbproc_obse_tran                  [EMPTY ]    0      1       0         -  --
+ 53  dbCT   cttbrepo_gene                       [EMPTY ]    0      1       0         -  --
+ 54  dbCT   cttbtran_inve_auxi                  [EMPTY ]    0      1       0         -  --
+ 55  dbFC   fctbdeta_liqd_cred                  [OK    ]    1      1       1         1  OK
+ 56  dbFC   fctbdinf_liqd_cnta_sibs             [OK    ]    1      1       1         1  OK
+ 57  dbFC   fctbmvto_impr_esta_cnta             [EMPTY ]    0      1       0         -  --
+ 58  dbFC   fctbproc_tseg_noti                  [EMPTY ]    0      1       0         -  --
+ 59  dbFC   sfct_afiliado_referencias           [OK    ]    1      1       1         1  OK
+ 60  dbFC   sfct_saldos_diarios_afiliados       [OK    ]    1      2       2         2  OK
+
+=== RESUMEN ===
+  OK    : 31/60
+  EMPTY : 22/60 (tablas sin filas)
+  FAIL  : 0/60
+  ERR   : 7/60

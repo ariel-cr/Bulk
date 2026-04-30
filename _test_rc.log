@@ -1,0 +1,41 @@
+TYPES = 11
+baseline outbox.max=1 inbox.max=1 errors=37
+
+[DISPAROS]
+  [ 1/11] aplicacionRecaudacion_type       rctbapli_reca          UPDATE noop rows=1
+  [ 2/11] caucionRecaudacion_type          rctbcaut               UPDATE noop rows=1
+  [ 3/11] devolucionRendicion_type         rctbdevo_rind          UPDATE noop rows=1
+  [ 4/11] estadoCuenta_type                rctbesta_cnta          UPDATE noop rows=1
+  [ 5/11] estadoRecaudacion_type           rctbesta_reca          UPDATE noop rows=1
+  [ 6/11] recaudacion_type                 rctbreca               UPDATE noop rows=1
+  [ 7/11] rendicion_type                   rctbrind               UPDATE noop rows=1
+  [ 8/11] saldoRecaudacion_type            rctbcsal_reca          UPDATE noop rows=1
+  [ 9/11] sciRecaudacion_type              rctbcsci_bce           UPDATE noop rows=1
+  [10/11] tipoDescuento_type               rctbtipo_desc          UPDATE noop rows=1
+  [11/11] transaccionRecaudacion_type      rctbtrec               UPDATE noop rows=1
+
+Disparados: 11/11
+
+[PROPAGACION] 60s
+  out+=11 inb+=0 proc+=0 err_total=37 (59s rest)
+  out+=11 inb+=11 proc+=11 err_total=37 (53s rest)
+
+[RESULTADOS]
+  # aggregate_type                   inbox  proc  err   status
+----------------------------------------------------------------------------------------------------
+  1 aplicacionRecaudacion_type       1      1     0     OK
+  2 caucionRecaudacion_type          1      1     0     OK
+  3 devolucionRendicion_type         1      1     0     OK
+  4 estadoCuenta_type                1      1     0     OK
+  5 estadoRecaudacion_type           1      1     0     OK
+  6 recaudacion_type                 1      1     0     OK
+  7 rendicion_type                   1      1     0     OK
+  8 saldoRecaudacion_type            1      1     0     OK
+  9 sciRecaudacion_type              1      1     0     OK
+ 10 tipoDescuento_type               1      1     0     OK
+ 11 transaccionRecaudacion_type      1      1     0     OK
+
+[RESUMEN] OK=11/11
+
+[ANTI-LOOP] outbox 3s mas tarde = +11 (initial fired=11)
+=== FIN ===

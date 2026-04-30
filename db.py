@@ -112,29 +112,46 @@ def sync_outbox_identity(outbox_db):
 
 def get_fk_values(conn, schema, table):
     """Obtiene valores validos de tablas referenciadas por FK para cada columna.
+    Para FKs compuestos (mismo constraint con varias cols), pick correlacionado:
+    todas las cols del mismo FK comparten el mismo indice de fila padre.
     Retorna dict: {col_name: [lista de valores validos]} solo para cols con FK."""
     fk_values = {}
     try:
         cursor = conn.cursor()
+        # Agrupar por constraint_object_id para detectar FKs compuestos
         cursor.execute("""
             SELECT
+                fk.object_id AS fk_id,
                 cp.name AS fk_column,
                 OBJECT_NAME(fkc.referenced_object_id) AS ref_table,
-                cr.name AS ref_column
+                cr.name AS ref_column,
+                fkc.constraint_column_id AS ord
             FROM sys.foreign_keys fk
             JOIN sys.foreign_key_columns fkc ON fk.object_id = fkc.constraint_object_id
             JOIN sys.columns cp ON fkc.parent_object_id = cp.object_id AND fkc.parent_column_id = cp.column_id
             JOIN sys.columns cr ON fkc.referenced_object_id = cr.object_id AND fkc.referenced_column_id = cr.column_id
             WHERE fkc.parent_object_id = OBJECT_ID(? + '.' + ?)
+            ORDER BY fk.object_id, fkc.constraint_column_id
         """, schema, table)
-        fk_refs = cursor.fetchall()
+        rows = cursor.fetchall()
 
-        for ref in fk_refs:
+        # Agrupar por fk_id
+        groups = {}
+        for r in rows:
+            groups.setdefault(r.fk_id, []).append(r)
+
+        for fk_id, refs in groups.items():
+            ref_table = refs[0].ref_table
+            cols_q = ",".join(f"[{r.ref_column}]" for r in refs)
             try:
-                cursor.execute(f"SELECT DISTINCT [{ref.ref_column}] FROM dbo.[{ref.ref_table}] ORDER BY [{ref.ref_column}]")
-                vals = [row[0] for row in cursor.fetchall()]
-                if vals:
-                    fk_values[ref.fk_column] = vals
+                cursor.execute(f"SELECT DISTINCT TOP 200 {cols_q} FROM dbo.[{ref_table}]")
+                parent_rows = cursor.fetchall()
+                if not parent_rows:
+                    continue
+                # Para cada col del FK, lista paralela alineada con parent_rows
+                # asi index k devuelve la fila k completa correlacionada
+                for i, r in enumerate(refs):
+                    fk_values[r.fk_column] = [row[i] for row in parent_rows]
             except:
                 pass
     except:

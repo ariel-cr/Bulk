@@ -1,0 +1,9406 @@
+[
+  {
+    "agg": "abonoExtraordinario_type",
+    "dest": "ABONOEXTRAORDINARIO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbabno_extr",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "sc_abno"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "sc_abno": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "co_usua_conf",
+      "sc_abno",
+      "ti_cred",
+      "mo_abno_extr",
+      "st_regi",
+      "fe_elim",
+      "co_proc",
+      "fe_autr",
+      "ds_refe",
+      "aa_cred"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIAABONOPROCESO",
+        "sc_abno"
+      ],
+      [
+        "CODIGOPROCESO",
+        "co_proc"
+      ],
+      [
+        "MONTOABONOEXTRAORDINARIO",
+        "mo_abno_extr"
+      ],
+      [
+        "DESCRIPCIONREFERENCIA",
+        "ds_refe"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_regi"
+      ],
+      [
+        "FECHAAUTORIZACION",
+        "fe_autr"
+      ],
+      [
+        "FECHAVERIFICACION",
+        "fe_elim"
+      ],
+      [
+        "FECHACREACION",
+        "fe_elim"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_elim"
+      ],
+      [
+        "CODIGOUSUARIOCONFIRMA",
+        "co_usua_conf"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_abno": "SECUENCIAABONOPROCESO",
+      "co_proc": "CODIGOPROCESO",
+      "mo_abno_extr": "MONTOABONOEXTRAORDINARIO",
+      "ds_refe": "DESCRIPCIONREFERENCIA",
+      "st_regi": "ESTADOREGISTRO",
+      "fe_autr": "FECHAAUTORIZACION",
+      "fe_elim": "FECHAELIMINACION",
+      "co_usua_conf": "CODIGOUSUARIOCONFIRMA",
+      "aa_cred": "ANIOCREDITO",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.61,
+    "total_score": 3.41,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbabno_extr",
+        "total": 3.41,
+        "name": 0.5,
+        "col": 0.61
+      },
+      {
+        "tbl": "dbCR.crtbreve_abno",
+        "total": 3.303,
+        "name": 0.5,
+        "col": 0.503
+      },
+      {
+        "tbl": "dbCR.crtbdpar_abno",
+        "total": 3.179,
+        "name": 0.5,
+        "col": 0.379
+      }
+    ]
+  },
+  {
+    "agg": "autorizacionCreditoDetalle_type",
+    "dest": "AUTORIZACIONCREDITODETALLE_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcred_autr_deta",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_autr_deta"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_autr_deta": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "fe_autr_deta",
+      "st_autr_deta",
+      "sc_autr_deta",
+      "sc_rngo_usua",
+      "fe_modi",
+      "fe_ingr",
+      "sc_cred_autr",
+      "co_empr",
+      "aa_cred"
+    ],
+    "dest_match": [
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "SECUENCIACREDITOAUTORIZACION",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "FECHAINGRESO",
+        "fe_ingr"
+      ],
+      [
+        "FECHAMODIFICACION",
+        "fe_modi"
+      ],
+      [
+        "CODIGOEMPRESACREDAUTR",
+        "co_empr"
+      ],
+      [
+        "SECUENCIAAUTORIZACIONDETALLE",
+        "sc_autr_deta"
+      ],
+      [
+        "SECUENCIACREDITOAUTORIZACIONCREDAUTR",
+        "qs_cred"
+      ],
+      [
+        "SECUENCIARNGOUSUARIO",
+        "sc_rngo_usua"
+      ],
+      [
+        "TIPOCREDITOCREDAUTR",
+        "ti_cred"
+      ],
+      [
+        "ANIOCREDITOCREDAUTR",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITOCREDAUTR",
+        "sc_cred_autr"
+      ],
+      [
+        "FECHAAUTORIZACIONDETALLE",
+        "fe_autr_deta"
+      ],
+      [
+        "FECHAINGRESOCREDAUTR",
+        "fe_ingr"
+      ],
+      [
+        "FECHAMODIFICACIONCREDAUTR",
+        "fe_modi"
+      ],
+      [
+        "ESTADOAUTORIZACIONDETALLE",
+        "st_autr_deta"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_empr": "CODIGOEMPRESACREDAUTR",
+      "qs_cred": "SECUENCIACREDITOAUTORIZACIONCREDAUTR",
+      "ti_cred": "TIPOCREDITOCREDAUTR",
+      "aa_cred": "ANIOCREDITOCREDAUTR",
+      "fe_ingr": "FECHAINGRESOCREDAUTR",
+      "fe_modi": "FECHAMODIFICACIONCREDAUTR",
+      "sc_autr_deta": "SECUENCIAAUTORIZACIONDETALLE",
+      "sc_rngo_usua": "SECUENCIARNGOUSUARIO",
+      "sc_cred_autr": "SECUENCIACREDITOCREDAUTR",
+      "fe_autr_deta": "FECHAAUTORIZACIONDETALLE",
+      "st_autr_deta": "ESTADOAUTORIZACIONDETALLE"
+    },
+    "name_score": 0.667,
+    "col_score": 0.64,
+    "total_score": 4.273,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcred_autr_deta",
+        "total": 4.273,
+        "name": 0.667,
+        "col": 0.64
+      },
+      {
+        "tbl": "dbFC.fctbdeta_liqd_cred",
+        "total": 3.813,
+        "name": 0.667,
+        "col": 0.48
+      },
+      {
+        "tbl": "dbCR.crtbcred_autr",
+        "total": 2.565,
+        "name": 0.333,
+        "col": 0.599
+      }
+    ]
+  },
+  {
+    "agg": "autorizacionCredito_type",
+    "dest": "AUTORIZACIONCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbccbr_cred_judi",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_cobr"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_cobr": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "fe_elim",
+      "co_usua_ingr",
+      "fe_modi",
+      "sc_cobr",
+      "fe_sald_cred",
+      "co_usua_elim",
+      "co_empr",
+      "aa_cred",
+      "co_etap"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIAABONO",
+        "sc_cobr"
+      ],
+      [
+        "FECHAAUTORIZACION",
+        "fe_elim"
+      ],
+      [
+        "FECHAVERIFICACION",
+        "fe_elim"
+      ],
+      [
+        "CODIGOUSUARIORECEPTA",
+        "co_usua_ingr"
+      ],
+      [
+        "SECUENCIAAUTORIZACIONCREDITO",
+        "qs_cred"
+      ],
+      [
+        "FECHAAUTORIZACREDITO",
+        "fe_sald_cred"
+      ],
+      [
+        "SECUENCIARANGOUSUARIOS",
+        "sc_cobr"
+      ],
+      [
+        "FECHACREACION",
+        "fe_elim"
+      ],
+      [
+        "FECHAMODIFICACION",
+        "fe_modi"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "CODIGOUSUARIOTRANSMICION",
+        "co_usua_elim"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "CODIGOAUTORIZACION",
+        "co_usua_elim"
+      ],
+      [
+        "CODIGOCUENTA",
+        "co_etap"
+      ],
+      [
+        "TIPOREGISTRO",
+        "ti_cred"
+      ],
+      [
+        "CODIGOUSUARIOTRANSMISION",
+        "co_usua_elim"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_cobr": "SECUENCIARANGOUSUARIOS",
+      "fe_elim": "FECHACREACION",
+      "co_usua_ingr": "CODIGOUSUARIORECEPTA",
+      "qs_cred": "SECUENCIACREDITO",
+      "fe_sald_cred": "FECHAAUTORIZACREDITO",
+      "fe_modi": "FECHAMODIFICACION",
+      "aa_cred": "ANIOCREDITO",
+      "co_usua_elim": "CODIGOUSUARIOTRANSMISION",
+      "ti_cred": "TIPOREGISTRO",
+      "co_empr": "CODIGOEMPRESA",
+      "co_etap": "CODIGOCUENTA"
+    },
+    "name_score": 0.5,
+    "col_score": 0.408,
+    "total_score": 3.208,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbccbr_cred_judi",
+        "total": 3.208,
+        "name": 0.5,
+        "col": 0.408
+      },
+      {
+        "tbl": "dbCR.crtbcred_part",
+        "total": 3.188,
+        "name": 0.5,
+        "col": 0.388
+      },
+      {
+        "tbl": "dbCR.crtbcred_plzo_venc",
+        "total": 3.184,
+        "name": 0.5,
+        "col": 0.384
+      }
+    ]
+  },
+  {
+    "agg": "auxDatosCobrosAdicionalesType",
+    "dest": "AUXDATOSCOBROSADICIONALESTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "cttbtran_inve_auxi",
+    "ldb": "dbCT",
+    "lkey": [
+      "ci_cedu",
+      "sc_auxi"
+    ],
+    "lkey_types": {
+      "ci_cedu": "varchar",
+      "sc_auxi": "int"
+    },
+    "pcols": [
+      "co_usua",
+      "mo_inve_fide",
+      "ci_cedu",
+      "sc_auxi"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "mo_inve_fide"
+      ],
+      [
+        "CODIGOCUENTA",
+        "co_usua"
+      ]
+    ],
+    "leg_to_ora": {
+      "mo_inve_fide": "ID",
+      "co_usua": "CODIGOCUENTA"
+    },
+    "name_score": 0.25,
+    "col_score": 0.315,
+    "total_score": 1.565,
+    "confidence": "LOW",
+    "candidates_top3": [
+      {
+        "tbl": "dbCT.cttbtran_inve_auxi",
+        "total": 1.565,
+        "name": 0.25,
+        "col": 0.315
+      },
+      {
+        "tbl": "dbCG.cgtbsald_diar_auxi",
+        "total": 1.421,
+        "name": 0.25,
+        "col": 0.171
+      },
+      {
+        "tbl": "dbFC.fctbafil_ahor_ccrd_auxi",
+        "total": 1.42,
+        "name": 0.25,
+        "col": 0.17
+      }
+    ]
+  },
+  {
+    "agg": "calificacionCarteraDetalle_type",
+    "dest": "CALIFICACIONCARTERADETALLE_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdvgo_cart_deta_diar",
+    "ldb": "dbCR",
+    "lkey": [
+      "qs_cred",
+      "ti_cred",
+      "nu_dcto"
+    ],
+    "lkey_types": {
+      "sc_sald": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "nu_dcto",
+      "mo_reve",
+      "mo_dvgo",
+      "aa_cred",
+      "fe_cort",
+      "sc_sald"
+    ],
+    "dest_match": [
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "FECHACORT",
+        "fe_cort"
+      ],
+      [
+        "MONTOXVEN",
+        "mo_reve"
+      ],
+      [
+        "MONTOVCDO",
+        "mo_dvgo"
+      ],
+      [
+        "MONTOPROV",
+        "mo_reve"
+      ],
+      [
+        "MONTOREVEPROV",
+        "mo_reve"
+      ],
+      [
+        "NUMERODIASVCDO",
+        "nu_dcto"
+      ],
+      [
+        "NUMERODCTO",
+        "nu_dcto"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_cred": "TIPOCREDITO",
+      "aa_cred": "ANIOCREDITO",
+      "qs_cred": "SECUENCIACREDITO",
+      "fe_cort": "FECHACORT",
+      "mo_reve": "MONTOREVEPROV",
+      "mo_dvgo": "MONTOVCDO",
+      "nu_dcto": "NUMERODCTO"
+    },
+    "name_score": 0.667,
+    "col_score": 0.525,
+    "total_score": 4.159,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdvgo_cart_deta_diar",
+        "total": 4.159,
+        "name": 0.667,
+        "col": 0.525
+      },
+      {
+        "tbl": "dbCR.crtbdvgo_cart_deta",
+        "total": 4.155,
+        "name": 0.667,
+        "col": 0.521
+      },
+      {
+        "tbl": "dbCR.crtbdvgo_cart_deta_mens",
+        "total": 4.155,
+        "name": 0.667,
+        "col": 0.521
+      }
+    ],
+    "lkey_source": "EMPTY_TBL_USE_FIRST3"
+  },
+  {
+    "agg": "calificacionCartera_type",
+    "dest": "CALIFICACIONCARTERA_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcart_calf_prov",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "ti_calf",
+      "fe_cort"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "ti_calf": "char",
+      "fe_cort": "datetime"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "nu_dcto",
+      "ti_calf",
+      "aa_cred",
+      "fe_cort"
+    ],
+    "dest_match": [
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "TIPOCALIFICACION",
+        "ti_calf"
+      ],
+      [
+        "TIPOCALIFICACIONHOMOLOGADO",
+        "ti_calf"
+      ],
+      [
+        "FECHACORTE",
+        "fe_cort"
+      ],
+      [
+        "NUMERODIASVENCIDO",
+        "nu_dcto"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_cred": "TIPOCREDITO",
+      "ti_calf": "TIPOCALIFICACIONHOMOLOGADO",
+      "fe_cort": "FECHACORTE",
+      "nu_dcto": "NUMERODIASVENCIDO",
+      "aa_cred": "ANIOCREDITO",
+      "qs_cred": "SECUENCIACREDITO"
+    },
+    "name_score": 1.0,
+    "col_score": 0.335,
+    "total_score": 5.635,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcart_calf_prov",
+        "total": 5.635,
+        "name": 1.0,
+        "col": 0.335
+      },
+      {
+        "tbl": "dbCR.crtbdcal_cart",
+        "total": 3.38,
+        "name": 0.5,
+        "col": 0.58
+      },
+      {
+        "tbl": "dbCR.crtbccal_cart",
+        "total": 3.333,
+        "name": 0.5,
+        "col": 0.533
+      }
+    ]
+  },
+  {
+    "agg": "cancelacionCredito_type",
+    "dest": "CANCELACIONCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtboper_canc",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "ti_cred_ante",
+      "aa_cred_ante",
+      "qs_cred_ante"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "ti_cred_ante": "smallint",
+      "aa_cred_ante": "smallint",
+      "qs_cred_ante": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "ti_cred_ante",
+      "mo_intr",
+      "mo_gast_judi",
+      "aa_cred",
+      "aa_cred_ante",
+      "qs_cred_ante"
+    ],
+    "dest_match": [
+      [
+        "ANIOCREDITOACANCELAR",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITOACANCELAR",
+        "qs_cred"
+      ],
+      [
+        "MONTOCREDITOACANCELAR",
+        "ti_cred_ante"
+      ],
+      [
+        "MONTOINTERES",
+        "mo_intr"
+      ],
+      [
+        "MONTOGASTOSJUDICIALES",
+        "mo_gast_judi"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "TIPOCREDITOAACANCELAR",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "aa_cred": "ANIOCREDITO",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred_ante": "MONTOCREDITOACANCELAR",
+      "mo_intr": "MONTOINTERES",
+      "mo_gast_judi": "MONTOGASTOSJUDICIALES",
+      "ti_cred": "TIPOCREDITOAACANCELAR"
+    },
+    "name_score": 0.5,
+    "col_score": 0.736,
+    "total_score": 3.536,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtboper_canc",
+        "total": 3.536,
+        "name": 0.5,
+        "col": 0.736
+      },
+      {
+        "tbl": "dbCR.crtbcred_part",
+        "total": 3.449,
+        "name": 0.5,
+        "col": 0.649
+      },
+      {
+        "tbl": "dbCR.crtbcred_plzo_venc",
+        "total": 3.447,
+        "name": 0.5,
+        "col": 0.647
+      }
+    ]
+  },
+  {
+    "agg": "caucionCredito_type",
+    "dest": "CAUCIONCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbccbr_cred_judi",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_cobr"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_cobr": "int"
+    },
+    "pcols": [
+      "ti_cred",
+      "co_empr",
+      "co_medi",
+      "co_rubr",
+      "sc_cobr"
+    ],
+    "dest_match": [
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "CODIGOFONDO",
+        "co_medi"
+      ],
+      [
+        "TIPORUBRO",
+        "co_rubr"
+      ],
+      [
+        "CODIGORUBRO",
+        "co_rubr"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_cred": "TIPOCREDITO",
+      "co_medi": "CODIGOFONDO",
+      "co_rubr": "CODIGORUBRO",
+      "co_empr": "CODIGOEMPRESA"
+    },
+    "name_score": 0.5,
+    "col_score": 0.485,
+    "total_score": 3.285,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbccbr_cred_judi",
+        "total": 3.285,
+        "name": 0.5,
+        "col": 0.485
+      },
+      {
+        "tbl": "dbCR.crtbcred_liqd_diar",
+        "total": 3.273,
+        "name": 0.5,
+        "col": 0.473
+      },
+      {
+        "tbl": "dbCR.crtbgrup_cred_dcto",
+        "total": 3.218,
+        "name": 0.5,
+        "col": 0.418
+      }
+    ]
+  },
+  {
+    "agg": "cobranzaJudicialDetalle_type",
+    "dest": "COBRANZAJUDICIALDETALLE_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcobr_judi_deta",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "sc_cobr_judi",
+      "ti_rubr_pagd"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "sc_cobr_judi": "int",
+      "ti_rubr_pagd": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "po_desc",
+      "sc_cobr_judi",
+      "mo_mvto",
+      "mo_aplic",
+      "aa_cred",
+      "ti_rubr_pagd"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIACOBROJUDICIAL",
+        "sc_cobr_judi"
+      ],
+      [
+        "TIPORUBROPAGADO",
+        "ti_rubr_pagd"
+      ],
+      [
+        "MONTOMOVIMIENTO",
+        "mo_mvto"
+      ],
+      [
+        "MONTOAPLICADO",
+        "mo_aplic"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "PORCENTAJEDESC",
+        "po_desc"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_cobr_judi": "SECUENCIACOBROJUDICIAL",
+      "ti_rubr_pagd": "TIPORUBROPAGADO",
+      "mo_mvto": "MONTOMOVIMIENTO",
+      "mo_aplic": "MONTOAPLICADO",
+      "aa_cred": "ANIOCREDITO",
+      "po_desc": "PORCENTAJEDESC",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 1.0,
+    "col_score": 0.825,
+    "total_score": 6.125,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcobr_judi_deta",
+        "total": 6.125,
+        "name": 1.0,
+        "col": 0.825
+      },
+      {
+        "tbl": "dbCR.crtbcobr_judi_dist",
+        "total": 4.066,
+        "name": 0.667,
+        "col": 0.433
+      },
+      {
+        "tbl": "dbCR.crtbtipo_cobr_judi",
+        "total": 3.633,
+        "name": 0.667,
+        "col": 0.0
+      }
+    ]
+  },
+  {
+    "agg": "cobranzaJudicialDistribucion_type",
+    "dest": "COBRANZAJUDICIALDISTRIBUCION_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcobr_judi_dist",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "sc_cobr_judi"
+    ],
+    "lkey_types": {
+      "co_empr": "int",
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "sc_cobr_judi": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "sc_cobr_judi",
+      "fe_carg",
+      "co_rol",
+      "ti_abno",
+      "st_regi",
+      "aa_cred",
+      "fe_elim",
+      "ds_url",
+      "co_empr",
+      "ti_cobr",
+      "nu_cpbt",
+      "fe_modi",
+      "fe_depo",
+      "fe_liqu_cred",
+      "mo_carg",
+      "ti_proc"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIACOBROJUDICIAL",
+        "sc_cobr_judi"
+      ],
+      [
+        "TIPOCOBRANZA",
+        "ti_cobr"
+      ],
+      [
+        "TIPOABONO",
+        "ti_abno"
+      ],
+      [
+        "TIPOPROCESO",
+        "ti_proc"
+      ],
+      [
+        "CODIGOROL",
+        "co_rol"
+      ],
+      [
+        "MONTOCARGA",
+        "mo_carg"
+      ],
+      [
+        "NUMEROCOMPROBANTE",
+        "nu_cpbt"
+      ],
+      [
+        "URL",
+        "ds_url"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_regi"
+      ],
+      [
+        "FECHACARGA",
+        "fe_carg"
+      ],
+      [
+        "FECHADEPOSITO",
+        "fe_depo"
+      ],
+      [
+        "FECHAMODIFICACION",
+        "fe_modi"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_elim"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "FECHALIQUIDACIONCREDITP",
+        "fe_liqu_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "CODIGOCOBRANZAJUDICIALDIST",
+        "sc_cobr_judi"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_cobr_judi": "CODIGOCOBRANZAJUDICIALDIST",
+      "ti_cobr": "TIPOCOBRANZA",
+      "ti_abno": "TIPOABONO",
+      "ti_proc": "TIPOPROCESO",
+      "co_rol": "CODIGOROL",
+      "mo_carg": "MONTOCARGA",
+      "nu_cpbt": "NUMEROCOMPROBANTE",
+      "ds_url": "URL",
+      "st_regi": "ESTADOREGISTRO",
+      "fe_carg": "FECHACARGA",
+      "fe_depo": "FECHADEPOSITO",
+      "fe_modi": "FECHAMODIFICACION",
+      "fe_elim": "FECHAELIMINACION",
+      "aa_cred": "ANIOCREDITO",
+      "co_empr": "CODIGOEMPRESA",
+      "fe_liqu_cred": "FECHALIQUIDACIONCREDITP",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 0.667,
+    "col_score": 0.761,
+    "total_score": 4.395,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcobr_judi_dist",
+        "total": 4.395,
+        "name": 0.667,
+        "col": 0.761
+      },
+      {
+        "tbl": "dbCR.crtbcobr_judi_deta",
+        "total": 3.833,
+        "name": 0.667,
+        "col": 0.2
+      },
+      {
+        "tbl": "dbCR.crtbtipo_cobr_judi",
+        "total": 3.764,
+        "name": 0.667,
+        "col": 0.13
+      }
+    ]
+  },
+  {
+    "agg": "cobranzaJudicial_type",
+    "dest": "COBRANZAJUDICIAL_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcobr_judi_dist",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "sc_cobr_judi"
+    ],
+    "lkey_types": {
+      "co_empr": "int",
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "sc_cobr_judi": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "co_rol",
+      "fe_elim",
+      "ti_cobr",
+      "fe_modi",
+      "fe_depo",
+      "fe_liqu_cred",
+      "co_empr",
+      "mo_carg",
+      "aa_cred",
+      "sc_cobr_judi"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIACREDITOJUDICIAL",
+        "qs_cred"
+      ],
+      [
+        "TIPOCOBRANZA",
+        "ti_cobr"
+      ],
+      [
+        "CODIGOETAPA",
+        "co_empr"
+      ],
+      [
+        "CODIGORUBRO",
+        "co_rol"
+      ],
+      [
+        "MONTOCOBROS",
+        "mo_carg"
+      ],
+      [
+        "MONTOCOBRARGASTOS",
+        "mo_carg"
+      ],
+      [
+        "FECHAGESTION",
+        "fe_depo"
+      ],
+      [
+        "FECHASALDOSCREDITOS",
+        "fe_liqu_cred"
+      ],
+      [
+        "FECHACREACION",
+        "fe_elim"
+      ],
+      [
+        "FECHAMODIFICACION",
+        "fe_modi"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_elim"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cobr": "TIPOCOBRANZA",
+      "co_empr": "CODIGOEMPRESA",
+      "co_rol": "CODIGORUBRO",
+      "mo_carg": "MONTOCOBRARGASTOS",
+      "fe_depo": "FECHAGESTION",
+      "fe_liqu_cred": "FECHASALDOSCREDITOS",
+      "fe_elim": "FECHAELIMINACION",
+      "fe_modi": "FECHAMODIFICACION",
+      "aa_cred": "ANIOCREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 1.0,
+    "col_score": 0.492,
+    "total_score": 5.792,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcobr_judi_dist",
+        "total": 5.792,
+        "name": 1.0,
+        "col": 0.492
+      },
+      {
+        "tbl": "dbCR.crtbcobr_judi_deta",
+        "total": 5.448,
+        "name": 1.0,
+        "col": 0.148
+      },
+      {
+        "tbl": "dbCR.crtbtipo_cobr_judi",
+        "total": 5.403,
+        "name": 1.0,
+        "col": 0.103
+      }
+    ]
+  },
+  {
+    "agg": "conceptoGastoJudicialType",
+    "dest": "CONCEPTOGASTOJUDICIALTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbccbr_cred_judi",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_cobr"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_cobr": "int"
+    },
+    "pcols": [
+      "co_empr",
+      "co_rubr",
+      "sc_cobr"
+    ],
+    "dest_match": [
+      [
+        "CODIGO",
+        "co_empr"
+      ],
+      [
+        "RUBRO",
+        "co_rubr"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_empr": "CODIGO",
+      "co_rubr": "RUBRO"
+    },
+    "name_score": 0.333,
+    "col_score": 0.34,
+    "total_score": 2.307,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbccbr_cred_judi",
+        "total": 2.307,
+        "name": 0.333,
+        "col": 0.34
+      },
+      {
+        "tbl": "dbCR.crtbcobr_judi_dist",
+        "total": 2.307,
+        "name": 0.333,
+        "col": 0.34
+      },
+      {
+        "tbl": "dbCR.crtbdevo_judi_vntl",
+        "total": 2.307,
+        "name": 0.333,
+        "col": 0.34
+      }
+    ]
+  },
+  {
+    "agg": "contabilizacionCredito_type",
+    "dest": "CONTABILIZACIONCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcaut_cred",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_regi"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_regi": "int"
+    },
+    "pcols": [
+      "st_regi",
+      "fe_elim",
+      "ds_asien_cnta",
+      "sc_regi",
+      "co_usua_elim",
+      "co_empr",
+      "fe_cort"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIAREGISTRO",
+        "sc_regi"
+      ],
+      [
+        "DESCRIPCIONASIENTOCONTABLE",
+        "ds_asien_cnta"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_regi"
+      ],
+      [
+        "FECHACORTE",
+        "fe_cort"
+      ],
+      [
+        "FECHACONTABILIZACION",
+        "fe_elim"
+      ],
+      [
+        "FECHACREACION",
+        "fe_elim"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_elim"
+      ],
+      [
+        "CODIGOUSUARIOCONTABILIZACION",
+        "co_usua_elim"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_regi": "SECUENCIAREGISTRO",
+      "ds_asien_cnta": "DESCRIPCIONASIENTOCONTABLE",
+      "st_regi": "ESTADOREGISTRO",
+      "fe_cort": "FECHACORTE",
+      "fe_elim": "FECHAELIMINACION",
+      "co_usua_elim": "CODIGOUSUARIOCONTABILIZACION",
+      "co_empr": "CODIGOEMPRESA"
+    },
+    "name_score": 0.5,
+    "col_score": 0.6,
+    "total_score": 3.4,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcaut_cred",
+        "total": 3.4,
+        "name": 0.5,
+        "col": 0.6
+      },
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 3.348,
+        "name": 0.5,
+        "col": 0.548
+      },
+      {
+        "tbl": "dbCR.crtbcred_plzo_venc",
+        "total": 3.293,
+        "name": 0.5,
+        "col": 0.493
+      }
+    ]
+  },
+  {
+    "agg": "convenioPagoCredito_type",
+    "dest": "CONVENIOPAGOCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbconv_pago",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "sc_conv"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "sc_conv": "int"
+    },
+    "pcols": [
+      "co_usua_conf",
+      "ti_cred",
+      "st_apli_gara",
+      "fe_autr",
+      "mo_cobr_gast",
+      "mo_intr_venc",
+      "fe_ingr_calc",
+      "ce_esta_civi",
+      "fe_fall_afil",
+      "qs_cred",
+      "mo_intr_mora",
+      "st_regi",
+      "fe_elim",
+      "ds_obsr",
+      "mo_cuot_inic",
+      "mo_capi_venc",
+      "fe_perd_conv",
+      "co_empr",
+      "ds_refe",
+      "ce_esta_afil",
+      "sc_conv",
+      "co_proc",
+      "aa_cred"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIACONVENIO",
+        "sc_conv"
+      ],
+      [
+        "NUMERODOCUMENTOCONVENIO",
+        "sc_conv"
+      ],
+      [
+        "CODIGOPROCESO",
+        "co_proc"
+      ],
+      [
+        "MONTOCAPITALVENCIDOALAFECHA",
+        "mo_capi_venc"
+      ],
+      [
+        "MONTOINTERESVENCIDO",
+        "mo_intr_venc"
+      ],
+      [
+        "MONTOINTERESMORA",
+        "mo_intr_mora"
+      ],
+      [
+        "MONTOCUOTAINICIAL",
+        "mo_cuot_inic"
+      ],
+      [
+        "MONTOCOBRARGASTOS",
+        "mo_cobr_gast"
+      ],
+      [
+        "MONTOINTERESCONVENIO",
+        "mo_intr_venc"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_regi"
+      ],
+      [
+        "ESTADOCIVIL",
+        "ce_esta_civi"
+      ],
+      [
+        "INDICADORAPLICAGARANTE",
+        "st_apli_gara"
+      ],
+      [
+        "DESCRIPCIONOBSERVACIONES",
+        "ds_obsr"
+      ],
+      [
+        "DESCRIPCIONREFERENCIA",
+        "ds_refe"
+      ],
+      [
+        "FECHACONVENIOPAGO",
+        "fe_perd_conv"
+      ],
+      [
+        "FECHAFALLECIMIENTOAFILIADO",
+        "fe_fall_afil"
+      ],
+      [
+        "FECHAAUTORIZACION",
+        "fe_autr"
+      ],
+      [
+        "FECHAVERIFICACION",
+        "fe_elim"
+      ],
+      [
+        "FECHACREACION",
+        "fe_elim"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_elim"
+      ],
+      [
+        "CODIGOUSUARIOCONFIRMA",
+        "co_usua_conf"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "ESSTADOAFILIADO",
+        "ce_esta_afil"
+      ],
+      [
+        "FECHAINGRCALC",
+        "fe_ingr_calc"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_conv": "NUMERODOCUMENTOCONVENIO",
+      "co_proc": "CODIGOPROCESO",
+      "mo_capi_venc": "MONTOCAPITALVENCIDOALAFECHA",
+      "mo_intr_venc": "MONTOINTERESCONVENIO",
+      "mo_intr_mora": "MONTOINTERESMORA",
+      "mo_cuot_inic": "MONTOCUOTAINICIAL",
+      "mo_cobr_gast": "MONTOCOBRARGASTOS",
+      "st_regi": "ESTADOREGISTRO",
+      "ce_esta_civi": "ESTADOCIVIL",
+      "st_apli_gara": "INDICADORAPLICAGARANTE",
+      "ds_obsr": "DESCRIPCIONOBSERVACIONES",
+      "ds_refe": "DESCRIPCIONREFERENCIA",
+      "fe_perd_conv": "FECHACONVENIOPAGO",
+      "fe_fall_afil": "FECHAFALLECIMIENTOAFILIADO",
+      "fe_autr": "FECHAAUTORIZACION",
+      "fe_elim": "FECHAELIMINACION",
+      "co_usua_conf": "CODIGOUSUARIOCONFIRMA",
+      "aa_cred": "ANIOCREDITO",
+      "co_empr": "CODIGOEMPRESA",
+      "ce_esta_afil": "ESSTADOAFILIADO",
+      "fe_ingr_calc": "FECHAINGRCALC",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 0.667,
+    "col_score": 0.719,
+    "total_score": 4.352,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbconv_pago",
+        "total": 4.352,
+        "name": 0.667,
+        "col": 0.719
+      },
+      {
+        "tbl": "dbCR.crtbesta_conv_cred",
+        "total": 3.708,
+        "name": 0.667,
+        "col": 0.075
+      },
+      {
+        "tbl": "dbCR.crtbplpg_conv",
+        "total": 2.413,
+        "name": 0.333,
+        "col": 0.446
+      }
+    ]
+  },
+  {
+    "agg": "costoFinancieroCredito_type",
+    "dest": "COSTOFINANCIEROCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcred_prea_whts",
+    "ldb": "dbCR",
+    "lkey": [
+      "sc_prea",
+      "ci_cedu"
+    ],
+    "lkey_types": {
+      "sc_prea": "int",
+      "ci_cedu": "varchar"
+    },
+    "pcols": [
+      "st_regi",
+      "ti_cred_cncd",
+      "mo_cred",
+      "mo_suel_liqd",
+      "sc_prea",
+      "ci_cedu"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "mo_suel_liqd"
+      ],
+      [
+        "SECUENCIAABONOPROCESO",
+        "sc_prea"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_regi"
+      ],
+      [
+        "ANIOCREDITO",
+        "mo_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "sc_prea"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred_cncd"
+      ]
+    ],
+    "leg_to_ora": {
+      "mo_suel_liqd": "ID",
+      "sc_prea": "SECUENCIACREDITO",
+      "st_regi": "ESTADOREGISTRO",
+      "mo_cred": "ANIOCREDITO",
+      "ti_cred_cncd": "TIPOCREDITO"
+    },
+    "name_score": 0.333,
+    "col_score": 0.55,
+    "total_score": 2.516,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 2.516,
+        "name": 0.333,
+        "col": 0.55
+      },
+      {
+        "tbl": "dbCR.crtbcred_part",
+        "total": 2.506,
+        "name": 0.333,
+        "col": 0.539
+      },
+      {
+        "tbl": "dbCR.crtbcred_liqd_diar",
+        "total": 2.485,
+        "name": 0.333,
+        "col": 0.518
+      }
+    ]
+  },
+  {
+    "agg": "creditoType",
+    "dest": "CREDITOTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcred_prea_whts",
+    "ldb": "dbCR",
+    "lkey": [
+      "sc_prea",
+      "ci_cedu"
+    ],
+    "lkey_types": {
+      "sc_prea": "int",
+      "ci_cedu": "varchar"
+    },
+    "pcols": [
+      "ds_oper",
+      "fe_aprb",
+      "co_rol",
+      "fe_elim",
+      "mo_cred",
+      "mo_suel_liqd",
+      "co_usua_ingr",
+      "ti_calf",
+      "co_usua_elim",
+      "sc_prea",
+      "ci_cedu"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "mo_suel_liqd"
+      ],
+      [
+        "TIPOIDENTIFICACION",
+        "ti_calf"
+      ],
+      [
+        "IDENTIFICACION",
+        "ti_calf"
+      ],
+      [
+        "CODIGOSUCURSAL",
+        "co_rol"
+      ],
+      [
+        "CODIGOPRODUCTO",
+        "co_rol"
+      ],
+      [
+        "FECHAAPERTURA",
+        "fe_aprb"
+      ],
+      [
+        "FECHACANCELACION",
+        "fe_elim"
+      ],
+      [
+        "FECHAVENCIMIENTO",
+        "fe_elim"
+      ],
+      [
+        "MONTO",
+        "mo_suel_liqd"
+      ],
+      [
+        "FECHAEMISION",
+        "fe_elim"
+      ],
+      [
+        "CODIGOCALIFICACIONCREDITO",
+        "ti_calf"
+      ],
+      [
+        "FECHACALIFICACION",
+        "fe_elim"
+      ],
+      [
+        "PORCENTAJECALIFICACION",
+        "ti_calf"
+      ],
+      [
+        "CODIGOTIPOOPERACION",
+        "ds_oper"
+      ],
+      [
+        "CODIGOPAISINVERSION",
+        "co_usua_elim"
+      ],
+      [
+        "CODIGOSUCURSALINGRESO",
+        "co_usua_ingr"
+      ],
+      [
+        "CODIGOOFICINAINGRESO",
+        "co_usua_ingr"
+      ],
+      [
+        "CODIGOUSUARIOINGRESO",
+        "co_usua_ingr"
+      ],
+      [
+        "CODIGOSEGMENTOCREDITO",
+        "mo_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "mo_suel_liqd": "MONTO",
+      "ti_calf": "PORCENTAJECALIFICACION",
+      "co_rol": "CODIGOPRODUCTO",
+      "fe_aprb": "FECHAAPERTURA",
+      "fe_elim": "FECHACALIFICACION",
+      "ds_oper": "CODIGOTIPOOPERACION",
+      "co_usua_elim": "CODIGOPAISINVERSION",
+      "co_usua_ingr": "CODIGOUSUARIOINGRESO",
+      "mo_cred": "CODIGOSEGMENTOCREDITO"
+    },
+    "name_score": 1.0,
+    "col_score": 0.169,
+    "total_score": 5.469,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 5.469,
+        "name": 1.0,
+        "col": 0.169
+      },
+      {
+        "tbl": "dbCR.crtbrngo_autr_cred",
+        "total": 5.452,
+        "name": 1.0,
+        "col": 0.152
+      },
+      {
+        "tbl": "dbCR.crtbccbr_cred_judi",
+        "total": 5.451,
+        "name": 1.0,
+        "col": 0.151
+      }
+    ]
+  },
+  {
+    "agg": "cuentaAutomaticaDetalle_type",
+    "dest": "CUENTAAUTOMATICADETALLE_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "cgtbprod_cnta_auto",
+    "ldb": "dbCG",
+    "lkey": [
+      "co_empr",
+      "co_prod",
+      "co_fond"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "co_prod": "smallint",
+      "co_fond": "smallint"
+    },
+    "pcols": [
+      "co_cnta_auto",
+      "co_empr",
+      "co_fond",
+      "co_prod"
+    ],
+    "dest_match": [
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "CODIGOFONDO",
+        "co_fond"
+      ],
+      [
+        "CODIGOCUENTAAUTOXVEN",
+        "co_cnta_auto"
+      ],
+      [
+        "CODIGOCUENTAAUTOVENC",
+        "co_cnta_auto"
+      ],
+      [
+        "CODIGOEMPRESACAUTTRUB",
+        "co_empr"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_empr": "CODIGOEMPRESACAUTTRUB",
+      "co_fond": "CODIGOFONDO",
+      "co_cnta_auto": "CODIGOCUENTAAUTOVENC"
+    },
+    "name_score": 0.667,
+    "col_score": 0.402,
+    "total_score": 3.735,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCG.cgtbprod_cnta_auto",
+        "total": 3.735,
+        "name": 0.667,
+        "col": 0.402
+      },
+      {
+        "tbl": "dbFC.fctbdeta_liqd_cnta",
+        "total": 3.67,
+        "name": 0.667,
+        "col": 0.336
+      },
+      {
+        "tbl": "dbFC.fctbdeta_liqd_ante_cnta_cobr",
+        "total": 3.579,
+        "name": 0.667,
+        "col": 0.245
+      }
+    ]
+  },
+  {
+    "agg": "cuentaAutomatica_type",
+    "dest": "CUENTAAUTOMATICA_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "cgtbprod_cnta_auto",
+    "ldb": "dbCG",
+    "lkey": [
+      "co_empr",
+      "co_prod",
+      "co_fond"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "co_prod": "smallint",
+      "co_fond": "smallint"
+    },
+    "pcols": [
+      "co_cnta_auto",
+      "co_empr",
+      "co_fond",
+      "co_prod"
+    ],
+    "dest_match": [
+      [
+        "CODIGOFONDO",
+        "co_fond"
+      ],
+      [
+        "CODIGODOCUMENTO",
+        "co_prod"
+      ],
+      [
+        "CODIGOCUENTA",
+        "co_cnta_auto"
+      ],
+      [
+        "CODIGOCUENTAAUTOMATICAVENCIDA",
+        "co_cnta_auto"
+      ],
+      [
+        "VARIABLECUENTAAUTOMATICA",
+        "co_cnta_auto"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_fond": "CODIGOFONDO",
+      "co_prod": "CODIGODOCUMENTO",
+      "co_cnta_auto": "VARIABLECUENTAAUTOMATICA",
+      "co_empr": "CODIGOEMPRESA"
+    },
+    "name_score": 1.0,
+    "col_score": 0.337,
+    "total_score": 5.337,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCG.cgtbprod_cnta_auto",
+        "total": 5.337,
+        "name": 1.0,
+        "col": 0.337
+      },
+      {
+        "tbl": "dbCR.crtbdbso_auto",
+        "total": 3.157,
+        "name": 0.5,
+        "col": 0.357
+      },
+      {
+        "tbl": "dbCR.crtbddeb_cnta",
+        "total": 2.982,
+        "name": 0.5,
+        "col": 0.182
+      }
+    ]
+  },
+  {
+    "agg": "cuentaCuotasType",
+    "dest": "CUENTACUOTASTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcdeb_cnta",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_debi",
+      "nu_anio"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_debi": "int",
+      "nu_anio": "smallint"
+    },
+    "pcols": [
+      "fe_proc",
+      "fe_conf",
+      "nu_anio",
+      "fe_elim",
+      "co_empr",
+      "sc_debi"
+    ],
+    "dest_match": [
+      [
+        "NUMERODIASCALENDARIO",
+        "nu_anio"
+      ],
+      [
+        "FECHAVENCIMIENTO",
+        "fe_elim"
+      ],
+      [
+        "FECHAPAGO",
+        "fe_proc"
+      ],
+      [
+        "FECHAABONO",
+        "fe_conf"
+      ],
+      [
+        "FECHAINICIO",
+        "fe_elim"
+      ]
+    ],
+    "leg_to_ora": {
+      "nu_anio": "NUMERODIASCALENDARIO",
+      "fe_elim": "FECHAINICIO",
+      "fe_proc": "FECHAPAGO",
+      "fe_conf": "FECHAABONO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.09,
+    "total_score": 2.89,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcdeb_cnta",
+        "total": 2.89,
+        "name": 0.5,
+        "col": 0.09
+      },
+      {
+        "tbl": "dbCR.crtbddeb_cnta",
+        "total": 2.817,
+        "name": 0.5,
+        "col": 0.017
+      },
+      {
+        "tbl": "dbFC.fctbcinf_liqd_cnta_sibs",
+        "total": 2.571,
+        "name": 0.5,
+        "col": 0.071
+      }
+    ]
+  },
+  {
+    "agg": "cuentaCxPCxCType",
+    "dest": "CUENTACXPCXCTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcdeb_cnta",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_debi",
+      "nu_anio"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_debi": "int",
+      "nu_anio": "smallint"
+    },
+    "pcols": [
+      "co_usua_elim",
+      "co_usua_veri",
+      "co_usua_ingr",
+      "co_empr",
+      "sc_debi",
+      "nu_anio"
+    ],
+    "dest_match": [
+      [
+        "CODIGOSUCURSAL",
+        "co_empr"
+      ],
+      [
+        "CODIGOUSUARIOOFICIAL",
+        "co_usua_veri"
+      ],
+      [
+        "CODIGOMONEDA",
+        "co_empr"
+      ],
+      [
+        "CODIGOUSUARIOINGRESO",
+        "co_usua_ingr"
+      ],
+      [
+        "CODIGOUSUARIOMODIFICACION",
+        "co_usua_elim"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_empr": "CODIGOMONEDA",
+      "co_usua_veri": "CODIGOUSUARIOOFICIAL",
+      "co_usua_ingr": "CODIGOUSUARIOINGRESO",
+      "co_usua_elim": "CODIGOUSUARIOMODIFICACION"
+    },
+    "name_score": 1.0,
+    "col_score": 0.181,
+    "total_score": 5.481,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcdeb_cnta",
+        "total": 5.481,
+        "name": 1.0,
+        "col": 0.181
+      },
+      {
+        "tbl": "dbCG.cgtbrepo_anls_cnta",
+        "total": 5.41,
+        "name": 1.0,
+        "col": 0.41
+      },
+      {
+        "tbl": "dbCR.crtbddeb_cnta",
+        "total": 5.366,
+        "name": 1.0,
+        "col": 0.066
+      }
+    ]
+  },
+  {
+    "agg": "cuentaPersonasType",
+    "dest": "CUENTAPERSONASTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "fctbmvto_impr_esta_cnta",
+    "ldb": "dbFC",
+    "lkey": [
+      "ci_cedu",
+      "co_tran",
+      "co_grup_cnta",
+      "co_rol"
+    ],
+    "lkey_types": {
+      "ci_cedu": "varchar",
+      "co_tran": "char",
+      "co_grup_cnta": "smallint",
+      "co_rol": "char"
+    },
+    "pcols": [
+      "co_grup_cnta",
+      "nu_prio",
+      "co_tipo_tran",
+      "ci_cedu",
+      "co_tran",
+      "co_rol"
+    ],
+    "dest_match": [
+      [
+        "CODIGOCUENTA",
+        "co_grup_cnta"
+      ],
+      [
+        "CODIGOTIPOIDENTIFICACION",
+        "co_tipo_tran"
+      ],
+      [
+        "NUMERODIRECCION",
+        "nu_prio"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_grup_cnta": "CODIGOCUENTA",
+      "co_tipo_tran": "CODIGOTIPOIDENTIFICACION",
+      "nu_prio": "NUMERODIRECCION"
+    },
+    "name_score": 0.5,
+    "col_score": 0.327,
+    "total_score": 2.827,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbFC.fctbmvto_impr_esta_cnta",
+        "total": 2.827,
+        "name": 0.5,
+        "col": 0.327
+      },
+      {
+        "tbl": "dbCR.crtbcdeb_cnta",
+        "total": 2.8,
+        "name": 0.5,
+        "col": 0.0
+      },
+      {
+        "tbl": "dbCR.crtbddeb_cnta",
+        "total": 2.8,
+        "name": 0.5,
+        "col": 0.0
+      }
+    ]
+  },
+  {
+    "agg": "cuentaPorCobrarType",
+    "dest": "CUENTAPORCOBRARTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "cgtbrepo_anls_cnta",
+    "ldb": "dbCG",
+    "lkey": [
+      "co_cnta_cble",
+      "co_usua"
+    ],
+    "lkey_types": {
+      "co_usua": "int"
+    },
+    "pcols": [
+      "co_cnta_cble",
+      "co_usua"
+    ],
+    "dest_match": [
+      [
+        "CUENTA",
+        "co_cnta_cble"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_cnta_cble": "CUENTA"
+    },
+    "name_score": 0.667,
+    "col_score": 0.045,
+    "total_score": 3.378,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCG.cgtbrepo_anls_cnta",
+        "total": 3.378,
+        "name": 0.667,
+        "col": 0.045
+      },
+      {
+        "tbl": "dbCR.crtrepo_abno",
+        "total": 2.173,
+        "name": 0.333,
+        "col": 0.206
+      },
+      {
+        "tbl": "dbCR.crtbrepo_gene_cbot",
+        "total": 2.086,
+        "name": 0.333,
+        "col": 0.119
+      }
+    ],
+    "lkey_source": "EMPTY_TBL_USE_FIRST3"
+  },
+  {
+    "agg": "cuentaType",
+    "dest": "CUENTATYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcdeb_cnta",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_debi",
+      "nu_anio"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_debi": "int",
+      "nu_anio": "smallint"
+    },
+    "pcols": [
+      "fe_proc",
+      "fe_elim",
+      "co_usua_veri",
+      "co_usua_ingr",
+      "co_usua_elim",
+      "co_empr",
+      "sc_debi",
+      "nu_anio"
+    ],
+    "dest_match": [
+      [
+        "CODIGOSUCURSAL",
+        "co_empr"
+      ],
+      [
+        "FECHACANCELACION",
+        "fe_elim"
+      ],
+      [
+        "CODIGOCALIFICACIONCREDITO",
+        "co_usua_elim"
+      ],
+      [
+        "CODIGOUSUARIOINGRESO",
+        "co_usua_ingr"
+      ],
+      [
+        "FECHAVENCIMIENTO",
+        "fe_elim"
+      ],
+      [
+        "CODIGOFRECUENCIAINTERES",
+        "co_usua_ingr"
+      ],
+      [
+        "FECHACASTIGO",
+        "fe_proc"
+      ],
+      [
+        "CODIGOPAISINVERSION",
+        "co_usua_veri"
+      ],
+      [
+        "FECHACALIFICACION",
+        "fe_elim"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_empr": "CODIGOSUCURSAL",
+      "fe_elim": "FECHACALIFICACION",
+      "co_usua_elim": "CODIGOCALIFICACIONCREDITO",
+      "co_usua_ingr": "CODIGOFRECUENCIAINTERES",
+      "fe_proc": "FECHACASTIGO",
+      "co_usua_veri": "CODIGOPAISINVERSION"
+    },
+    "name_score": 1.0,
+    "col_score": 0.09,
+    "total_score": 5.39,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcdeb_cnta",
+        "total": 5.39,
+        "name": 1.0,
+        "col": 0.09
+      },
+      {
+        "tbl": "dbCR.crtbddeb_cnta",
+        "total": 5.309,
+        "name": 1.0,
+        "col": 0.009
+      },
+      {
+        "tbl": "dbFC.fctbmvto_impr_esta_cnta",
+        "total": 5.139,
+        "name": 1.0,
+        "col": 0.139
+      }
+    ]
+  },
+  {
+    "agg": "cuentasEnLegalType",
+    "dest": "CUENTASENLEGALTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "fctbdinf_liqd_cnta_sibs",
+    "ldb": "dbFC",
+    "lkey": [
+      "sc_regi",
+      "ci_cedu"
+    ],
+    "lkey_types": {
+      "sc_regi": "int",
+      "ci_cedu": "char"
+    },
+    "pcols": [
+      "mo_desc",
+      "ti_iden",
+      "sc_regi",
+      "ci_cedu"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "ti_iden"
+      ],
+      [
+        "MONTODEMANDA",
+        "mo_desc"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_iden": "ID",
+      "mo_desc": "MONTODEMANDA"
+    },
+    "name_score": 0.5,
+    "col_score": 0.117,
+    "total_score": 2.617,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbFC.fctbdinf_liqd_cnta_sibs",
+        "total": 2.617,
+        "name": 0.5,
+        "col": 0.117
+      },
+      {
+        "tbl": "dbFC.fctbcinf_liqd_cnta_sibs",
+        "total": 2.606,
+        "name": 0.5,
+        "col": 0.106
+      },
+      {
+        "tbl": "dbFC.sfct_cuentas_bce",
+        "total": 2.5,
+        "name": 0.5,
+        "col": 0.0
+      }
+    ]
+  },
+  {
+    "agg": "cuotaConvenio_type",
+    "dest": "CUOTACONVENIO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbplpg_conv",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "nu_dcto",
+      "sc_dcto",
+      "sc_conv"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "nu_dcto": "smallint",
+      "sc_dcto": "int",
+      "sc_conv": "int"
+    },
+    "pcols": [
+      "ti_cred",
+      "mo_dvdo",
+      "mo_cuot",
+      "mo_abno_mora",
+      "fe_vcto",
+      "mo_segu",
+      "mo_incd",
+      "mo_dvgo_diar",
+      "sc_dcto",
+      "sc_rol",
+      "fe_intr",
+      "qs_cred",
+      "mo_dvgd_intr",
+      "st_cred",
+      "fe_elim",
+      "st_vcto",
+      "mo_intr",
+      "in_reve_dvgo",
+      "mo_dvgd_mora",
+      "mo_dvgo_acum",
+      "fe_ultm_envi",
+      "nu_anos",
+      "mo_abno_capi",
+      "nu_dias",
+      "mo_capi",
+      "sc_conv",
+      "mo_comi",
+      "mo_abno_intr",
+      "mo_gast_judi",
+      "fe_inic_venc",
+      "mo_inte_pmes",
+      "aa_cred",
+      "nu_dcto"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIACONVENIO",
+        "sc_conv"
+      ],
+      [
+        "SECUENCIADOCUMENTO",
+        "sc_dcto"
+      ],
+      [
+        "NUMERODOCUMENTOCONVENIO",
+        "sc_conv"
+      ],
+      [
+        "SECUENCIAROL",
+        "sc_rol"
+      ],
+      [
+        "ESTADOCREDITO",
+        "st_cred"
+      ],
+      [
+        "ESTADOVENCIMIENTO",
+        "st_vcto"
+      ],
+      [
+        "FECHAINICIOINTERES",
+        "fe_intr"
+      ],
+      [
+        "FECHAINICVENC",
+        "fe_inic_venc"
+      ],
+      [
+        "FECHAVENCIMIENTO",
+        "fe_vcto"
+      ],
+      [
+        "FECHAULTIMOENVIO",
+        "fe_ultm_envi"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_elim"
+      ],
+      [
+        "MONTOCUOTA",
+        "mo_cuot"
+      ],
+      [
+        "MONTOCAPITAL",
+        "mo_capi"
+      ],
+      [
+        "MONTOINTERES",
+        "mo_intr"
+      ],
+      [
+        "MONTODIVIDENDO",
+        "mo_dvdo"
+      ],
+      [
+        "MONTOSEGURO",
+        "mo_segu"
+      ],
+      [
+        "MONTOSEGUROVEHICULO",
+        "mo_segu"
+      ],
+      [
+        "MONTOCOBROINCENDIO",
+        "mo_incd"
+      ],
+      [
+        "MONTOCOMISION",
+        "mo_comi"
+      ],
+      [
+        "MONTOCOSTOSEMISION",
+        "mo_comi"
+      ],
+      [
+        "MONTOGASTOSJUDICIALES",
+        "mo_gast_judi"
+      ],
+      [
+        "MONTOINTERESPRIMERMES",
+        "mo_inte_pmes"
+      ],
+      [
+        "MONTOABONOMORA",
+        "mo_abno_mora"
+      ],
+      [
+        "MONTODEVENGADOINTERES",
+        "mo_dvgd_intr"
+      ],
+      [
+        "MONTODEVENGADOMORA",
+        "mo_dvgd_mora"
+      ],
+      [
+        "MONTODEVENGOACUMULADO",
+        "mo_dvgo_acum"
+      ],
+      [
+        "INDICADORREVERSODEVENGO",
+        "in_reve_dvgo"
+      ],
+      [
+        "NUMEROANIOS",
+        "nu_anos"
+      ],
+      [
+        "NUMERODIAS",
+        "nu_dias"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "MOABONOMORASOLCA",
+        "mo_abno_mora"
+      ],
+      [
+        "MODEVENGODIARIO",
+        "mo_dvgo_diar"
+      ],
+      [
+        "MONTOABONOCAPITALCAPITAL",
+        "mo_abno_capi"
+      ],
+      [
+        "MONTOABONOINTERESCAPITAL",
+        "mo_abno_intr"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_conv": "NUMERODOCUMENTOCONVENIO",
+      "sc_dcto": "SECUENCIADOCUMENTO",
+      "sc_rol": "SECUENCIAROL",
+      "st_cred": "ESTADOCREDITO",
+      "st_vcto": "ESTADOVENCIMIENTO",
+      "fe_intr": "FECHAINICIOINTERES",
+      "fe_inic_venc": "FECHAINICVENC",
+      "fe_vcto": "FECHAVENCIMIENTO",
+      "fe_ultm_envi": "FECHAULTIMOENVIO",
+      "fe_elim": "FECHAELIMINACION",
+      "mo_cuot": "MONTOCUOTA",
+      "mo_capi": "MONTOCAPITAL",
+      "mo_intr": "MONTOINTERES",
+      "mo_dvdo": "MONTODIVIDENDO",
+      "mo_segu": "MONTOSEGUROVEHICULO",
+      "mo_incd": "MONTOCOBROINCENDIO",
+      "mo_comi": "MONTOCOSTOSEMISION",
+      "mo_gast_judi": "MONTOGASTOSJUDICIALES",
+      "mo_inte_pmes": "MONTOINTERESPRIMERMES",
+      "mo_abno_mora": "MOABONOMORASOLCA",
+      "mo_dvgd_intr": "MONTODEVENGADOINTERES",
+      "mo_dvgd_mora": "MONTODEVENGADOMORA",
+      "mo_dvgo_acum": "MONTODEVENGOACUMULADO",
+      "in_reve_dvgo": "INDICADORREVERSODEVENGO",
+      "nu_anos": "NUMEROANIOS",
+      "nu_dias": "NUMERODIAS",
+      "aa_cred": "ANIOCREDITO",
+      "mo_dvgo_diar": "MODEVENGODIARIO",
+      "mo_abno_capi": "MONTOABONOCAPITALCAPITAL",
+      "mo_abno_intr": "MONTOABONOINTERESCAPITAL",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.765,
+    "total_score": 3.565,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbplpg_conv",
+        "total": 3.565,
+        "name": 0.5,
+        "col": 0.765
+      },
+      {
+        "tbl": "dbCR.crtbcuot_venc",
+        "total": 3.24,
+        "name": 0.5,
+        "col": 0.44
+      },
+      {
+        "tbl": "dbCR.crtbconv_pago",
+        "total": 3.236,
+        "name": 0.5,
+        "col": 0.436
+      }
+    ]
+  },
+  {
+    "agg": "cuotaCreditoType",
+    "dest": "CUOTACREDITOTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbrngo_autr_cred",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_rngo"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_rngo": "int"
+    },
+    "pcols": [
+      "co_usua",
+      "co_grup",
+      "fe_elim",
+      "fe_ingr",
+      "co_empr",
+      "sc_rngo"
+    ],
+    "dest_match": [
+      [
+        "CODIGOCUOTA",
+        "co_usua"
+      ],
+      [
+        "CODIGOCUENTA",
+        "co_usua"
+      ],
+      [
+        "FECHAINICIO",
+        "fe_elim"
+      ],
+      [
+        "FECHAVENCIMIENTO",
+        "fe_elim"
+      ],
+      [
+        "FECHAPAGO",
+        "fe_ingr"
+      ],
+      [
+        "CODIGOGRUPOBALANCEDESGRAVAMEN",
+        "co_grup"
+      ],
+      [
+        "CODIGOGRUPOBALANCEINCENDIO",
+        "co_grup"
+      ],
+      [
+        "CODIGOGRUPOBALANCETASAMORA",
+        "co_grup"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_usua": "CODIGOCUENTA",
+      "fe_elim": "FECHAVENCIMIENTO",
+      "fe_ingr": "FECHAPAGO",
+      "co_grup": "CODIGOGRUPOBALANCETASAMORA"
+    },
+    "name_score": 0.5,
+    "col_score": 0.131,
+    "total_score": 2.931,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbrngo_autr_cred",
+        "total": 2.931,
+        "name": 0.5,
+        "col": 0.131
+      },
+      {
+        "tbl": "dbCR.crtbrngo_cred",
+        "total": 2.915,
+        "name": 0.5,
+        "col": 0.115
+      },
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 2.909,
+        "name": 0.5,
+        "col": 0.109
+      }
+    ]
+  },
+  {
+    "agg": "desembolsoCredito_type",
+    "dest": "DESEMBOLSOCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcred_prea_whts",
+    "ldb": "dbCR",
+    "lkey": [
+      "sc_prea",
+      "ci_cedu"
+    ],
+    "lkey_types": {
+      "sc_prea": "int",
+      "ci_cedu": "varchar"
+    },
+    "pcols": [
+      "co_usua_aprb",
+      "co_comb",
+      "co_rol",
+      "ti_cred_cncd",
+      "fe_elim",
+      "mo_cred",
+      "mo_suel_liqd",
+      "fe_ingr",
+      "sc_prea",
+      "nu_plzo",
+      "ds_mail",
+      "ci_cedu"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "mo_suel_liqd"
+      ],
+      [
+        "CODIGOBANCO",
+        "co_comb"
+      ],
+      [
+        "CODIGOPROVEEDOR",
+        "co_rol"
+      ],
+      [
+        "NUMEROORDEN",
+        "nu_plzo"
+      ],
+      [
+        "FECHAPAGO",
+        "fe_ingr"
+      ],
+      [
+        "FECHACREACION",
+        "fe_elim"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_elim"
+      ],
+      [
+        "CODIGOUSUARIO",
+        "co_usua_aprb"
+      ],
+      [
+        "ANIOCREDITO",
+        "mo_cred"
+      ],
+      [
+        "DESCRIPCIONPAGODESEMBOLSO",
+        "ds_mail"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "sc_prea"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred_cncd"
+      ],
+      [
+        "DESCRIPCIONPAGO",
+        "ds_mail"
+      ]
+    ],
+    "leg_to_ora": {
+      "mo_suel_liqd": "ID",
+      "co_comb": "CODIGOBANCO",
+      "co_rol": "CODIGOPROVEEDOR",
+      "nu_plzo": "NUMEROORDEN",
+      "fe_ingr": "FECHAPAGO",
+      "fe_elim": "FECHAELIMINACION",
+      "co_usua_aprb": "CODIGOUSUARIO",
+      "mo_cred": "ANIOCREDITO",
+      "ds_mail": "DESCRIPCIONPAGO",
+      "sc_prea": "SECUENCIACREDITO",
+      "ti_cred_cncd": "TIPOCREDITO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.323,
+    "total_score": 3.123,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 3.123,
+        "name": 0.5,
+        "col": 0.323
+      },
+      {
+        "tbl": "dbCR.crtbcred_part",
+        "total": 3.078,
+        "name": 0.5,
+        "col": 0.278
+      },
+      {
+        "tbl": "dbCR.crtbccbr_cred_judi",
+        "total": 3.072,
+        "name": 0.5,
+        "col": 0.272
+      }
+    ]
+  },
+  {
+    "agg": "desembolsoDevolucion_type",
+    "dest": "DESEMBOLSODEVOLUCION_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdbso_devo",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_devo",
+      "aa_devo",
+      "qs_devo",
+      "qs_dbso"
+    ],
+    "lkey_types": {
+      "ti_devo": "smallint",
+      "aa_devo": "smallint",
+      "qs_devo": "int",
+      "qs_dbso": "smallint"
+    },
+    "pcols": [
+      "ds_pago",
+      "co_usua",
+      "qs_dbso",
+      "ti_devo",
+      "ti_cnta",
+      "co_bnco_acre",
+      "co_tord",
+      "no_bene",
+      "nu_cnta",
+      "mo_dbso",
+      "co_bene",
+      "qs_devo",
+      "nu_orde",
+      "fe_pago",
+      "st_dbso",
+      "co_bnco",
+      "aa_devo"
+    ],
+    "dest_match": [
+      [
+        "TIPODEVOLUCION",
+        "ti_devo"
+      ],
+      [
+        "ANIODEVOLUCION",
+        "aa_devo"
+      ],
+      [
+        "SECUENCIADEVOLUCION",
+        "qs_devo"
+      ],
+      [
+        "SECUENCIADESEMBOLSO",
+        "qs_dbso"
+      ],
+      [
+        "CODIGOTORD",
+        "co_tord"
+      ],
+      [
+        "CODIGOBNCO",
+        "co_bnco"
+      ],
+      [
+        "CODIGOBNCOACRE",
+        "co_bnco_acre"
+      ],
+      [
+        "TIPOCUENTA",
+        "ti_cnta"
+      ],
+      [
+        "NUMEROCUENTA",
+        "nu_cnta"
+      ],
+      [
+        "CODIGOBENE",
+        "co_bene"
+      ],
+      [
+        "NOMBREBENE",
+        "no_bene"
+      ],
+      [
+        "ESTADODESEMBOLSO",
+        "st_dbso"
+      ],
+      [
+        "MONTODESEMBOLSO",
+        "mo_dbso"
+      ],
+      [
+        "NUMEROORDE",
+        "nu_orde"
+      ],
+      [
+        "FECHAPAGO",
+        "fe_pago"
+      ],
+      [
+        "CODIGOUSUARIO",
+        "co_usua"
+      ],
+      [
+        "DESCRIPCIONPAGO",
+        "ds_pago"
+      ],
+      [
+        "TIPODEVOLUCIONDDEVO",
+        "ti_devo"
+      ],
+      [
+        "ANIODEVOLUCIONDDEVO",
+        "aa_devo"
+      ],
+      [
+        "SECUENCIADEVOLUCIONDDEVO",
+        "qs_devo"
+      ],
+      [
+        "CODIGOROL",
+        "co_tord"
+      ],
+      [
+        "SECUENCIAROL",
+        "qs_dbso"
+      ],
+      [
+        "SECUENCIASOBRANTE",
+        "qs_dbso"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_devo": "TIPODEVOLUCIONDDEVO",
+      "aa_devo": "ANIODEVOLUCIONDDEVO",
+      "qs_devo": "SECUENCIADEVOLUCIONDDEVO",
+      "qs_dbso": "SECUENCIASOBRANTE",
+      "co_tord": "CODIGOROL",
+      "co_bnco": "CODIGOBNCO",
+      "co_bnco_acre": "CODIGOBNCOACRE",
+      "ti_cnta": "TIPOCUENTA",
+      "nu_cnta": "NUMEROCUENTA",
+      "co_bene": "CODIGOBENE",
+      "no_bene": "NOMBREBENE",
+      "st_dbso": "ESTADODESEMBOLSO",
+      "mo_dbso": "MONTODESEMBOLSO",
+      "nu_orde": "NUMEROORDE",
+      "fe_pago": "FECHAPAGO",
+      "co_usua": "CODIGOUSUARIO",
+      "ds_pago": "DESCRIPCIONPAGO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.808,
+    "total_score": 3.608,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdbso_devo",
+        "total": 3.608,
+        "name": 0.5,
+        "col": 0.808
+      },
+      {
+        "tbl": "dbCR.crtbdevo_judi_vntl",
+        "total": 3.24,
+        "name": 0.5,
+        "col": 0.44
+      },
+      {
+        "tbl": "dbCR.crtbtrmv_devo_zona",
+        "total": 3.204,
+        "name": 0.5,
+        "col": 0.404
+      }
+    ]
+  },
+  {
+    "agg": "detalleRecuperacion_type",
+    "dest": "DETALLERECUPERACION_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbrecu_conv",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "qs_abno"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "qs_abno": "smallint"
+    },
+    "pcols": [
+      "qs_abno",
+      "qs_cred",
+      "ti_cred",
+      "st_mvto",
+      "mo_mvto",
+      "aa_cred",
+      "ds_liqd"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "ds_liqd"
+      ],
+      [
+        "SECUENCIAABONO",
+        "qs_abno"
+      ],
+      [
+        "MONTOMOVIMIENTO",
+        "mo_mvto"
+      ],
+      [
+        "ESTADOVENCIMIENTO",
+        "st_mvto"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "ds_liqd": "ID",
+      "qs_abno": "SECUENCIAABONO",
+      "mo_mvto": "MONTOMOVIMIENTO",
+      "st_mvto": "ESTADOVENCIMIENTO",
+      "aa_cred": "ANIOCREDITO",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.696,
+    "total_score": 3.496,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbrecu_conv",
+        "total": 3.496,
+        "name": 0.5,
+        "col": 0.696
+      },
+      {
+        "tbl": "dbCR.crtbcobr_judi_deta",
+        "total": 3.394,
+        "name": 0.5,
+        "col": 0.594
+      },
+      {
+        "tbl": "dbCR.crtbpago_deta_abgd",
+        "total": 3.368,
+        "name": 0.5,
+        "col": 0.568
+      }
+    ]
+  },
+  {
+    "agg": "devengamientoCarteraDetalle_type",
+    "dest": "DEVENGAMIENTOCARTERADETALLE_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdvgo_cart_deta",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "co_dvgo_deta",
+      "ti_cred",
+      "aa_cred",
+      "qs_cred"
+    ],
+    "lkey_types": {
+      "co_dvgo_deta": "int",
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "co_empr": "smallint"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "mo_dvgo_xven",
+      "mo_sald_capi",
+      "nu_dcto",
+      "co_dvgo_deta",
+      "fe_ultm_cort",
+      "mo_ajus",
+      "mo_reve",
+      "co_empr",
+      "aa_cred",
+      "fe_cort",
+      "mo_dvgo_venc"
+    ],
+    "dest_match": [
+      [
+        "CODIGODVGODETALLE",
+        "co_dvgo_deta"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "NUMERODCTO",
+        "nu_dcto"
+      ],
+      [
+        "MONTOSALDOCAPI",
+        "mo_sald_capi"
+      ],
+      [
+        "FECHAULTMCORT",
+        "fe_ultm_cort"
+      ],
+      [
+        "FECHACORT",
+        "fe_cort"
+      ],
+      [
+        "MONTODVGOXVEN",
+        "mo_dvgo_xven"
+      ],
+      [
+        "MONTODVGOVENC",
+        "mo_dvgo_venc"
+      ],
+      [
+        "MONTOREVE",
+        "mo_reve"
+      ],
+      [
+        "MONTOAJUS",
+        "mo_ajus"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_dvgo_deta": "CODIGODVGODETALLE",
+      "ti_cred": "TIPOCREDITO",
+      "aa_cred": "ANIOCREDITO",
+      "qs_cred": "SECUENCIACREDITO",
+      "nu_dcto": "NUMERODCTO",
+      "mo_sald_capi": "MONTOSALDOCAPI",
+      "fe_ultm_cort": "FECHAULTMCORT",
+      "fe_cort": "FECHACORT",
+      "mo_dvgo_xven": "MONTODVGOXVEN",
+      "mo_dvgo_venc": "MONTODVGOVENC",
+      "mo_reve": "MONTOREVE",
+      "mo_ajus": "MONTOAJUS",
+      "co_empr": "CODIGOEMPRESA"
+    },
+    "name_score": 1.0,
+    "col_score": 0.915,
+    "total_score": 6.215,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdvgo_cart_deta",
+        "total": 6.215,
+        "name": 1.0,
+        "col": 0.915
+      },
+      {
+        "tbl": "dbCR.crtbdvgo_cart_deta_temp",
+        "total": 6.144,
+        "name": 1.0,
+        "col": 0.844
+      },
+      {
+        "tbl": "dbCR.crtbdvgo_cart_deta_mens",
+        "total": 6.072,
+        "name": 1.0,
+        "col": 0.772
+      }
+    ],
+    "lkey_source": "PK"
+  },
+  {
+    "agg": "devengamientoCartera_type",
+    "dest": "DEVENGAMIENTOCARTERA_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdvgo_cart_deta",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "co_dvgo_deta",
+      "ti_cred",
+      "aa_cred",
+      "qs_cred"
+    ],
+    "lkey_types": {
+      "co_dvgo_deta": "int",
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "co_empr": "smallint"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "mo_sald_capi",
+      "co_dvgo_deta",
+      "fe_ultm_cort",
+      "mo_ajus",
+      "mo_reve",
+      "co_empr",
+      "aa_cred",
+      "fe_cort",
+      "mo_dvgo_venc"
+    ],
+    "dest_match": [
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "CODIGODEVENGODETALLE",
+        "co_dvgo_deta"
+      ],
+      [
+        "FECHACORTE",
+        "fe_cort"
+      ],
+      [
+        "FECHAULTIMOCORTE",
+        "fe_ultm_cort"
+      ],
+      [
+        "MONTODEVENGAMIENTOPORVENCER",
+        "mo_dvgo_venc"
+      ],
+      [
+        "MONTODEVENGAMIENTOVENCIDO",
+        "mo_dvgo_venc"
+      ],
+      [
+        "MONTOAJUSTEDEVENGOS",
+        "mo_ajus"
+      ],
+      [
+        "MONTOREVERSODEVENGOS",
+        "mo_reve"
+      ],
+      [
+        "MONTOSALDOCAPITAL",
+        "mo_sald_capi"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_cred": "TIPOCREDITO",
+      "co_dvgo_deta": "CODIGODEVENGODETALLE",
+      "fe_cort": "FECHACORTE",
+      "fe_ultm_cort": "FECHAULTIMOCORTE",
+      "mo_dvgo_venc": "MONTODEVENGAMIENTOVENCIDO",
+      "mo_ajus": "MONTOAJUSTEDEVENGOS",
+      "mo_reve": "MONTOREVERSODEVENGOS",
+      "mo_sald_capi": "MONTOSALDOCAPITAL",
+      "co_empr": "CODIGOEMPRESA",
+      "aa_cred": "ANIOCREDITO",
+      "qs_cred": "SECUENCIACREDITO"
+    },
+    "name_score": 1.0,
+    "col_score": 0.622,
+    "total_score": 5.922,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdvgo_cart_deta",
+        "total": 5.922,
+        "name": 1.0,
+        "col": 0.622
+      },
+      {
+        "tbl": "dbCR.crtbdvgo_cart_deta_temp",
+        "total": 5.867,
+        "name": 1.0,
+        "col": 0.567
+      },
+      {
+        "tbl": "dbCR.crtbdvgo_cart_deta_diar",
+        "total": 5.839,
+        "name": 1.0,
+        "col": 0.539
+      }
+    ],
+    "lkey_source": "PK"
+  },
+  {
+    "agg": "devolucionCredito_type",
+    "dest": "DEVOLUCIONCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdbso_devo",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_devo",
+      "aa_devo",
+      "qs_devo",
+      "qs_dbso"
+    ],
+    "lkey_types": {
+      "ti_devo": "smallint",
+      "aa_devo": "smallint",
+      "qs_devo": "int",
+      "qs_dbso": "smallint"
+    },
+    "pcols": [
+      "co_usua",
+      "ti_devo",
+      "qs_dbso",
+      "co_tord",
+      "co_bene",
+      "qs_devo",
+      "aa_devo"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIADEVOLUCION",
+        "qs_devo"
+      ],
+      [
+        "ANIODEVOLUCION",
+        "aa_devo"
+      ],
+      [
+        "TIPODEVOLUCION",
+        "ti_devo"
+      ],
+      [
+        "CODIGOFONDO",
+        "co_tord"
+      ],
+      [
+        "MONTODEVOLUCION",
+        "ti_devo"
+      ],
+      [
+        "CODIGOUSUARIOTRANSMISION",
+        "co_usua"
+      ],
+      [
+        "CODIGOROL",
+        "co_tord"
+      ],
+      [
+        "SECUENCIAROL",
+        "qs_dbso"
+      ],
+      [
+        "SECUENCIASOBRANTES",
+        "qs_dbso"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_bene"
+      ]
+    ],
+    "leg_to_ora": {
+      "qs_devo": "SECUENCIADEVOLUCION",
+      "aa_devo": "ANIODEVOLUCION",
+      "ti_devo": "MONTODEVOLUCION",
+      "co_tord": "CODIGOROL",
+      "co_usua": "CODIGOUSUARIOTRANSMISION",
+      "qs_dbso": "SECUENCIASOBRANTES",
+      "co_bene": "CODIGOEMPRESA"
+    },
+    "name_score": 0.5,
+    "col_score": 0.381,
+    "total_score": 3.181,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdbso_devo",
+        "total": 3.181,
+        "name": 0.5,
+        "col": 0.381
+      },
+      {
+        "tbl": "dbCR.crtbdevo_judi_vntl",
+        "total": 3.169,
+        "name": 0.5,
+        "col": 0.369
+      },
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 3.157,
+        "name": 0.5,
+        "col": 0.357
+      }
+    ]
+  },
+  {
+    "agg": "devolucionMasivaDetalle_type",
+    "dest": "DEVOLUCIONMASIVADETALLE_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdevo_masi_deta",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_devo_deta",
+      "sc_devo_masi"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_devo_deta": "int",
+      "sc_devo_masi": "int"
+    },
+    "pcols": [
+      "sc_mvto",
+      "co_rubr_rol",
+      "sc_sobr",
+      "co_liqd_rubr",
+      "mo_disp",
+      "sc_devo_deta",
+      "st_devo_deta",
+      "mo_mvto",
+      "sc_devo_masi",
+      "co_empr"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "co_liqd_rubr"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "SECUENCIADEVOLUCIONDETALLE",
+        "sc_devo_deta"
+      ],
+      [
+        "SECUENCIADEVOLUCIONMASIVA",
+        "sc_devo_masi"
+      ],
+      [
+        "SECUENCIASOBRANTE",
+        "sc_sobr"
+      ],
+      [
+        "MONTODISP",
+        "mo_disp"
+      ],
+      [
+        "SECUENCIAMOVIMIENTO",
+        "sc_mvto"
+      ],
+      [
+        "CODIGOLIQUIDACIONRUBRO",
+        "co_liqd_rubr"
+      ],
+      [
+        "MONTOMOVIMIENTO",
+        "mo_mvto"
+      ],
+      [
+        "ESTADODEVOLUCIONDETALLE",
+        "st_devo_deta"
+      ],
+      [
+        "CODIGORUBROROL",
+        "co_rubr_rol"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_liqd_rubr": "CODIGOLIQUIDACIONRUBRO",
+      "co_empr": "CODIGOEMPRESA",
+      "sc_devo_deta": "SECUENCIADEVOLUCIONDETALLE",
+      "sc_devo_masi": "SECUENCIADEVOLUCIONMASIVA",
+      "sc_sobr": "SECUENCIASOBRANTE",
+      "mo_disp": "MONTODISP",
+      "sc_mvto": "SECUENCIAMOVIMIENTO",
+      "mo_mvto": "MONTOMOVIMIENTO",
+      "st_devo_deta": "ESTADODEVOLUCIONDETALLE",
+      "co_rubr_rol": "CODIGORUBROROL"
+    },
+    "name_score": 0.667,
+    "col_score": 0.855,
+    "total_score": 4.489,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdevo_masi_deta",
+        "total": 4.489,
+        "name": 0.667,
+        "col": 0.855
+      },
+      {
+        "tbl": "dbFC.sfct_devolucion_detalle",
+        "total": 3.446,
+        "name": 0.667,
+        "col": 0.113
+      },
+      {
+        "tbl": "dbCR.crtbdbso_devo",
+        "total": 2.413,
+        "name": 0.333,
+        "col": 0.446
+      }
+    ]
+  },
+  {
+    "agg": "devolucionMasiva_type",
+    "dest": "DEVOLUCIONMASIVA_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdevo_masi_deta",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_devo_deta",
+      "sc_devo_masi"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_devo_deta": "int",
+      "sc_devo_masi": "int"
+    },
+    "pcols": [
+      "sc_mvto",
+      "co_rubr_rol",
+      "sc_sobr",
+      "co_empr",
+      "co_liqd_rubr",
+      "st_devo_deta",
+      "sc_devo_deta",
+      "mo_disp",
+      "mo_mvto",
+      "sc_devo_masi"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "co_liqd_rubr"
+      ],
+      [
+        "SECUENCIADEVOLUCIONESMASIVAS",
+        "sc_devo_masi"
+      ],
+      [
+        "TIPODEVOLUCIONMASIVA",
+        "sc_devo_masi"
+      ],
+      [
+        "ESTADODEVOLUCIONESMASIVAS",
+        "st_devo_deta"
+      ],
+      [
+        "SECUENCIADEVOLUCIONESMASIVASDETALLE",
+        "sc_devo_deta"
+      ],
+      [
+        "CODIGOLIQUIDACIONRUBRO",
+        "co_liqd_rubr"
+      ],
+      [
+        "SECUENCIAMOVIMIENTO",
+        "sc_mvto"
+      ],
+      [
+        "SECUENCIASOBRANTES",
+        "sc_sobr"
+      ],
+      [
+        "MONTODISPONIBLESOBRANTE",
+        "mo_disp"
+      ],
+      [
+        "MONTOMOVIMIENTO",
+        "mo_mvto"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "COIGORUBROROL",
+        "co_rubr_rol"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_liqd_rubr": "CODIGOLIQUIDACIONRUBRO",
+      "sc_devo_masi": "TIPODEVOLUCIONMASIVA",
+      "st_devo_deta": "ESTADODEVOLUCIONESMASIVAS",
+      "sc_devo_deta": "SECUENCIADEVOLUCIONESMASIVASDETALLE",
+      "sc_mvto": "SECUENCIAMOVIMIENTO",
+      "sc_sobr": "SECUENCIASOBRANTES",
+      "mo_disp": "MONTODISPONIBLESOBRANTE",
+      "mo_mvto": "MONTOMOVIMIENTO",
+      "co_empr": "CODIGOEMPRESA",
+      "co_rubr_rol": "COIGORUBROROL"
+    },
+    "name_score": 0.5,
+    "col_score": 0.489,
+    "total_score": 3.289,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdevo_masi_deta",
+        "total": 3.289,
+        "name": 0.5,
+        "col": 0.489
+      },
+      {
+        "tbl": "dbCR.crtbdevo_masi",
+        "total": 3.205,
+        "name": 0.5,
+        "col": 0.405
+      },
+      {
+        "tbl": "dbCR.crtbdbso_devo",
+        "total": 3.02,
+        "name": 0.5,
+        "col": 0.22
+      }
+    ]
+  },
+  {
+    "agg": "documentoCredito_type",
+    "dest": "DOCUMENTOCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdocu_cred",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_docu"
+    ],
+    "lkey_types": {
+      "co_docu": "smallint"
+    },
+    "pcols": [
+      "st_docu",
+      "ds_docu",
+      "co_docu",
+      "ti_docu"
+    ],
+    "dest_match": [
+      [
+        "CODIGODOCUMENTO",
+        "co_docu"
+      ],
+      [
+        "DESCRIPCIONDOCUMENTO",
+        "ds_docu"
+      ],
+      [
+        "ESTADODOCUMENTO",
+        "st_docu"
+      ],
+      [
+        "TIPODOCUMENTO",
+        "ti_docu"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_docu": "CODIGODOCUMENTO",
+      "ds_docu": "DESCRIPCIONDOCUMENTO",
+      "st_docu": "ESTADODOCUMENTO",
+      "ti_docu": "TIPODOCUMENTO"
+    },
+    "name_score": 1.0,
+    "col_score": 0.8,
+    "total_score": 6.1,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdocu_cred",
+        "total": 6.1,
+        "name": 1.0,
+        "col": 0.8
+      },
+      {
+        "tbl": "dbCG.cgtbtipo_docu_cdio",
+        "total": 5.704,
+        "name": 1.0,
+        "col": 0.704
+      },
+      {
+        "tbl": "dbCR.crtbdcto_cred",
+        "total": 3.291,
+        "name": 0.5,
+        "col": 0.491
+      }
+    ]
+  },
+  {
+    "agg": "estadoConvenioCredito_type",
+    "dest": "ESTADOCONVENIOCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbesta_conv_cred",
+    "ldb": "dbCR",
+    "lkey": [
+      "st_regi_conv"
+    ],
+    "lkey_types": {
+      "st_regi_conv": "smallint"
+    },
+    "pcols": [
+      "st_regi",
+      "ds_esta",
+      "st_regi_conv"
+    ],
+    "dest_match": [
+      [
+        "ESTADOREGISTROCONVENIO",
+        "st_regi_conv"
+      ],
+      [
+        "DESCRIPCIONESTADO",
+        "ds_esta"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_regi"
+      ]
+    ],
+    "leg_to_ora": {
+      "st_regi_conv": "ESTADOREGISTROCONVENIO",
+      "ds_esta": "DESCRIPCIONESTADO",
+      "st_regi": "ESTADOREGISTRO"
+    },
+    "name_score": 0.667,
+    "col_score": 0.713,
+    "total_score": 4.346,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbesta_conv_cred",
+        "total": 4.346,
+        "name": 0.667,
+        "col": 0.713
+      },
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 2.831,
+        "name": 0.333,
+        "col": 0.864
+      },
+      {
+        "tbl": "dbCR.crtbrecu_conv",
+        "total": 2.808,
+        "name": 0.333,
+        "col": 0.842
+      }
+    ]
+  },
+  {
+    "agg": "estadoLegalType",
+    "dest": "ESTADOLEGALTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "cttbesta_docu_inve",
+    "ldb": "dbCT",
+    "lkey": [
+      "nu_oper"
+    ],
+    "lkey_types": {
+      "in_revi_docu": "char"
+    },
+    "pcols": [
+      "ds_esta_docu_inve",
+      "in_revi_docu",
+      "mo_reca_inve",
+      "nu_oper"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "in_revi_docu"
+      ],
+      [
+        "NUMEROJUICIO",
+        "nu_oper"
+      ],
+      [
+        "MONTO",
+        "mo_reca_inve"
+      ],
+      [
+        "ESTADO",
+        "ds_esta_docu_inve"
+      ]
+    ],
+    "leg_to_ora": {
+      "in_revi_docu": "ID",
+      "nu_oper": "NUMEROJUICIO",
+      "mo_reca_inve": "MONTO",
+      "ds_esta_docu_inve": "ESTADO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.247,
+    "total_score": 2.747,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCT.cttbesta_docu_inve",
+        "total": 2.747,
+        "name": 0.5,
+        "col": 0.247
+      },
+      {
+        "tbl": "dbFC.sfct_estados_afiliado",
+        "total": 2.676,
+        "name": 0.5,
+        "col": 0.176
+      },
+      {
+        "tbl": "dbCR.crtoblig",
+        "total": 0.83,
+        "name": 0.0,
+        "col": 0.53
+      }
+    ],
+    "lkey_source": "EMPTY_TBL_USE_FIRST3"
+  },
+  {
+    "agg": "etapaJudicialCredito_type",
+    "dest": "ETAPAJUDICIALCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbccbr_cred_judi",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_cobr"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_cobr": "int"
+    },
+    "pcols": [
+      "co_empr",
+      "co_medi",
+      "co_etap",
+      "sc_cobr"
+    ],
+    "dest_match": [
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "CODIGOETAP",
+        "co_etap"
+      ],
+      [
+        "CODIGOEMPRESAMEDICOBR",
+        "co_empr"
+      ],
+      [
+        "CODIGOMEDI",
+        "co_medi"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_empr": "CODIGOEMPRESAMEDICOBR",
+      "co_etap": "CODIGOETAP",
+      "co_medi": "CODIGOMEDI"
+    },
+    "name_score": 0.667,
+    "col_score": 0.411,
+    "total_score": 4.044,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbccbr_cred_judi",
+        "total": 4.044,
+        "name": 0.667,
+        "col": 0.411
+      },
+      {
+        "tbl": "dbCR.crtbetap_juci",
+        "total": 2.693,
+        "name": 0.333,
+        "col": 0.726
+      },
+      {
+        "tbl": "dbCR.crtbtipo_cobr_judi",
+        "total": 2.66,
+        "name": 0.333,
+        "col": 0.693
+      }
+    ]
+  },
+  {
+    "agg": "fechasProcesoType",
+    "dest": "FECHASPROCESOTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "fctbproc_tseg_noti",
+    "ldb": "dbFC",
+    "lkey": [
+      "co_empr",
+      "co_proc",
+      "co_tseg",
+      "co_noti",
+      "sc_regi"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "co_proc": "smallint",
+      "co_tseg": "smallint",
+      "co_noti": "smallint",
+      "sc_regi": "smallint"
+    },
+    "pcols": [
+      "co_proc",
+      "co_usua_crea",
+      "co_mens_telf",
+      "co_noti",
+      "co_empr",
+      "co_tseg",
+      "sc_regi"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "co_mens_telf"
+      ],
+      [
+        "CODIGOCUENTA",
+        "co_noti"
+      ],
+      [
+        "CODIGOSUBSISTEMA",
+        "co_usua_crea"
+      ],
+      [
+        "CODIGOGRUPOPRODUCTO",
+        "co_proc"
+      ],
+      [
+        "CODIGOPRODUCTO",
+        "co_proc"
+      ],
+      [
+        "CODIGOSUCURSAL",
+        "co_usua_crea"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_mens_telf": "ID",
+      "co_noti": "CODIGOCUENTA",
+      "co_usua_crea": "CODIGOSUCURSAL",
+      "co_proc": "CODIGOPRODUCTO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.566,
+    "total_score": 3.066,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbFC.fctbproc_tseg_noti",
+        "total": 3.066,
+        "name": 0.5,
+        "col": 0.566
+      },
+      {
+        "tbl": "dbCR.crtbproc_reve_masi",
+        "total": 2.988,
+        "name": 0.5,
+        "col": 0.188
+      },
+      {
+        "tbl": "dbCR.crtbreve_proc_msvo",
+        "total": 2.975,
+        "name": 0.5,
+        "col": 0.175
+      }
+    ]
+  },
+  {
+    "agg": "flujoTrabajoCredito_type",
+    "dest": "FLUJOTRABAJOCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcred_part",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "fe_elim",
+      "nu_iden",
+      "co_usua_modi",
+      "aa_cred"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "nu_iden"
+      ],
+      [
+        "CODIGOUSUARIO",
+        "co_usua_modi"
+      ],
+      [
+        "FECHAGENERACION",
+        "fe_elim"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "SECUENCIASEGUMIENTO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "nu_iden": "ID",
+      "co_usua_modi": "CODIGOUSUARIO",
+      "fe_elim": "FECHAGENERACION",
+      "aa_cred": "ANIOCREDITO",
+      "qs_cred": "SECUENCIASEGUMIENTO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 0.333,
+    "col_score": 0.476,
+    "total_score": 2.442,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcred_part",
+        "total": 2.442,
+        "name": 0.333,
+        "col": 0.476
+      },
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 2.395,
+        "name": 0.333,
+        "col": 0.428
+      },
+      {
+        "tbl": "dbCR.crtbccbr_cred_judi",
+        "total": 2.377,
+        "name": 0.333,
+        "col": 0.41
+      }
+    ]
+  },
+  {
+    "agg": "garantiaCredito_type",
+    "dest": "GARANTIACREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "cgtbgara_hipo_cdio",
+    "ldb": "dbCG",
+    "lkey": [
+      "co_empr",
+      "sc_gara_hipo",
+      "ci_cedu"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_gara_hipo": "int",
+      "ci_cedu": "char"
+    },
+    "pcols": [
+      "nu_bloq",
+      "co_usua_conf",
+      "sc_gara_hipo",
+      "nu_vill",
+      "co_ciud",
+      "st_regi",
+      "co_prov",
+      "nu_manz",
+      "fe_elim",
+      "fe_ingr",
+      "co_empr",
+      "ci_cedu"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIAGARANTIA",
+        "sc_gara_hipo"
+      ],
+      [
+        "CODIGOPROGRAMAVIVIENDA",
+        "co_prov"
+      ],
+      [
+        "CODIGOTIPOVIVIENDA",
+        "co_prov"
+      ],
+      [
+        "NUMEROVIVIENDA",
+        "nu_vill"
+      ],
+      [
+        "NUMEROMANZANA",
+        "nu_manz"
+      ],
+      [
+        "NUMEROBLOQUE",
+        "nu_bloq"
+      ],
+      [
+        "SECUENCIAAVALUO",
+        "sc_gara_hipo"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_regi"
+      ],
+      [
+        "FECHAENTREGA",
+        "fe_ingr"
+      ],
+      [
+        "FECHAVERIFICACION",
+        "fe_elim"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_elim"
+      ],
+      [
+        "FECHACREACION",
+        "fe_elim"
+      ],
+      [
+        "CODIGOUSUARIOVERIFICA",
+        "co_usua_conf"
+      ],
+      [
+        "CODIGOGARANTIA",
+        "co_prov"
+      ],
+      [
+        "CODIGOCUENTA",
+        "co_ciud"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_gara_hipo": "SECUENCIAAVALUO",
+      "co_prov": "CODIGOGARANTIA",
+      "nu_vill": "NUMEROVIVIENDA",
+      "nu_manz": "NUMEROMANZANA",
+      "nu_bloq": "NUMEROBLOQUE",
+      "st_regi": "ESTADOREGISTRO",
+      "fe_ingr": "FECHAENTREGA",
+      "fe_elim": "FECHACREACION",
+      "co_usua_conf": "CODIGOUSUARIOVERIFICA",
+      "co_ciud": "CODIGOCUENTA"
+    },
+    "name_score": 1.0,
+    "col_score": 0.306,
+    "total_score": 5.306,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCG.cgtbgara_hipo_cdio",
+        "total": 5.306,
+        "name": 1.0,
+        "col": 0.306
+      },
+      {
+        "tbl": "dbCG.cgtbgara_vehi_cdio",
+        "total": 5.292,
+        "name": 1.0,
+        "col": 0.292
+      },
+      {
+        "tbl": "dbFC.fctbdret_volu_cred_gara",
+        "total": 5.181,
+        "name": 1.0,
+        "col": 0.181
+      }
+    ]
+  },
+  {
+    "agg": "gestionCobranzaAsignacion_type",
+    "dest": "GESTIONCOBRANZAASIGNACION_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbgest_cart_asig",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_gest_cart_asig",
+      "sc_gene_cart_asig"
+    ],
+    "lkey_types": {
+      "co_gest_cart_asig": "int",
+      "sc_gene_cart_asig": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "co_usua_ante",
+      "ti_calf_homo",
+      "co_gest_cart_asig",
+      "co_usua_gest",
+      "aa_cred",
+      "fe_cort",
+      "sc_gene_cart_asig"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIAREGISTRO",
+        "qs_cred"
+      ],
+      [
+        "CODIGOUSUARIOASIGNADO",
+        "co_usua_gest"
+      ],
+      [
+        "CODIGOUSUARIOASIGNADOANTERIORMENTE",
+        "co_usua_ante"
+      ],
+      [
+        "TIPOCALIFICACIONHOMOLOGADO",
+        "ti_calf_homo"
+      ],
+      [
+        "FECHACORTE",
+        "fe_cort"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "CODIGOASIGNACION",
+        "co_gest_cart_asig"
+      ]
+    ],
+    "leg_to_ora": {
+      "qs_cred": "SECUENCIACREDITO",
+      "co_usua_gest": "CODIGOUSUARIOASIGNADO",
+      "co_usua_ante": "CODIGOUSUARIOASIGNADOANTERIORMENTE",
+      "ti_calf_homo": "TIPOCALIFICACIONHOMOLOGADO",
+      "fe_cort": "FECHACORTE",
+      "aa_cred": "ANIOCREDITO",
+      "ti_cred": "TIPOCREDITO",
+      "co_gest_cart_asig": "CODIGOASIGNACION"
+    },
+    "name_score": 0.667,
+    "col_score": 0.635,
+    "total_score": 4.268,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbgest_cart_asig",
+        "total": 4.268,
+        "name": 0.667,
+        "col": 0.635
+      },
+      {
+        "tbl": "dbCR.crtbcobr_judi_dist",
+        "total": 2.412,
+        "name": 0.333,
+        "col": 0.445
+      },
+      {
+        "tbl": "dbCR.crtbgest_mail",
+        "total": 2.412,
+        "name": 0.333,
+        "col": 0.445
+      }
+    ]
+  },
+  {
+    "agg": "gestionComunicacionCredito_type",
+    "dest": "GESTIONCOMUNICACIONCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbgest_cred",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "ci_cedu_ejec"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "ci_cedu_ejec": "char"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "fe_pago",
+      "sc_pago",
+      "st_gest",
+      "aa_cred",
+      "ci_cedu_ejec"
+    ],
+    "dest_match": [
+      [
+        "FECHACARGA",
+        "fe_pago"
+      ],
+      [
+        "FECHAGUIA",
+        "fe_pago"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "ESTADOGESTIONTLLAMADA",
+        "st_gest"
+      ],
+      [
+        "RESULTADOGESTIONLLAMADA",
+        "st_gest"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "ESTADOGESTIONMAIL",
+        "st_gest"
+      ],
+      [
+        "ESTADOGESTIONSMS",
+        "st_gest"
+      ],
+      [
+        "SECUENCIAGESTIONSMS",
+        "sc_pago"
+      ]
+    ],
+    "leg_to_ora": {
+      "fe_pago": "FECHAGUIA",
+      "aa_cred": "ANIOCREDITO",
+      "st_gest": "ESTADOGESTIONSMS",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO",
+      "sc_pago": "SECUENCIAGESTIONSMS"
+    },
+    "name_score": 0.667,
+    "col_score": 0.178,
+    "total_score": 3.811,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbgest_cred",
+        "total": 3.811,
+        "name": 0.667,
+        "col": 0.178
+      },
+      {
+        "tbl": "dbCR.crtbgest_llam",
+        "total": 2.545,
+        "name": 0.333,
+        "col": 0.579
+      },
+      {
+        "tbl": "dbCR.crtbgest_noti_escr",
+        "total": 2.541,
+        "name": 0.333,
+        "col": 0.575
+      }
+    ]
+  },
+  {
+    "agg": "grupoCreditoDetalle_type",
+    "dest": "GRUPOCREDITODETALLE_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "fctbdeta_liqd_cred",
+    "ldb": "dbFC",
+    "lkey": [
+      "co_empr",
+      "sc_liqd",
+      "sc_deta",
+      "ti_cred",
+      "aa_cred",
+      "qs_cred"
+    ],
+    "lkey_types": {
+      "sc_liqd": "int",
+      "sc_deta": "smallint",
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "co_empr": "smallint"
+    },
+    "pcols": [
+      "sc_liqd",
+      "co_rubr",
+      "sc_deta",
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "co_empr"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "sc_liqd"
+      ],
+      [
+        "CODIGOGRUPO",
+        "co_rubr"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_liqd": "ID",
+      "co_rubr": "CODIGOGRUPO"
+    },
+    "name_score": 0.667,
+    "col_score": 0.334,
+    "total_score": 3.667,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbFC.fctbdeta_liqd_cred",
+        "total": 3.667,
+        "name": 0.667,
+        "col": 0.334
+      },
+      {
+        "tbl": "dbCR.crtbcred_autr_deta",
+        "total": 3.633,
+        "name": 0.667,
+        "col": 0.0
+      },
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 2.756,
+        "name": 0.333,
+        "col": 0.789
+      }
+    ],
+    "lkey_source": "PK"
+  },
+  {
+    "agg": "grupoCreditoDocumento_type",
+    "dest": "GRUPOCREDITODOCUMENTO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdocu_cred",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_docu"
+    ],
+    "lkey_types": {
+      "co_docu": "smallint"
+    },
+    "pcols": [
+      "co_docu",
+      "st_docu",
+      "ti_docu"
+    ],
+    "dest_match": [
+      [
+        "TIPOCREDITO",
+        "ti_docu"
+      ],
+      [
+        "CODIGODOCUMENTO",
+        "co_docu"
+      ],
+      [
+        "ESTADOCREDITO",
+        "st_docu"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_docu": "TIPOCREDITO",
+      "co_docu": "CODIGODOCUMENTO",
+      "st_docu": "ESTADOCREDITO"
+    },
+    "name_score": 0.667,
+    "col_score": 0.34,
+    "total_score": 3.973,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdocu_cred",
+        "total": 3.973,
+        "name": 0.667,
+        "col": 0.34
+      },
+      {
+        "tbl": "dbCG.cgtbtipo_docu_cdio",
+        "total": 3.831,
+        "name": 0.667,
+        "col": 0.497
+      },
+      {
+        "tbl": "dbCR.crtbgrup_cred_dcto",
+        "total": 2.774,
+        "name": 0.333,
+        "col": 0.807
+      }
+    ]
+  },
+  {
+    "agg": "informacionLegal_type",
+    "dest": "INFORMACIONLEGAL_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbinfo_legl",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "co_usua_recp",
+      "st_regi",
+      "fe_elim",
+      "fe_modi",
+      "ds_refe",
+      "aa_cred"
+    ],
+    "dest_match": [
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "CODIGOUSUARIORECEPTA",
+        "co_usua_recp"
+      ],
+      [
+        "DESCRIPCIONREFERENCIA",
+        "ds_refe"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_regi"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_elim"
+      ],
+      [
+        "FECHAMODIFICACION",
+        "fe_modi"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "aa_cred": "ANIOCREDITO",
+      "co_usua_recp": "CODIGOUSUARIORECEPTA",
+      "ds_refe": "DESCRIPCIONREFERENCIA",
+      "st_regi": "ESTADOREGISTRO",
+      "fe_elim": "FECHAELIMINACION",
+      "fe_modi": "FECHAMODIFICACION",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.579,
+    "total_score": 3.379,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbinfo_legl",
+        "total": 3.379,
+        "name": 0.5,
+        "col": 0.579
+      },
+      {
+        "tbl": "dbCR.crtbinfo_gara_real_sibs",
+        "total": 3.255,
+        "name": 0.5,
+        "col": 0.455
+      },
+      {
+        "tbl": "dbFC.fctbactu_afil_info",
+        "total": 2.874,
+        "name": 0.5,
+        "col": 0.374
+      }
+    ]
+  },
+  {
+    "agg": "liquidacionDiariaCredito_type",
+    "dest": "LIQUIDACIONDIARIACREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcred_liqd_diar",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "sc_liqd"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "sc_liqd": "bigint"
+    },
+    "pcols": [
+      "sc_liqd",
+      "qs_cred",
+      "mo_rubr",
+      "ti_cred",
+      "st_cred",
+      "st_liqd_diar",
+      "co_empr",
+      "aa_cred",
+      "fe_cort"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "sc_liqd"
+      ],
+      [
+        "SECUENCIALIQUIDACION",
+        "sc_liqd"
+      ],
+      [
+        "CODIGORUBRO",
+        "mo_rubr"
+      ],
+      [
+        "MONTORUBRO",
+        "mo_rubr"
+      ],
+      [
+        "ESTADOCREDITO",
+        "st_cred"
+      ],
+      [
+        "ESTADOLIQUIDACIONDIARIA",
+        "st_liqd_diar"
+      ],
+      [
+        "FECHACORTE",
+        "fe_cort"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_liqd": "SECUENCIALIQUIDACION",
+      "mo_rubr": "MONTORUBRO",
+      "st_cred": "ESTADOCREDITO",
+      "st_liqd_diar": "ESTADOLIQUIDACIONDIARIA",
+      "fe_cort": "FECHACORTE",
+      "aa_cred": "ANIOCREDITO",
+      "co_empr": "CODIGOEMPRESA",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 1.0,
+    "col_score": 0.942,
+    "total_score": 6.242,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcred_liqd_diar",
+        "total": 6.242,
+        "name": 1.0,
+        "col": 0.942
+      },
+      {
+        "tbl": "dbFC.fctbdeta_liqd_cred",
+        "total": 4.158,
+        "name": 0.667,
+        "col": 0.825
+      },
+      {
+        "tbl": "dbFC.fctbliqd_msva_rent_cred",
+        "total": 3.995,
+        "name": 0.667,
+        "col": 0.662
+      }
+    ]
+  },
+  {
+    "agg": "medidaJudicialType",
+    "dest": "MEDIDAJUDICIALTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbccbr_cred_judi",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_cobr"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_cobr": "int"
+    },
+    "pcols": [
+      "co_empr",
+      "sc_cobr"
+    ],
+    "dest_match": [],
+    "leg_to_ora": {},
+    "name_score": 0.5,
+    "col_score": 0.0,
+    "total_score": 2.8,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbccbr_cred_judi",
+        "total": 2.8,
+        "name": 0.5,
+        "col": 0.0
+      },
+      {
+        "tbl": "dbCR.crtbcobr_judi_deta",
+        "total": 2.8,
+        "name": 0.5,
+        "col": 0.0
+      },
+      {
+        "tbl": "dbCR.crtbcobr_judi_dist",
+        "total": 2.8,
+        "name": 0.5,
+        "col": 0.0
+      }
+    ]
+  },
+  {
+    "agg": "movimientoContableCredito_type",
+    "dest": "MOVIMIENTOCONTABLECREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcred_liqd_diar",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "sc_liqd"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "sc_liqd": "bigint"
+    },
+    "pcols": [
+      "sc_liqd",
+      "co_empr",
+      "ti_cred",
+      "aa_cred",
+      "qs_cred"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "sc_liqd"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_liqd": "ID"
+    },
+    "name_score": 0.333,
+    "col_score": 0.283,
+    "total_score": 2.25,
+    "confidence": "LOW",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcred_liqd_diar",
+        "total": 2.25,
+        "name": 0.333,
+        "col": 0.283
+      },
+      {
+        "tbl": "dbCR.crtbcred_part",
+        "total": 2.25,
+        "name": 0.333,
+        "col": 0.283
+      },
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 2.25,
+        "name": 0.333,
+        "col": 0.283
+      }
+    ]
+  },
+  {
+    "agg": "obligacionRol_type",
+    "dest": "OBLIGACIONROL_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbobli_rol",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "ti_desc",
+      "co_rol",
+      "st_regi",
+      "aa_cred"
+    ],
+    "dest_match": [
+      [
+        "CODIGOROL",
+        "co_rol"
+      ],
+      [
+        "TIPODESCUENTO",
+        "ti_desc"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_regi"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_rol": "CODIGOROL",
+      "ti_desc": "TIPODESCUENTO",
+      "st_regi": "ESTADOREGISTRO",
+      "aa_cred": "ANIOCREDITO",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 1.0,
+    "col_score": 0.65,
+    "total_score": 5.95,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbobli_rol",
+        "total": 5.95,
+        "name": 1.0,
+        "col": 0.65
+      },
+      {
+        "tbl": "dbCR.crtbobli_dcto",
+        "total": 3.577,
+        "name": 0.5,
+        "col": 0.777
+      },
+      {
+        "tbl": "dbCR.crtoblig",
+        "total": 3.321,
+        "name": 0.5,
+        "col": 0.521
+      }
+    ]
+  },
+  {
+    "agg": "operacionConyugal_type",
+    "dest": "OPERACIONCONYUGAL_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtboper_dref_liqd",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "qs_refe"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "qs_refe": "smallint"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "va_liqd",
+      "co_tipo_deud",
+      "aa_cred",
+      "qs_refe"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "va_liqd"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "CODIGOTIPODEUD",
+        "co_tipo_deud"
+      ]
+    ],
+    "leg_to_ora": {
+      "va_liqd": "ID",
+      "ti_cred": "TIPOCREDITO",
+      "aa_cred": "ANIOCREDITO",
+      "qs_cred": "SECUENCIACREDITO",
+      "co_tipo_deud": "CODIGOTIPODEUD"
+    },
+    "name_score": 0.5,
+    "col_score": 0.783,
+    "total_score": 3.583,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtboper_dref_liqd",
+        "total": 3.583,
+        "name": 0.5,
+        "col": 0.783
+      },
+      {
+        "tbl": "dbCR.crtbdsal_oper",
+        "total": 3.454,
+        "name": 0.5,
+        "col": 0.654
+      },
+      {
+        "tbl": "dbCR.crtboper_cony",
+        "total": 3.442,
+        "name": 0.5,
+        "col": 0.642
+      }
+    ]
+  },
+  {
+    "agg": "pagoCredito_type",
+    "dest": "PAGOCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtpagos",
+    "ldb": "dbCR",
+    "lkey": [
+      "qs_abno",
+      "qs_cred",
+      "ti_cred",
+      "sc_reca"
+    ],
+    "lkey_types": {
+      "ci_rol": "char"
+    },
+    "pcols": [
+      "qs_abno",
+      "ce_regi",
+      "qs_cred",
+      "ti_cred",
+      "sc_reca",
+      "fx_pago",
+      "aa_cred",
+      "va_pagr",
+      "co_prov",
+      "co_fond",
+      "ti_pago",
+      "va_abno",
+      "ci_rol",
+      "fx_proc",
+      "sc_rol",
+      "ti_inst",
+      "co_paga"
+    ],
+    "dest_match": [
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "CEDULAPROVEEDOR",
+        "ci_rol"
+      ],
+      [
+        "CODIGOFONDO",
+        "co_fond"
+      ],
+      [
+        "CODIGOINSTICION",
+        "ti_inst"
+      ],
+      [
+        "CODIGOPAGO",
+        "co_paga"
+      ],
+      [
+        "CODIGOPROVINCIA",
+        "co_prov"
+      ],
+      [
+        "CODIGOROL",
+        "co_fond"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "ce_regi"
+      ],
+      [
+        "FECHAPAGO",
+        "fx_pago"
+      ],
+      [
+        "FECHAPROCESO",
+        "fx_proc"
+      ],
+      [
+        "SECUENCIAABONO",
+        "qs_abno"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "SECUENCIARECAUDACION",
+        "sc_reca"
+      ],
+      [
+        "SECUENCIAROL",
+        "sc_rol"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "TIPOINSTITUCION",
+        "ti_inst"
+      ],
+      [
+        "TIPOPAGO",
+        "ti_pago"
+      ],
+      [
+        "VALORABONO",
+        "va_abno"
+      ],
+      [
+        "VALORPAGADO",
+        "va_pagr"
+      ]
+    ],
+    "leg_to_ora": {
+      "aa_cred": "ANIOCREDITO",
+      "ci_rol": "CEDULAPROVEEDOR",
+      "co_fond": "CODIGOROL",
+      "ti_inst": "TIPOINSTITUCION",
+      "co_paga": "CODIGOPAGO",
+      "co_prov": "CODIGOPROVINCIA",
+      "ce_regi": "ESTADOREGISTRO",
+      "fx_pago": "FECHAPAGO",
+      "fx_proc": "FECHAPROCESO",
+      "qs_abno": "SECUENCIAABONO",
+      "qs_cred": "SECUENCIACREDITO",
+      "sc_reca": "SECUENCIARECAUDACION",
+      "sc_rol": "SECUENCIAROL",
+      "ti_cred": "TIPOCREDITO",
+      "ti_pago": "TIPOPAGO",
+      "va_abno": "VALORABONO",
+      "va_pagr": "VALORPAGADO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.809,
+    "total_score": 3.609,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtpagos",
+        "total": 3.609,
+        "name": 0.5,
+        "col": 0.809
+      },
+      {
+        "tbl": "dbCR.crtbpago_deta_abgd",
+        "total": 3.398,
+        "name": 0.5,
+        "col": 0.598
+      },
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 3.395,
+        "name": 0.5,
+        "col": 0.595
+      }
+    ],
+    "lkey_source": "NO_UNIQUE_USE_FIRST4_KEYLIKE"
+  },
+  {
+    "agg": "pagosCreditoType",
+    "dest": "PAGOSCREDITOTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcred_prea_whts",
+    "ldb": "dbCR",
+    "lkey": [
+      "sc_prea",
+      "ci_cedu"
+    ],
+    "lkey_types": {
+      "sc_prea": "int",
+      "ci_cedu": "varchar"
+    },
+    "pcols": [
+      "co_comb",
+      "mo_suel_liqd",
+      "fe_ingr",
+      "fe_aprb",
+      "sc_prea",
+      "ci_cedu"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "mo_suel_liqd"
+      ],
+      [
+        "CODIGOCUOTA",
+        "co_comb"
+      ],
+      [
+        "FECHAHORA",
+        "fe_aprb"
+      ],
+      [
+        "CODIGOCONCEPTO",
+        "co_comb"
+      ],
+      [
+        "FECHAPAGO",
+        "fe_ingr"
+      ]
+    ],
+    "leg_to_ora": {
+      "mo_suel_liqd": "ID",
+      "co_comb": "CODIGOCONCEPTO",
+      "fe_aprb": "FECHAHORA",
+      "fe_ingr": "FECHAPAGO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.602,
+    "total_score": 3.402,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 3.402,
+        "name": 0.5,
+        "col": 0.602
+      },
+      {
+        "tbl": "dbCR.crtpagos",
+        "total": 3.284,
+        "name": 0.5,
+        "col": 0.484
+      },
+      {
+        "tbl": "dbCR.crtbcred_liqd_diar",
+        "total": 3.182,
+        "name": 0.5,
+        "col": 0.382
+      }
+    ]
+  },
+  {
+    "agg": "personaCreditoType",
+    "dest": "PERSONACREDITOTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcred_part",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int"
+    },
+    "pcols": [
+      "ti_iden",
+      "nu_iden",
+      "ti_cred",
+      "aa_cred",
+      "qs_cred"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "nu_iden"
+      ],
+      [
+        "TIPOIDENTIFICACION",
+        "ti_iden"
+      ],
+      [
+        "NUMERODIRECCION",
+        "nu_iden"
+      ]
+    ],
+    "leg_to_ora": {
+      "nu_iden": "NUMERODIRECCION",
+      "ti_iden": "TIPOIDENTIFICACION"
+    },
+    "name_score": 0.5,
+    "col_score": 0.346,
+    "total_score": 3.146,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcred_part",
+        "total": 3.146,
+        "name": 0.5,
+        "col": 0.346
+      },
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 3.126,
+        "name": 0.5,
+        "col": 0.326
+      },
+      {
+        "tbl": "dbCR.crtbdcto_cred",
+        "total": 2.999,
+        "name": 0.5,
+        "col": 0.199
+      }
+    ]
+  },
+  {
+    "agg": "personaCxPCxCType",
+    "dest": "PERSONACXPCXCTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdsal_oper",
+    "ldb": "dbCR",
+    "lkey": [
+      "sc_regi",
+      "ci_cedu",
+      "ti_iden",
+      "nu_oper"
+    ],
+    "lkey_types": {
+      "sc_regi": "int",
+      "ci_cedu": "varchar",
+      "ti_iden": "char",
+      "nu_oper": "varchar"
+    },
+    "pcols": [
+      "ti_calf",
+      "ti_iden",
+      "co_tamo",
+      "sc_regi",
+      "ci_cedu",
+      "nu_oper"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "ti_iden"
+      ],
+      [
+        "CODIGOTIPOIDENTIFICACION",
+        "ti_iden"
+      ],
+      [
+        "IDENTIFICACION",
+        "ti_calf"
+      ],
+      [
+        "CODIGOCUENTA",
+        "co_tamo"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_iden": "CODIGOTIPOIDENTIFICACION",
+      "ti_calf": "IDENTIFICACION",
+      "co_tamo": "CODIGOCUENTA"
+    },
+    "name_score": 0.0,
+    "col_score": 0.619,
+    "total_score": 0.919,
+    "confidence": "LOW",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdsal_oper",
+        "total": 0.919,
+        "name": 0.0,
+        "col": 0.619
+      },
+      {
+        "tbl": "dbCR.crtbdgar_real_sibs",
+        "total": 0.804,
+        "name": 0.0,
+        "col": 0.504
+      },
+      {
+        "tbl": "dbCR.crtbdope_conc",
+        "total": 0.804,
+        "name": 0.0,
+        "col": 0.504
+      }
+    ]
+  },
+  {
+    "agg": "planPagoAjuste_type",
+    "dest": "PLANPAGOAJUSTE_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbplan_ajus",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "sc_abno",
+      "nu_dcto"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "sc_abno": "int",
+      "nu_dcto": "smallint"
+    },
+    "pcols": [
+      "qs_cred",
+      "sc_abno",
+      "ti_cred",
+      "mo_dvdo",
+      "mo_cuot",
+      "pl_dias",
+      "mo_capi",
+      "mo_incd",
+      "mo_comi",
+      "mo_intr",
+      "fe_vcto",
+      "mo_inte_pmes",
+      "aa_cred",
+      "mo_segu",
+      "nu_dcto"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIAABONOPROCESO",
+        "sc_abno"
+      ],
+      [
+        "FECHAVENCIMIENTO",
+        "fe_vcto"
+      ],
+      [
+        "MONTOCUOTA",
+        "mo_cuot"
+      ],
+      [
+        "MONTOCAPITAL",
+        "mo_capi"
+      ],
+      [
+        "MONTOINTERES",
+        "mo_intr"
+      ],
+      [
+        "MONTODIVIDENDO",
+        "mo_dvdo"
+      ],
+      [
+        "MONTOSEGURO",
+        "mo_segu"
+      ],
+      [
+        "MONTOSEGUROVEHICULO",
+        "mo_segu"
+      ],
+      [
+        "MONTOCOBROINCENDIO",
+        "mo_incd"
+      ],
+      [
+        "MONTOCOMISION",
+        "mo_comi"
+      ],
+      [
+        "MONTOCOSTOSEMISION",
+        "mo_comi"
+      ],
+      [
+        "MONTOINTERESPRIMERMES",
+        "mo_inte_pmes"
+      ],
+      [
+        "PLAZODIAS",
+        "pl_dias"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_abno": "SECUENCIAABONOPROCESO",
+      "fe_vcto": "FECHAVENCIMIENTO",
+      "mo_cuot": "MONTOCUOTA",
+      "mo_capi": "MONTOCAPITAL",
+      "mo_intr": "MONTOINTERES",
+      "mo_dvdo": "MONTODIVIDENDO",
+      "mo_segu": "MONTOSEGUROVEHICULO",
+      "mo_incd": "MONTOCOBROINCENDIO",
+      "mo_comi": "MONTOCOSTOSEMISION",
+      "mo_inte_pmes": "MONTOINTERESPRIMERMES",
+      "pl_dias": "PLAZODIAS",
+      "aa_cred": "ANIOCREDITO",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 0.667,
+    "col_score": 0.625,
+    "total_score": 4.258,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbplan_ajus",
+        "total": 4.258,
+        "name": 0.667,
+        "col": 0.625
+      },
+      {
+        "tbl": "dbCR.crtplpag",
+        "total": 4.212,
+        "name": 0.667,
+        "col": 0.579
+      },
+      {
+        "tbl": "dbCR.crtplpag_segu_incd",
+        "total": 4.033,
+        "name": 0.667,
+        "col": 0.4
+      }
+    ]
+  },
+  {
+    "agg": "planPago_type",
+    "dest": "PLANPAGO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtplpag",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "nu_dcto",
+      "sc_dcto"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "nu_dcto": "smallint",
+      "sc_dcto": "int"
+    },
+    "pcols": [
+      "ti_cred",
+      "mo_dvdo",
+      "mo_cuot",
+      "mo_abno_mora",
+      "mo_segu",
+      "mo_dvgo_diar",
+      "mo_incd",
+      "sc_dcto",
+      "sc_rol",
+      "mo_rast",
+      "qs_cred",
+      "mo_dvgd_intr",
+      "fe_elim",
+      "st_vcto",
+      "st_pago_fcme",
+      "mo_intr",
+      "in_reve_dvgo",
+      "mo_dvgd_mora",
+      "mo_dvgo_acum",
+      "fe_ultm_envi",
+      "mo_abno_capi",
+      "fx_pago_fcme",
+      "mo_capi",
+      "mo_comi",
+      "mo_abno_intr",
+      "mo_gast_judi",
+      "fe_inic_venc",
+      "mo_inte_pmes",
+      "aa_cred",
+      "nu_dcto"
+    ],
+    "dest_match": [
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "ESTADOGASTOJUDICIAL",
+        "mo_gast_judi"
+      ],
+      [
+        "ESTADOPAGOFCME",
+        "st_pago_fcme"
+      ],
+      [
+        "ESTADOVENCIMIENTO",
+        "st_vcto"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_elim"
+      ],
+      [
+        "FECHAINICVENC",
+        "fe_inic_venc"
+      ],
+      [
+        "FECHAPAGOFCME",
+        "fx_pago_fcme"
+      ],
+      [
+        "FECHAULTIMOENVIO",
+        "fe_ultm_envi"
+      ],
+      [
+        "FECHAVENCIMIENTO",
+        "fe_elim"
+      ],
+      [
+        "INDICADORREVERSODEVENGO",
+        "in_reve_dvgo"
+      ],
+      [
+        "MOABONOMORASOLCA",
+        "mo_abno_mora"
+      ],
+      [
+        "MODEVENGODIARIO",
+        "mo_dvgo_diar"
+      ],
+      [
+        "MONTOABONOCAPITALCAPITAL",
+        "mo_abno_capi"
+      ],
+      [
+        "MONTOABONOINTERESCAPITAL",
+        "mo_abno_intr"
+      ],
+      [
+        "MONTOABONOMORA",
+        "mo_abno_mora"
+      ],
+      [
+        "MONTOCAPITAL",
+        "mo_capi"
+      ],
+      [
+        "MONTOCOBROINCENDIO",
+        "mo_incd"
+      ],
+      [
+        "MONTOCOMISION",
+        "mo_comi"
+      ],
+      [
+        "MONTOCOSTOSEMISION",
+        "mo_comi"
+      ],
+      [
+        "MONTOCUOTA",
+        "mo_cuot"
+      ],
+      [
+        "MONTODEVENGADOINTERES",
+        "mo_dvgd_intr"
+      ],
+      [
+        "MONTODEVENGADOMORA",
+        "mo_dvgd_mora"
+      ],
+      [
+        "MONTODEVENGOACUMULADO",
+        "mo_dvgo_acum"
+      ],
+      [
+        "MONTODIVIDENDO",
+        "mo_dvdo"
+      ],
+      [
+        "MONTOGASTOSJUDICIALES",
+        "mo_gast_judi"
+      ],
+      [
+        "MONTOINTERES",
+        "mo_intr"
+      ],
+      [
+        "MONTOINTERESPRIMERMES",
+        "mo_inte_pmes"
+      ],
+      [
+        "MONTORASTREOSATELITAL",
+        "mo_rast"
+      ],
+      [
+        "MONTOSEGURO",
+        "mo_segu"
+      ],
+      [
+        "MONTOSEGUROVEHICULO",
+        "mo_segu"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "SECUENCIADOCUMENTO",
+        "sc_dcto"
+      ],
+      [
+        "SECUENCIAROL",
+        "sc_rol"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "aa_cred": "ANIOCREDITO",
+      "mo_gast_judi": "MONTOGASTOSJUDICIALES",
+      "st_pago_fcme": "ESTADOPAGOFCME",
+      "st_vcto": "ESTADOVENCIMIENTO",
+      "fe_elim": "FECHAVENCIMIENTO",
+      "fe_inic_venc": "FECHAINICVENC",
+      "fx_pago_fcme": "FECHAPAGOFCME",
+      "fe_ultm_envi": "FECHAULTIMOENVIO",
+      "in_reve_dvgo": "INDICADORREVERSODEVENGO",
+      "mo_abno_mora": "MONTOABONOMORA",
+      "mo_dvgo_diar": "MODEVENGODIARIO",
+      "mo_abno_capi": "MONTOABONOCAPITALCAPITAL",
+      "mo_abno_intr": "MONTOABONOINTERESCAPITAL",
+      "mo_capi": "MONTOCAPITAL",
+      "mo_incd": "MONTOCOBROINCENDIO",
+      "mo_comi": "MONTOCOSTOSEMISION",
+      "mo_cuot": "MONTOCUOTA",
+      "mo_dvgd_intr": "MONTODEVENGADOINTERES",
+      "mo_dvgd_mora": "MONTODEVENGADOMORA",
+      "mo_dvgo_acum": "MONTODEVENGOACUMULADO",
+      "mo_dvdo": "MONTODIVIDENDO",
+      "mo_intr": "MONTOINTERES",
+      "mo_inte_pmes": "MONTOINTERESPRIMERMES",
+      "mo_rast": "MONTORASTREOSATELITAL",
+      "mo_segu": "MONTOSEGUROVEHICULO",
+      "qs_cred": "SECUENCIACREDITO",
+      "sc_dcto": "SECUENCIADOCUMENTO",
+      "sc_rol": "SECUENCIAROL",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 1.0,
+    "col_score": 0.682,
+    "total_score": 5.682,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtplpag",
+        "total": 5.682,
+        "name": 1.0,
+        "col": 0.682
+      },
+      {
+        "tbl": "dbCR.crtplpag_segu_incd",
+        "total": 5.272,
+        "name": 1.0,
+        "col": 0.272
+      },
+      {
+        "tbl": "dbCR.crtplpag_segu_vehi",
+        "total": 5.256,
+        "name": 1.0,
+        "col": 0.256
+      }
+    ]
+  },
+  {
+    "agg": "plazoVencido_type",
+    "dest": "PLAZOVENCIDO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcred_plzo_venc",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_cred_plzo"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_cred_plzo": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "mo_abno_capi",
+      "ti_cred",
+      "fe_carg",
+      "fe_elim",
+      "sc_cred_plzo",
+      "st_cred_plzo",
+      "fe_modi",
+      "mo_abno_intr",
+      "co_empr",
+      "aa_cred"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIA",
+        "sc_cred_plzo"
+      ],
+      [
+        "ESTADO",
+        "st_cred_plzo"
+      ],
+      [
+        "FECHACARGA",
+        "fe_carg"
+      ],
+      [
+        "FECHACREACION",
+        "fe_elim"
+      ],
+      [
+        "FECHAMODIFICACION",
+        "fe_modi"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_elim"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "MONTOABONOCAPITALCAPITAL",
+        "mo_abno_capi"
+      ],
+      [
+        "MONTOABONOINTERESCAPITAL",
+        "mo_abno_intr"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_cred_plzo": "SECUENCIA",
+      "st_cred_plzo": "ESTADO",
+      "fe_carg": "FECHACARGA",
+      "fe_elim": "FECHAELIMINACION",
+      "fe_modi": "FECHAMODIFICACION",
+      "aa_cred": "ANIOCREDITO",
+      "co_empr": "CODIGOEMPRESA",
+      "mo_abno_capi": "MONTOABONOCAPITALCAPITAL",
+      "mo_abno_intr": "MONTOABONOINTERESCAPITAL",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 0.0,
+    "col_score": 0.639,
+    "total_score": 0.639,
+    "confidence": "LOW",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcred_plzo_venc",
+        "total": 0.639,
+        "name": 0.0,
+        "col": 0.639
+      },
+      {
+        "tbl": "dbCR.crtbgest_mail",
+        "total": 0.578,
+        "name": 0.0,
+        "col": 0.578
+      },
+      {
+        "tbl": "dbCR.crtoblig",
+        "total": 0.573,
+        "name": 0.0,
+        "col": 0.573
+      }
+    ]
+  },
+  {
+    "agg": "precalificacionCredito_type",
+    "dest": "PRECALIFICACIONCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbccbr_cred_judi",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_cobr"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_cobr": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "mo_sald_venc",
+      "mo_sald_cred",
+      "co_medi",
+      "mo_otro",
+      "fe_elim",
+      "ti_cobr",
+      "co_usua_elim",
+      "co_empr",
+      "aa_cred",
+      "sc_cobr"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIAPRECALIFICACION",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "CODIGOFONDO",
+        "co_medi"
+      ],
+      [
+        "ANIO",
+        "aa_cred"
+      ],
+      [
+        "MONTOCREDITO",
+        "mo_sald_cred"
+      ],
+      [
+        "MONTODIVIDENDO",
+        "mo_sald_venc"
+      ],
+      [
+        "MONTOOTROSGASTOS",
+        "mo_otro"
+      ],
+      [
+        "TIPOGARANTIA",
+        "ti_cobr"
+      ],
+      [
+        "FECHACREACION",
+        "fe_elim"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_elim"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "CODIGOPRECALIFICACION",
+        "co_usua_elim"
+      ]
+    ],
+    "leg_to_ora": {
+      "qs_cred": "SECUENCIAPRECALIFICACION",
+      "ti_cred": "TIPOCREDITO",
+      "co_medi": "CODIGOFONDO",
+      "aa_cred": "ANIO",
+      "mo_sald_cred": "MONTOCREDITO",
+      "mo_sald_venc": "MONTODIVIDENDO",
+      "mo_otro": "MONTOOTROSGASTOS",
+      "ti_cobr": "TIPOGARANTIA",
+      "fe_elim": "FECHAELIMINACION",
+      "co_empr": "CODIGOEMPRESA",
+      "co_usua_elim": "CODIGOPRECALIFICACION"
+    },
+    "name_score": 0.5,
+    "col_score": 0.387,
+    "total_score": 3.187,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbccbr_cred_judi",
+        "total": 3.187,
+        "name": 0.5,
+        "col": 0.387
+      },
+      {
+        "tbl": "dbCR.crtbccbr_cred_venc",
+        "total": 3.153,
+        "name": 0.5,
+        "col": 0.353
+      },
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 3.131,
+        "name": 0.5,
+        "col": 0.331
+      }
+    ]
+  },
+  {
+    "agg": "procesoAccionType",
+    "dest": "PROCESOACCIONTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "cttbproc_obse_tran",
+    "ldb": "dbCT",
+    "lkey": [
+      "co_proc_obse",
+      "co_apli",
+      "co_func",
+      "nu_tran",
+      "ti_loca"
+    ],
+    "lkey_types": {
+      "co_proc_obse": "smallint",
+      "co_apli": "char",
+      "co_func": "char",
+      "nu_tran": "smallint",
+      "ti_loca": "char"
+    },
+    "pcols": [
+      "nu_tran",
+      "co_proc_obse",
+      "co_apli",
+      "co_func",
+      "ti_loca"
+    ],
+    "dest_match": [
+      [
+        "PROCESO",
+        "co_proc_obse"
+      ],
+      [
+        "ACCION",
+        "nu_tran"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_proc_obse": "PROCESO",
+      "nu_tran": "ACCION"
+    },
+    "name_score": 1.0,
+    "col_score": 0.425,
+    "total_score": 5.425,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCT.cttbproc_obse_tran",
+        "total": 5.425,
+        "name": 1.0,
+        "col": 0.425
+      },
+      {
+        "tbl": "dbCR.crtbproc_reve_masi",
+        "total": 3.013,
+        "name": 0.5,
+        "col": 0.212
+      },
+      {
+        "tbl": "dbFC.fctbAPS_acci",
+        "total": 2.925,
+        "name": 0.5,
+        "col": 0.425
+      }
+    ]
+  },
+  {
+    "agg": "recuperacionConvenio_type",
+    "dest": "RECUPERACIONCONVENIO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbrecu_conv",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "qs_abno"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "qs_abno": "smallint"
+    },
+    "pcols": [
+      "co_usua_conf",
+      "ti_cred",
+      "fe_mvto",
+      "st_autr",
+      "co_usua_revz",
+      "ti_recp",
+      "qs_abno",
+      "fe_revz",
+      "mo_mvto",
+      "co_usua_liqd",
+      "qs_cred",
+      "st_regi",
+      "ti_revz",
+      "nu_cpbt_cble",
+      "fe_abno",
+      "nu_dias_atra",
+      "ds_liqd",
+      "st_mvto",
+      "co_rol",
+      "aa_cred"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "ds_liqd"
+      ],
+      [
+        "SECUENCIAABONO",
+        "qs_abno"
+      ],
+      [
+        "TIPORECUPERACION",
+        "ti_recp"
+      ],
+      [
+        "MONTOMOVIMIENTO",
+        "mo_mvto"
+      ],
+      [
+        "CODIGOROL",
+        "co_rol"
+      ],
+      [
+        "NUMEROCOMPROBANTECONTABLE",
+        "nu_cpbt_cble"
+      ],
+      [
+        "ESTADOMOVIMIENTO",
+        "st_mvto"
+      ],
+      [
+        "ESTADOAUTORIZACION",
+        "st_autr"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_regi"
+      ],
+      [
+        "TIPOREVERSO",
+        "ti_revz"
+      ],
+      [
+        "FECHAABONO",
+        "fe_abno"
+      ],
+      [
+        "FECHAMOVIMIENTO",
+        "fe_mvto"
+      ],
+      [
+        "FECHAREVERSO",
+        "fe_revz"
+      ],
+      [
+        "CODIGOUSUARIOLIQUIDA",
+        "co_usua_liqd"
+      ],
+      [
+        "CODIGOUSUARIOCONFIRMA",
+        "co_usua_conf"
+      ],
+      [
+        "CODIGOUSUARIOREVERSA",
+        "co_usua_revz"
+      ],
+      [
+        "ESTADOVENCIMIENTO",
+        "st_mvto"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "DESCRIPCIONLIQD",
+        "ds_liqd"
+      ],
+      [
+        "NUMERODIASATRAZO",
+        "nu_dias_atra"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "ds_liqd": "DESCRIPCIONLIQD",
+      "qs_abno": "SECUENCIAABONO",
+      "ti_recp": "TIPORECUPERACION",
+      "mo_mvto": "MONTOMOVIMIENTO",
+      "co_rol": "CODIGOROL",
+      "nu_cpbt_cble": "NUMEROCOMPROBANTECONTABLE",
+      "st_mvto": "ESTADOVENCIMIENTO",
+      "st_autr": "ESTADOAUTORIZACION",
+      "st_regi": "ESTADOREGISTRO",
+      "ti_revz": "TIPOREVERSO",
+      "fe_abno": "FECHAABONO",
+      "fe_mvto": "FECHAMOVIMIENTO",
+      "fe_revz": "FECHAREVERSO",
+      "co_usua_liqd": "CODIGOUSUARIOLIQUIDA",
+      "co_usua_conf": "CODIGOUSUARIOCONFIRMA",
+      "co_usua_revz": "CODIGOUSUARIOREVERSA",
+      "aa_cred": "ANIOCREDITO",
+      "nu_dias_atra": "NUMERODIASATRAZO",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 1.0,
+    "col_score": 0.659,
+    "total_score": 5.959,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbrecu_conv",
+        "total": 5.959,
+        "name": 1.0,
+        "col": 0.659
+      },
+      {
+        "tbl": "dbCR.crtbconv_pago",
+        "total": 3.203,
+        "name": 0.5,
+        "col": 0.403
+      },
+      {
+        "tbl": "dbCR.crtbdeud_conv",
+        "total": 3.149,
+        "name": 0.5,
+        "col": 0.349
+      }
+    ]
+  },
+  {
+    "agg": "recuperacionCredito_type",
+    "dest": "RECUPERACIONCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbrecu_conv",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "qs_abno"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "qs_abno": "smallint"
+    },
+    "pcols": [
+      "ti_cred",
+      "fe_cble",
+      "fe_mvto",
+      "co_usua_revz",
+      "ti_recp",
+      "qs_abno",
+      "fe_revz",
+      "mo_mvto",
+      "co_usua_liqd",
+      "qs_cred",
+      "st_regi",
+      "ti_revz",
+      "fe_abno",
+      "nu_cpbt_cble",
+      "nu_dias_atra",
+      "ds_liqd",
+      "st_mvto",
+      "co_rol",
+      "aa_cred"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "ds_liqd"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "CODIGOROL",
+        "co_rol"
+      ],
+      [
+        "CODIGOUSUARIOLIQUIDA",
+        "co_usua_liqd"
+      ],
+      [
+        "CODIGOUSUARIOREVERSA",
+        "co_usua_revz"
+      ],
+      [
+        "DESCRIPCIONLIQUIDACION",
+        "ds_liqd"
+      ],
+      [
+        "ESTADOMOVIMIENTO",
+        "st_mvto"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_regi"
+      ],
+      [
+        "FECHAABONO",
+        "fe_abno"
+      ],
+      [
+        "FECHACONTABLE",
+        "fe_cble"
+      ],
+      [
+        "FECHAMOVIMIENTO",
+        "fe_mvto"
+      ],
+      [
+        "FECHAREVERSION",
+        "fe_revz"
+      ],
+      [
+        "MONTOMOVIMIENTO",
+        "mo_mvto"
+      ],
+      [
+        "NUMEROCOMPROBANTECONTABLE",
+        "nu_cpbt_cble"
+      ],
+      [
+        "NUMERODIASATRASO",
+        "nu_dias_atra"
+      ],
+      [
+        "SECUENCIAABONO",
+        "qs_abno"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "TIPORECUPERACION",
+        "ti_recp"
+      ],
+      [
+        "TIPOREVERSO",
+        "ti_revz"
+      ]
+    ],
+    "leg_to_ora": {
+      "ds_liqd": "DESCRIPCIONLIQUIDACION",
+      "aa_cred": "ANIOCREDITO",
+      "co_rol": "CODIGOROL",
+      "co_usua_liqd": "CODIGOUSUARIOLIQUIDA",
+      "co_usua_revz": "CODIGOUSUARIOREVERSA",
+      "st_mvto": "ESTADOMOVIMIENTO",
+      "st_regi": "ESTADOREGISTRO",
+      "fe_abno": "FECHAABONO",
+      "fe_cble": "FECHACONTABLE",
+      "fe_mvto": "FECHAMOVIMIENTO",
+      "fe_revz": "FECHAREVERSION",
+      "mo_mvto": "MONTOMOVIMIENTO",
+      "nu_cpbt_cble": "NUMEROCOMPROBANTECONTABLE",
+      "nu_dias_atra": "NUMERODIASATRASO",
+      "qs_abno": "SECUENCIAABONO",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO",
+      "ti_recp": "TIPORECUPERACION",
+      "ti_revz": "TIPOREVERSO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.688,
+    "total_score": 3.488,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbrecu_conv",
+        "total": 3.488,
+        "name": 0.5,
+        "col": 0.688
+      },
+      {
+        "tbl": "dbCR.crtbccbr_cred_venc",
+        "total": 3.16,
+        "name": 0.5,
+        "col": 0.36
+      },
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 3.157,
+        "name": 0.5,
+        "col": 0.357
+      }
+    ]
+  },
+  {
+    "agg": "referenciaCliente_type",
+    "dest": "REFERENCIACLIENTE_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "sfct_afiliado_referencias",
+    "ldb": "dbFC",
+    "lkey": [
+      "sc_refe",
+      "co_tref",
+      "ci_cedula"
+    ],
+    "lkey_types": {
+      "ci_cedula": "char"
+    },
+    "pcols": [
+      "sc_refe",
+      "st_cart",
+      "co_tref",
+      "fe_ingr",
+      "ci_cedula"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIACREDITO",
+        "sc_refe"
+      ],
+      [
+        "CODIGOCEDU",
+        "co_tref"
+      ],
+      [
+        "CODIGOTIPODEUD",
+        "co_tref"
+      ],
+      [
+        "FECHAINGRESO",
+        "fe_ingr"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_cart"
+      ],
+      [
+        "CODIGORFAM",
+        "co_tref"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_refe": "SECUENCIACREDITO",
+      "co_tref": "CODIGORFAM",
+      "fe_ingr": "FECHAINGRESO",
+      "st_cart": "ESTADOREGISTRO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.353,
+    "total_score": 2.853,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbFC.sfct_afiliado_referencias",
+        "total": 2.853,
+        "name": 0.5,
+        "col": 0.353
+      },
+      {
+        "tbl": "dbFC.sfct_referencias",
+        "total": 2.667,
+        "name": 0.5,
+        "col": 0.167
+      },
+      {
+        "tbl": "dbCR.crtbprec",
+        "total": 1.025,
+        "name": 0.0,
+        "col": 0.725
+      }
+    ],
+    "lkey_source": "UNIQUE_COMBO_TESTED(1037=1037)"
+  },
+  {
+    "agg": "referenciaDeudor_type",
+    "dest": "REFERENCIADEUDOR_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdeud_conv",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "sc_conv",
+      "co_tipo_deud"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "sc_conv": "int",
+      "co_tipo_deud": "smallint"
+    },
+    "pcols": [
+      "qs_cred",
+      "fe_modi_deud",
+      "fe_elim_deud",
+      "ti_cred",
+      "st_regi",
+      "fe_crea_deud",
+      "co_tipo_deud",
+      "aa_cred",
+      "co_empr",
+      "sc_conv"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "fe_modi_deud"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "CODIGOTIPODEUDOR",
+        "co_tipo_deud"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_regi"
+      ],
+      [
+        "FECHACREACION",
+        "fe_crea_deud"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_elim_deud"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "fe_modi_deud": "ID",
+      "aa_cred": "ANIOCREDITO",
+      "co_tipo_deud": "CODIGOTIPODEUDOR",
+      "st_regi": "ESTADOREGISTRO",
+      "fe_crea_deud": "FECHACREACION",
+      "fe_elim_deud": "FECHAELIMINACION",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.57,
+    "total_score": 3.37,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdeud_conv",
+        "total": 3.37,
+        "name": 0.5,
+        "col": 0.57
+      },
+      {
+        "tbl": "dbCR.crtbtipo_deud",
+        "total": 2.954,
+        "name": 0.5,
+        "col": 0.154
+      },
+      {
+        "tbl": "dbCR.crtbtipo_deud_sibs",
+        "total": 2.877,
+        "name": 0.5,
+        "col": 0.077
+      }
+    ]
+  },
+  {
+    "agg": "refinanciamientoCreditoType",
+    "dest": "REFINANCIAMIENTOCREDITOTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbcred_prea_whts",
+    "ldb": "dbCR",
+    "lkey": [
+      "sc_prea",
+      "ci_cedu"
+    ],
+    "lkey_types": {
+      "sc_prea": "int",
+      "ci_cedu": "varchar"
+    },
+    "pcols": [
+      "mo_suel_liqd",
+      "fe_elim",
+      "sc_prea",
+      "ci_cedu"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "mo_suel_liqd"
+      ],
+      [
+        "MONTO",
+        "mo_suel_liqd"
+      ],
+      [
+        "FECHAREPROGRAMACION",
+        "fe_elim"
+      ]
+    ],
+    "leg_to_ora": {
+      "mo_suel_liqd": "MONTO",
+      "fe_elim": "FECHAREPROGRAMACION"
+    },
+    "name_score": 0.5,
+    "col_score": 0.398,
+    "total_score": 3.198,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 3.198,
+        "name": 0.5,
+        "col": 0.398
+      },
+      {
+        "tbl": "dbCR.crtbcred_liqd_diar",
+        "total": 3.083,
+        "name": 0.5,
+        "col": 0.283
+      },
+      {
+        "tbl": "dbCR.crtbccbr_cred_judi",
+        "total": 3.056,
+        "name": 0.5,
+        "col": 0.256
+      }
+    ]
+  },
+  {
+    "agg": "reporteSBSCabecera_type",
+    "dest": "REPORTESBSCABECERA_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtrepo_sobr",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_sobr",
+      "co_usua"
+    ],
+    "lkey_types": {
+      "co_usua": "int"
+    },
+    "pcols": [
+      "co_afil",
+      "co_usua",
+      "fe_devo",
+      "fe_cort"
+    ],
+    "dest_match": [
+      [
+        "CODIGOESTRUCTURA",
+        "co_usua"
+      ],
+      [
+        "CODIGOENTIDAD",
+        "co_afil"
+      ],
+      [
+        "FECHACORTE",
+        "fe_cort"
+      ],
+      [
+        "FECHAGENERACION",
+        "fe_devo"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_devo"
+      ],
+      [
+        "CODIGOUSUARIOGENERACION",
+        "co_usua"
+      ],
+      [
+        "CODIGOUSUARIOCONFIRMA",
+        "co_usua"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_usua": "CODIGOUSUARIOCONFIRMA",
+      "co_afil": "CODIGOENTIDAD",
+      "fe_cort": "FECHACORTE",
+      "fe_devo": "FECHAELIMINACION"
+    },
+    "name_score": 0.5,
+    "col_score": 0.407,
+    "total_score": 3.207,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtrepo_sobr",
+        "total": 3.207,
+        "name": 0.5,
+        "col": 0.407
+      },
+      {
+        "tbl": "dbCR.crtrepo_abno",
+        "total": 3.166,
+        "name": 0.5,
+        "col": 0.366
+      },
+      {
+        "tbl": "dbCR.crtbrepo_ocan_sapl",
+        "total": 3.101,
+        "name": 0.5,
+        "col": 0.301
+      }
+    ],
+    "lkey_source": "EMPTY_TBL_USE_FIRST3"
+  },
+  {
+    "agg": "reporteSBSDetalle_type",
+    "dest": "REPORTESBSDETALLE_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtrepo_sobr",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_sobr",
+      "co_usua"
+    ],
+    "lkey_types": {
+      "co_usua": "int"
+    },
+    "pcols": [
+      "co_usua",
+      "co_rol",
+      "co_inst",
+      "fe_devo",
+      "fe_cort"
+    ],
+    "dest_match": [
+      [
+        "CODIGOESTR",
+        "co_rol"
+      ],
+      [
+        "CODIGOENTI",
+        "co_inst"
+      ],
+      [
+        "FECHACORT",
+        "fe_cort"
+      ],
+      [
+        "CODIGOUSUARIOGENERAL",
+        "co_usua"
+      ],
+      [
+        "CODIGOUSUARIOCONF",
+        "co_usua"
+      ],
+      [
+        "FECHACONF",
+        "fe_cort"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_devo"
+      ],
+      [
+        "CODIGOENTICOPECANC",
+        "co_inst"
+      ],
+      [
+        "FECHACORTCOPECANC",
+        "fe_cort"
+      ],
+      [
+        "CODIGOUSUARIOGENERALCOPECANC",
+        "co_usua"
+      ],
+      [
+        "CODIGOUSUARIOCONFCOPECANC",
+        "co_usua"
+      ],
+      [
+        "CODIGOENTICOPECONC",
+        "co_inst"
+      ],
+      [
+        "FECHACORTCOPECONC",
+        "fe_cort"
+      ],
+      [
+        "CODIGOUSUARIOGENERALCOPECONC",
+        "co_usua"
+      ],
+      [
+        "CODIGOUSUARIOCONFCOPECONC",
+        "co_usua"
+      ],
+      [
+        "FECHACORTCSALOPER",
+        "fe_cort"
+      ],
+      [
+        "CODIGOUSUARIOGENERALCSALOPER",
+        "co_usua"
+      ],
+      [
+        "CODIGOUSUARIOCONFCSALOPER",
+        "co_usua"
+      ],
+      [
+        "FECHACORTCSUJRIES",
+        "fe_cort"
+      ],
+      [
+        "CODIGOUSUARIOGENERALCSUJRIES",
+        "co_usua"
+      ],
+      [
+        "CODIGOUSUARIOCONFCSUJRIES",
+        "co_usua"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_rol": "CODIGOESTR",
+      "co_inst": "CODIGOENTICOPECONC",
+      "fe_cort": "FECHACORTCSUJRIES",
+      "co_usua": "CODIGOUSUARIOCONFCSUJRIES",
+      "fe_devo": "FECHAELIMINACION"
+    },
+    "name_score": 0.5,
+    "col_score": 0.281,
+    "total_score": 3.081,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtrepo_sobr",
+        "total": 3.081,
+        "name": 0.5,
+        "col": 0.281
+      },
+      {
+        "tbl": "dbCR.crtbrepo_sobr",
+        "total": 3.044,
+        "name": 0.5,
+        "col": 0.244
+      },
+      {
+        "tbl": "dbCR.crtbrepo_ocan_sapl",
+        "total": 3.043,
+        "name": 0.5,
+        "col": 0.243
+      }
+    ],
+    "lkey_source": "EMPTY_TBL_USE_FIRST3"
+  },
+  {
+    "agg": "reporteSBSGaranteCodeudor_type",
+    "dest": "REPORTESBSGARANTECODEUDOR_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "cttbrepo_gene",
+    "ldb": "dbCT",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "nu_oper_canc",
+      "nu_rol_indi",
+      "nu_plaz",
+      "co_inst_gara",
+      "fe_naci",
+      "ti_calf",
+      "ti_cred",
+      "aa_cred"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "nu_rol_indi"
+      ],
+      [
+        "SECUENCIAREGISTRO",
+        "qs_cred"
+      ],
+      [
+        "NUMEROCEDULA",
+        "nu_plaz"
+      ],
+      [
+        "TIPOIDENTIFICACION",
+        "ti_calf"
+      ],
+      [
+        "NUMEROOPERACIONES",
+        "nu_oper_canc"
+      ],
+      [
+        "CODIGOCAUSAELIMINACIONGARANTIA",
+        "co_inst_gara"
+      ],
+      [
+        "FECHAELIMINACION",
+        "fe_naci"
+      ]
+    ],
+    "leg_to_ora": {
+      "nu_rol_indi": "ID",
+      "qs_cred": "SECUENCIAREGISTRO",
+      "nu_plaz": "NUMEROCEDULA",
+      "ti_calf": "TIPOIDENTIFICACION",
+      "nu_oper_canc": "NUMEROOPERACIONES",
+      "co_inst_gara": "CODIGOCAUSAELIMINACIONGARANTIA",
+      "fe_naci": "FECHAELIMINACION"
+    },
+    "name_score": 0.333,
+    "col_score": 0.538,
+    "total_score": 2.205,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCT.cttbrepo_gene",
+        "total": 2.205,
+        "name": 0.333,
+        "col": 0.538
+      },
+      {
+        "tbl": "dbCR.crtbrepo_sobr",
+        "total": 2.197,
+        "name": 0.333,
+        "col": 0.23
+      },
+      {
+        "tbl": "dbCR.crtbrepo_ocan_sapl",
+        "total": 2.191,
+        "name": 0.333,
+        "col": 0.224
+      }
+    ]
+  },
+  {
+    "agg": "reporteSBSGarantiaReal_type",
+    "dest": "REPORTESBSGARANTIAREAL_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbinfo_gara_real_sibs",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "fe_cort"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "fe_cort": "datetime"
+    },
+    "pcols": [
+      "qs_cred",
+      "st_cred",
+      "nu_gara_oper",
+      "ti_gara",
+      "nu_regi",
+      "ds_gara",
+      "ti_cred",
+      "aa_cred",
+      "fe_cort"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIAREGISTRO",
+        "qs_cred"
+      ],
+      [
+        "NUMEROIDENTIFICACION",
+        "nu_gara_oper"
+      ],
+      [
+        "NUMEROOPERACIONES",
+        "nu_gara_oper"
+      ],
+      [
+        "TIPOGARANTIA",
+        "ti_gara"
+      ],
+      [
+        "NUMEROGARANTIA",
+        "nu_gara_oper"
+      ],
+      [
+        "NUMEROREGISTROGARANTIA",
+        "nu_regi"
+      ],
+      [
+        "DESCRIPCIONGARANTIA",
+        "ds_gara"
+      ],
+      [
+        "ESTADOREGISTRO",
+        "st_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "qs_cred": "SECUENCIAREGISTRO",
+      "nu_gara_oper": "NUMEROGARANTIA",
+      "ti_gara": "TIPOGARANTIA",
+      "nu_regi": "NUMEROREGISTROGARANTIA",
+      "ds_gara": "DESCRIPCIONGARANTIA",
+      "st_cred": "ESTADOREGISTRO"
+    },
+    "name_score": 0.667,
+    "col_score": 0.483,
+    "total_score": 4.117,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbinfo_gara_real_sibs",
+        "total": 4.117,
+        "name": 0.667,
+        "col": 0.483
+      },
+      {
+        "tbl": "dbCR.crtbgara_real",
+        "total": 3.948,
+        "name": 0.667,
+        "col": 0.315
+      },
+      {
+        "tbl": "dbCR.crtbgara_real_hist",
+        "total": 3.948,
+        "name": 0.667,
+        "col": 0.315
+      }
+    ]
+  },
+  {
+    "agg": "reporteSBSOperacionAnterior_type",
+    "dest": "REPORTESBSOPERACIONANTERIOR_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbctrl_oper_ante_sibs",
+    "ldb": "dbCR",
+    "lkey": [
+      "sc_regi",
+      "sc_regi_arch",
+      "ci_cedu",
+      "nu_oper",
+      "nu_oper_ante"
+    ],
+    "lkey_types": {
+      "sc_regi": "int",
+      "sc_regi_arch": "int",
+      "ci_cedu": "varchar",
+      "nu_oper": "varchar",
+      "nu_oper_ante": "varchar"
+    },
+    "pcols": [
+      "sc_regi",
+      "fe_ingr",
+      "nu_oper_ante",
+      "nu_oper",
+      "sc_regi_arch",
+      "ci_cedu"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIAREGISTRO",
+        "sc_regi"
+      ],
+      [
+        "NUMEROOPERACIONES",
+        "nu_oper"
+      ],
+      [
+        "NUMEROOPERACIONANTERIOR",
+        "nu_oper_ante"
+      ],
+      [
+        "FECHACONCESION",
+        "fe_ingr"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_regi": "SECUENCIAREGISTRO",
+      "nu_oper": "NUMEROOPERACIONES",
+      "nu_oper_ante": "NUMEROOPERACIONANTERIOR",
+      "fe_ingr": "FECHACONCESION"
+    },
+    "name_score": 0.667,
+    "col_score": 0.506,
+    "total_score": 4.139,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbctrl_oper_ante_sibs",
+        "total": 4.139,
+        "name": 0.667,
+        "col": 0.506
+      },
+      {
+        "tbl": "dbCR.crtbdope_ante_sibs",
+        "total": 2.738,
+        "name": 0.333,
+        "col": 0.771
+      },
+      {
+        "tbl": "dbCR.crtbdsal_oper",
+        "total": 2.69,
+        "name": 0.333,
+        "col": 0.724
+      }
+    ]
+  },
+  {
+    "agg": "reporteSBSOperacionCancelada_type",
+    "dest": "REPORTESBSOPERACIONCANCELADA_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdsal_oper",
+    "ldb": "dbCR",
+    "lkey": [
+      "sc_regi",
+      "ci_cedu",
+      "ti_iden",
+      "nu_oper"
+    ],
+    "lkey_types": {
+      "sc_regi": "int",
+      "ci_cedu": "varchar",
+      "ti_iden": "char",
+      "nu_oper": "varchar"
+    },
+    "pcols": [
+      "sc_regi",
+      "ti_calf",
+      "ti_iden",
+      "nu_oper",
+      "ci_cedu"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "ti_iden"
+      ],
+      [
+        "SECUENCIAREGISTRO",
+        "sc_regi"
+      ],
+      [
+        "IDENTIFICACION",
+        "ti_calf"
+      ],
+      [
+        "TIPOIDENTIFICACION",
+        "ti_iden"
+      ],
+      [
+        "NUMEROOPERACIONES",
+        "nu_oper"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_iden": "TIPOIDENTIFICACION",
+      "sc_regi": "SECUENCIAREGISTRO",
+      "ti_calf": "IDENTIFICACION",
+      "nu_oper": "NUMEROOPERACIONES"
+    },
+    "name_score": 0.333,
+    "col_score": 0.602,
+    "total_score": 2.569,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdsal_oper",
+        "total": 2.569,
+        "name": 0.333,
+        "col": 0.602
+      },
+      {
+        "tbl": "dbCR.crtbdsal_oper_sibs",
+        "total": 2.569,
+        "name": 0.333,
+        "col": 0.602
+      },
+      {
+        "tbl": "dbCT.cttbrepo_gene",
+        "total": 2.323,
+        "name": 0.333,
+        "col": 0.656
+      }
+    ]
+  },
+  {
+    "agg": "reporteSBSOperacionConcedida_type",
+    "dest": "REPORTESBSOPERACIONCONCEDIDA_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdsal_oper",
+    "ldb": "dbCR",
+    "lkey": [
+      "sc_regi",
+      "ci_cedu",
+      "ti_iden",
+      "nu_oper"
+    ],
+    "lkey_types": {
+      "sc_regi": "int",
+      "ci_cedu": "varchar",
+      "ti_iden": "char",
+      "nu_oper": "varchar"
+    },
+    "pcols": [
+      "co_tipo_cred",
+      "mo_cuot",
+      "fe_docu",
+      "pr_inte",
+      "nu_oper",
+      "co_tamo",
+      "mo_prov_requ",
+      "sc_regi",
+      "ti_iden",
+      "mo_capi_cred",
+      "ci_cedu"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "ti_iden"
+      ],
+      [
+        "SECUENCIAREGISTRO",
+        "sc_regi"
+      ],
+      [
+        "TIPOIDENTIFICACION",
+        "ti_iden"
+      ],
+      [
+        "NUMEROOPERACIONES",
+        "nu_oper"
+      ],
+      [
+        "CODIGOPROVINCIA",
+        "mo_prov_requ"
+      ],
+      [
+        "CODIGOCANTON",
+        "co_tamo"
+      ],
+      [
+        "MONTOCREDITO",
+        "mo_capi_cred"
+      ],
+      [
+        "MONTOTEA",
+        "mo_cuot"
+      ],
+      [
+        "TASAINTERES",
+        "pr_inte"
+      ],
+      [
+        "FECHAVENCIMIENTO",
+        "fe_docu"
+      ],
+      [
+        "COTIPOCRED",
+        "co_tipo_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_iden": "TIPOIDENTIFICACION",
+      "sc_regi": "SECUENCIAREGISTRO",
+      "nu_oper": "NUMEROOPERACIONES",
+      "mo_prov_requ": "CODIGOPROVINCIA",
+      "co_tamo": "CODIGOCANTON",
+      "mo_capi_cred": "MONTOCREDITO",
+      "mo_cuot": "MONTOTEA",
+      "pr_inte": "TASAINTERES",
+      "fe_docu": "FECHAVENCIMIENTO",
+      "co_tipo_cred": "COTIPOCRED"
+    },
+    "name_score": 0.333,
+    "col_score": 0.461,
+    "total_score": 2.427,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdsal_oper",
+        "total": 2.427,
+        "name": 0.333,
+        "col": 0.461
+      },
+      {
+        "tbl": "dbCR.crtbrepo_sobr",
+        "total": 2.369,
+        "name": 0.333,
+        "col": 0.403
+      },
+      {
+        "tbl": "dbCT.cttbrepo_gene",
+        "total": 2.287,
+        "name": 0.333,
+        "col": 0.62
+      }
+    ]
+  },
+  {
+    "agg": "reporteSBSSaldoOperacion_type",
+    "dest": "REPORTESBSSALDOOPERACION_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbdsal_oper",
+    "ldb": "dbCR",
+    "lkey": [
+      "sc_regi",
+      "ci_cedu",
+      "ti_iden",
+      "nu_oper"
+    ],
+    "lkey_types": {
+      "sc_regi": "int",
+      "ci_cedu": "varchar",
+      "ti_iden": "char",
+      "nu_oper": "varchar"
+    },
+    "pcols": [
+      "mo_cuot",
+      "pr_inte_mora",
+      "nu_oper",
+      "mo_cart_cast",
+      "mo_suje_prov",
+      "mo_venc",
+      "co_tamo",
+      "ti_calf",
+      "sc_regi",
+      "mo_prov_cons",
+      "mo_cnta_indv",
+      "mo_dema_judi",
+      "co_tipo_cred",
+      "pr_inte",
+      "mo_prov_requ",
+      "ti_iden",
+      "mo_capi_cred",
+      "mo_ndev_inte",
+      "mo_cost_oper",
+      "nu_dias_moro",
+      "ci_cedu"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "ti_iden"
+      ],
+      [
+        "SECUENCIAREGISTRO",
+        "sc_regi"
+      ],
+      [
+        "TIPOIDENTIFICACION",
+        "ti_iden"
+      ],
+      [
+        "NUMEROOPERACIONES",
+        "nu_oper"
+      ],
+      [
+        "TIPOCALIFICACION",
+        "ti_calf"
+      ],
+      [
+        "TASAINTERES",
+        "pr_inte"
+      ],
+      [
+        "MONTOPORVENCER",
+        "mo_venc"
+      ],
+      [
+        "MONTOVENCIMIENTO",
+        "mo_venc"
+      ],
+      [
+        "MONTONODEVENGAINTERES",
+        "mo_ndev_inte"
+      ],
+      [
+        "MONTOCAPITALCREDITO",
+        "mo_capi_cred"
+      ],
+      [
+        "MONTOCUOTA",
+        "mo_cuot"
+      ],
+      [
+        "MONTOINTERESMORA",
+        "pr_inte_mora"
+      ],
+      [
+        "MONTODEMANDAJUDICIAL",
+        "mo_dema_judi"
+      ],
+      [
+        "MONTOCARTERACASTIGADA",
+        "mo_cart_cast"
+      ],
+      [
+        "MONTOPROVISIONCONSTITUIDA",
+        "mo_prov_cons"
+      ],
+      [
+        "MONTOPROVISIONREQUERIDA",
+        "mo_prov_requ"
+      ],
+      [
+        "NUMERODIASMOROSIDAD",
+        "nu_dias_moro"
+      ],
+      [
+        "COTAMO",
+        "co_tamo"
+      ],
+      [
+        "COTIPOCRED",
+        "co_tipo_cred"
+      ],
+      [
+        "MONTOCOSTOOPERATIVP",
+        "mo_cost_oper"
+      ],
+      [
+        "MONTOCUENTAINDIVIDUAL",
+        "mo_cnta_indv"
+      ],
+      [
+        "MONTOSUJETPAPROVISION",
+        "mo_suje_prov"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_iden": "TIPOIDENTIFICACION",
+      "sc_regi": "SECUENCIAREGISTRO",
+      "nu_oper": "NUMEROOPERACIONES",
+      "ti_calf": "TIPOCALIFICACION",
+      "pr_inte": "TASAINTERES",
+      "mo_venc": "MONTOVENCIMIENTO",
+      "mo_ndev_inte": "MONTONODEVENGAINTERES",
+      "mo_capi_cred": "MONTOCAPITALCREDITO",
+      "mo_cuot": "MONTOCUOTA",
+      "pr_inte_mora": "MONTOINTERESMORA",
+      "mo_dema_judi": "MONTODEMANDAJUDICIAL",
+      "mo_cart_cast": "MONTOCARTERACASTIGADA",
+      "mo_prov_cons": "MONTOPROVISIONCONSTITUIDA",
+      "mo_prov_requ": "MONTOPROVISIONREQUERIDA",
+      "nu_dias_moro": "NUMERODIASMOROSIDAD",
+      "co_tamo": "COTAMO",
+      "co_tipo_cred": "COTIPOCRED",
+      "mo_cost_oper": "MONTOCOSTOOPERATIVP",
+      "mo_cnta_indv": "MONTOCUENTAINDIVIDUAL",
+      "mo_suje_prov": "MONTOSUJETPAPROVISION"
+    },
+    "name_score": 0.333,
+    "col_score": 0.735,
+    "total_score": 2.702,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbdsal_oper",
+        "total": 2.702,
+        "name": 0.333,
+        "col": 0.735
+      },
+      {
+        "tbl": "dbCR.crtbdsal_oper_sibs",
+        "total": 2.528,
+        "name": 0.333,
+        "col": 0.561
+      },
+      {
+        "tbl": "dbCR.crtrepo_abno",
+        "total": 2.312,
+        "name": 0.333,
+        "col": 0.345
+      }
+    ]
+  },
+  {
+    "agg": "reporteSBSSujetoRiesgo_type",
+    "dest": "REPORTESBSSUJETORIESGO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbrepo_sobr",
+    "ldb": "dbCR",
+    "lkey": [
+      "qs_Cred",
+      "co_rol",
+      "co_prov"
+    ],
+    "lkey_types": {
+      "co_usua": "int"
+    },
+    "pcols": [
+      "qs_Cred",
+      "co_rol",
+      "co_prov",
+      "nu_ctas",
+      "ti_inst",
+      "co_usua"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIAREGISTRO",
+        "qs_Cred"
+      ],
+      [
+        "NUMEROCEDULA",
+        "nu_ctas"
+      ],
+      [
+        "TIPOIDENTIFICACION",
+        "ti_inst"
+      ],
+      [
+        "CODIGOPROFESION",
+        "co_prov"
+      ],
+      [
+        "CODIGOPROVINCIA",
+        "co_prov"
+      ],
+      [
+        "CODIGOCANTON",
+        "co_rol"
+      ],
+      [
+        "CODIGOPARROQUIA",
+        "co_prov"
+      ],
+      [
+        "COGNRO",
+        "co_rol"
+      ]
+    ],
+    "leg_to_ora": {
+      "qs_Cred": "SECUENCIAREGISTRO",
+      "nu_ctas": "NUMEROCEDULA",
+      "ti_inst": "TIPOIDENTIFICACION",
+      "co_prov": "CODIGOPARROQUIA",
+      "co_rol": "COGNRO"
+    },
+    "name_score": 0.333,
+    "col_score": 0.381,
+    "total_score": 2.348,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbrepo_sobr",
+        "total": 2.348,
+        "name": 0.333,
+        "col": 0.381
+      },
+      {
+        "tbl": "dbCR.crtrepo_sobr",
+        "total": 2.25,
+        "name": 0.333,
+        "col": 0.283
+      },
+      {
+        "tbl": "dbCR.crtbrepo_ocan_sapl",
+        "total": 2.219,
+        "name": 0.333,
+        "col": 0.253
+      }
+    ],
+    "lkey_source": "EMPTY_TBL_USE_FIRST3"
+  },
+  {
+    "agg": "rubroCobranza_type",
+    "dest": "RUBROCOBRANZA_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtrubros_cobr",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "co_empr",
+      "ti_rubr_pago",
+      "ti_pago"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint"
+    },
+    "pcols": [
+      "ti_cred",
+      "co_empr",
+      "ti_rubr_pago",
+      "ti_pago"
+    ],
+    "dest_match": [
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "TIPOPAGO",
+        "ti_pago"
+      ],
+      [
+        "TIPORUBROPAGO",
+        "ti_rubr_pago"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_cred": "TIPOCREDITO",
+      "ti_pago": "TIPOPAGO",
+      "ti_rubr_pago": "TIPORUBROPAGO",
+      "co_empr": "CODIGOEMPRESA"
+    },
+    "name_score": 1.0,
+    "col_score": 0.444,
+    "total_score": 5.744,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtrubros_cobr",
+        "total": 5.744,
+        "name": 1.0,
+        "col": 0.444
+      },
+      {
+        "tbl": "dbCR.crtbcobr_judi_dist",
+        "total": 3.353,
+        "name": 0.5,
+        "col": 0.553
+      },
+      {
+        "tbl": "dbCR.crtbcobr_judi_deta",
+        "total": 3.164,
+        "name": 0.5,
+        "col": 0.364
+      }
+    ],
+    "lkey_source": "NO_UNIQUE_USE_FIRST4_KEYLIKE"
+  },
+  {
+    "agg": "rubrosCobranzaDetalle_type",
+    "dest": "RUBROSCOBRANZADETALLE_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtrubros_cobr",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "co_empr",
+      "ti_rubr_pago",
+      "ti_pago"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint"
+    },
+    "pcols": [
+      "ti_cred",
+      "co_empr",
+      "ti_rubr_pago",
+      "ti_pago"
+    ],
+    "dest_match": [
+      [
+        "TIPOCRED",
+        "ti_cred"
+      ],
+      [
+        "TIPOPAGO",
+        "ti_pago"
+      ],
+      [
+        "TIPORUBRPAGO",
+        "ti_rubr_pago"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_cred": "TIPOCRED",
+      "ti_pago": "TIPOPAGO",
+      "ti_rubr_pago": "TIPORUBRPAGO",
+      "co_empr": "CODIGOEMPRESA"
+    },
+    "name_score": 0.667,
+    "col_score": 0.762,
+    "total_score": 4.395,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtrubros_cobr",
+        "total": 4.395,
+        "name": 0.667,
+        "col": 0.762
+      },
+      {
+        "tbl": "dbCR.crtbcobr_judi_deta",
+        "total": 4.113,
+        "name": 0.667,
+        "col": 0.479
+      },
+      {
+        "tbl": "dbFC.fctbdeta_liqd_ante_cnta_cobr",
+        "total": 3.703,
+        "name": 0.667,
+        "col": 0.37
+      }
+    ],
+    "lkey_source": "NO_UNIQUE_USE_FIRST4_KEYLIKE"
+  },
+  {
+    "agg": "saldoCarteraDetalle_type",
+    "dest": "SALDOCARTERADETALLE_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbsald_cart_deta",
+    "ldb": "dbCR",
+    "lkey": [
+      "qs_cred",
+      "fe_cort"
+    ],
+    "lkey_types": {
+      "fe_cort": "datetime"
+    },
+    "pcols": [
+      "qs_cred",
+      "mo_sald_capi_xven",
+      "ti_cred",
+      "mo_inte_abno",
+      "nu_dcto",
+      "mo_sald_capi_vcdo",
+      "mo_inte_dvgo",
+      "co_empr",
+      "aa_cred",
+      "fe_cort"
+    ],
+    "dest_match": [
+      [
+        "FECHACORT",
+        "fe_cort"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "NUMERODCTO",
+        "nu_dcto"
+      ],
+      [
+        "MONTOSALDOCAPIVCDO",
+        "mo_sald_capi_vcdo"
+      ],
+      [
+        "MONTOSALDOCAPIXVEN",
+        "mo_sald_capi_xven"
+      ],
+      [
+        "MONTOINTEDVGO",
+        "mo_inte_dvgo"
+      ],
+      [
+        "MONTOINTEABNO",
+        "mo_inte_abno"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ]
+    ],
+    "leg_to_ora": {
+      "fe_cort": "FECHACORT",
+      "ti_cred": "TIPOCREDITO",
+      "aa_cred": "ANIOCREDITO",
+      "qs_cred": "SECUENCIACREDITO",
+      "nu_dcto": "NUMERODCTO",
+      "mo_sald_capi_vcdo": "MONTOSALDOCAPIVCDO",
+      "mo_sald_capi_xven": "MONTOSALDOCAPIXVEN",
+      "mo_inte_dvgo": "MONTOINTEDVGO",
+      "mo_inte_abno": "MONTOINTEABNO",
+      "co_empr": "CODIGOEMPRESA"
+    },
+    "name_score": 0.667,
+    "col_score": 0.882,
+    "total_score": 4.516,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbsald_cart_deta",
+        "total": 4.516,
+        "name": 0.667,
+        "col": 0.882
+      },
+      {
+        "tbl": "dbCR.crtbdvgo_cart_deta",
+        "total": 4.394,
+        "name": 0.667,
+        "col": 0.761
+      },
+      {
+        "tbl": "dbCR.crtbdvgo_cart_deta_temp",
+        "total": 4.394,
+        "name": 0.667,
+        "col": 0.761
+      }
+    ],
+    "lkey_source": "UNIQUE_COMBO_TESTED(1000=1000)"
+  },
+  {
+    "agg": "saldoCartera_type",
+    "dest": "SALDOCARTERA_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbsald_cart",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "fe_sald",
+      "co_fond",
+      "ti_cred"
+    ],
+    "lkey_types": {
+      "fe_sald": "datetime",
+      "co_fond": "smallint",
+      "ti_cred": "smallint",
+      "co_empr": "smallint"
+    },
+    "pcols": [
+      "mo_sald_capi_xven",
+      "mo_abno_capi",
+      "ti_cred",
+      "mo_abno_capi_xven",
+      "mo_abno_capi_vcdo",
+      "mo_abno_inte",
+      "mo_capi",
+      "co_fond",
+      "nu_oper",
+      "fe_sald",
+      "mo_abno_mora",
+      "mo_inte",
+      "co_empr",
+      "mo_sald_capi_vcdo",
+      "mo_inte_reve_vcdo"
+    ],
+    "dest_match": [
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "CODIGOFONDO",
+        "co_fond"
+      ],
+      [
+        "FECHASALDO",
+        "fe_sald"
+      ],
+      [
+        "MONTOCAPITAL",
+        "mo_capi"
+      ],
+      [
+        "MONTOINTERES",
+        "mo_inte"
+      ],
+      [
+        "MONTOSALDOCAPITALPORVENCER",
+        "mo_sald_capi_xven"
+      ],
+      [
+        "MONTOSALDOCAPITALVENCIDO",
+        "mo_sald_capi_vcdo"
+      ],
+      [
+        "MONTOABONADOALCAPITALPORVENCER",
+        "mo_abno_capi_xven"
+      ],
+      [
+        "MONTOABONADOALCAPITALVENCIDO",
+        "mo_abno_capi_vcdo"
+      ],
+      [
+        "MONTOABONADOALINTERES",
+        "mo_abno_inte"
+      ],
+      [
+        "MONTOABONOMORA",
+        "mo_abno_mora"
+      ],
+      [
+        "MONTOINTERESREVERSADO",
+        "mo_inte_reve_vcdo"
+      ],
+      [
+        "MONTOINTERESDEVENGADO",
+        "mo_inte"
+      ],
+      [
+        "MONTOINTERESABONADO",
+        "mo_inte"
+      ],
+      [
+        "NUMEROOPERACIONES",
+        "nu_oper"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "MONTOABONOCAPITALCAPITAL",
+        "mo_abno_capi"
+      ],
+      [
+        "ANIOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_cred": "ANIOCREDITO",
+      "co_fond": "CODIGOFONDO",
+      "fe_sald": "FECHASALDO",
+      "mo_capi": "MONTOCAPITAL",
+      "mo_inte": "MONTOINTERESABONADO",
+      "mo_sald_capi_xven": "MONTOSALDOCAPITALPORVENCER",
+      "mo_sald_capi_vcdo": "MONTOSALDOCAPITALVENCIDO",
+      "mo_abno_capi_xven": "MONTOABONADOALCAPITALPORVENCER",
+      "mo_abno_capi_vcdo": "MONTOABONADOALCAPITALVENCIDO",
+      "mo_abno_inte": "MONTOABONADOALINTERES",
+      "mo_abno_mora": "MONTOABONOMORA",
+      "mo_inte_reve_vcdo": "MONTOINTERESREVERSADO",
+      "nu_oper": "NUMEROOPERACIONES",
+      "co_empr": "CODIGOEMPRESA",
+      "mo_abno_capi": "MONTOABONOCAPITALCAPITAL"
+    },
+    "name_score": 0.5,
+    "col_score": 0.716,
+    "total_score": 3.516,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbsald_cart",
+        "total": 3.516,
+        "name": 0.5,
+        "col": 0.716
+      },
+      {
+        "tbl": "dbCR.crtbsald_cart_deta_diar",
+        "total": 3.38,
+        "name": 0.5,
+        "col": 0.58
+      },
+      {
+        "tbl": "dbCR.crtbdvgo_cart_deta_diar",
+        "total": 3.348,
+        "name": 0.5,
+        "col": 0.548
+      }
+    ],
+    "lkey_source": "PK"
+  },
+  {
+    "agg": "saldoCxPCxCType",
+    "dest": "SALDOCXPCXCTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "sfct_saldos_diarios_afiliados",
+    "ldb": "dbFC",
+    "lkey": [
+      "fx_saldo",
+      "co_empr",
+      "co_fond",
+      "ci_cedula"
+    ],
+    "lkey_types": {
+      "fx_saldo": "datetime",
+      "ci_cedula": "char",
+      "co_fond": "smallint",
+      "co_empr": "smallint"
+    },
+    "pcols": [
+      "co_empr",
+      "co_fond",
+      "fx_saldo",
+      "ci_cedula"
+    ],
+    "dest_match": [
+      [
+        "CODIGOPRODUCTO",
+        "co_fond"
+      ],
+      [
+        "CODIGOSUCURSAL",
+        "co_empr"
+      ],
+      [
+        "CODIGOOFICINA",
+        "co_fond"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_fond": "CODIGOOFICINA",
+      "co_empr": "CODIGOSUCURSAL"
+    },
+    "name_score": 1.0,
+    "col_score": 0.158,
+    "total_score": 5.158,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbFC.sfct_saldos_diarios_afiliados",
+        "total": 5.158,
+        "name": 1.0,
+        "col": 0.158
+      },
+      {
+        "tbl": "dbFC.sfct_saldos_diarios",
+        "total": 5.051,
+        "name": 1.0,
+        "col": 0.051
+      },
+      {
+        "tbl": "dbFC.sfct_saldos_horizontales",
+        "total": 5.051,
+        "name": 1.0,
+        "col": 0.051
+      }
+    ],
+    "lkey_source": "PK"
+  },
+  {
+    "agg": "saldoVinculadoType",
+    "dest": "SALDOVINCULADOTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "sfct_saldos_diarios_afiliados",
+    "ldb": "dbFC",
+    "lkey": [
+      "fx_saldo",
+      "co_empr",
+      "co_fond",
+      "ci_cedula"
+    ],
+    "lkey_types": {
+      "fx_saldo": "datetime",
+      "ci_cedula": "char",
+      "co_fond": "smallint",
+      "co_empr": "smallint"
+    },
+    "pcols": [
+      "co_empr",
+      "co_fond",
+      "fx_saldo",
+      "ci_cedula"
+    ],
+    "dest_match": [
+      [
+        "CODIGOSUCURSAL",
+        "co_empr"
+      ],
+      [
+        "CODIGOOFICINA",
+        "co_fond"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_empr": "CODIGOSUCURSAL",
+      "co_fond": "CODIGOOFICINA"
+    },
+    "name_score": 0.5,
+    "col_score": 0.19,
+    "total_score": 2.69,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbFC.sfct_saldos_diarios_afiliados",
+        "total": 2.69,
+        "name": 0.5,
+        "col": 0.19
+      },
+      {
+        "tbl": "dbFC.sfct_saldos_diarios",
+        "total": 2.595,
+        "name": 0.5,
+        "col": 0.095
+      },
+      {
+        "tbl": "dbFC.sfct_saldos_horizontales",
+        "total": 2.595,
+        "name": 0.5,
+        "col": 0.095
+      }
+    ],
+    "lkey_source": "PK"
+  },
+  {
+    "agg": "seguimientoAutorizacion_type",
+    "dest": "SEGUIMIENTOAUTORIZACION_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbsegi_autr_ofic",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "sc_segi"
+    ],
+    "lkey_types": {
+      "co_empr": "int",
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "sc_segi": "int"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "fe_actu",
+      "co_prov",
+      "co_usua_tran",
+      "st_segi",
+      "ds_obsr",
+      "sc_segi",
+      "co_empr",
+      "aa_cred",
+      "co_moti"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIASEGUIMIENTO",
+        "sc_segi"
+      ],
+      [
+        "CODIGOMOTIVORECHAZO",
+        "co_moti"
+      ],
+      [
+        "CODIGOPROVINCIA",
+        "co_prov"
+      ],
+      [
+        "ESTADOSEGUIMIENTO",
+        "st_segi"
+      ],
+      [
+        "DESCRIPCIONOBSERVACIONES",
+        "ds_obsr"
+      ],
+      [
+        "FECHAACTUALIZACION",
+        "fe_actu"
+      ],
+      [
+        "CODIGOUSUARIOTRANSACCION",
+        "co_usua_tran"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_segi": "SECUENCIASEGUIMIENTO",
+      "co_moti": "CODIGOMOTIVORECHAZO",
+      "co_prov": "CODIGOPROVINCIA",
+      "st_segi": "ESTADOSEGUIMIENTO",
+      "ds_obsr": "DESCRIPCIONOBSERVACIONES",
+      "fe_actu": "FECHAACTUALIZACION",
+      "co_usua_tran": "CODIGOUSUARIOTRANSACCION",
+      "aa_cred": "ANIOCREDITO",
+      "co_empr": "CODIGOEMPRESA",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 0.0,
+    "col_score": 0.621,
+    "total_score": 0.921,
+    "confidence": "LOW",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbsegi_autr_ofic",
+        "total": 0.921,
+        "name": 0.0,
+        "col": 0.621
+      },
+      {
+        "tbl": "dbCR.crtbprec",
+        "total": 0.895,
+        "name": 0.0,
+        "col": 0.595
+      },
+      {
+        "tbl": "dbCR.crtbconv_pago",
+        "total": 0.868,
+        "name": 0.0,
+        "col": 0.568
+      }
+    ]
+  },
+  {
+    "agg": "seguroCredito_type",
+    "dest": "SEGUROCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbsegu_cred",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_segu",
+      "co_moti"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_segu": "int",
+      "co_moti": "smallint"
+    },
+    "pcols": [
+      "sc_segu",
+      "co_moti",
+      "co_empr"
+    ],
+    "dest_match": [
+      [
+        "CODIGOPROVEEDOR",
+        "co_moti"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "sc_segu"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_moti": "CODIGOPROVEEDOR",
+      "sc_segu": "SECUENCIACREDITO"
+    },
+    "name_score": 1.0,
+    "col_score": 0.068,
+    "total_score": 5.368,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbsegu_cred",
+        "total": 5.368,
+        "name": 1.0,
+        "col": 0.068
+      },
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 3.252,
+        "name": 0.5,
+        "col": 0.452
+      },
+      {
+        "tbl": "dbCR.crtboblg_segu_vehi",
+        "total": 3.204,
+        "name": 0.5,
+        "col": 0.404
+      }
+    ]
+  },
+  {
+    "agg": "sobranteCaucion_type",
+    "dest": "SOBRANTECAUCIÓN_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbsobr_caut",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_sobr",
+      "co_fond"
+    ],
+    "lkey_types": {
+      "ti_sobr": "smallint",
+      "co_fond": "smallint"
+    },
+    "pcols": [
+      "co_empr",
+      "ti_sobr",
+      "co_fond",
+      "va_cnta_auto"
+    ],
+    "dest_match": [
+      [
+        "TIPOSOBRANTE",
+        "ti_sobr"
+      ],
+      [
+        "CODIGOFONDO",
+        "co_fond"
+      ],
+      [
+        "VACUENTAAUTO",
+        "va_cnta_auto"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_sobr": "TIPOSOBRANTE",
+      "co_fond": "CODIGOFONDO",
+      "va_cnta_auto": "VACUENTAAUTO",
+      "co_empr": "CODIGOEMPRESA"
+    },
+    "name_score": 0.5,
+    "col_score": 0.745,
+    "total_score": 3.545,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbsobr_caut",
+        "total": 3.545,
+        "name": 0.5,
+        "col": 0.745
+      },
+      {
+        "tbl": "dbCR.crtsobrante",
+        "total": 3.4,
+        "name": 0.5,
+        "col": 0.6
+      },
+      {
+        "tbl": "dbCR.crtrepo_sobr",
+        "total": 3.283,
+        "name": 0.5,
+        "col": 0.483
+      }
+    ]
+  },
+  {
+    "agg": "sobranteCredito_type",
+    "dest": "SOBRANTECREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtsobrante",
+    "ldb": "dbCR",
+    "lkey": [
+      "sc_sobr"
+    ],
+    "lkey_types": {
+      "sc_sobr": "int"
+    },
+    "pcols": [
+      "ti_apli",
+      "co_fond",
+      "ti_pago",
+      "st_devo",
+      "fe_devo",
+      "fe_proc",
+      "ds_oper_refe",
+      "sc_rol",
+      "co_paga",
+      "ti_sobr",
+      "mo_disp",
+      "nu_cpbt_cble",
+      "ci_rol",
+      "co_empr",
+      "mo_sobr",
+      "ti_inst",
+      "sc_reca",
+      "sc_sobr",
+      "co_prov",
+      "fe_cort"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIASOBRANTES",
+        "sc_sobr"
+      ],
+      [
+        "TIPOSOBRANTE",
+        "ti_sobr"
+      ],
+      [
+        "TIPOAPLICACION",
+        "ti_apli"
+      ],
+      [
+        "TIPOPAGO",
+        "ti_pago"
+      ],
+      [
+        "CEDULAPROVEEDOR",
+        "ci_rol"
+      ],
+      [
+        "CODIGOFONDO",
+        "co_fond"
+      ],
+      [
+        "CODIGOPROVINCIA",
+        "co_prov"
+      ],
+      [
+        "TIPOINSTITUCION",
+        "ti_inst"
+      ],
+      [
+        "CODIGOPAGO",
+        "co_paga"
+      ],
+      [
+        "CODIGOROL",
+        "co_fond"
+      ],
+      [
+        "SECUENCIAROL",
+        "sc_rol"
+      ],
+      [
+        "SECUENCIARECAUDACION",
+        "sc_reca"
+      ],
+      [
+        "MONTOSOBRANTE",
+        "mo_sobr"
+      ],
+      [
+        "MONTODISPONIBLESOBRANTE",
+        "mo_disp"
+      ],
+      [
+        "DESCRIPCIONOPERACIONREFERENCIA",
+        "ds_oper_refe"
+      ],
+      [
+        "NUMEROCOMPROBANTECONTABLE",
+        "nu_cpbt_cble"
+      ],
+      [
+        "FECHACORTE",
+        "fe_cort"
+      ],
+      [
+        "FECHAPROCESO",
+        "fe_proc"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ],
+      [
+        "CODIGOINSTICION",
+        "ti_inst"
+      ],
+      [
+        "ESTADODEVOLUCIONESMASIVAS",
+        "st_devo"
+      ],
+      [
+        "FECHALADEVOLUCION",
+        "fe_devo"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_sobr": "SECUENCIASOBRANTES",
+      "ti_sobr": "TIPOSOBRANTE",
+      "ti_apli": "TIPOAPLICACION",
+      "ti_pago": "TIPOPAGO",
+      "ci_rol": "CEDULAPROVEEDOR",
+      "co_fond": "CODIGOROL",
+      "co_prov": "CODIGOPROVINCIA",
+      "ti_inst": "CODIGOINSTICION",
+      "co_paga": "CODIGOPAGO",
+      "sc_rol": "SECUENCIAROL",
+      "sc_reca": "SECUENCIARECAUDACION",
+      "mo_sobr": "MONTOSOBRANTE",
+      "mo_disp": "MONTODISPONIBLESOBRANTE",
+      "ds_oper_refe": "DESCRIPCIONOPERACIONREFERENCIA",
+      "nu_cpbt_cble": "NUMEROCOMPROBANTECONTABLE",
+      "fe_cort": "FECHACORTE",
+      "fe_proc": "FECHAPROCESO",
+      "co_empr": "CODIGOEMPRESA",
+      "st_devo": "ESTADODEVOLUCIONESMASIVAS",
+      "fe_devo": "FECHALADEVOLUCION"
+    },
+    "name_score": 0.5,
+    "col_score": 0.796,
+    "total_score": 3.596,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtsobrante",
+        "total": 3.596,
+        "name": 0.5,
+        "col": 0.796
+      },
+      {
+        "tbl": "dbCR.crtrepo_sobr",
+        "total": 3.271,
+        "name": 0.5,
+        "col": 0.471
+      },
+      {
+        "tbl": "dbCR.crtbrepo_sobr",
+        "total": 3.25,
+        "name": 0.5,
+        "col": 0.45
+      }
+    ]
+  },
+  {
+    "agg": "sobranteDistribucion_type",
+    "dest": "SOBRANTEDISTRIBUCION_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtsobrante",
+    "ldb": "dbCR",
+    "lkey": [
+      "sc_sobr"
+    ],
+    "lkey_types": {
+      "sc_sobr": "int"
+    },
+    "pcols": [
+      "ti_apli",
+      "sc_sobr",
+      "nu_cpbt_cble",
+      "sc_rol",
+      "ds_obse"
+    ],
+    "dest_match": [
+      [
+        "SECUENCIASOBRANTES",
+        "sc_sobr"
+      ],
+      [
+        "SECUENCIAREGISTRO",
+        "sc_rol"
+      ],
+      [
+        "TIPOAPLICACION",
+        "ti_apli"
+      ],
+      [
+        "MONTOAPLICADO",
+        "ti_apli"
+      ],
+      [
+        "DESCRIPCIONREFERENCIA",
+        "ds_obse"
+      ],
+      [
+        "NUMEROCOMPROBANTECONTABLE",
+        "nu_cpbt_cble"
+      ],
+      [
+        "FECHAAPLICACION",
+        "ti_apli"
+      ]
+    ],
+    "leg_to_ora": {
+      "sc_sobr": "SECUENCIASOBRANTES",
+      "sc_rol": "SECUENCIAREGISTRO",
+      "ti_apli": "FECHAAPLICACION",
+      "ds_obse": "DESCRIPCIONREFERENCIA",
+      "nu_cpbt_cble": "NUMEROCOMPROBANTECONTABLE"
+    },
+    "name_score": 0.5,
+    "col_score": 0.535,
+    "total_score": 3.335,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtsobrante",
+        "total": 3.335,
+        "name": 0.5,
+        "col": 0.535
+      },
+      {
+        "tbl": "dbCR.crtbcaju_sobr",
+        "total": 3.195,
+        "name": 0.5,
+        "col": 0.395
+      },
+      {
+        "tbl": "dbCR.crtbrepo_sobr",
+        "total": 3.111,
+        "name": 0.5,
+        "col": 0.311
+      }
+    ]
+  },
+  {
+    "agg": "solidarioCredito_type",
+    "dest": "SOLIDARIOCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtsolid",
+    "ldb": "dbCR",
+    "lkey": [
+      "qs_cred",
+      "ti_cred",
+      "aa_cred"
+    ],
+    "lkey_types": {
+      "in_soli": "char"
+    },
+    "pcols": [
+      "qs_cred",
+      "ti_cred",
+      "mo_cuot",
+      "in_soli",
+      "aa_cred"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "in_soli"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "INDICADORSOLIDARIO",
+        "in_soli"
+      ],
+      [
+        "MONTOCUOTA",
+        "mo_cuot"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ]
+    ],
+    "leg_to_ora": {
+      "in_soli": "INDICADORSOLIDARIO",
+      "aa_cred": "ANIOCREDITO",
+      "mo_cuot": "MONTOCUOTA",
+      "qs_cred": "SECUENCIACREDITO",
+      "ti_cred": "TIPOCREDITO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.731,
+    "total_score": 3.531,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtsolid",
+        "total": 3.531,
+        "name": 0.5,
+        "col": 0.731
+      },
+      {
+        "tbl": "dbCR.crtbcred_prea_whts",
+        "total": 3.419,
+        "name": 0.5,
+        "col": 0.619
+      },
+      {
+        "tbl": "dbCR.crtbcred_liqd_diar",
+        "total": 3.369,
+        "name": 0.5,
+        "col": 0.569
+      }
+    ],
+    "lkey_source": "NO_UNIQUE_USE_FIRST4_KEYLIKE"
+  },
+  {
+    "agg": "tasaInteresCredito_type",
+    "dest": "TASAINTERESCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbrngo_intr_cred",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_rngo",
+      "co_usua",
+      "co_carg"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_rngo": "int",
+      "co_usua": "int",
+      "co_carg": "smallint"
+    },
+    "pcols": [
+      "co_empr",
+      "sc_rngo",
+      "co_usua",
+      "co_carg"
+    ],
+    "dest_match": [
+      [
+        "CODIGOMONEDA",
+        "co_empr"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_empr"
+      ]
+    ],
+    "leg_to_ora": {
+      "co_empr": "CODIGOEMPRESA"
+    },
+    "name_score": 0.667,
+    "col_score": 0.215,
+    "total_score": 3.848,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbrngo_intr_cred",
+        "total": 3.848,
+        "name": 0.667,
+        "col": 0.215
+      },
+      {
+        "tbl": "dbCR.crtbcred_liqd_diar",
+        "total": 2.413,
+        "name": 0.333,
+        "col": 0.446
+      },
+      {
+        "tbl": "dbCR.crtbccbr_cred_judi",
+        "total": 2.319,
+        "name": 0.333,
+        "col": 0.352
+      }
+    ]
+  },
+  {
+    "agg": "tipoCredito_type",
+    "dest": "TIPOCREDITO_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbtipo_cred_sibs",
+    "ldb": "dbCR",
+    "lkey": [
+      "sc_tcre"
+    ],
+    "lkey_types": {
+      "sc_tcre": "smallint"
+    },
+    "pcols": [
+      "co_grup_fcme",
+      "ds_tcre",
+      "st_tcre",
+      "co_tcre",
+      "sc_tcre"
+    ],
+    "dest_match": [
+      [
+        "DESCRIPCIONCREDITO",
+        "ds_tcre"
+      ],
+      [
+        "CODIGOGRUPO",
+        "co_grup_fcme"
+      ],
+      [
+        "ESTADOCREDITO",
+        "st_tcre"
+      ],
+      [
+        "ESTADOGARANTE",
+        "st_tcre"
+      ],
+      [
+        "CODIGOEMPRESA",
+        "co_tcre"
+      ]
+    ],
+    "leg_to_ora": {
+      "ds_tcre": "DESCRIPCIONCREDITO",
+      "co_grup_fcme": "CODIGOGRUPO",
+      "st_tcre": "ESTADOGARANTE",
+      "co_tcre": "CODIGOEMPRESA"
+    },
+    "name_score": 1.0,
+    "col_score": 0.056,
+    "total_score": 5.356,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbtipo_cred_sibs",
+        "total": 5.356,
+        "name": 1.0,
+        "col": 0.056
+      },
+      {
+        "tbl": "dbCG.cgtbtipo_docu_cdio",
+        "total": 5.178,
+        "name": 1.0,
+        "col": 0.178
+      },
+      {
+        "tbl": "dbCG.cgtbtipo_vehi_cdio",
+        "total": 5.049,
+        "name": 1.0,
+        "col": 0.049
+      }
+    ]
+  },
+  {
+    "agg": "tipoSobrante_type",
+    "dest": "TIPOSOBRANTE_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtrepo_sobr",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_sobr",
+      "co_usua"
+    ],
+    "lkey_types": {
+      "co_usua": "int"
+    },
+    "pcols": [
+      "ti_sobr",
+      "ds_obse",
+      "co_usua"
+    ],
+    "dest_match": [
+      [
+        "TIPOSOBRANTE",
+        "ti_sobr"
+      ],
+      [
+        "DESCRIPCIONSOBRANTE",
+        "ds_obse"
+      ],
+      [
+        "ESTADOSOBRANTE",
+        "ti_sobr"
+      ]
+    ],
+    "leg_to_ora": {
+      "ti_sobr": "ESTADOSOBRANTE",
+      "ds_obse": "DESCRIPCIONSOBRANTE"
+    },
+    "name_score": 0.5,
+    "col_score": 0.432,
+    "total_score": 3.232,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtrepo_sobr",
+        "total": 3.232,
+        "name": 0.5,
+        "col": 0.432
+      },
+      {
+        "tbl": "dbCR.crtsobrante",
+        "total": 3.232,
+        "name": 0.5,
+        "col": 0.432
+      },
+      {
+        "tbl": "dbCR.crtbsobr_caut",
+        "total": 3.213,
+        "name": 0.5,
+        "col": 0.413
+      }
+    ],
+    "lkey_source": "EMPTY_TBL_USE_FIRST3"
+  },
+  {
+    "agg": "transaccionRecuperacion_type",
+    "dest": "TRANSACCIONRECUPERACION_TYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbrecu_conv",
+    "ldb": "dbCR",
+    "lkey": [
+      "ti_cred",
+      "aa_cred",
+      "qs_cred",
+      "qs_abno"
+    ],
+    "lkey_types": {
+      "ti_cred": "smallint",
+      "aa_cred": "smallint",
+      "qs_cred": "int",
+      "qs_abno": "smallint"
+    },
+    "pcols": [
+      "co_usua_conf",
+      "ti_cred",
+      "fe_cble",
+      "fe_mvto",
+      "st_autr",
+      "ti_diar",
+      "co_usua_revz",
+      "ti_recp",
+      "qs_abno",
+      "fe_revz",
+      "mo_mvto",
+      "in_cble_revz",
+      "co_usua_liqd",
+      "qs_cred",
+      "st_regi",
+      "in_conf_fond",
+      "ti_revz",
+      "fe_abno",
+      "nu_cpbt_cble",
+      "nu_dias_atra",
+      "ds_liqd",
+      "co_rol",
+      "aa_cred"
+    ],
+    "dest_match": [
+      [
+        "ID",
+        "ds_liqd"
+      ],
+      [
+        "TIPORECP",
+        "ti_recp"
+      ],
+      [
+        "ESTADORECP",
+        "st_autr"
+      ],
+      [
+        "INDICADORRECA",
+        "in_cble_revz"
+      ],
+      [
+        "TIPOCREDITO",
+        "ti_cred"
+      ],
+      [
+        "ANIOCREDITO",
+        "aa_cred"
+      ],
+      [
+        "SECUENCIACREDITO",
+        "qs_cred"
+      ],
+      [
+        "SECUENCIAABNO",
+        "qs_abno"
+      ],
+      [
+        "TIPORECPRECUP",
+        "ti_recp"
+      ],
+      [
+        "CODIGOREGISTRO",
+        "st_regi"
+      ],
+      [
+        "FECHAMOVIMIENTO",
+        "fe_mvto"
+      ],
+      [
+        "FECHAABNO",
+        "fe_abno"
+      ],
+      [
+        "FECHACONTABLE",
+        "fe_cble"
+      ],
+      [
+        "FECHAREVZ",
+        "fe_revz"
+      ],
+      [
+        "MONTOMOVIMIENTO",
+        "mo_mvto"
+      ],
+      [
+        "NUMEROCOMPROBANTECONTABLE",
+        "nu_cpbt_cble"
+      ],
+      [
+        "INDICADORCONFFOND",
+        "in_conf_fond"
+      ],
+      [
+        "CODIGOAUTORIZACION",
+        "co_usua_liqd"
+      ],
+      [
+        "TEXTOLIQUIDACION",
+        "ds_liqd"
+      ],
+      [
+        "CODIGOUSUARIOCONF",
+        "co_usua_conf"
+      ],
+      [
+        "CODIGOUSUARIOLIQUIDACION",
+        "co_usua_liqd"
+      ],
+      [
+        "NUMERODIASATRA",
+        "nu_dias_atra"
+      ],
+      [
+        "TIPOREVZ",
+        "ti_revz"
+      ],
+      [
+        "CODIGOROL",
+        "co_rol"
+      ],
+      [
+        "CODIGOUSUARIOREVZ",
+        "co_usua_revz"
+      ],
+      [
+        "TIPODIARIO",
+        "ti_diar"
+      ],
+      [
+        "INDICADORCONTABLEREVZ",
+        "in_cble_revz"
+      ]
+    ],
+    "leg_to_ora": {
+      "ds_liqd": "TEXTOLIQUIDACION",
+      "ti_recp": "TIPORECPRECUP",
+      "st_autr": "ESTADORECP",
+      "in_cble_revz": "INDICADORCONTABLEREVZ",
+      "ti_cred": "TIPOCREDITO",
+      "aa_cred": "ANIOCREDITO",
+      "qs_cred": "SECUENCIACREDITO",
+      "qs_abno": "SECUENCIAABNO",
+      "st_regi": "CODIGOREGISTRO",
+      "fe_mvto": "FECHAMOVIMIENTO",
+      "fe_abno": "FECHAABNO",
+      "fe_cble": "FECHACONTABLE",
+      "fe_revz": "FECHAREVZ",
+      "mo_mvto": "MONTOMOVIMIENTO",
+      "nu_cpbt_cble": "NUMEROCOMPROBANTECONTABLE",
+      "in_conf_fond": "INDICADORCONFFOND",
+      "co_usua_liqd": "CODIGOUSUARIOLIQUIDACION",
+      "co_usua_conf": "CODIGOUSUARIOCONF",
+      "nu_dias_atra": "NUMERODIASATRA",
+      "ti_revz": "TIPOREVZ",
+      "co_rol": "CODIGOROL",
+      "co_usua_revz": "CODIGOUSUARIOREVZ",
+      "ti_diar": "TIPODIARIO"
+    },
+    "name_score": 0.5,
+    "col_score": 0.761,
+    "total_score": 3.561,
+    "confidence": "HIGH",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbrecu_conv",
+        "total": 3.561,
+        "name": 0.5,
+        "col": 0.761
+      },
+      {
+        "tbl": "dbIM.imtbgrcl_tran_temp",
+        "total": 2.791,
+        "name": 0.5,
+        "col": 0.291
+      },
+      {
+        "tbl": "dbIM.imtbgrcl_tran",
+        "total": 2.789,
+        "name": 0.5,
+        "col": 0.289
+      }
+    ]
+  },
+  {
+    "agg": "unidadJudicialType",
+    "dest": "UNIDADJUDICIALTYPE",
+    "dest_pk": [
+      "ID"
+    ],
+    "ltbl": "crtbccbr_cred_judi",
+    "ldb": "dbCR",
+    "lkey": [
+      "co_empr",
+      "sc_cobr"
+    ],
+    "lkey_types": {
+      "co_empr": "smallint",
+      "sc_cobr": "int"
+    },
+    "pcols": [
+      "co_empr",
+      "sc_cobr"
+    ],
+    "dest_match": [],
+    "leg_to_ora": {},
+    "name_score": 0.5,
+    "col_score": 0.0,
+    "total_score": 2.8,
+    "confidence": "MEDIUM",
+    "candidates_top3": [
+      {
+        "tbl": "dbCR.crtbccbr_cred_judi",
+        "total": 2.8,
+        "name": 0.5,
+        "col": 0.0
+      },
+      {
+        "tbl": "dbCR.crtbcobr_judi_deta",
+        "total": 2.8,
+        "name": 0.5,
+        "col": 0.0
+      },
+      {
+        "tbl": "dbCR.crtbcobr_judi_dist",
+        "total": 2.8,
+        "name": 0.5,
+        "col": 0.0
+      }
+    ]
+  }
+]

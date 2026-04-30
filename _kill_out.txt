@@ -1,0 +1,10 @@
+=== CADENA DE BLOQUEOS ===
+Sesiones bloqueadas: 0
+
+=== HEAD BLOCKERS (bloquean a otros pero estan idle) ===
+
+=== KILL ZOMBIES PYMSSQL ===
+Sesiones a matar: []
+
+=== VERIFICACION POST-KILL ===
+Sesiones todavia bloqueadas: 0

@@ -1,0 +1,12 @@
+Total filas: 269
+
+Triggers DUPLICADOS por nombre_trigger: 0
+
+Nombre_tabla con MULTIPLES triggers registrados: 0
+
+=== STATS ===
+  Total entries          : 269
+  Triggers unicos        : 269
+  Tablas unicas          : 269
+  Triggers DUPLICADOS    : 0
+  Tablas con N>1 trigger : 0

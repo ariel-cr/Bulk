@@ -1,0 +1,43 @@
+[1] Triggers legacy dbNO
+  CREATE trg_outbox_notbcant ON dbo.notbcant
+  CREATE trg_outbox_notbpant ON dbo.notbpant
+  CREATE trg_outbox_notbcnom ON dbo.notbcnom
+  CREATE trg_outbox_notbpara ON dbo.notbpara
+  CREATE trg_outbox_notbcrol ON dbo.notbcrol
+  CREATE trg_outbox_notbcgrl ON dbo.notbcgrl
+  CREATE trg_outbox_notbpago_nomi ON dbo.notbpago_nomi
+  FAIL trg_outbox_notbpara_gene: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The concat_ws function requires 3 to 254 arguments. (189) (SQLExecDirectW); [42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Inc
+  CREATE trg_outbox_notbpatr ON dbo.notbpatr
+  CREATE trg_outbox_notbdrol ON dbo.notbdrol
+  CREATE trg_outbox_notbrubr ON dbo.notbrubr
+  CREATE trg_outbox_notbcvia ON dbo.notbcvia
+
+[2] Wrappers Oracle
+  CREATE USP_INBOX_ANTICIPONOMINA             status=VALID
+  CREATE USP_INBOX_ANTICIPOPAGO               status=VALID
+  CREATE USP_INBOX_CATALOGONOMINA             status=VALID
+  CREATE USP_INBOX_CONFIGURACIONNOMINA        status=VALID
+  CREATE USP_INBOX_NOMINACABECERA             status=VALID
+  CREATE USP_INBOX_OBLIGACIONROL              status=VALID
+  CREATE USP_INBOX_PAGONOMINA                 status=VALID
+  CREATE USP_INBOX_PARAMETRONOMINA            status=VALID
+  CREATE USP_INBOX_PATRONALNOMINA             status=VALID
+  CREATE USP_INBOX_ROLPAGO                    status=VALID
+  CREATE USP_INBOX_RUBRONOMINA                status=VALID
+  CREATE USP_INBOX_VIATICONOMINA              status=VALID
+
+[3] module_config Oracle
+  + anticipoNominaType             -> USP_INBOX_ANTICIPONOMINA
+  + anticipoPagoType               -> USP_INBOX_ANTICIPOPAGO
+  + catalogoNominaType             -> USP_INBOX_CATALOGONOMINA
+  + configuracionNominaType        -> USP_INBOX_CONFIGURACIONNOMINA
+  + nominaCabeceraType             -> USP_INBOX_NOMINACABECERA
+  + obligacionRolType              -> USP_INBOX_OBLIGACIONROL
+  + pagoNominaType                 -> USP_INBOX_PAGONOMINA
+  + parametroNominaType            -> USP_INBOX_PARAMETRONOMINA
+  + patronalNominaType             -> USP_INBOX_PATRONALNOMINA
+  + rolPagoType                    -> USP_INBOX_ROLPAGO
+  + rubroNominaType                -> USP_INBOX_RUBRONOMINA
+  + viaticoNominaType              -> USP_INBOX_VIATICONOMINA
+
+=== DEPLOY OK ===

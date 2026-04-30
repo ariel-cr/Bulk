@@ -1,0 +1,103 @@
+Total sinks en cluster: 469
+
+Buscando sinks con Oracle...
+Oracle sinks encontrados: 234
+  [OK] migration-inversiones-desembolsoinversion-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-cuentasindividuales-cuentaindividualfechasproceso-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-bancospi-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-cuentasindividuales-cuentaindividualbloqueo-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-garantias-garantiageneral-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-pais-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-tipodescuento-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-garantias-liquidaciongarantia-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-nomina-cargogeneral-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-parroquia-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-nomina-nominacabecera-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-garantias-avaluogarantia-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-cuentasindividuales-reportesibscuenta-jdbc-sink  state=RUNNING tasks=['RUNNING', 'RUNNING', 'RUNNING']
+  [OK] migration-catalogos-origeningreso-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-cartera-recuperacionconvenio-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-nomina-historialingreso-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-cuentasindividuales-cuentaindividualpersona-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-garantias-garantiaporprestamo-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-distritorol-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-cuentasindividuales-serviciogeneral-jdbc-sink  state=RUNNING tasks=['RUNNING', 'RUNNING', 'RUNNING']
+  [OK] migration-catalogos-categoria-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-inversiones-documentoinversion-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-garantias-garantiapagare-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-provincia-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-cuentasindividuales-liquidacioncuenta-jdbc-sink  state=RUNNING tasks=['RUNNING', 'RUNNING', 'RUNNING']
+  [OK] migration-inversiones-vinculadoinversion-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-garantias-reportesbsgarantia-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-cuentasindividuales-retirovoluntariocredito-jdbc-sink  state=RUNNING tasks=['RUNNING', 'RUNNING', 'RUNNING']
+  [OK] migration-inversiones-reajusteinteresinversion-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-garantias-garantiainversion-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-cuentasindividuales-retirovoluntariodesembolso-jdbc-sink  state=RUNNING tasks=['RUNNING', 'RUNNING', 'RUNNING']
+  [OK] migration-nomina-fondoreserva-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-auxiliarcontable-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-garantias-garantecredito-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-garantias-datosinmuebles-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-arealaboral-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-movimientoreporte-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-distritocanton-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-cuentasindividuales-retirovoluntarioparametro-jdbc-sink  state=RUNNING tasks=['RUNNING', 'RUNNING', 'RUNNING']
+  [OK] migration-garantias-datosvehiculos-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-ciudad-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-inversiones-emisioninversion-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-operadoracelular-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-inversiones-preciosdiariosinversion-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-nomina-rolpago-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-nomina-rubronomina-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-documento-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-titulo-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-nomina-nivelacademico-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-inversiones-configuracioninteresinversion-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-inversiones-valoracioninversion-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-rubrorenta-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-garantias-datosrentavariable-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-centrocosto-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-jornadalaboral-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-cuentasindividuales-cuentaindividual-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-garantias-datosotrosactivos-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] newcore-oracle-convivencia-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-inversiones-devengamientoinversion-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-parametro-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-garantias-contabilizaciongarantia-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-cuentasindividuales-retirovoluntario-jdbc-sink  state=RUNNING tasks=['RUNNING', 'RUNNING', 'RUNNING']
+  [OK] migration-inversiones-inversioncore-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-catalogos-tipodato-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-cartera-garantiacredito-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-nomina-pagonomina-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-garantias-tipobien-jdbc-sink  state=RUNNING tasks=['RUNNING']
+  [OK] migration-inversiones-garantiainversionlegacy-jdbc-sink  state=RUNNING tasks=['RUNNING']
+
+=== CONFIG DE REFERENCIA: migration-inversiones-desembolsoinversion-jdbc-sink ===
+  auto.create: false
+  auto.evolve: false
+  batch.size: 5000
+  connection.password: ***
+  connection.url: jdbc:oracle:thin:@10.35.3.223:31521/XEPDB1
+  connection.user: fcme_user
+  connector.class: io.confluent.connect.jdbc.JdbcSinkConnector
+  consumer.override.max.poll.records: 5000
+  errors.deadletterqueue.context.headers.enable: true
+  errors.deadletterqueue.topic.name: migration.canonicos.inversiones.desembolsoinversion.sink.dlq
+  errors.deadletterqueue.topic.replication.factor: 1
+  errors.log.enable: true
+  errors.log.include.messages: true
+  errors.tolerance: all
+  fields.whitelist: secuenciaDbso,numeroInve,codigoDbso,codigoBanc,numeroCheq,montoDbso,estadoDbso,fechaIngreso,fechaModificacion,fechaEliminacion,usuarioIngresa,usuarioModifica,usuarioElimina
+  insert.mode: insert
+  key.converter: org.apache.kafka.connect.json.JsonConverter
+  key.converter.schemas.enable: true
+  linger.ms: 200
+  max.retries: 10
+  name: migration-inversiones-desembolsoinversion-jdbc-sink
+  pk.mode: none
+  quote.sql.identifiers: NEVER
+  retry.backoff.ms: 3000
+  table.name.format: DESEMBOLSOINVERSION_TYPE
+  tasks.max: 1
+  topics: migration.canonicos.inversiones.desembolsoinversion
+  value.converter: org.apache.kafka.connect.json.JsonConverter
+  value.converter.schemas.enable: true

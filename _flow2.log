@@ -1,0 +1,112 @@
+TYPES = 40
+baseline outbox.max=1443 inbox.max=138 errors=177
+
+[DISPAROS]
+  [ 1/40] actualizacionAfiliadoType           ACTUALIZACION_AFILIADO_TYPE (ID=43) UPDATE noop
+  [ 2/40] actualizacionDocumentosType         ACTUALIZACION_DOCUMENTOS_TYPE (ID=21) UPDATE noop
+  [ 3/40] agendaMailAfiliadoType              AGENDAMAILAFILIADO_TYPE (ID=11041) UPDATE noop
+  [ 4/40] areaLaboralParticipeType            AREALABORALPARTICIPE_TYPE (ID=211) UPDATE noop
+  [ 5/40] auditoriaAfiliadoType               AUDITORIAAFILIADO_TYPE (ID=531) UPDATE noop
+  [ 6/40] beneficiarioParticipeType           BENEFICIARIOPARTICIPE_TYPE (ID=81) UPDATE noop
+  [ 7/40] comisionParticipe_type              COMISIONPARTICIPE_TYPE (ID=1) UPDATE noop
+  [ 8/40] cuentaBancariaAfiliadoType          CUENTABANCARIAAFILIADO_TYPE (ID=241) UPDATE noop
+  [ 9/40] distribucionAfiliadoType            DISTRIBUCIONAFILIADO_TYPE (ID=241) UPDATE noop
+  [10/40] documentacionAfiliadoType           DOCUMENTACIONAFILIADO_TYPE (ID=64) UPDATE noop
+  [11/40] firmanteParticipeType               FIRMANTEPARTICIPE_TYPE (ID=201) UPDATE noop
+  [12/40] grupoFamiliarType                   GRUPOFAMILIAR_TYPE (ID=221) UPDATE noop
+  [13/40] imagenesType                        IMAGENESTYPE (ID=403) UPDATE noop
+  [14/40] informacionAdicionalAfiliadoType    INFORMACIONADICIONALAFILIADO_TYPE (ID=41) UPDATE noop
+  [15/40] institucionType                     INSTITUCION_TYPE (ID=2101) UPDATE noop
+  [16/40] juridicoInformacionBasicaType       JURIDICOINFORMACIONBASICATYPE (ID=537) UPDATE noop
+  [17/40] motivoContableType                  MOTIVOCONTABLE_TYPE (ID=141) UPDATE noop
+  [18/40] movimientoCuentaType                MOVIMIENTOCUENTA_TYPE (ID=234) UPDATE noop
+  [19/40] movimientoTemporalType              MOVIMIENTOTEMPORAL_TYPE (ID=221) UPDATE noop
+  [20/40] naturalInformacionAdicionalType     NATURALINFORMACIONADICIONALTYPE (ID=1) UPDATE noop
+  [21/40] naturalInformacionBasicaType        NATURALINFORMACIONBASICATYPE (ID=23991) UPDATE noop
+  [22/40] naturalIngresosEgresosType          NATURALINGRESOSEGRESOSTYPE (ID=1391) UPDATE noop
+  [23/40] naturalTrabajoType                  NATURALTRABAJOTYPE (ID=2861) UPDATE noop
+  [24/40] otrosIngresosAfiliadoType           OTROSINGRESOSAFILIADO_TYPE (ID=341) UPDATE noop
+  [25/40] personaDireccionesType              PERSONADIRECCIONESTYPE (ID=39976) UPDATE noop
+  [26/40] personaFirmasType                   PERSONAFIRMASTYPE (ID=692) UPDATE noop
+  [27/40] personaReferenciasBancariasType     PERSONAREFERENCIASBANCARIASTYPE (ID=1) UPDATE noop
+  [28/40] personaReferenciasPersonalesType    PERSONAREFERENCIASPERSONALESTYPE (ID=1765) UPDATE noop
+  [29/40] personaTelefonosType                PERSONATELEFONOSTYPE (ID=4761) UPDATE noop
+  [30/40] personaType                         PERSONATYPE (ID=1) UPDATE noop
+  [31/40] personaVinculacionesType            PERSONAVINCULACIONESTYPE (ID=12359) UPDATE noop
+  [32/40] referenciaParticipeType             REFERENCIAPARTICIPE_TYPE (ID=81) UPDATE noop
+  [33/40] reporteSIBSParticipeType            REPORTESIBSPARTICIPE_TYPE (ID=2661) UPDATE noop
+  [34/40] retiroLiquidacionType               ERR: ORA-12899: value too large for column "FCME_USER"."CDC_OUTBOX"."AGGREGATE_ID" (actual: 123, maximum: 100)
+ORA-06512: at "FCME_USER.TRG_OUTBOX_RETIROLIQUIDACION_TYPE", line 20
+ORA-04088: error during e
+  [35/40] retiroVoluntarioEstadoType          RETIROVOLUNTARIOESTADO_TYPE (ID=161) UPDATE noop
+  [36/40] rolNominaType                       ROLNOMINA_TYPE (ID=428) UPDATE noop
+  [37/40] saldoDiarioRubroType                SALDODIARIORUBRO_TYPE (ID=412) UPDATE noop
+  [38/40] saldoDiarioType                     SALDODIARIO_TYPE (ID=1) UPDATE noop
+  [39/40] seguroVidaParticipeType             SEGUROVIDAPARTICIPE_TYPE (ID=121) UPDATE noop
+  [40/40] servicioAdicionalType               SERVICIOADICIONAL_TYPE (ID=388) UPDATE noop
+
+Disparados: 39/40
+
+[PROPAGACION] esperando 90s...
+  out+=41 inb+=0 processed+=0 errors_total=177 (89s rest)
+  out+=41 inb+=3 processed+=3 errors_total=179 (81s rest)
+  out+=41 inb+=3 processed+=3 errors_total=179 (73s rest)
+  out+=41 inb+=3 processed+=3 errors_total=179 (65s rest)
+  out+=41 inb+=5 processed+=5 errors_total=179 (57s rest)
+  out+=41 inb+=5 processed+=5 errors_total=179 (49s rest)
+  out+=41 inb+=5 processed+=5 errors_total=179 (41s rest)
+  out+=41 inb+=5 processed+=5 errors_total=179 (33s rest)
+  out+=41 inb+=23 processed+=23 errors_total=189 (25s rest)
+  out+=41 inb+=23 processed+=23 errors_total=189 (17s rest)
+  out+=41 inb+=23 processed+=23 errors_total=189 (9s rest)
+  out+=41 inb+=23 processed+=23 errors_total=189 (1s rest)
+
+[RESULTADOS]
+  # aggregate_type                         inbox  proc  err   status
+----------------------------------------------------------------------------------------------------
+  1 actualizacionAfiliadoType              2      2     4     ERR: wrapper actualizacionAfiliadoType: Cannot insert the va
+  2 actualizacionDocumentosType            2      2     3     ERR: wrapper actualizacionDocumentosType: Cannot insert the 
+  3 agendaMailAfiliadoType                 0      0     2     ERR: wrapper agendaMailAfiliadoType: Cannot insert the value
+  4 areaLaboralParticipeType               0      0     0     NO INBOX
+  5 auditoriaAfiliadoType                  0      0     0     NO INBOX
+  6 beneficiarioParticipeType              0      0     0     NO INBOX
+  7 comisionParticipe_type                 1      1     0     OK
+  8 cuentaBancariaAfiliadoType             0      0     3     ERR: wrapper cuentaBancariaAfiliadoType: Cannot insert the v
+  9 distribucionAfiliadoType               0      0     0     NO INBOX
+ 10 documentacionAfiliadoType              0      0     0     NO INBOX
+ 11 firmanteParticipeType                  0      0     6     ERR: wrapper firmanteParticipeType: Cannot insert the value 
+ 12 grupoFamiliarType                      0      0     6     ERR: wrapper grupoFamiliarType: Cannot insert the value NULL
+ 13 imagenesType                           1      1     1     ERR: wrapper imagenesType: Cannot insert the value NULL into
+ 14 informacionAdicionalAfiliadoType       0      0     0     NO INBOX
+ 15 institucionType                        0      0     5     ERR: wrapper institucionType: Cannot insert the value NULL i
+ 16 juridicoInformacionBasicaType          1      1     1     ERR: wrapper juridicoInformacionBasicaType: The conversion o
+ 17 motivoContableType                     1      1     3     ERR: wrapper motivoContableType: Cannot insert the value NUL
+ 18 movimientoCuentaType                   1      1     0     OK
+ 19 movimientoTemporalType                 1      1     6     ERR: wrapper movimientoTemporalType: String or binary data w
+ 20 naturalInformacionAdicionalType        1      1     8     ERR: wrapper naturalInformacionAdicionalType: Para INSERT/UP
+ 21 naturalInformacionBasicaType           1      1     1     ERR: wrapper naturalInformacionBasicaType: Cannot insert the
+ 22 naturalIngresosEgresosType             0      0     0     NO INBOX
+ 23 naturalTrabajoType                     0      0     10    ERR: wrapper naturalTrabajoType: No existe el registro en sf
+ 24 otrosIngresosAfiliadoType              1      1     0     OK
+ 25 personaDireccionesType                 1      1     1     ERR: wrapper personaDireccionesType: String or binary data w
+ 26 personaFirmasType                      1      1     1     ERR: wrapper personaFirmasType: String or binary data would 
+ 27 personaReferenciasBancariasType        1      1     0     OK
+ 28 personaReferenciasPersonalesType       0      0     1     ERR: wrapper personaReferenciasPersonalesType: No existe la 
+ 29 personaTelefonosType                   1      1     27    ERR: wrapper personaTelefonosType: Cannot insert the value N
+ 30 personaType                            1      1     0     OK
+ 31 personaVinculacionesType               0      0     10    ERR: wrapper personaVinculacionesType: codigoTipoVinculacion
+ 32 referenciaParticipeType                0      0     0     NO INBOX
+ 33 reporteSIBSParticipeType               0      0     0     NO INBOX
+ 34 retiroLiquidacionType                  0      0     8     ERR: wrapper retiroLiquidacionType: Cannot insert the value 
+ 35 retiroVoluntarioEstadoType             1      1     6     ERR: wrapper retiroVoluntarioEstadoType: Cannot insert the v
+ 36 rolNominaType                          1      1     1     ERR: wrapper rolNominaType: String or binary data would be t
+ 37 saldoDiarioRubroType                   1      1     0     OK
+ 38 saldoDiarioType                        1      1     7     ERR: wrapper saldoDiarioType: Empresa y Cedula son obligator
+ 39 seguroVidaParticipeType                0      0     0     NO INBOX
+ 40 servicioAdicionalType                  1      1     0     OK
+
+[RESUMEN] OK=7/40
+
+[ANTI-LOOP CHECK]
+  CDC_OUTBOX 5s mas tarde: +41 (deberia coincidir con inicial)
+=== FIN ===

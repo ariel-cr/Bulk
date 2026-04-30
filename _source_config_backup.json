@@ -1,0 +1,18 @@
+{
+  "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+  "incrementing.column.name": "ID",
+  "connection.password": "FcmeUser2025!",
+  "tasks.max": "1",
+  "table.types": "TABLE",
+  "table.whitelist": "FCME_USER.CDC_OUTBOX",
+  "mode": "incrementing",
+  "key.converter.schemas.enable": "true",
+  "topic.prefix": "newcore.canonicos.",
+  "connection.user": "fcme_user",
+  "poll.interval.ms": "1000",
+  "value.converter.schemas.enable": "true",
+  "name": "newcore-oracle-cdc-outbox-source",
+  "connection.url": "jdbc:oracle:thin:@10.35.3.223:31521/XEPDB1",
+  "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+  "key.converter": "org.apache.kafka.connect.json.JsonConverter"
+}

@@ -1,0 +1,54 @@
+==========================================================================================
+TEST 6 TABLAS RESTANTES - INSERT con FK reales del padre
+==========================================================================================
+
+--- dbCR.crtbcdeb_cnta (3 types) ---
+  FK groups: ['cri1cdeb_cnta']
+  FK cri1cdeb_cnta -> crtbtrec(ti_recp)=(1,)
+  INSERT cols: ['co_empr', 'sc_debi', 'nu_anio', 'ci_cedu', 'mo_sald_cic', 'mo_sald_venc', 'mo_sald_xven', 'mo_abno_tota', 'fe_proc', 'fe_ingr', 'co_usua_ingr', 'fe_veri', 'co_usua_veri', 'fe_conf', 'co_usua_conf', 'fe_elim', 'co_usua_elim', 'ti_recp', 'st_regi', 'mo_gara_otgd']
+  INSERT events: 3/3  payload_ok=True
+  DELETE filas: 1
+  OK ins=3/3 del=3/3
+
+--- dbCR.crtbdeud_conv (1 types) ---
+  FK groups: ['cri1deud_conv', 'cri2deud_conv']
+  FK cri1deud_conv -> crtbconv_pago(ti_cred,aa_cred,qs_cred,sc_conv)=(2, 8, 24010013, 201)
+  FK cri2deud_conv -> crtbtipo_deud(co_tipo_deud)=(1,)
+  INSERT cols: ['co_empr', 'ti_cred', 'aa_cred', 'qs_cred', 'sc_conv', 'co_tipo_deud', 'no_nomb', 'ci_cedu', 'fe_crea_deud', 'co_usua_crea', 'fe_modi_deud', 'co_usua_modi', 'fe_elim_deud', 'co_usua_elim', 'st_regi']
+  INSERT events: 1/1  payload_ok=True
+  DELETE filas: 1
+  OK ins=1/1 del=1/1
+
+--- dbCR.crtbgest_cred (1 types) ---
+  FK groups: ['cri1gest_cred']
+  FK cri1gest_cred -> crtoblig(ti_cred,aa_cred,qs_cred)=(0, 0, 1073741784)
+  INSERT cols: ['ti_cred', 'aa_cred', 'qs_cred', 'ci_cedu_ejec', 'ti_gest', 'co_usua_ingr', 'co_usua_modi', 'fe_pago', 'sc_pago', 'st_gest']
+  INSERT events: 1/1  payload_ok=True
+  DELETE filas: 1
+  OK ins=1/1 del=1/1
+
+--- dbCR.crtboper_dref_liqd (1 types) ---
+  FK groups: ['cri1oper_dref_liqd']
+  FK cri1oper_dref_liqd -> crtbtipo_deud(co_tipo_deud)=(1,)
+  INSERT cols: ['ti_cred', 'aa_cred', 'qs_cred', 'qs_refe', 'mo_dsto_fcme', 'co_tipo_deud', 'co_otro_ingr_rubr']
+  INSERT events: 1/1  payload_ok=True
+  DELETE filas: 1
+  OK ins=1/1 del=1/1
+
+--- dbCR.crtbrngo_intr_cred (1 types) ---
+  FK groups: ['cri1rngo_intr_cred']
+  [SKIP] padre crtbcarg_cred esta vacio - no hay FK validos
+
+--- dbCR.crtbsegu_cred (1 types) ---
+  FK groups: ['cri1segu_cred']
+  [SKIP] padre crtbmoti_cred esta vacio - no hay FK validos
+
+==========================================================================================
+RESUMEN
+==========================================================================================
+  OK                   4/6
+  FK_PARENT_EMPTY      2/6
+
+[cleanup]
+  closed fcme_canonicos
+  closed dbCR

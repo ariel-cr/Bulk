@@ -1,0 +1,4941 @@
+{
+  "actualizacionAfiliadoType": {
+    "oracle": "ACTUALIZACION_AFILIADO_TYPE",
+    "legacies": [
+      "fctbafil_actu"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGO_CEDU",
+        "legacy": "ci_cedu",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedu')"
+      },
+      {
+        "oracle_col": "CODIGO_PROV",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_CANT",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_PARR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCION_CALL_PRIM",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMERO_CALL_PRIM",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCION_CALL_SECU",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMERO_CALL_SECU",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMERO_MANZ",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMERO_VILL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCION_CDLA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TEXTO_TELF_CONVENIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TEXTO_TELF_CELU",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPO_OPERACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCION_REFERENCIA_VIVI",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TEXTO_MAIL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBRE_CONTABLE_ADIC",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TEXTO_TELF_CON1",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TEXTO_TELF_CON2",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPO_RELA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_PROV_INST",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_TIPO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_INST",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_CARG",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_NIVE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_CATE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPO_CONTABLE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPO_JORN",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_PROV_OBSQ",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_ZONA_OBSQ",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADOR_RENO_CREDITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADOR_ACCI",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHA_INGRESO",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "FECHA_MODIFICACION",
+        "legacy": "fe_modi",
+        "expr": "JSON_VALUE(p_payload,'$.fe_modi')"
+      },
+      {
+        "oracle_col": "FECHA_ULTM_ENVI",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADOR_IMPR_DOCUMENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHA_IMPR_DOCUMENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADOR_COBRANZA_PRES",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADOR_VALD_CELU",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADOR_VALD_MAIL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_AMI",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADO_ENTR_OBSQ",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHA_ENTR_OBSQ",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHA_VERI_DATO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADOR_IMPR_DOCUMENTO_CRED",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHA_IMPR_DOCUMENTO_CREDITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBRE_INST",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_CANT_INST",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_PARR_INST",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "actualizacionDocumentosType": {
+    "oracle": "ACTUALIZACION_DOCUMENTOS_TYPE",
+    "legacies": [
+      "fctbafil_info_actu_docs"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "SECUENCIA_ACTU_DOCS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_EMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "CODIGO_CEDU",
+        "legacy": "co_cedu",
+        "expr": "JSON_VALUE(p_payload,'$.co_cedu')"
+      },
+      {
+        "oracle_col": "SECUENCIA_ACTV_SUJE_CRED",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIA_ORGN_INGR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGO_PERS_POLI_EXPU",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCION_CIUD_NACI",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADOR_COMI_SERV",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCION_COMI_SERV",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHA_INGR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIO_INGRESA",
+        "legacy": "co_usua_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_ingr')"
+      }
+    ]
+  },
+  "agendaMailAfiliadoType": {
+    "oracle": "AGENDAMAILAFILIADO_TYPE",
+    "legacies": [
+      "fctbagen_mail"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "CODIGOCEDU",
+        "legacy": "ci_cedu",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedu')"
+      },
+      {
+        "oracle_col": "SECUENCIAREGISTRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONMAIL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORPRIN",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOINGRESA",
+        "legacy": "co_usua_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_ingr')"
+      },
+      {
+        "oracle_col": "FECHAINGRESO",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "USUARIOMODIFICA",
+        "legacy": "co_usua_modi",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_modi')"
+      },
+      {
+        "oracle_col": "FECHAMODIFICACION",
+        "legacy": "fe_modi",
+        "expr": "JSON_VALUE(p_payload,'$.fe_modi')"
+      },
+      {
+        "oracle_col": "CODIGOUSUELIM",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAELIMINACION",
+        "legacy": "fe_elim",
+        "expr": "JSON_VALUE(p_payload,'$.fe_elim')"
+      },
+      {
+        "oracle_col": "ESTADOREGISTRO",
+        "legacy": null,
+        "expr": "'A'"
+      }
+    ]
+  },
+  "areaLaboralParticipeType": {
+    "oracle": "AREALABORALPARTICIPE_TYPE",
+    "legacies": [
+      "fctbarea_lbrl"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOAREALABORAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONAREALABORAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOREGISTRO",
+        "legacy": null,
+        "expr": "'A'"
+      }
+    ]
+  },
+  "auditoriaAfiliadoType": {
+    "oracle": "AUDITORIAAFILIADO_TYPE",
+    "legacies": [
+      "cttbafil_audi",
+      "cttbtabl_afil",
+      "fctbaudi_actu_afil",
+      "fctbaudi_movi",
+      "sfct_afiliado_auditor",
+      "sfct_motivo_mant_afiliados"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "SECUENCIAAUDITORIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAMODIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CAMPOMODIFICADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "VALORANTERIOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "VALORNUEVO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOOPERACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ORIGENMODIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADO",
+        "legacy": "ce_estado",
+        "expr": "JSON_VALUE(p_payload,'$.ce_estado')"
+      },
+      {
+        "oracle_col": "CODIGOCUENTA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOIDENTIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "RELACIONPRODUCTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "SECUENCIAACTUALIZACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROCEDULARECIBECOREO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROTELEFONOCONVENCIONAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROTELEFONOCELULAR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DIRECCIONPATRONO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOINGRESA",
+        "legacy": "co_usua_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_ingr')"
+      },
+      {
+        "oracle_col": "FECHACREACION",
+        "legacy": "fe_crea",
+        "expr": "JSON_VALUE(p_payload,'$.fe_crea')"
+      },
+      {
+        "oracle_col": "HORAINGRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCAMPOAMODIFICAR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBRECAMPOAMODIFICAR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONCAMPOAMODIFICAR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "HORACREACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONADICIONAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOMOTIVOMANTENIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROTRANSACCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTRANSACCIONUTILIZADA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "HORAGENERACIONREGISTRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORCONTRATOCESANTIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NIVELAPORTE",
+        "legacy": "ci_nivelaporte",
+        "expr": "JSON_VALUE(p_payload,'$.ci_nivelaporte')"
+      },
+      {
+        "oracle_col": "VALORDESCUENTOHIPOTECARIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCATEGORIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CEDULACOORDINADOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "PORCENTAJECAM",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "PORCENTAJEFUNCIONAL",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "beneficiarioParticipeType": {
+    "oracle": "BENEFICIARIOPARTICIPE_TYPE",
+    "legacies": [
+      "sfct_beneficiario",
+      "sfct_beneficiario_retiro"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "APELLIDOSBENEFICIARIOS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOBANCOPAGO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOINGRESOREGISTRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOMODIFICOREGISTRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTATUSDELBENEFICIARIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHACREACIONREGISTRO",
+        "legacy": null,
+        "expr": "SYSDATE"
+      },
+      {
+        "oracle_col": "FECHAMODIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBRESBENEFICIARIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROCEDULA",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "NUMEROCEDULABENEFICIARIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROCUENTA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "PORCENTAJEDISTRIBUCIONVALORES",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIABENEFICIARIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOCUENTAPAGO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOBANCO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOBANCODESEMBOLSO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOREGISTRO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHACREACION",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "FECHADESEMBOLSOLIQUIDACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAELIMINACION",
+        "legacy": "fe_elim",
+        "expr": "JSON_VALUE(p_payload,'$.fe_elim')"
+      },
+      {
+        "oracle_col": "MONTOARECIBIR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBREBENEFICIARIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIADESEMBOLSOPORLIQUIDACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIARETIRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOCUENTA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPODESEMBOLSO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOELIMINA",
+        "legacy": "co_usua_elim",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_elim')"
+      },
+      {
+        "oracle_col": "USUARIOINGRESA",
+        "legacy": "co_usua_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_ingr')"
+      }
+    ]
+  },
+  "cuentaBancariaAfiliadoType": {
+    "oracle": "CUENTABANCARIAAFILIADO_TYPE",
+    "legacies": [
+      "sfct_padbs"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CEDULABENEFICIARIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "CUENTABANCARIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CUENTABANCODESTINO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOREGISTRO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHACREACION",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "FECHAELIMINACION",
+        "legacy": "fe_elim",
+        "expr": "JSON_VALUE(p_payload,'$.fe_elim')"
+      },
+      {
+        "oracle_col": "MONTOMOVIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBREBENEFICIARIOPAGO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROCUENTA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIALIQUIDACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIAPAGO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOCUENTA",
+        "legacy": "ti_cnta",
+        "expr": "JSON_VALUE(p_payload,'$.ti_cnta')"
+      },
+      {
+        "oracle_col": "TIPOPAGO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOELIMINA",
+        "legacy": "co_usua_elim",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_elim')"
+      },
+      {
+        "oracle_col": "USUARIOINGRESA",
+        "legacy": "co_usua_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_ingr')"
+      },
+      {
+        "oracle_col": "CODIGOBANCO",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "distribucionAfiliadoType": {
+    "oracle": "DISTRIBUCIONAFILIADO_TYPE",
+    "legacies": [
+      "cttbmatr_dist_afil"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CIRCUITO",
+        "legacy": "Circuito",
+        "expr": "JSON_VALUE(p_payload,'$.Circuito')"
+      },
+      {
+        "oracle_col": "CIUDAD",
+        "legacy": "Ciudad",
+        "expr": "JSON_VALUE(p_payload,'$.Ciudad')"
+      },
+      {
+        "oracle_col": "DISTRITO",
+        "legacy": "Distrito",
+        "expr": "JSON_VALUE(p_payload,'$.Distrito')"
+      },
+      {
+        "oracle_col": "ESTADODISTRIBUCIONAFILIADO",
+        "legacy": "Estado",
+        "expr": "JSON_VALUE(p_payload,'$.Estado')"
+      },
+      {
+        "oracle_col": "MONTOCREDITOVIGENTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOCUENTAUNICA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBREPROVINCIA",
+        "legacy": "Provincia",
+        "expr": "JSON_VALUE(p_payload,'$.Provincia')"
+      },
+      {
+        "oracle_col": "NUMEROAFILIADO",
+        "legacy": "NumeroAfiliado",
+        "expr": "JSON_VALUE(p_payload,'$.NumeroAfiliado')"
+      },
+      {
+        "oracle_col": "NUMEROAFILIADOACTUALIZADO",
+        "legacy": "NumeroAfiliadoActualizado",
+        "expr": "JSON_VALUE(p_payload,'$.NumeroAfiliadoActualizado')"
+      },
+      {
+        "oracle_col": "NUMEROCADB",
+        "legacy": "NumeroCADB",
+        "expr": "JSON_VALUE(p_payload,'$.NumeroCADB')"
+      },
+      {
+        "oracle_col": "NUMEROCAP",
+        "legacy": "NumeroCAP",
+        "expr": "JSON_VALUE(p_payload,'$.NumeroCAP')"
+      },
+      {
+        "oracle_col": "NUMEROCREDITOVIGENTE",
+        "legacy": "NumeroCreditoVigente",
+        "expr": "JSON_VALUE(p_payload,'$.NumeroCreditoVigente')"
+      },
+      {
+        "oracle_col": "NUMERODIRECTIVONACIONAL2008",
+        "legacy": "NumeroDirectivoNacional2008",
+        "expr": "JSON_VALUE(p_payload,'$.NumeroDirectivoNacional2008')"
+      },
+      {
+        "oracle_col": "NUMERODIRECTIVONACIONAL2010",
+        "legacy": "NumeroDirectivoNacional2010",
+        "expr": "JSON_VALUE(p_payload,'$.NumeroDirectivoNacional2010')"
+      },
+      {
+        "oracle_col": "NUMERODIRECTIVOPROVINCIAL2008",
+        "legacy": "NumeroDirectivoProvincial2008",
+        "expr": "JSON_VALUE(p_payload,'$.NumeroDirectivoProvincial2008')"
+      },
+      {
+        "oracle_col": "NUMERODIRECTIVOPROVINCIAL2010",
+        "legacy": "NumeroDirectivoProvincial2010",
+        "expr": "JSON_VALUE(p_payload,'$.NumeroDirectivoProvincial2010')"
+      },
+      {
+        "oracle_col": "NUMEROEJECUTIVOFINANCIERO",
+        "legacy": "NumeroEjecutivoFinanciero",
+        "expr": "JSON_VALUE(p_payload,'$.NumeroEjecutivoFinanciero')"
+      },
+      {
+        "oracle_col": "NUMEROINSTITUCIONES",
+        "legacy": "NumeroInstituciones",
+        "expr": "JSON_VALUE(p_payload,'$.NumeroInstituciones')"
+      },
+      {
+        "oracle_col": "NUMEROLEGADOCONVENCION2008",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROLEGADOCONVENCION2010",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROLIDEROPINION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROPRESIDENTEEJECUTIVO2008",
+        "legacy": "NumeroPresidenteEjecutivo2008",
+        "expr": "JSON_VALUE(p_payload,'$.NumeroPresidenteEjecutivo2008')"
+      },
+      {
+        "oracle_col": "NUMEROPRESIDENTEEJECUTIVO2010",
+        "legacy": "NumeroPresidenteEjecutivo2010",
+        "expr": "JSON_VALUE(p_payload,'$.NumeroPresidenteEjecutivo2010')"
+      },
+      {
+        "oracle_col": "NUMEROPRESIDENTESPROVINCIALES2008",
+        "legacy": "Provincia",
+        "expr": "JSON_VALUE(p_payload,'$.Provincia')"
+      },
+      {
+        "oracle_col": "NUMEROPRESIDENTESPROVINCIALES2010",
+        "legacy": "Provincia",
+        "expr": "JSON_VALUE(p_payload,'$.Provincia')"
+      },
+      {
+        "oracle_col": "NUMEROSOLOCAM",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONPARROQUIA",
+        "legacy": "Parroquia",
+        "expr": "JSON_VALUE(p_payload,'$.Parroquia')"
+      },
+      {
+        "oracle_col": "TRABAJO",
+        "legacy": "trabajo",
+        "expr": "JSON_VALUE(p_payload,'$.trabajo')"
+      },
+      {
+        "oracle_col": "ZONA",
+        "legacy": "Zona",
+        "expr": "JSON_VALUE(p_payload,'$.Zona')"
+      }
+    ]
+  },
+  "documentacionAfiliadoType": {
+    "oracle": "DOCUMENTACIONAFILIADO_TYPE",
+    "legacies": [
+      "fctbafil_auto_docs",
+      "fctbafil_unif",
+      "fctbcart_rpag",
+      "fctbfcha_afil",
+      "fctbfcha_afil_dcto"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedu",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedu')"
+      },
+      {
+        "oracle_col": "SECUENCIADOCUMENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGODOCUMENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAFIRMADOCUMENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CEDULAUNIFICADA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAUNIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOUNIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAFIRMACARTA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORDESCUENTOROL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTODESCUENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPODOCUMENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHADOCUMENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHAINGRESO",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "INGRESOEGRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOINGRESOEGRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIAINGRESOEGRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOMENSUAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FIJO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "FECHAELIMINACION",
+        "legacy": "fe_elim",
+        "expr": "JSON_VALUE(p_payload,'$.fe_elim')"
+      },
+      {
+        "oracle_col": "VIAAUTORIZACIONTRATAMIENTODATOS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOCREA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOELIMINA",
+        "legacy": "co_usua_elim",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_elim')"
+      },
+      {
+        "oracle_col": "NUMEROCEDULARECIBECOREO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIAREACTIVACIONPARTICIPE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORVERIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOINGRESA",
+        "legacy": "co_usua_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_ingr')"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOPROCESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CEDULAPROMOTORPORPROCESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOPROCESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOFONDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPROCESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOFORMADESCUENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOSEGUIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHACREACION",
+        "legacy": "fe_crea",
+        "expr": "JSON_VALUE(p_payload,'$.fe_crea')"
+      },
+      {
+        "oracle_col": "USUARIOMODIFICA",
+        "legacy": "co_usua_modi",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_modi')"
+      },
+      {
+        "oracle_col": "FECHAMODIFICACION",
+        "legacy": "fe_modi",
+        "expr": "JSON_VALUE(p_payload,'$.fe_modi')"
+      },
+      {
+        "oracle_col": "CEDULAEJECUTIVOS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "POSEECARTAANTIGUAAFILIACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIAFICHAAFILIACION",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "firmanteParticipeType": {
+    "oracle": "FIRMANTEPARTICIPE_TYPE",
+    "legacies": [
+      "sfct_firmante"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "CODIGOINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOFIRMANTE",
+        "legacy": "no_firmante",
+        "expr": "JSON_VALUE(p_payload,'$.no_firmante')"
+      },
+      {
+        "oracle_col": "NUMEROCEDULA",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "SECUENCIAFIRMANTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "grupoFamiliarType": {
+    "oracle": "GRUPOFAMILIAR_TYPE",
+    "legacies": [
+      "sfct_grupo_fami"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "APELLIDOSGRUPOFAMILIAR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CEDULAFAMILIAR",
+        "legacy": "ci_cedula_familiar",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula_familiar')"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOINGRESOREGISTRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOMODIFICOREGISTRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOFAMILIAR",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHACREACIONREGISTRO",
+        "legacy": null,
+        "expr": "SYSDATE"
+      },
+      {
+        "oracle_col": "FECHAMODIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHANACIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORDISCAPACIDAD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBRESGRUPOFAMILIAR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOCREDITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOREALCIONFAMILIAR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROCEDULA",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      }
+    ]
+  },
+  "informacionAdicionalAfiliadoType": {
+    "oracle": "INFORMACIONADICIONALAFILIADO_TYPE",
+    "legacies": [
+      "fctbactv_suje_cred",
+      "fctbafil_dcap",
+      "fctbafil_gast_pers",
+      "fctbafil_info_adic",
+      "sfct_afiliado_fondos"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOGENERO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONGENERO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOGENERO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "SECUENCIAREGISTRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPRODUCTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADODESCUENTO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHACREACION",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "FECHAELIMINACION",
+        "legacy": "fe_elim",
+        "expr": "JSON_VALUE(p_payload,'$.fe_elim')"
+      },
+      {
+        "oracle_col": "FECHAMODIFICACION",
+        "legacy": "fe_modi",
+        "expr": "JSON_VALUE(p_payload,'$.fe_modi')"
+      },
+      {
+        "oracle_col": "NUMEROCEDULA",
+        "legacy": "ci_cedu",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedu')"
+      },
+      {
+        "oracle_col": "ROLFINDESCUENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ROLINICIODESCUENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIADESCUENTOCAP",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPODESCUENTOCAP",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOELIMINA",
+        "legacy": "co_usua_elim",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_elim')"
+      },
+      {
+        "oracle_col": "USUARIOINGRESA",
+        "legacy": "co_usua_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_ingr')"
+      },
+      {
+        "oracle_col": "USUARIOMODIFICA",
+        "legacy": "co_usua_modi",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_modi')"
+      },
+      {
+        "oracle_col": "VALORDESCUENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOELEMENTOFINANCIERO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "MONTOMONETARIOCUENTAENMENCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOAREALABORAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGODISTRITOAMIE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGODISTRITOMINS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPAISNACIONALIDAD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONCALLEPRINCIPAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONCALLESECUNDARIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONVIVIENDA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORCORRECCIONCEDULA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBRECONTACTOADICIONAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROCALLEPRINCIPAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROCALLESECUNDARIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROMANZANA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROVILLA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TELEFONOCONTACTO1",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TELEFONOCONTACTO2",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOJORNADA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOOPERADORACELULAR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPORELACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOFONDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOAFILIADO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHAINGRESOMAGISTERIO",
+        "legacy": null,
+        "expr": "SYSDATE"
+      },
+      {
+        "oracle_col": "FECHAREINGRESOFCME",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHARETIROFCME",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAULTIMAIMPRESIONESTADOCUENTA",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "INDICADORCOBROPRESTACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SALDOQUEPASOALHISTORICO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SALDOTRANSFERENRCIAFONDO",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "institucionType": {
+    "oracle": "INSTITUCION_TYPE",
+    "legacies": [
+      "fctbinst_info_adic",
+      "sfct_institucion"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBREINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "RUCINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPROVINCIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCIUDAD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DIRECCION",
+        "legacy": "no_direccion",
+        "expr": "JSON_VALUE(p_payload,'$.no_direccion')"
+      },
+      {
+        "oracle_col": "TELEFONO",
+        "legacy": "nu_telefono",
+        "expr": "JSON_VALUE(p_payload,'$.nu_telefono')"
+      },
+      {
+        "oracle_col": "REPRESENTANTELEGAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CORREOELECTRONICO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADO",
+        "legacy": "ce_estado",
+        "expr": "JSON_VALUE(p_payload,'$.ce_estado')"
+      },
+      {
+        "oracle_col": "FECHAINGRESO",
+        "legacy": null,
+        "expr": "SYSDATE"
+      },
+      {
+        "oracle_col": "CODIGOCONVENIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORDESCUENTOROL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPARROQUIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOAMIE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGODISTRITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCIRCUITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOSECTOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOSOSTENIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NIVEL",
+        "legacy": "ti_nivel",
+        "expr": "JSON_VALUE(p_payload,'$.ti_nivel')"
+      },
+      {
+        "oracle_col": "JORNADACLASES",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROPATRONAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMERORUC",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MAILINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROCUENTABANCOCENTRAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORDESCUENTOBCE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORINSTITUCIONMUNICIPAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBRECOLECTOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CEDULACOLECTOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TELEFONOCOLECTOR",
+        "legacy": "no_colector",
+        "expr": "JSON_VALUE(p_payload,'$.no_colector')"
+      },
+      {
+        "oracle_col": "DIRECCIONCOLECTOR",
+        "legacy": "no_direccion_colector",
+        "expr": "JSON_VALUE(p_payload,'$.no_direccion_colector')"
+      },
+      {
+        "oracle_col": "PORCENTAJECAM",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAMODIFICACION",
+        "legacy": "fe_modi",
+        "expr": "JSON_VALUE(p_payload,'$.fe_modi')"
+      },
+      {
+        "oracle_col": "NUMEROTELEFONO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPROVINCIACOLECTOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CIUDADCOLECTOR",
+        "legacy": "ci_ciudad_colector",
+        "expr": "JSON_VALUE(p_payload,'$.ci_ciudad_colector')"
+      },
+      {
+        "oracle_col": "CODIGOPARROQUIACOLECTOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROTELEFONOCOLECTOR",
+        "legacy": "no_colector",
+        "expr": "JSON_VALUE(p_payload,'$.no_colector')"
+      },
+      {
+        "oracle_col": "TIPODIRECCIONENTREGALISTADOS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPODIRECCIONPAGOS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORIMPRESIONESTADOCUENTA",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "CODIGOSEGUNELSINEC",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOMODIFICA",
+        "legacy": "co_usua_modi",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_modi')"
+      },
+      {
+        "oracle_col": "EMAILCOLECTOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DIRECCIONPROVINCIALQUECORRESPONDE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROUTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROZONA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOINGRESA",
+        "legacy": "co_usua_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_ingr')"
+      },
+      {
+        "oracle_col": "TIENECONTRATOBCEPARARECAUDACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHADIRMACONTRATO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORCONFIRMACIONBANCOCENTRAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ROLACTUALIZACIONINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAULTIMAACTUALIZACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "HORAULTIMAACTUALIZACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOUNIDADEJECUTORA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROCUENTAROTATIVAINGRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOCUENTAROTATIVAINGRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOBANCOCUENTAROTATIVAINGRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "TIPOINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TELEFONOCONVENCIONALINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CEDULAREPRESENTANTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBREREPRESENTANTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MAILREPRESENTANTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TELEFONOREPRESENTANTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOACCESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMERODOCENTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROBONIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROADMINISTRADOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROALUMNOS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCIRCUITOMINISTERIOEDUCACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGODISTRITOMINISTERIOEDUCACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOMODALIDAD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOETNIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGONACIONALIDAD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOEDUCACIONMINISTERIOEDUCACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOZONAMINISTERIOEDUCACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "UNIDADADMINISTRATIVACIRCUITAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOMOTIVOMODIFICACIONINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOREGISTROESCOLAR",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "motivoContableType": {
+    "oracle": "MOTIVOCONTABLE_TYPE",
+    "legacies": [
+      "sfct_motivo_cnta_cble"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "CODIGOFONDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CUENTAAUTOMATICADEBE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CUENTAAUTOMATICAHABER",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MOTIVO",
+        "legacy": "ci_motivo",
+        "expr": "JSON_VALUE(p_payload,'$.ci_motivo')"
+      },
+      {
+        "oracle_col": "RUBROROL",
+        "legacy": "ci_rubro_rol",
+        "expr": "JSON_VALUE(p_payload,'$.ci_rubro_rol')"
+      },
+      {
+        "oracle_col": "TIPOTRANSACCION",
+        "legacy": "ci_tipo_transaccion",
+        "expr": "JSON_VALUE(p_payload,'$.ci_tipo_transaccion')"
+      }
+    ]
+  },
+  "movimientoCuentaType": {
+    "oracle": "MOVIMIENTOCUENTA_TYPE",
+    "legacies": [
+      "fctbagru_moti_repo",
+      "fctbrubr_rent",
+      "sfct_afiliado",
+      "sfct_afiliado_referencias",
+      "sfct_banco",
+      "sfct_motivo",
+      "sfct_movimiento"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": "ci_tipo",
+        "expr": "JSON_VALUE(p_payload,'$.ci_tipo')"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "SECUENCIAMOVIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOMOVIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOMOTIVO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAMOVIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAPROCESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOMOVIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGORUBRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOFONDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCUENTACONTABLE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADO",
+        "legacy": "ce_estado",
+        "expr": "JSON_VALUE(p_payload,'$.ce_estado')"
+      },
+      {
+        "oracle_col": "CUENTABANCARIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CUENTABANCODESTINO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOPAGO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBREBENEFICIARIOPAGO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOCUENTA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOTRANSACCION",
+        "legacy": "ci_tipo_transaccion",
+        "expr": "JSON_VALUE(p_payload,'$.ci_tipo_transaccion')"
+      },
+      {
+        "oracle_col": "CODIGOINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOROL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOMOTIVORETIRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAINICIOAJUSTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAFINAJUSTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHARETIROFCME",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "PORCENTAJEDISTRIBUCIONVALORES",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SALDOANTERIOR",
+        "legacy": "va_saldo_anterior",
+        "expr": "JSON_VALUE(p_payload,'$.va_saldo_anterior')"
+      },
+      {
+        "oracle_col": "FECHACREACIONREGISTRO",
+        "legacy": null,
+        "expr": "SYSDATE"
+      },
+      {
+        "oracle_col": "INDICADORMOVIMIENTOCAPITALIZADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "HORAGENERACIONMOVIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOCOMPROBANTECONTABLE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPROVINCIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPAGADOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      }
+    ]
+  },
+  "movimientoTemporalType": {
+    "oracle": "MOVIMIENTOTEMPORAL_TYPE",
+    "legacies": [
+      "sfct_movimiento_temp"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "CODIGOINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOMOTIVORETIRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPROVINCIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOROL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOCONFIRMA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOVERIFICA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONMOVIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOMOVIMIENTO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHAAUTORIZACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHACREACIONREGISTRO",
+        "legacy": null,
+        "expr": "SYSDATE"
+      },
+      {
+        "oracle_col": "FECHAFINAJUSTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAINICIOAJUSTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAPROCESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHARETIROFCME",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAVERIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "HORAGENERACIONMOVIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORMOVIMIENTOCAPITALIZADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORMOVIMIENTOIMPRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORTIPOPROCESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MOTIVO",
+        "legacy": "ci_motivo",
+        "expr": "JSON_VALUE(p_payload,'$.ci_motivo')"
+      },
+      {
+        "oracle_col": "NUMEROCEDULA",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "NUMEROCOMPROBANTECONTABLE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROTRANSACCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPAGADOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "PORCENTAJEDISTRIBUCIONVALORES",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "RUBROROL",
+        "legacy": "ci_rubro_rol",
+        "expr": "JSON_VALUE(p_payload,'$.ci_rubro_rol')"
+      },
+      {
+        "oracle_col": "SALDOANTERIOR",
+        "legacy": "va_saldo_anterior",
+        "expr": "JSON_VALUE(p_payload,'$.va_saldo_anterior')"
+      },
+      {
+        "oracle_col": "SECUENCIACARGAMOVIMIENTOSMASIVOS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIAMOVIMIENTOND52",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIAROL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOCOMPROBANTECONTABLE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOTRANSACCION",
+        "legacy": "ci_tipo_transaccion",
+        "expr": "JSON_VALUE(p_payload,'$.ci_tipo_transaccion')"
+      },
+      {
+        "oracle_col": "USUARIOINGRESA",
+        "legacy": "co_usua_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_ingr')"
+      },
+      {
+        "oracle_col": "VALORMOVIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "naturalInformacionAdicionalType": {
+    "oracle": "NATURALINFORMACIONADICIONALTYPE",
+    "legacies": [
+      "fctbafil_info_actu_docs",
+      "notbcgfm",
+      "notbempl",
+      "sfct_afiliado",
+      "sfct_banco",
+      "sfct_beneficiario",
+      "sfct_ciudad",
+      "sfct_institucion"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": "ti_iden",
+        "expr": "JSON_VALUE(p_payload,'$.ti_iden')"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "LICENCIACONDUCIR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACIONADICIONAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "IDENTIFICACIONADICIONAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPAISNACIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPROVINCIANACIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCIUDADNACIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "LUGARTRABAJO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROCARGAS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPROFESION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGONIVELEDUCACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOFUENTEINGRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOVENTASESPERADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CANTIDADEMPLEADOS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NEGOCIOPROPIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOBARRIONACIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "OCUPACARGOPUBLICO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "RELACIONSECTORPUBLICO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "OBLIGADOCONTABILIDAD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAULTIMADECLARACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAINICIONEGOCIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROCARGASESCOLARES",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DISCAPACITADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "PORCENTAJEDISCAPACIDAD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "OBSERVACIONES",
+        "legacy": "ds_observaciones",
+        "expr": "JSON_VALUE(p_payload,'$.ds_observaciones')"
+      },
+      {
+        "oracle_col": "SEGUNDANACIONALIDAD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOIMAGENFOTO",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "naturalInformacionBasicaType": {
+    "oracle": "NATURALINFORMACIONBASICATYPE",
+    "legacies": [
+      "fctbafil_info_actu_docs",
+      "notbcgfm",
+      "notbempl",
+      "sfct_afiliado",
+      "sfct_beneficiario",
+      "sfct_ciudad"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": "ti_iden",
+        "expr": "JSON_VALUE(p_payload,'$.ti_iden')"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "GENERO",
+        "legacy": "in_sexo",
+        "expr": "JSON_VALUE(p_payload,'$.in_sexo')"
+      },
+      {
+        "oracle_col": "CODIGOESTADOCIVIL",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "APELLIDOCASADA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHANACIMIENTO",
+        "legacy": "fe_naci",
+        "expr": "JSON_VALUE(p_payload,'$.fe_naci')"
+      },
+      {
+        "oracle_col": "TIPODOMICILIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "EMANCIPADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "HOMONIMIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHARESIDENCIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DEPENDENCIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOVIVIENDA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOETNIA",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "naturalIngresosEgresosType": {
+    "oracle": "NATURALINGRESOSEGRESOSTYPE",
+    "legacies": [
+      "sfct_afiliado_otros",
+      "sfct_afiliado_rubro"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "INGRESOEGRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOINGRESOEGRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIAINGRESOEGRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOMENSUAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FIJO",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "naturalTrabajoType": {
+    "oracle": "NATURALTRABAJOTYPE",
+    "legacies": [
+      "fctbafil_actu",
+      "sfct_afiliado"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": "ci_tipo",
+        "expr": "JSON_VALUE(p_payload,'$.ci_tipo')"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "SECUENCIATRABAJO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCARGOPERSONA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCODIGOCARGO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAINGRESOTRABAJO",
+        "legacy": null,
+        "expr": "SYSDATE"
+      },
+      {
+        "oracle_col": "FECHASALIDA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBREEMPLEADOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "PROPIETARIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOCONTRATO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CARGOPUBLICO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SUELDO",
+        "legacy": "va_sueldo",
+        "expr": "JSON_VALUE(p_payload,'$.va_sueldo')"
+      },
+      {
+        "oracle_col": "CANTIDADEMPLEADOS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCOCUPACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIEMPOPARCIAL",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "otrosIngresosAfiliadoType": {
+    "oracle": "OTROSINGRESOSAFILIADO_TYPE",
+    "legacies": [
+      "fctbotro_ingr_afil",
+      "fctbotro_ingr_cony"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOROL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCEDU",
+        "legacy": "ci_cedu",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedu')"
+      },
+      {
+        "oracle_col": "CODIGOOTROINGRRUBR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTORUBR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAINGRESO",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "USUARIOINGRESA",
+        "legacy": "co_usua_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_ingr')"
+      },
+      {
+        "oracle_col": "FECHAMODIFICACION",
+        "legacy": "fe_modi",
+        "expr": "JSON_VALUE(p_payload,'$.fe_modi')"
+      },
+      {
+        "oracle_col": "USUARIOMODIFICA",
+        "legacy": "co_usua_modi",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_modi')"
+      },
+      {
+        "oracle_col": "FECHAELIMINACION",
+        "legacy": "fe_elim",
+        "expr": "JSON_VALUE(p_payload,'$.fe_elim')"
+      },
+      {
+        "oracle_col": "USUARIOELIMINA",
+        "legacy": "co_usua_elim",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_elim')"
+      },
+      {
+        "oracle_col": "DESCRIPCIONADIC",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOREGISTRO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "CODIGOROLOTROINGR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCEDUOTROINGR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCEDUCONY",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOOTROINGRRUBROTROINGR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTORUBROTROINGR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAINGRESOOTROINGR",
+        "legacy": null,
+        "expr": "SYSDATE"
+      },
+      {
+        "oracle_col": "USUARIOINGRESAOTROINGR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAMODIFICACIONOTROINGR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOMODIFICAOTROINGR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAELIMINACIONOTROINGR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOELIMINAOTROINGR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONADICOTROINGR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOREGISTROOTROINGR",
+        "legacy": null,
+        "expr": "'A'"
+      }
+    ]
+  },
+  "personaDireccionesType": {
+    "oracle": "PERSONADIRECCIONESTYPE",
+    "legacies": [
+      "cgtbprvd",
+      "fctbafil_info_actu_docs",
+      "fctbagen_mail",
+      "notbempl",
+      "sfct_afiliado",
+      "sfct_banco",
+      "sfct_ciudad",
+      "sfct_institucion"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": "ti_iden",
+        "expr": "JSON_VALUE(p_payload,'$.ti_iden')"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "NUMERODIRECCION",
+        "legacy": "sc_regi",
+        "expr": "JSON_VALUE(p_payload,'$.sc_regi')"
+      },
+      {
+        "oracle_col": "CODIGOTIPODIRECCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPAIS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPROVINCIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCIUDAD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DIRECCIONPRINCIPAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CALLE",
+        "legacy": "ds_dire",
+        "expr": "JSON_VALUE(p_payload,'$.ds_dire')"
+      },
+      {
+        "oracle_col": "NUMERO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INMUEBLE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DEPARTAMENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "URBANIZACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DIRECCION",
+        "legacy": "ds_dire",
+        "expr": "JSON_VALUE(p_payload,'$.ds_dire')"
+      },
+      {
+        "oracle_col": "FECHAINGRESO",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "FECHAINGRESORESIDENCIA",
+        "legacy": null,
+        "expr": "SYSDATE"
+      },
+      {
+        "oracle_col": "OBSERVACIONES",
+        "legacy": "ds_observaciones",
+        "expr": "JSON_VALUE(p_payload,'$.ds_observaciones')"
+      },
+      {
+        "oracle_col": "CODIGOPARROQUIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCANTON",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOBARRIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TRANSVERSAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOSITIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECTOR",
+        "legacy": "ti_sector",
+        "expr": "JSON_VALUE(p_payload,'$.ti_sector')"
+      },
+      {
+        "oracle_col": "CODIGOZIP5",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBREPROPIETARIO",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "personaReferenciasBancariasType": {
+    "oracle": "PERSONAREFERENCIASBANCARIASTYPE",
+    "legacies": [
+      "cgtbprvd",
+      "sfct_afiliado",
+      "sfct_afiliado_referencias",
+      "sfct_banco"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": "ti_iden",
+        "expr": "JSON_VALUE(p_payload,'$.ti_iden')"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "SECUENCIAREFERENCIABANCARIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOCUENTAREFERENCIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOIDENTIFICACIONIFINANCIERA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "IDENTIFICACIONIFINANCIERA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUCEMPRESABANCARIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCUENTA",
+        "legacy": "nu_cnta",
+        "expr": "JSON_VALUE(p_payload,'$.nu_cnta')"
+      },
+      {
+        "oracle_col": "NOMBRETITULAR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROCIFRAS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCIFRASALDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAAPERTURA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROPROTESTOS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CERRADA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBREINSTITUCIONPARACACEL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "OBSERVACIONESSOLOPARACACEL",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "personaReferenciasPersonalesType": {
+    "oracle": "PERSONAREFERENCIASPERSONALESTYPE",
+    "legacies": [
+      "fctbafil_ahor_refe"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedu",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedu')"
+      },
+      {
+        "oracle_col": "SECUENCIAREFERENCIAPERSONAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBRESPERSONA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "APELLIDOPATERNO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "APELLIDOMATERNO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DIRECCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TELEFONO",
+        "legacy": "nu_telf",
+        "expr": "JSON_VALUE(p_payload,'$.nu_telf')"
+      },
+      {
+        "oracle_col": "CODIGOTIPOVINCULACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "IDENTIFICACIONREFERENCIA",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "personaTelefonosType": {
+    "oracle": "PERSONATELEFONOSTYPE",
+    "legacies": [
+      "fctbafil_actu",
+      "fctbagen_telf_part",
+      "sfct_afiliado"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": "ci_tipo",
+        "expr": "JSON_VALUE(p_payload,'$.ci_tipo')"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "SECUENCIATELEFONO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOTELEFONO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROTELEFONO",
+        "legacy": "nu_telf",
+        "expr": "JSON_VALUE(p_payload,'$.nu_telf')"
+      },
+      {
+        "oracle_col": "EXTENSION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOUBICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMERODIRECCION",
+        "legacy": "sc_regi",
+        "expr": "JSON_VALUE(p_payload,'$.sc_regi')"
+      },
+      {
+        "oracle_col": "FECHAINGRESO",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "EMPRESAOPERADORA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOAREA",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "personaType": {
+    "oracle": "PERSONATYPE",
+    "legacies": [
+      "cgtbprvd",
+      "fctbafil_info_actu_docs",
+      "notbcgfm",
+      "notbempl",
+      "sfct_afiliado",
+      "sfct_banco",
+      "sfct_beneficiario",
+      "sfct_ciudad",
+      "sfct_institucion"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": "ti_iden",
+        "expr": "JSON_VALUE(p_payload,'$.ti_iden')"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "CODIGOTIPOPERSONA",
+        "legacy": "ti_pers",
+        "expr": "JSON_VALUE(p_payload,'$.ti_pers')"
+      },
+      {
+        "oracle_col": "CODIGOSECTORECONOMICO",
+        "legacy": "co_sect",
+        "expr": "JSON_VALUE(p_payload,'$.co_sect')"
+      },
+      {
+        "oracle_col": "PRIMERAPELLIDO",
+        "legacy": "no_apellido",
+        "expr": "JSON_VALUE(p_payload,'$.no_apellido')"
+      },
+      {
+        "oracle_col": "SEGUNDOAPELLIDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "PRIMERNOMBRE",
+        "legacy": "no_nombre",
+        "expr": "JSON_VALUE(p_payload,'$.no_nombre')"
+      },
+      {
+        "oracle_col": "SEGUNDONOMBRE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBRELEGAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAINGRESO",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "CODIGOPAIS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGORESIDENCIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOACTIVIDAD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOACTIVIDADDETALLE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "OBSERVACIONES",
+        "legacy": "ds_observaciones",
+        "expr": "JSON_VALUE(p_payload,'$.ds_observaciones')"
+      },
+      {
+        "oracle_col": "SUCURSALINGRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "OFICINAINGRESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOESTATUSPERSONA",
+        "legacy": "st_prvd",
+        "expr": "JSON_VALUE(p_payload,'$.st_prvd')"
+      },
+      {
+        "oracle_col": "NUMEROSOCIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOOFICIALPERSONA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCATEGORIATRATO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGORAZONAPERTURAFINALIDAD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SUJETOOBLIGADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBREPREFERIDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "EXONERADOIMPUESTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHACALIFICADO",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "personaVinculacionesType": {
+    "oracle": "PERSONAVINCULACIONESTYPE",
+    "legacies": [
+      "crtboper_cony",
+      "crtoblig",
+      "imtbmiem_cony",
+      "notbempl",
+      "sfct_afiliado",
+      "sfct_beneficiario",
+      "sfct_conyuge"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": "ti_iden",
+        "expr": "JSON_VALUE(p_payload,'$.ti_iden')"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACIONPERSONAVINCULADA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "IDENTIFICACIONPERSONAVINCULADA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOVINCULACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIAPERSONAVINCULACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAVINCULACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHASEPARACION",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "referenciaParticipeType": {
+    "oracle": "REFERENCIAPARTICIPE_TYPE",
+    "legacies": [
+      "sfct_referencias"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOREFERENCIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONTIPOREFERENCIA",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "reporteSIBSParticipeType": {
+    "oracle": "REPORTESIBSPARTICIPE_TYPE",
+    "legacies": [
+      "fctbcinf_part_sibs",
+      "fctbdinf_liqd_cnta_sibs",
+      "fctbdinf_part_sibs"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOENTIDAD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOESTRUCTURA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHACORTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAGENERACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROREGISTRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIAREGISTRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROCEDULA",
+        "legacy": "ci_cedu",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedu')"
+      },
+      {
+        "oracle_col": "TIPOIDENTIFICACION",
+        "legacy": "ti_iden",
+        "expr": "JSON_VALUE(p_payload,'$.ti_iden')"
+      },
+      {
+        "oracle_col": "CODIGOTIPOAPORTANTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOAPORTE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SALDODISPONIBLE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SALDOBLOQUEADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOLIQUIDACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHALIQUIDACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOGENERACION",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "retiroLiquidacionType": {
+    "oracle": "RETIROLIQUIDACION_TYPE",
+    "legacies": [
+      "sfct_afiliado_referencias",
+      "sfct_retiro"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": "ci_tipo",
+        "expr": "JSON_VALUE(p_payload,'$.ci_tipo')"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "SECUENCIARETIRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPORETIRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOMOTIVORETIRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHASOLICITUD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAAPROBACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHALIQUIDACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOSOLICITADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOAPROBADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOLIQUIDADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOESTADO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "CODIGOCUENTADESTINO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOBANCODESTINO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "OBSERVACIONES",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOAPRUEBA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOLIQUIDA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAINGRESO",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "MONTOSALDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOINTERESGENERADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "PORCENTAJETASAINTERES",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOLIQUIDACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIALIQUIDACIONHIPO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOPROCESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOROL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "CODIGOINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPROVINCIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPAGADOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOFAS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOCAPITALINSTITUCIONAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "VALORSALDOINCIAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHARETIROFCME",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHACONCESION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "VALORCREDITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "VALORINTERESCAPITALINICIAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "VALORINTERESACCIONES",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MOTIVO",
+        "legacy": "ci_motivo_retiro",
+        "expr": "JSON_VALUE(p_payload,'$.ci_motivo_retiro')"
+      },
+      {
+        "oracle_col": "FECHAVERIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOCONFIRMA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOELIMINA",
+        "legacy": "co_usua_elim",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_elim')"
+      },
+      {
+        "oracle_col": "FECHAELIMINACION",
+        "legacy": "fe_elim",
+        "expr": "JSON_VALUE(p_payload,'$.fe_elim')"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOAUTORIZAPROVISION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAAUTORIZAPROVISION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOANTERIOR",
+        "legacy": "ce_estado_anterior",
+        "expr": "JSON_VALUE(p_payload,'$.ce_estado_anterior')"
+      },
+      {
+        "oracle_col": "CODIGOFONDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "VALORRESEVAS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "VALORADICIONAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "VALORRETENCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "VALORCONSULCREDITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SOBRANTEQUESELIQUIDA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTODESCUENTOGASTOSJUBILACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOPAGOCREDITOOTROFONDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOPAGOSOBREGIROOTROFONDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "VALORCREDITOSCONSULCREDITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOAPERTURACUP",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "APORTEROLPARAAPERTURACUP",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOINVERSIONHIDROELECTRICA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOCAPITALIZACIONCDP",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTORENTABILIDADCDP",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOGARANTIAPORCREDITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOGARANTIAPORCUP",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTASACUP",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPLAZACUP",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOCAPITALIZACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTORENTABILIDADCUP",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CEDULAUSUARIOHIDROELECTRICA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CEDULAUSUARIOCAPTACUP",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOAPLICACIONORIGEN",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "COBROPRESTANO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPROCESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORPROCESO",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "retiroVoluntarioEstadoType": {
+    "oracle": "RETIROVOLUNTARIOESTADO_TYPE",
+    "legacies": [
+      "fctbrvol_esta_afil"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "ANIO",
+        "legacy": "nu_anio",
+        "expr": "JSON_VALUE(p_payload,'$.nu_anio')"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "CODIGOFONDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOAFILIADO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "ESTADOREGISTRO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHACREACION",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "FECHAMODIFICACION",
+        "legacy": "fe_modi",
+        "expr": "JSON_VALUE(p_payload,'$.fe_modi')"
+      },
+      {
+        "oracle_col": "SECUENCIADETALLE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPORETIROVOLUNTARIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOINGRESA",
+        "legacy": "co_usua_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_ingr')"
+      },
+      {
+        "oracle_col": "USUARIOMODIFICA",
+        "legacy": "co_usua_modi",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_modi')"
+      },
+      {
+        "oracle_col": "CODIGOINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "rolNominaType": {
+    "oracle": "ROLNOMINA_TYPE",
+    "legacies": [
+      "sfct_cabecera_rol",
+      "sfct_detalle_rol",
+      "sfct_rubro_rol"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": "ci_tipo",
+        "expr": "JSON_VALUE(p_payload,'$.ci_tipo')"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "CODIGOROL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "PERIODOANIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "PERIODOMES",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGORUBRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONRUBRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTORUBRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPORUBRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORDESCUENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHAPROCESO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIAROL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOCATEGORIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORCONTABLE",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NOMBRERUBROABREVIADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROPRIORIDAD",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ROLINICIAL",
+        "legacy": "ci_rol_inicial",
+        "expr": "JSON_VALUE(p_payload,'$.ci_rol_inicial')"
+      },
+      {
+        "oracle_col": "NUMERODEBITOS",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CUENTACONTABLEAUTOMATICAMOVIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CUENTACONTABLEAUTOMATICATRANSACCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TOTAL",
+        "legacy": "tx_total",
+        "expr": "JSON_VALUE(p_payload,'$.tx_total')"
+      },
+      {
+        "oracle_col": "RUBROACUMULADOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORINTERES",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORRUBROCONSALDOUNIFICADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "TIPODATODESCUENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOSDEUDOR",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "TIPOINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOINSTITUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOPROVINCIA",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "saldoDiarioRubroType": {
+    "oracle": "SALDODIARIORUBRO_TYPE",
+    "legacies": [
+      "fctbsald_diar_rubr"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "FECHASALDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOTRANSACCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOMOTIVO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGORUBROROL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "VASALDO",
+        "legacy": "va_saldo",
+        "expr": "JSON_VALUE(p_payload,'$.va_saldo')"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      }
+    ]
+  },
+  "saldoDiarioType": {
+    "oracle": "SALDODIARIO_TYPE",
+    "legacies": [
+      "fctbrubr_rent",
+      "fctbsald_diar_afil_rubr",
+      "sfct_saldos_diarios_afiliados"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": "ci_tipo",
+        "expr": "JSON_VALUE(p_payload,'$.ci_tipo')"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "FECHASALDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGORUBRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOFONDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SALDOANTERIOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTODEBITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOCREDITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SALDOACTUAL",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      }
+    ]
+  },
+  "seguroVidaParticipeType": {
+    "oracle": "SEGUROVIDAPARTICIPE_TYPE",
+    "legacies": [
+      "svtbcaus",
+      "svtbdisc",
+      "svtbefec",
+      "svtbfmpg",
+      "svtbstro",
+      "svtbstro_bene",
+      "svtbstro_cred",
+      "svtbstro_deta",
+      "svtbstro_exte"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOSECUENCIACAUSAFALLECIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONCAUSAFALLECIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOCAUSA",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHACREACION",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "FECHAMODIFICACION",
+        "legacy": "fe_modi",
+        "expr": "JSON_VALUE(p_payload,'$.fe_modi')"
+      },
+      {
+        "oracle_col": "USUARIOINGRESA",
+        "legacy": "co_usua_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_ingr')"
+      },
+      {
+        "oracle_col": "USUARIOMODIFICA",
+        "legacy": "co_usua_modi",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_modi')"
+      },
+      {
+        "oracle_col": "CODIGOFONDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOFAMILIAR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOPLAN",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "EDADPROVEEDOR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOCOBERTURA",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHAAFILIACIONCAM",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAFINALVIGENCIATASA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAINICIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOCOBERTURA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "NUMEROANIOSAFILIACIONFCME",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOCOBERTURA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGODISCAPACIDADFAMILIARES",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DISCAPACIDADFAMILIARESAFILIADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADODISCAPACIDAD",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "CODIGOEFECTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONEFECTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOEFECTO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "TIPOEFECTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONFORMAPAGO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOFORMAPAGO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "TIPOFORMAPAGO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CEDULAIDENTIDADAFILIADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CEDULAIDENTIDADSINIESTRADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOBANCOELCUALREALIZAPAGO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "CODIGOPROVINCIA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOCONFIRMA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOANTERIORSINIESTRADO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "ESTADOSINESTRO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHAAUTORIZACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAELIMINACION",
+        "legacy": "fe_elim",
+        "expr": "JSON_VALUE(p_payload,'$.fe_elim')"
+      },
+      {
+        "oracle_col": "FECHAFALLECIMIENTO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHANOTIFICACIONSINIESTRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAPRESENTACIONPAPELESSINIESTRADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAVERIFICACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIASINIESTRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOSINIESTRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOAUTORIZACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOELIMINA",
+        "legacy": "co_usua_elim",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_elim')"
+      },
+      {
+        "oracle_col": "CEDULABENEFICIARIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOFAMILIARSINIESTRADO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOQUERECIBIOBENEFICIARIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "PORCENTAJEDISTRUBUCION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ABONOPROPUESTOCREDITODESGRAVAMEN",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ANIOCREDITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "INDICADORPAGODESGRAVAMEN",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOCREDITOACANCELAR",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOPAGARSOBREGIROOTROFONDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "SECUENCIACREDITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOCREDITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "VALORDESGRAVAMEN",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOCUBIERTOPORDESGRAVAMEN",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTONOCUBIERTOCREDITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOPAGOSOBREGIROOTROFONDO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOPARACUBRIRSALDOCREDITO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOREALAPERCIBIRPORSINIESTRO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADOSINIESTROEXTEMPORANEO",
+        "legacy": null,
+        "expr": "'A'"
+      },
+      {
+        "oracle_col": "FECHASINIESTRO",
+        "legacy": null,
+        "expr": "NULL"
+      }
+    ]
+  },
+  "servicioAdicionalType": {
+    "oracle": "SERVICIOADICIONAL_TYPE",
+    "legacies": [
+      "fctbcser_adic",
+      "fctbesta_civi",
+      "fctbgene_sibs",
+      "fctbpara_serv_adic",
+      "sfct_afiliado"
+    ],
+    "cols": [
+      {
+        "oracle_col": "ID",
+        "legacy": null,
+        "expr": "skip-id"
+      },
+      {
+        "oracle_col": "CODIGOTIPOIDENTIFICACION",
+        "legacy": "ci_tipo",
+        "expr": "JSON_VALUE(p_payload,'$.ci_tipo')"
+      },
+      {
+        "oracle_col": "IDENTIFICACION",
+        "legacy": "ci_cedula",
+        "expr": "JSON_VALUE(p_payload,'$.ci_cedula')"
+      },
+      {
+        "oracle_col": "SECUENCIASERVICIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOTIPOSERVICIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "DESCRIPCIONSERVICIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "MONTOSERVICIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAINICIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAFIN",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "ESTADO",
+        "legacy": "ce_estado",
+        "expr": "JSON_VALUE(p_payload,'$.ce_estado')"
+      },
+      {
+        "oracle_col": "CODIGOUSUARIOAUTORIZA",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "FECHAAUTORIZACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "CODIGOEMPRESA",
+        "legacy": "co_empr",
+        "expr": "JSON_VALUE(p_payload,'$.co_empr')"
+      },
+      {
+        "oracle_col": "SECUENCIA",
+        "legacy": "sc_secu",
+        "expr": "JSON_VALUE(p_payload,'$.sc_secu')"
+      },
+      {
+        "oracle_col": "NUMEROCEDULARECIBECOREO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "TIPOSERVICIO",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOINGRESA",
+        "legacy": "co_usua_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_ingr')"
+      },
+      {
+        "oracle_col": "FECHACREACION",
+        "legacy": "fe_ingr",
+        "expr": "JSON_VALUE(p_payload,'$.fe_ingr')"
+      },
+      {
+        "oracle_col": "USUARIOAUTORIZACION",
+        "legacy": null,
+        "expr": "NULL"
+      },
+      {
+        "oracle_col": "USUARIOMODIFICA",
+        "legacy": "co_usua_modi",
+        "expr": "JSON_VALUE(p_payload,'$.co_usua_modi')"
+      },
+      {
+        "oracle_col": "FECHAMODIFICACION",
+        "legacy": "fe_modi",
+        "expr": "JSON_VALUE(p_payload,'$.fe_modi')"
+      },
+      {
+        "oracle_col": "ESTADOREGISTRO",
+        "legacy": null,
+        "expr": "'A'"
+      }
+    ]
+  }
+}

@@ -1,0 +1,249 @@
+====================================================================================================
+ TRIGGERS QUE COMPARTEN TABLAS (varios triggers sobre la misma tabla)
+====================================================================================================
+
+--- BD: dbCR (5 tablas con >1 trigger) ---
+  tabla                                #triggers  triggers (DIS=disabled)
+  ----------------------------------- ----------  ------------------------------------------------------------
+  crtbcaut_gara                                2  trg_outbox_crtbcaut_gara, tr_crtbcaut_gara_cdc
+  crtbgara_pgre                                2  trg_outbox_crtbgara_pgre, trg_crtbgara_pgre_outbox
+  crtbgara_real                                2  trg_outbox_crtbgara_real, trg_crtbgara_real_outbox
+  crtbinfo_gara_real_sibs                      2  trg_crtbinfo_gara_real_sibs_outbox, trg_outbox_crtbinfo_gara_real_sibs
+  crtgrtes                                     2  trg_crtgrtes_outbox, trg_outbox_crtgrtes
+
+--- BD: dbFC (2 tablas con >1 trigger) ---
+  tabla                                #triggers  triggers (DIS=disabled)
+  ----------------------------------- ----------  ------------------------------------------------------------
+  fctbdeta_liqd_grnt                           2  trg_outbox_fctbdeta_liqd_grnt, trg_fctbdeta_liqd_grnt_outbox
+  sfct_afiliado_bienes                         2  trg_outbox_sfct_afiliado_bienes, tr_sfct_afiliado_bienes_cdc
+
+--- BD: dbCG (34 tablas con >1 trigger) ---
+  tabla                                #triggers  triggers (DIS=disabled)
+  ----------------------------------- ----------  ------------------------------------------------------------
+  cgtbgara_hipo_cdio                           3  trg_cgtbgara_hipo_cdio_outbox, trg_cgtbgara_hipo_cdio_contab_outbox, trg_outbox_cgtbgara_hipo_cdio
+  cgtbgara_vehi_cdio                           3  trg_cgtbgara_vehi_cdio_outbox, trg_cgtbgara_vehi_cdio_contab_outbox, trg_outbox_cgtbgara_vehi_cdio
+  cgtbarch_ats                                 2  trg_cgtbarch_ats_outbox, trg_outbox_cgtbarch_ats
+  cgtbaval_hipo_cdio                           2  tr_cgtbaval_hipo_cdio_cdc, trg_outbox_cgtbaval_hipo_cdio
+  cgtbcasi                                     2  trg_cgtbcasi_outbox, trg_outbox_cgtbcasi
+  cgtbcaut_cpla                                2  trg_cgtbcaut_cpla_outbox, trg_outbox_cgtbcaut_cpla
+  cgtbcaut_dpla                                2  trg_cgtbcaut_dpla_outbox, trg_outbox_cgtbcaut_dpla
+  cgtbcaut_even                                2  trg_cgtbcaut_even_outbox, trg_outbox_cgtbcaut_even
+  cgtbcfac                                     2  trg_cgtbcfac_outbox, trg_outbox_cgtbcfac
+  cgtbcier_proc                                2  trg_cgtbcier_proc_outbox, trg_outbox_cgtbcier_proc
+  cgtbcncl                                     2  trg_cgtbcncl_outbox, trg_outbox_cgtbcncl
+  cgtbcncl_deta                                2  trg_cgtbcncl_deta_outbox, trg_outbox_cgtbcncl_deta
+  cgtbconc                                     2  trg_cgtbconc_outbox, trg_outbox_cgtbconc
+  cgtbdasi                                     2  trg_cgtbdasi_outbox, trg_outbox_cgtbdasi
+  cgtbdcto_fact                                2  trg_cgtbdcto_fact_outbox, trg_outbox_cgtbdcto_fact
+  cgtbdist_cost                                2  trg_cgtbdist_cost_outbox, trg_outbox_cgtbdist_cost
+  cgtbelem_fina                                2  trg_cgtbelem_fina_outbox, trg_outbox_cgtbelem_fina
+  cgtbexcl_cnta_B17                            2  trg_cgtbexcl_cnta_b17_outbox, trg_outbox_cgtbexcl_cnta_b17
+  cgtbfcos                                     2  trg_cgtbfcos_outbox, trg_outbox_cgtbfcos
+  cgtbiaas                                     2  trg_cgtbiaas_outbox, trg_outbox_cgtbiaas
+  cgtbpago_anti                                2  trg_cgtbpago_anti_outbox, trg_outbox_cgtbpago_anti
+  cgtbpers                                     2  trg_cgtbpers_outbox, trg_outbox_cgtbpers
+  cgtbprod_cnta_auto                           2  trg_cgtbprod_cnta_auto_outbox, trg_outbox_cgtbprod_cnta_auto
+  cgtbprvd                                     2  trg_outbox_cgtbprvd, trg_cgtbprvd_contab_outbox
+  cgtbrcaj_chic                                2  trg_cgtbrcaj_chic_outbox, trg_outbox_cgtbrcaj_chic
+  cgtbrcaj_chic_deta                           2  trg_cgtbrcaj_chic_deta_outbox, trg_outbox_cgtbrcaj_chic_deta
+  cgtbrepo_bala_gene                           2  trg_cgtbrepo_bala_gene_outbox, trg_outbox_cgtbrepo_bala_gene
+  cgtbrete                                     2  trg_cgtbrete_outbox, trg_outbox_cgtbrete
+  cgtbsald_egre                                2  trg_cgtbsald_egre_outbox, trg_outbox_cgtbsald_egre
+  cgtbsald_temp                                2  trg_cgtbsald_temp_outbox, trg_outbox_cgtbsald_temp
+  cgtbscpb_sri                                 2  trg_cgtbscpb_sri_outbox, trg_outbox_cgtbscpb_sri
+  cgtbtipo_docu_cdio                           2  trg_cgtbtipo_docu_cdio_outbox, trg_outbox_cgtbtipo_docu_cdio
+  cgtbtprd                                     2  trg_cgtbtprd_outbox, trg_outbox_cgtbtprd
+  cgtbucos                                     2  trg_cgtbucos_outbox, trg_outbox_cgtbucos
+
+--- BD: dbNO (2 tablas con >1 trigger) ---
+  tabla                                #triggers  triggers (DIS=disabled)
+  ----------------------------------- ----------  ------------------------------------------------------------
+  notbcgfm                                     2  trg_outbox_notbcgfm_carga, trg_outbox_notbcgfm
+  notbempl                                     2  trg_outbox_notbempl_empleado, trg_outbox_notbempl
+
+--- BD: dbIN (8 tablas con >1 trigger) ---
+  tabla                                #triggers  triggers (DIS=disabled)
+  ----------------------------------- ----------  ------------------------------------------------------------
+  intbcinv                                     3  trg_intbcinv_outbox, trg_intbcinv_rentavar_outbox, trg_outbox_intbcinv
+  intbcabe_dbso_inve                           2  trg_intbcabe_dbso_inve_outbox, trg_outbox_intbcabe_dbso_inve
+  intbdcto_cble                                2  trg_intbdcto_cble_outbox, trg_outbox_intbdcto_cble
+  intbdinv                                     2  trg_intbdinv_outbox, trg_outbox_intbdinv
+  intbemis                                     2  trg_intbemis_outbox, trg_outbox_intbemis
+  intbgara                                     2  trg_intbgara_outbox, trg_outbox_intbgara
+  intbprec_diar                                2  trg_intbprec_diar_outbox, trg_outbox_intbprec_diar
+  intbvinv                                     2  trg_outbox_intbvinv, trg_intbvinv_outbox
+
+
+====================================================================================================
+ TRIGGERS F1 QUE EMITEN MULTIPLES aggregate_types (CROSS JOIN @types)
+====================================================================================================
+
+--- BD: dbCR (16 triggers con N>1 types) ---
+
+  dbCR.crtbccbr_cred_judi  ->  trg_outbox_crtbccbr_cred_judi  (7 types)
+      - autorizacionCredito_type
+      - caucionCredito_type
+      - conceptoGastoJudicialType
+      - etapaJudicialCredito_type
+      - medidaJudicialType
+      - precalificacionCredito_type
+      - unidadJudicialType
+
+  dbCR.crtbcdeb_cnta  ->  trg_outbox_crtbcdeb_cnta  (3 types)
+      - cuentaCuotasType
+      - cuentaCxPCxCType
+      - cuentaType
+
+  dbCR.crtbcobr_judi_dist  ->  trg_outbox_crtbcobr_judi_dist  (2 types)
+      - cobranzaJudicialDistribucion_type
+      - cobranzaJudicial_type
+
+  dbCR.crtbcred_liqd_diar  ->  trg_outbox_crtbcred_liqd_diar  (2 types)
+      - liquidacionDiariaCredito_type
+      - movimientoContableCredito_type
+
+  dbCR.crtbcred_part  ->  trg_outbox_crtbcred_part  (2 types)
+      - flujoTrabajoCredito_type
+      - personaCreditoType
+
+  dbCR.crtbcred_prea_whts  ->  trg_outbox_crtbcred_prea_whts  (5 types)
+      - costoFinancieroCredito_type
+      - creditoType
+      - desembolsoCredito_type
+      - pagosCreditoType
+      - refinanciamientoCreditoType
+
+  dbCR.crtbdbso_devo  ->  trg_outbox_crtbdbso_devo  (2 types)
+      - desembolsoDevolucion_type
+      - devolucionCredito_type
+
+  dbCR.crtbdevo_masi_deta  ->  trg_outbox_crtbdevo_masi_deta  (2 types)
+      - devolucionMasivaDetalle_type
+      - devolucionMasiva_type
+
+  dbCR.crtbdocu_cred  ->  trg_outbox_crtbdocu_cred  (2 types)
+      - documentoCredito_type
+      - grupoCreditoDocumento_type
+
+  dbCR.crtbdsal_oper  ->  trg_outbox_crtbdsal_oper  (4 types)
+      - personaCxPCxCType
+      - reporteSBSOperacionCancelada_type
+      - reporteSBSOperacionConcedida_type
+      - reporteSBSSaldoOperacion_type
+
+  dbCR.crtbdvgo_cart_deta  ->  trg_outbox_crtbdvgo_cart_deta  (2 types)
+      - devengamientoCarteraDetalle_type
+      - devengamientoCartera_type
+
+  dbCR.crtbinfo_gara_real_sibs  ->  trg_outbox_crtbinfo_gara_real_sibs  (2 types)
+      - garantiaPorPrestamoType
+      - reporteSBSGarantiaReal_type
+
+  dbCR.crtbrecu_conv  ->  trg_outbox_crtbrecu_conv  (4 types)
+      - detalleRecuperacion_type
+      - recuperacionConvenio_type
+      - recuperacionCredito_type
+      - transaccionRecuperacion_type
+
+  dbCR.crtrepo_sobr  ->  trg_outbox_crtrepo_sobr  (3 types)
+      - reporteSBSCabecera_type
+      - reporteSBSDetalle_type
+      - tipoSobrante_type
+
+  dbCR.crtrubros_cobr  ->  trg_outbox_crtrubros_cobr  (2 types)
+      - rubroCobranza_type
+      - rubrosCobranzaDetalle_type
+
+  dbCR.crtsobrante  ->  trg_outbox_crtsobrante  (2 types)
+      - sobranteCredito_type
+      - sobranteDistribucion_type
+
+--- BD: dbFC (16 triggers con N>1 types) ---
+
+  dbFC.fctbdsto_rol  ->  trg_outbox_fctbdsto_rol  (2 types)
+      - cuentaIndividualPersonaType
+      - cuentaIndividualType
+
+  dbFC.fctbafil_actu  ->  trg_outbox_fctbafil_actu  (3 types)
+      - actualizacionAfiliadoType
+      - naturalTrabajoType
+      - personaTelefonosType
+
+  dbFC.fctbsald_diar_afil_rubr  ->  trg_outbox_fctbsald_diar_afil_rubr  (2 types)
+      - cuentaIndividualSaldosType
+      - saldoDiarioType
+
+  dbFC.sfct_banco  ->  trg_outbox_sfct_banco  (5 types)
+      - banco_type
+      - movimientoCuentaType
+      - naturalInformacionAdicionalType
+      - personaDireccionesType
+      - personaType
+
+  dbFC.fctbsald_diar_rubr  ->  trg_outbox_fctbsald_diar_rubr  (2 types)
+      - saldoDiarioRubroType
+      - saldoRubroType
+
+  dbFC.sfct_beneficiario  ->  trg_outbox_sfct_beneficiario  (5 types)
+      - beneficiarioParticipeType
+      - naturalInformacionAdicionalType
+      - naturalInformacionBasicaType
+      - personaType
+      - personaVinculacionesType
+
+  dbFC.sfct_ciudad  ->  trg_outbox_sfct_ciudad  (5 types)
+      - ciudad_type
+      - naturalInformacionAdicionalType
+      - naturalInformacionBasicaType
+      - personaDireccionesType
+      - personaType
+
+  dbFC.sfct_saldos_diarios_afiliados  ->  trg_outbox_sfct_saldos_diarios_afiliados  (2 types)
+      - saldoCxPCxCType
+      - saldoVinculadoType
+
+  dbFC.fctbafil_info_actu_docs  ->  trg_outbox_fctbafil_info_actu_docs  (5 types)
+      - actualizacionDocumentosType
+      - naturalInformacionAdicionalType
+      - naturalInformacionBasicaType
+      - personaDireccionesType
+      - personaType
+
+  dbFC.sfct_institucion  ->  trg_outbox_sfct_institucion  (4 types)
+      - institucionType
+      - naturalInformacionAdicionalType
+      - personaDireccionesType
+      - personaType
+
+  dbFC.fctbagen_mail  ->  trg_outbox_fctbagen_mail  (2 types)
+      - agendaMailAfiliadoType
+      - personaDireccionesType
+
+  dbFC.sfct_motivo  ->  trg_outbox_sfct_motivo  (2 types)
+      - motivo_type
+      - movimientoCuentaType
+
+  dbFC.sfct_movimiento  ->  trg_outbox_sfct_movimiento  (2 types)
+      - movimientoCuentaHistoricoType
+      - movimientoCuentaType
+
+  dbFC.fctbarea_lbrl  ->  trg_outbox_fctbarea_lbrl  (2 types)
+      - areaLaboralParticipeType
+      - areaLaboral_type
+
+  dbFC.sfct_afiliado  ->  trg_outbox_sfct_afiliado  (10 types)
+      - movimientoCuentaType
+      - naturalInformacionAdicionalType
+      - naturalInformacionBasicaType
+      - naturalTrabajoType
+      - personaDireccionesType
+      - personaReferenciasBancariasType
+      - personaTelefonosType
+      - personaType
+      - personaVinculacionesType
+      - servicioAdicionalType
+
+  dbFC.fctbrubr_rent  ->  trg_outbox_fctbrubr_rent  (3 types)
+      - movimientoCuentaType
+      - rubroRenta_type
+      - saldoDiarioType

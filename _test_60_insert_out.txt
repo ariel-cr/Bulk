@@ -1,0 +1,76 @@
+==========================================================================================
+SMOKE TEST INSERT - 60 tablas cartera
+==========================================================================================
+   1 dbCG   cgtbgara_hipo_cdio                  [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cgi1gara_hipo_cdio". The conf
+   2 dbCG   cgtbprod_cnta_auto                  [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cgi1prod_cnta_auto". The conf
+   3 dbCG   cgtbrepo_anls_cnta                  [OK           ] ins=1/1 del=1/1
+   4 dbCR   crtbabno_extr                       [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1abno_extr". The conflict 
+   5 dbCR   crtbcart_calf_prov                  [OK           ] ins=1/1 del=1/1
+   6 dbCR   crtbcaut_cred                       [OK           ] ins=1/1 del=1/1
+   7 dbCR   crtbccbr_cred_judi                  [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1ccbr_cred_judi". The conf
+   8 dbCR   crtbcdeb_cnta                       [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1cdeb_cnta". The conflict 
+   9 dbCR   crtbcobr_judi_deta                  [OK           ] ins=1/1 del=1/1
+  10 dbCR   crtbcobr_judi_dist                  [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "FK__crtbcobr_judi_di__2E3BD7D
+  11 dbCR   crtbconv_pago                       [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1conv_pago". The conflict 
+  12 dbCR   crtbcred_autr_deta                  [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri0cred_autr_deta". The conf
+  13 dbCR   crtbcred_liqd_diar                  [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1cred_liqd_diar". The conf
+  14 dbCR   crtbcred_part                       [OK           ] ins=2/2 del=2/2
+  15 dbCR   crtbcred_plzo_venc                  [OK           ] ins=1/1 del=1/1
+  16 dbCR   crtbcred_prea_whts                  [OK           ] ins=5/5 del=5/5
+  17 dbCR   crtbctrl_oper_ante_sibs             [OK           ] ins=1/1 del=1/1
+  18 dbCR   crtbdbso_devo                       [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1dbso_devo". The conflict 
+  19 dbCR   crtbdeud_conv                       [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1deud_conv". The conflict 
+  20 dbCR   crtbdevo_masi_deta                  [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1devo_masi_deta". The conf
+  21 dbCR   crtbdocu_cred                       [OK           ] ins=2/2 del=2/2
+  22 dbCR   crtbdsal_oper                       [OK           ] ins=4/4 del=4/4
+  23 dbCR   crtbdvgo_cart_deta                  [OK           ] ins=2/2 del=0/0 del_err=lkey not in inserted cols
+  24 dbCR   crtbdvgo_cart_deta_diar             [OK           ] ins=1/1 del=1/1
+  25 dbCR   crtbesta_conv_cred                  [OK           ] ins=1/1 del=1/1
+  26 dbCR   crtbgest_cart_asig                  [OK           ] ins=1/1 del=1/1
+  27 dbCR   crtbgest_cred                       [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1gest_cred". The conflict 
+  28 dbCR   crtbinfo_gara_real_sibs             [OK           ] ins=1/1 del=1/1
+  29 dbCR   crtbinfo_legl                       [OK           ] ins=1/1 del=1/1
+  30 dbCR   crtbobli_rol                        [OK           ] ins=1/1 del=1/1
+  31 dbCR   crtboper_canc                       [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1Oper_canc". The conflict 
+  32 dbCR   crtboper_dref_liqd                  [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1oper_dref_liqd". The conf
+  33 dbCR   crtbplan_ajus                       [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1plan_ajus". The conflict 
+  34 dbCR   crtbplpg_conv                       [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1plpg_conv". The conflict 
+  35 dbCR   crtbrecu_conv                       [OK           ] ins=4/4 del=4/4
+  36 dbCR   crtbrepo_sobr                       [OK           ] ins=1/1 del=1/1
+  37 dbCR   crtbrngo_autr_cred                  [OK           ] ins=1/1 del=1/1
+  38 dbCR   crtbrngo_intr_cred                  [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1rngo_intr_cred". The conf
+  39 dbCR   crtbsald_cart                       [OK           ] ins=1/1 del=1/1
+  40 dbCR   crtbsald_cart_deta                  [OK           ] ins=1/1 del=1/1
+  41 dbCR   crtbsegi_autr_ofic                  [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1segi_autr_ofic". The conf
+  42 dbCR   crtbsegu_cred                       [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1segu_cred". The conflict 
+  43 dbCR   crtbsobr_caut                       [ERR_INSERT] ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]The INSERT statement conflicted with the FOREIGN KEY constraint "cri1sobr_caut". The conflict 
+  44 dbCR   crtbtipo_cred_sibs                  [OK           ] ins=1/1 del=1/1
+  45 dbCR   crtpagos                            [OK           ] ins=1/1 del=1/1
+  46 dbCR   crtplpag                            [OK           ] ins=1/1 del=1/1
+  47 dbCR   crtrepo_sobr                        [OK           ] ins=3/3 del=3/3
+  48 dbCR   crtrubros_cobr                      [OK           ] ins=2/2 del=2/2
+  49 dbCR   crtsobrante                         [ERR_INSERT] ('23000', "[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'cri2sobrante'. Cannot insert duplicate key in object 'dbo
+  50 dbCR   crtsolid                            [OK           ] ins=1/1 del=1/1
+  51 dbCT   cttbesta_docu_inve                  [OK           ] ins=1/1 del=1/1
+  52 dbCT   cttbproc_obse_tran                  [OK           ] ins=1/1 del=1/1
+  53 dbCT   cttbrepo_gene                       [OK           ] ins=1/1 del=1/1
+  54 dbCT   cttbtran_inve_auxi                  [OK           ] ins=1/1 del=0/0 del_err=lkey not in inserted cols
+  55 dbFC   fctbdeta_liqd_cred                  [OK           ] ins=1/1 del=1/1
+  56 dbFC   fctbdinf_liqd_cnta_sibs             [OK           ] ins=1/1 del=1/1
+  57 dbFC   fctbmvto_impr_esta_cnta             [OK           ] ins=1/1 del=1/1
+  58 dbFC   fctbproc_tseg_noti                  [OK           ] ins=1/1 del=0/0 del_err=lkey not in inserted cols
+  59 dbFC   sfct_afiliado_referencias           [OK           ] ins=1/1 del=1/1
+  60 dbFC   sfct_saldos_diarios_afiliados       [OK           ] ins=2/2 del=2/2
+
+==========================================================================================
+RESUMEN
+==========================================================================================
+  OK                   38/60
+  ERR_INSERT           22/60
+
+[cleanup] cerrando conexiones...
+  closed fcme_canonicos
+  closed dbCG
+  closed dbCR
+  closed dbCT
+  closed dbFC

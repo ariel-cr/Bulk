@@ -1,0 +1,24 @@
+Generados:
+  Oracle TRG_OUTBOX     : 89
+  Legacy sp_<Type>_CRUD : 91
+  Canonicos wrappers    : 91
+
+[1/4] Oracle TRG_OUTBOX
+  OK=89 ERR=0
+
+[2/4] Legacy sp_<Type>_CRUD
+  OK=91 SKIP=0 ERR=0
+
+[3/4] Canonicos wrappers usp_inbox_<agg>
+  OK=91 ERR=0
+
+[4/4] cdc_inbox_module_config (active=0)
+  INSERT=91 SKIP=0
+
+[cleanup]
+  closed dbCR
+  closed dbCT
+  closed dbCG
+  closed dbFC
+  closed fcme_canonicos
+  closed Oracle

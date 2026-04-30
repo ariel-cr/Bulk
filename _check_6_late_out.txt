@@ -1,0 +1,12 @@
+Verificando si los 6 NO_KAFKA ya estan en cdc_inbox (ultimos 30 min):
+
+  [LLEGO] saldoVinculadoType                  count=2
+  [LLEGO] seguimientoAutorizacion_type        count=2
+  [LLEGO] seguroCredito_type                  count=2
+  [LLEGO] sobranteCaucion_type                count=2
+  [LLEGO] sobranteCredito_type                count=2
+  [LLEGO] sobranteDistribucion_type           count=2
+
+Total eventos cartera en cdc_inbox ultimos 30 min:
+  Types unicos: 92
+  Total eventos: 181

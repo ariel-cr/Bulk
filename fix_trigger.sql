@@ -18,10 +18,11 @@ BEGIN
     BEGIN
         -- CTE para calcular ROW_NUMBER fuera del subquery FOR JSON
         -- Se suma el MAX actual del destino para garantizar IDs unicos
+        -- Se aplica modulo 30000 para evitar overflow en columnas smallint de legacy
         ;WITH numbered AS (
             SELECT
-                ROW_NUMBER() OVER (ORDER BY i.co_bene)
-                    + ISNULL((SELECT MAX(propietarioId) FROM fcme_newcore.INMUEBLES.PROPIETARIOTYPE), 0) AS rn,
+                (ROW_NUMBER() OVER (ORDER BY i.co_bene)
+                    + ISNULL((SELECT MAX(propietarioId) FROM fcme_newcore.INMUEBLES.PROPIETARIOTYPE), 0)) % 30000 + 1 AS rn,
                 i.co_bene,
                 i.st_bene,
                 i.fe_ingr
@@ -96,7 +97,7 @@ BEGIN
 
             (
                 SELECT
-                    ISNULL(p.propietarioId, 0) AS propietarioId,
+                    ISNULL(p.propietarioId % 30000 + 1, 0) AS propietarioId,
 
                     RTRIM(d.co_bene) AS identificacion,
 
